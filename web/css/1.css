@@ -26,6 +26,7 @@ BODY{
     background-color: cornflowerblue;
     border-color: cornflowerblue;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .btn-home{
