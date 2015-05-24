@@ -20,6 +20,8 @@ public class LibraryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        int t = 0;
+        t++;
         processRequest(request, response);
     }
 
