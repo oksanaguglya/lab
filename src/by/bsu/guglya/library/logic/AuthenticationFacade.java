@@ -1,6 +1,6 @@
 package by.bsu.guglya.library.logic;
 
-import by.bsu.guglya.library.bean.User;
+import by.bsu.guglya.library.beans.User;
 import by.bsu.guglya.library.database.dao.UserDao;
 import by.bsu.guglya.library.database.dao.UserDaoImpl;
 

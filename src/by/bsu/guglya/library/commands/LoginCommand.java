@@ -1,8 +1,8 @@
-package by.bsu.guglya.library.controller.command;
+package by.bsu.guglya.library.commands;
 
-import by.bsu.guglya.library.bean.User;
-import by.bsu.guglya.library.manager.ConfigurationManager;
-import by.bsu.guglya.library.manager.MessageManager;
+import by.bsu.guglya.library.beans.User;
+import by.bsu.guglya.library.managers.ConfigurationManager;
+import by.bsu.guglya.library.managers.MessageManager;
 import by.bsu.guglya.library.logic.AuthenticationFacade;
 import org.apache.log4j.Logger;
 

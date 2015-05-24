@@ -1,4 +1,4 @@
-package by.bsu.guglya.library.manager;
+package by.bsu.guglya.library.managers;
 
 import java.util.ResourceBundle;
 import java.util.concurrent.locks.ReentrantLock;

@@ -1,6 +1,6 @@
-package by.bsu.guglya.library.controller.command;
+package by.bsu.guglya.library.commands;
 
-import by.bsu.guglya.library.manager.ConfigurationManager;
+import by.bsu.guglya.library.managers.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

@@ -1,6 +1,6 @@
 package by.bsu.guglya.library.database;
 
-import by.bsu.guglya.library.manager.ConfigurationManager;
+import by.bsu.guglya.library.managers.ConfigurationManager;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;

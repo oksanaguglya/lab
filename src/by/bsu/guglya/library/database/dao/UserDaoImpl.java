@@ -1,6 +1,6 @@
 package by.bsu.guglya.library.database.dao;
 
-import by.bsu.guglya.library.bean.User;
+import by.bsu.guglya.library.beans.User;
 import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;

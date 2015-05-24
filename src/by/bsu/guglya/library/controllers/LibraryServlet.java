@@ -1,6 +1,7 @@
-package by.bsu.guglya.library.controller;
+package by.bsu.guglya.library.controllers;
 
-import by.bsu.guglya.library.controller.command.*;
+import by.bsu.guglya.library.commands.Command;
+import by.bsu.guglya.library.commands.CommandFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

@@ -1,4 +1,4 @@
-package by.bsu.guglya.library.controller.command;
+package by.bsu.guglya.library.commands;
 
 import javax.servlet.http.HttpServletRequest;
 

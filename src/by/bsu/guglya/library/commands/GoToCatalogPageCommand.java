@@ -1,8 +1,8 @@
-package by.bsu.guglya.library.controller.command;
+package by.bsu.guglya.library.commands;
 
-import by.bsu.guglya.library.bean.CatalogItem;
+import by.bsu.guglya.library.beans.CatalogItem;
 import by.bsu.guglya.library.database.dao.CatalogDao;
-import by.bsu.guglya.library.manager.ConfigurationManager;
+import by.bsu.guglya.library.managers.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;

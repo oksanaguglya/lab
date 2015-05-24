@@ -1,6 +1,4 @@
-package by.bsu.guglya.library.controller;
-
-import by.bsu.guglya.library.controller.command.*;
+package by.bsu.guglya.library.commands;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;

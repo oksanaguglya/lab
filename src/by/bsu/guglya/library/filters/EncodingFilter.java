@@ -1,4 +1,4 @@
-package by.bsu.guglya.library.filter;
+package by.bsu.guglya.library.filters;
 
 import javax.servlet.*;
 import java.io.IOException;
