@@ -12,7 +12,7 @@ public class LibraryServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Command command = RequestHelper.getInstance().getCommand(request);
+        Command command = CommandFactory.getInstance().getCommand(request);
         String page = command.execute(request);
         request.getRequestDispatcher(page).forward(request, response);
     }

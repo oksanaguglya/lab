@@ -6,13 +6,13 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class RequestHelper {
+public class CommandFactory {
 
     private static ReentrantLock lock = new ReentrantLock();
-    private static RequestHelper instance = null;
+    private static CommandFactory instance = null;
     private HashMap<String, Command> commands = new HashMap<String, Command>();
 
-    private RequestHelper() {
+    private CommandFactory() {
         commands.put("change_language", new ChangeLanguageCommand());
         commands.put("login", new LoginCommand());
         commands.put("go_to_login_page", new GoToLoginPageCommand());
@@ -29,11 +29,11 @@ public class RequestHelper {
         return command;
     }
 
-    public static RequestHelper getInstance() {
+    public static CommandFactory getInstance() {
         try {
             lock.lock();
             if (instance == null) {
-                instance = new RequestHelper();
+                instance = new CommandFactory();
             }
             return instance;
         } finally {
