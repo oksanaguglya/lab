@@ -3,12 +3,11 @@ package by.bsu.guglya.library.controller.command;
 import by.bsu.guglya.library.bean.User;
 import by.bsu.guglya.library.manager.ConfigurationManager;
 import by.bsu.guglya.library.manager.MessageManager;
-import by.bsu.guglya.library.logic.LoginLogic;
+import by.bsu.guglya.library.logic.AuthenticationFacade;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.UnsupportedEncodingException;
 
 public class LoginCommand implements Command {
 
@@ -41,8 +40,8 @@ public class LoginCommand implements Command {
         String password = request.getParameter(PASSWORD_PARAM);
         HttpSession session = request.getSession(true);
         String locale = (String)session.getAttribute(LOCALE_ATTR);
-        if (LoginLogic.checkLogin(login, password)) {
-            User user = LoginLogic.returnUser(login, password);
+        if (AuthenticationFacade.checkLogin(login, password)) {
+            User user = AuthenticationFacade.returnUser(login, password);
             session.setAttribute(USER_ATTR, user);
             switch (user.getType()) {
                 case ADMINISTRATOR:
