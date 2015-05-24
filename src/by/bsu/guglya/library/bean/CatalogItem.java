@@ -1,11 +1,11 @@
 package by.bsu.guglya.library.bean;
 
-public class Catalog {
+public class CatalogItem {
 
     private Book book;
     private int quantity;
 
-    public Catalog(Book book, int quantity) {
+    public CatalogItem(Book book, int quantity) {
         this.book = book;
         this.quantity = quantity;
     }
