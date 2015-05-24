@@ -3,7 +3,7 @@ package by.bsu.guglya.library.bean;
 public class Book {
 
     public enum TypeOfBook{
-        HOME, READER_ROOM
+        HOME, READING_ROOM
     }
 
     private String title;
