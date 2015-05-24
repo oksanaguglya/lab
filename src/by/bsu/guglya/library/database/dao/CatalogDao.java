@@ -55,6 +55,25 @@ public class CatalogDao extends AbstractDao {
     }
 
     public int getCatalogItemsCount() {
-        return 0;
+        PreparedStatement ps = null;
+        int result = 0;
+        try {
+            ps = conn.prepareStatement(REQUEST_CATALOG_ITEMS_COUNT);
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                result = resultSet.getInt("count(*)");
+            }
+        } catch (SQLException ex) {
+            LOG.error(ex.getMessage());
+        } finally {
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    LOG.error(ex.getMessage());
+                }
+            }
+        }
+        return result;
     }
 }
