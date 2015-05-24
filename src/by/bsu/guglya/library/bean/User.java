@@ -3,7 +3,7 @@ package by.bsu.guglya.library.bean;
 public class User {
 
     public enum TypeOfUser {
-        ADMINISTRATOR,READER
+        ADMINISTRATOR, READER
     }
     private int idUser;
     private String login;
