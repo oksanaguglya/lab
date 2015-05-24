@@ -20,6 +20,7 @@ public class RequestHelper {
         commands.put("log_out", new LogoutCommand());
         commands.put("home", new HomeCommand());
         commands.put("go_to_about_us_page", new GoToAboutUsPageCommand());
+        commands.put("go_to_catalog_page", new GoToCatalogPageCommand());
     }
 
     public Command getCommand(HttpServletRequest request) {
