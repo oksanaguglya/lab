@@ -12,11 +12,11 @@
 <body>
 <table border="2" cellpadding="5" cellspacing="5">
     <tr>
-        <th>Title</th>
-        <th>Author</th>
-        <th>PublicationYear</th>
-        <th>Quantity</th>
-        <th>Home/ReaderRoom</th>
+        <th><fmt:message key="catalog.title"></fmt:message></th>
+        <th><fmt:message key="catalog.author"></fmt:message></th>
+        <th><fmt:message key="catalog.year"></fmt:message></th>
+        <th><fmt:message key="catalog.quantity"></fmt:message></th>
+        <th><fmt:message key="catalog.bookType"></fmt:message></th>
     </tr>
 
     <%--<c:forEach var="item" items="${CatalogItem}">

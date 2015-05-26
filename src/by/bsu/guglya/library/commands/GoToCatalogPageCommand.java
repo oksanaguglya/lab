@@ -9,11 +9,11 @@ import java.util.List;
 
 public class GoToCatalogPageCommand implements Command {
 
-    private final int ITEMS_PER_PAGE = 5;
-    private final String PAGE_NO_PARAM = "page";
-    private final String CATALOG_ITEMS_LIST_PARAM = "catalogItems";
-    private final String NO_OF_PAGE_PARAM = "noOfPage";
-    private final String CURREMT_PAGE_PARAM = "currentPage";
+    private static final int ITEMS_PER_PAGE = 5;
+    private static final String PAGE_NO_PARAM = "page";
+    private static final String CATALOG_ITEMS_LIST_PARAM = "catalogItems";
+    private static final String NO_OF_PAGE_PARAM = "noOfPage";
+    private static final String CURRENT_PAGE_PARAM = "currentPage";
 
     @Override
     public String execute(HttpServletRequest request) {
@@ -26,7 +26,7 @@ public class GoToCatalogPageCommand implements Command {
         int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / ITEMS_PER_PAGE);
         request.setAttribute(CATALOG_ITEMS_LIST_PARAM, items);
         request.setAttribute(NO_OF_PAGE_PARAM, noOfPages);
-        request.setAttribute(CURREMT_PAGE_PARAM, pageNo);
+        request.setAttribute(CURRENT_PAGE_PARAM, pageNo);
         String page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.CATALOG_PATH_JSP);
         return page;
     }
