@@ -16,7 +16,7 @@ public class CatalogDao extends AbstractDao {
     public static final String REQUEST_CATALOG_ITEMS =
             "select book.title, book.author, book.year, catalog.quantity, book_type.type from library.book " +
             "join library.catalog on library.catalog.book = library.book.idbook " +
-            "join library.book_type on library.book.book_type = library.book_type.idbook_type limit ? offset ?;";
+            "join library.book_type on library.book.book_type = library.book_type.idbook_type order by book.title limit ? offset ?;";
     public static final String REQUEST_CATALOG_ITEMS_COUNT = "select count(*) from library.catalog";
 
     public List<CatalogItem> getItems(int offset, int limit) {
