@@ -10,6 +10,11 @@
     <link href="/css/1.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
+<form name="search" action="../LibraryServlet" method="POST">
+    <input type="hidden" name="command" value="search"/>
+    <input type="text" name="search" placeholder=<fmt:message key="catalog.search.placeholder"/> />
+    <button type="submit" class="btn btn-info"><fmt:message key="catalog.search.button.text"/></button>
+</form>
 <table border="2" cellpadding="8" cellspacing="1">
     <tr>
         <th><fmt:message key="catalog.title"></fmt:message></th>
