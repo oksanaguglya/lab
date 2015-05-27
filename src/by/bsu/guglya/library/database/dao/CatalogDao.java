@@ -19,7 +19,11 @@ public class CatalogDao extends AbstractDao {
             "join library.book_type on library.book.book_type = library.book_type.idbook_type " +
             "where book.title like ? or book.author like ? " +
             "order by book.title limit ? offset ?;";
-    public static final String REQUEST_CATALOG_ITEMS_COUNT = "select count(*) from library.catalog";
+    public static final String REQUEST_CATALOG_ITEMS_COUNT =
+            "select count(*) " +
+            "from library.book " +
+            "join library.catalog on library.catalog.book = library.book.idbook " +
+            "where library.book.title like ? or library.book.author like ?;";
 
     public List<CatalogItem> getItems(String searchText, int offset, int limit) {
         List<CatalogItem> items = new ArrayList<CatalogItem>(limit);
@@ -57,11 +61,13 @@ public class CatalogDao extends AbstractDao {
         return items;
     }
 
-    public int getCatalogItemsCount() {
+    public int getCatalogItemsCount(String searchText) {
         PreparedStatement ps = null;
         int result = 0;
         try {
             ps = conn.prepareStatement(REQUEST_CATALOG_ITEMS_COUNT);
+            ps.setString(1, "%" + searchText + "%");
+            ps.setString(2, "%" + searchText + "%");
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()) {
                 result = resultSet.getInt("count(*)");

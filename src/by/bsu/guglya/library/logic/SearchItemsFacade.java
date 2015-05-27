@@ -13,7 +13,7 @@ public class SearchItemsFacade {
     public static SearchResult Search(String searchText, int pageNo) {
         CatalogDao catalogDAO = new CatalogDao();
         List<CatalogItem> items = catalogDAO.getItems(searchText, (pageNo - 1) * ITEMS_PER_PAGE, ITEMS_PER_PAGE);
-        int noOfRecords = catalogDAO.getCatalogItemsCount();
+        int noOfRecords = catalogDAO.getCatalogItemsCount(searchText);
         int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / ITEMS_PER_PAGE);
         return new SearchResult(items, noOfPages);
     }
