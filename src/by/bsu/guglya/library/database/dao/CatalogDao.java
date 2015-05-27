@@ -16,16 +16,20 @@ public class CatalogDao extends AbstractDao {
     public static final String REQUEST_CATALOG_ITEMS =
             "select book.title, book.author, book.year, catalog.quantity, book_type.type from library.book " +
             "join library.catalog on library.catalog.book = library.book.idbook " +
-            "join library.book_type on library.book.book_type = library.book_type.idbook_type order by book.title limit ? offset ?;";
+            "join library.book_type on library.book.book_type = library.book_type.idbook_type " +
+            "where book.title like ? or book.author like ? " +
+            "order by book.title limit ? offset ?;";
     public static final String REQUEST_CATALOG_ITEMS_COUNT = "select count(*) from library.catalog";
 
-    public List<CatalogItem> getItems(int offset, int limit) {
+    public List<CatalogItem> getItems(String searchText, int offset, int limit) {
         List<CatalogItem> items = new ArrayList<CatalogItem>(limit);
         PreparedStatement ps = null;
         try {
             ps = conn.prepareStatement(REQUEST_CATALOG_ITEMS);
-            ps.setInt(1, limit);
-            ps.setInt(2, offset);
+            ps.setString(1, "%" + searchText + "%");
+            ps.setString(2, "%" + searchText + "%");
+            ps.setInt(3, limit);
+            ps.setInt(4, offset);
             ResultSet resultSet = ps.executeQuery();
             CatalogItem item = null;
             Book book = null;
