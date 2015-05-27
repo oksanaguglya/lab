@@ -109,5 +109,19 @@ th{
     background-color: #92b2ed;
 }
 
+ul.linkNo {
+    margin: 0;
+    text-align:center;
+}
+ul.linkNo li{
+    display: inline-block;
+}
+
+.active{
+    font-size: 20px;
+    padding: 15px;
+}
+
+
 
 

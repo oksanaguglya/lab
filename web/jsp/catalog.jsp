@@ -32,43 +32,48 @@
             <td><c:out value="${item.getBook().getType()}"/></td>
         </tr>
     </c:forEach>
-    </table>
+    </table><br>
 
+<ul class="linkNo">
 <c:if test="${currentPage != 1}">
+    <li>
     <form class="pad" name="goPreviousPageForm" method="POST" action="LibraryServlet">
         <input type="hidden" name="command" value="go_to_catalog_page">
         <input type="hidden" name="page" value=${currentPage - 1}>
         <td><A HREF="javascript:document.goPreviousPageForm.submit()">Previous</A></td>
     </form>
+    </li>
 </c:if>
 
-<table border="1" cellpadding="2" cellspacing="2">
     <tr>
         <c:forEach var="i" begin="1" end="${noOfPages}">
             <c:choose>
                 <c:when test="${currentPage eq i}">
-                    <td>${i}</td>
+                    <li class="active"></li><td>${i}</td></li>
                 </c:when>
                 <c:otherwise>
+                    <li>
                     <form class="pad" id="goPageForm${i}" method="POST" action="LibraryServlet">
                         <input type="hidden" name="command" value="go_to_catalog_page">
                         <input type="hidden" name="page" value=${i}>
                         <td><A HREF="javascript:document.getElementById('goPageForm${i}').submit()">${i}</A></td>
-                    </form>
+                    </form></li>
                 </c:otherwise>
             </c:choose>
         </c:forEach>
     </tr>
-</table>
 
 <c:if test="${currentPage lt noOfPages}">
+    <li>
     <form class="pad" name="goNextPageForm" method="POST" action="LibraryServlet">
         <input type="hidden" name="command" value="go_to_catalog_page"/>
         <input type="hidden" name="page" value=${currentPage + 1}>
         <td><A HREF="javascript:document.goNextPageForm.submit()">Next</A></td>
-    </form>
-</c:if>
 
+    </form>
+    </li>
+</c:if>
+</ul>
 </body>
 <%@include file="footer.jsp" %>
 </fmt:bundle>
