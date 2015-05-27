@@ -19,7 +19,7 @@ public class GoToCatalogPageCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
-        int pageNo = 2;
+        int pageNo = 1;
         if(request.getParameter(PAGE_NO_PARAM) != null)
             pageNo = Integer.parseInt(request.getParameter(PAGE_NO_PARAM));
         CatalogDao catalogDAO = new CatalogDao();
