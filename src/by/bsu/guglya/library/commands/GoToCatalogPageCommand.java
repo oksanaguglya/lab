@@ -14,12 +14,12 @@ public class GoToCatalogPageCommand implements Command {
     private static final int ITEMS_PER_PAGE = 5;
     private static final String PAGE_NO_PARAM = "page";
     private static final String CATALOG_ITEMS_LIST_PARAM = "catalogItems";
-    private static final String NO_OF_PAGE_PARAM = "noOfPage";
+    private static final String NO_OF_PAGE_PARAM = "noOfPages";
     private static final String CURRENT_PAGE_PARAM = "currentPage";
 
     @Override
     public String execute(HttpServletRequest request) {
-        int pageNo = 1;
+        int pageNo = 2;
         if(request.getParameter(PAGE_NO_PARAM) != null)
             pageNo = Integer.parseInt(request.getParameter(PAGE_NO_PARAM));
         CatalogDao catalogDAO = new CatalogDao();

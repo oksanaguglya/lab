@@ -1,16 +1,17 @@
 package by.bsu.guglya.library.beans;
 
-import by.bsu.guglya.library.managers.ConfigurationManager;
 
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class Book {
 
     public enum TypeOfBook{
         HOME {
-           /* @Override
+            /*@Override
             public String toString() {
-                return ResourceBundle.getBundle("by.bsu.guglya.library.resources.gui").getString("home");
+
+                return (String) ResourceBundle.getBundle("by.bsu.guglya.library.resources.gui").getObject("home", new Locale());
             }*/
         },
         READING_ROOM{
