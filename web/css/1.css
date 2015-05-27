@@ -101,8 +101,13 @@ BODY{
 
 table{
     margin:auto;
+    background: #fff8dd;
+    width: 80%;
 }
 
+th{
+    background-color: #92b2ed;
+}
 
 
 

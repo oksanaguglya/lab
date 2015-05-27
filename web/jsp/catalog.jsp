@@ -10,7 +10,7 @@
     <link href="/css/1.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<table border="2" cellpadding="5" cellspacing="5">
+<table border="2" cellpadding="8" cellspacing="1">
     <tr>
         <th><fmt:message key="catalog.title"></fmt:message></th>
         <th><fmt:message key="catalog.author"></fmt:message></th>
@@ -18,15 +18,15 @@
         <th><fmt:message key="catalog.quantity"></fmt:message></th>
         <th><fmt:message key="catalog.bookType"></fmt:message></th>
     </tr>
-
-    <%--<c:forEach var="item" items="${CatalogItem}">
+    <c:forEach var="item" items="${requestScope.catalogItems}">
         <tr>
-            <td>${}</td>
-            <td>${}}</td>
-            <td>${}</td>
-            <td>${}</td>
+            <td><c:out value="${item.getBook().getTitle()}"/></td>
+            <td><c:out value="${item.getBook().getAuthor()}"/></td>
+            <td><c:out value="${item.getBook().getYear()}"/></td>
+            <td><c:out value="${item.getQuantity()}"/></td>
+            <td><c:out value="${item.getBook().getType()}"/></td>
         </tr>
-    </c:forEach>--%>
+    </c:forEach>
     </table>
 </body>
 <%@include file="footer.jsp" %>

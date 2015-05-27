@@ -1,10 +1,12 @@
 package by.bsu.guglya.library.commands;
 
+import by.bsu.guglya.library.beans.Book;
 import by.bsu.guglya.library.beans.CatalogItem;
 import by.bsu.guglya.library.database.dao.CatalogDao;
 import by.bsu.guglya.library.managers.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GoToCatalogPageCommand implements Command {

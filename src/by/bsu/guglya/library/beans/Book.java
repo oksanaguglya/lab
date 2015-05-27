@@ -1,9 +1,24 @@
 package by.bsu.guglya.library.beans;
 
+import by.bsu.guglya.library.managers.ConfigurationManager;
+
+import java.util.ResourceBundle;
+
 public class Book {
 
     public enum TypeOfBook{
-        HOME, READING_ROOM
+        HOME {
+            @Override
+            public String toString() {
+                return ResourceBundle.getBundle("by.bsu.guglya.library.resources.gui").getString("home");
+            }
+        },
+        READING_ROOM{
+            @Override
+            public String toString() {
+                return ResourceBundle.getBundle("by.bsu.guglya.library.resources.gui").getString("reading_room");
+            }
+        }
     }
 
     private String title;
