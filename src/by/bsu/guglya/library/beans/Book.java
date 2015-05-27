@@ -8,16 +8,16 @@ public class Book {
 
     public enum TypeOfBook{
         HOME {
-            @Override
+           /* @Override
             public String toString() {
                 return ResourceBundle.getBundle("by.bsu.guglya.library.resources.gui").getString("home");
-            }
+            }*/
         },
         READING_ROOM{
-            @Override
+           /* @Override
             public String toString() {
                 return ResourceBundle.getBundle("by.bsu.guglya.library.resources.gui").getString("reading_room");
-            }
+            }*/
         }
     }
 
