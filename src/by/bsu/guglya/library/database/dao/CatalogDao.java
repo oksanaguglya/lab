@@ -14,7 +14,7 @@ public class CatalogDao extends AbstractDao {
 
     private static final Logger LOG = Logger.getLogger(CatalogDao.class);
     public static final String REQUEST_CATALOG_ITEMS =
-            "select book.title, book.author, book.year, catalog.quantity, book_type.type from library.book " +
+            "select catalog.idcatalog, book.title, book.author, book.year, catalog.quantity, book_type.type from library.book " +
             "join library.catalog on library.catalog.book = library.book.idbook " +
             "join library.book_type on library.book.book_type = library.book_type.idbook_type " +
             "where book.title like ? or book.author like ? " +
@@ -38,13 +38,14 @@ public class CatalogDao extends AbstractDao {
             CatalogItem item = null;
             Book book = null;
             while (resultSet.next()) {
+                int idCatalog = resultSet.getInt("idcatalog");
                 String title = resultSet.getString("title");
                 String author = resultSet.getString("author");
                 int year = resultSet.getInt("year");
                 String bookType = resultSet.getString("type");
                 book = new Book(title, author, year, Book.TypeOfBook.valueOf(bookType));
                 int quantity = resultSet.getInt("quantity");
-                item = new CatalogItem(book, quantity);
+                item = new CatalogItem(idCatalog, book, quantity);
                 items.add(item);
             }
         } catch (SQLException ex) {

@@ -5,6 +5,25 @@
 <html>
 <fmt:setLocale value="${locale}" scope="session"/>
 <fmt:bundle basename="by.bsu.guglya.library.resources.gui">
+    <script src="http://code.jquery.com/jquery-latest.js">
+    </script>
+    <script>
+        $(document).ready(function(){
+            $("#sendBtn").click(function(e){
+                var items = $("input:checked").map(function() {
+                    return this.value;
+                }).get();
+                $.ajax({ url:"http://localhost:8080/LibraryServlet",
+                    type:"POST",
+                    data: { selectedItems: items },
+                    dataType:'json',
+                    success:function(data){
+                        alert("success");
+                        // codes....
+                    }})
+            });
+        });
+    </script>
     <%@include file="header.jsp" %>
     <head>
         <link href="/css/1.css" rel="stylesheet" type="text/css"/>
@@ -18,8 +37,15 @@
         <button type="submit" class="btn btn-info"><fmt:message key="catalog.search.button.text"/></button>
     </form>
 
-    <table border="2" cellpadding="8" cellspacing="1">
+    <table border="2" id="table" cellpadding="8" cellspacing="1">
         <tr>
+            <c:choose>
+                <c:when test="${sessionScope.user.getType() == 'READER'}">
+                    <th></th>
+                </c:when>
+                <c:otherwise>
+                </c:otherwise>
+            </c:choose>
             <th><fmt:message key="catalog.title"></fmt:message></th>
             <th><fmt:message key="catalog.author"></fmt:message></th>
             <th class="table_col_year"><fmt:message key="catalog.year"></fmt:message></th>
@@ -28,6 +54,13 @@
         </tr>
         <c:forEach var="item" items="${requestScope.catalogItems}">
             <tr>
+                <c:choose>
+                    <c:when test="${sessionScope.user.getType() == 'READER'}">
+                        <td><input type="radio" name="selectedItem${item.getId()}" value="${item.getId()}"/></td>
+                    </c:when>
+                    <c:otherwise>
+                    </c:otherwise>
+                </c:choose>
                 <td><c:out value="${item.getBook().getTitle()}"/></td>
                 <td><c:out value="${item.getBook().getAuthor()}"/></td>
                 <td class="table_col_year"><c:out value="${item.getBook().getYear()}"/></td>
@@ -88,6 +121,13 @@
         </ul>
     </div>
     </body>
+    <c:choose>
+        <c:when test="${sessionScope.user.getType() == 'READER'}">
+            <button type="submit" id="sendBtn" class="btn btn-home" name=home><fmt:message key="catalog.add"/></button>
+        </c:when>
+        <c:otherwise>
+        </c:otherwise>
+    </c:choose>
     <%@include file="footer.jsp" %>
 </fmt:bundle>
 </html>

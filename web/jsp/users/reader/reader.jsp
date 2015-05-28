@@ -17,7 +17,12 @@
             </form>
         </div>
         <ul class="list">
-            <li><a href=""><fmt:message key="main.catalog"/></a></li>
+            <li>
+                <form class="pad" name="submitForm3" method="POST" action="LibraryServlet">
+                    <input type="hidden" name="command" value="go_to_catalog_page">
+                    <A HREF="javascript:document.submitForm3.submit()"><fmt:message key="main.catalog"/></A>
+                </form>
+            </li>
             <li><a href=""><fmt:message key="about_us.link"/></a></li>
         </ul>
     </div>
