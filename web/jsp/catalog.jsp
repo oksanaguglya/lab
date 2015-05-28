@@ -6,75 +6,83 @@
 <fmt:setLocale value="${locale}" scope="session"/>
 <fmt:bundle basename="by.bsu.guglya.library.resources.gui">
     <%@include file="header.jsp" %>
-<head>
-    <link href="/css/1.css" rel="stylesheet" type="text/css"/>
-</head>
-<body>
-<form name="search" action="../LibraryServlet" method="POST">
-    <input type="hidden" name="command" value="go_to_catalog_page"/>
-    <input type="text" name="search" placeholder=<fmt:message key="catalog.search.placeholder"/> />
-    <button type="submit" class="btn btn-info"><fmt:message key="catalog.search.button.text"/></button>
-</form>
-<table border="2" cellpadding="8" cellspacing="1">
-    <tr>
-        <th><fmt:message key="catalog.title"></fmt:message></th>
-        <th><fmt:message key="catalog.author"></fmt:message></th>
-        <th><fmt:message key="catalog.year"></fmt:message></th>
-        <th><fmt:message key="catalog.quantity"></fmt:message></th>
-        <th><fmt:message key="catalog.bookType"></fmt:message></th>
-    </tr>
-    <c:forEach var="item" items="${requestScope.catalogItems}">
-        <tr>
-            <td><c:out value="${item.getBook().getTitle()}"/></td>
-            <td><c:out value="${item.getBook().getAuthor()}"/></td>
-            <td><c:out value="${item.getBook().getYear()}"/></td>
-            <td><c:out value="${item.getQuantity()}"/></td>
-            <td><c:out value="${item.getBook().getType()}"/></td>
-        </tr>
-    </c:forEach>
-    </table><br>
+    <head>
+        <link href="/css/1.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
 
-<ul class="linkNo">
-<c:if test="${currentPage != 1}">
-    <li>
-    <form class="pad" name="goPreviousPageForm" method="POST" action="LibraryServlet">
-        <input type="hidden" name="command" value="go_to_catalog_page">
-        <input type="hidden" name="page" value=${currentPage - 1}>
-        <td><A HREF="javascript:document.goPreviousPageForm.submit()">Previous</A></td>
-    </form>
-    </li>
-</c:if>
-
-    <tr>
-        <c:forEach var="i" begin="1" end="${noOfPages}">
-            <c:choose>
-                <c:when test="${currentPage eq i}">
-                    <li class="active"></li><td>${i}</td></li>
-                </c:when>
-                <c:otherwise>
-                    <li>
-                    <form class="pad" id="goPageForm${i}" method="POST" action="LibraryServlet">
-                        <input type="hidden" name="command" value="go_to_catalog_page">
-                        <input type="hidden" name="page" value=${i}>
-                        <td><A HREF="javascript:document.getElementById('goPageForm${i}').submit()">${i}</A></td>
-                    </form></li>
-                </c:otherwise>
-            </c:choose>
-        </c:forEach>
-    </tr>
-
-<c:if test="${currentPage lt noOfPages}">
-    <li>
-    <form class="pad" name="goNextPageForm" method="POST" action="LibraryServlet">
+    <form class="search" name="search" action="../LibraryServlet" method="POST">
         <input type="hidden" name="command" value="go_to_catalog_page"/>
-        <input type="hidden" name="page" value=${currentPage + 1}>
-        <td><A HREF="javascript:document.goNextPageForm.submit()">Next</A></td>
-
+        <input class="search_text" type="text" name="search" placeholder=
+                <fmt:message key="catalog.search.placeholder"/>/>
+        <button type="submit" class="btn btn-info"><fmt:message key="catalog.search.button.text"/></button>
     </form>
-    </li>
-</c:if>
-</ul>
-</body>
-<%@include file="footer.jsp" %>
+
+    <table border="2" cellpadding="8" cellspacing="1">
+        <tr>
+            <th><fmt:message key="catalog.title"></fmt:message></th>
+            <th><fmt:message key="catalog.author"></fmt:message></th>
+            <th class="table_col_year"><fmt:message key="catalog.year"></fmt:message></th>
+            <th class="table_col_quantity"><fmt:message key="catalog.quantity"></fmt:message></th>
+            <th class="table_col_bookType"><fmt:message key="catalog.bookType"></fmt:message></th>
+        </tr>
+        <c:forEach var="item" items="${requestScope.catalogItems}">
+            <tr>
+                <td><c:out value="${item.getBook().getTitle()}"/></td>
+                <td><c:out value="${item.getBook().getAuthor()}"/></td>
+                <td><c:out value="${item.getBook().getYear()}"/></td>
+                <td><c:out value="${item.getQuantity()}"/></td>
+                <td><c:out value="${item.getBook().getType()}"/></td>
+            </tr>
+        </c:forEach>
+    </table>
+    <br>
+
+    <div class="pagination">
+        <ul>
+            <c:if test="${currentPage != 1}">
+                <li>
+                    <form name="goPreviousPageForm" method="POST" action="LibraryServlet">
+                        <input type="hidden" name="command" value="go_to_catalog_page">
+                        <input type="hidden" name="page" value=${currentPage - 1}>
+                        <A HREF="javascript:document.goPreviousPageForm.submit()" class="pagination_prev"><</A>
+                    </form>
+                </li>
+            </c:if>
+
+
+            <c:forEach var="i" begin="1" end="${noOfPages}">
+                <c:choose>
+                    <c:when test="${currentPage eq i}">
+                        <li class="pagination_active">
+                            <a href="#">${i}</a>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li>
+                            <form id="goPageForm${i}" method="POST" action="LibraryServlet">
+                                <input type="hidden" name="command" value="go_to_catalog_page">
+                                <input type="hidden" name="page" value=${i}>
+                                <A HREF="javascript:document.getElementById('goPageForm${i}').submit()">${i}</A>
+                            </form>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+
+
+            <c:if test="${currentPage lt noOfPages}">
+                <li>
+                    <form name="goNextPageForm" method="POST" action="LibraryServlet">
+                        <input type="hidden" name="command" value="go_to_catalog_page"/>
+                        <input type="hidden" name="page" value=${currentPage + 1}>
+                        <A HREF="javascript:document.goNextPageForm.submit()" class="pagination_next">></A>
+                    </form>
+                </li>
+            </c:if>
+        </ul>
+    </div>
+    </body>
+    <%@include file="footer.jsp" %>
 </fmt:bundle>
 </html>
