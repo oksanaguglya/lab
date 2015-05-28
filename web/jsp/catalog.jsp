@@ -32,7 +32,12 @@
                 <td><c:out value="${item.getBook().getAuthor()}"/></td>
                 <td class="table_col_year"><c:out value="${item.getBook().getYear()}"/></td>
                 <td class="table_col_quantity"><c:out value="${item.getQuantity()}"/></td>
-                <td class="table_col_bookType"><c:out value="${item.getBook().getType()}"/></td>
+                <c:choose>
+                    <c:when test="${item.getBook().getType() == 'HOME'}">
+                        <td class="table_col_bookType"><fmt:message key="catalog.home"></fmt:message></td></c:when>
+                    <c:otherwise>
+                        <td class="table_col_bookType"><fmt:message key="catalog.reading_room"></fmt:message></td></</c:otherwise>
+                </c:choose>
             </tr>
         </c:forEach>
     </table>

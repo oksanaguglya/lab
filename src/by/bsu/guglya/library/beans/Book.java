@@ -7,19 +7,8 @@ import java.util.ResourceBundle;
 public class Book {
 
     public enum TypeOfBook{
-        HOME {
-            /*@Override
-            public String toString() {
-
-                return (String) ResourceBundle.getBundle("by.bsu.guglya.library.resources.gui").getObject("home", new Locale());
-            }*/
-        },
-        READING_ROOM{
-           /* @Override
-            public String toString() {
-                return ResourceBundle.getBundle("by.bsu.guglya.library.resources.gui").getString("reading_room");
-            }*/
-        }
+        HOME,
+        READING_ROOM
     }
 
     private String title;
