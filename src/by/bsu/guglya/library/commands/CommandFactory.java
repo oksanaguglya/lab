@@ -19,6 +19,7 @@ public class CommandFactory {
         commands.put("home", new HomeCommand());
         commands.put("go_to_about_us_page", new GoToAboutUsPageCommand());
         commands.put("go_to_catalog_page", new GoToCatalogPageCommand());
+        commands.put("registration", new RegistrationCommand());
     }
 
     public Command getCommand(HttpServletRequest request) {

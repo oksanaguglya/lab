@@ -16,11 +16,8 @@ public class LoginCommand implements Command {
     private final static String PASSWORD_PARAM = "password";
     private final static String LOCALE_PARAM = "locale";
     private final static String USER_ATTR = "user";
-    private static final String LOCALE_ATTR = "locale";
+    private final static String LOCALE_ATTR = "locale";
     private static final String NO_USER_MESSAGE_ATTR = "noUserMessage";
-
-    public LoginCommand() {
-    }
 
     @Override
     public String execute(HttpServletRequest request) {
