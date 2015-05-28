@@ -29,7 +29,6 @@ public class GoToCatalogPageCommand implements Command {
                 searchText = request.getSession().getAttribute(SEARCH_PARAM).toString();
             }
         }
-
         SearchResult result = SearchItemsFacade.Search(searchText, pageNo);
 
         request.setAttribute(CATALOG_ITEMS_LIST_PARAM, result.getItems());

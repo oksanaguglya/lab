@@ -13,8 +13,8 @@
 
     <form class="search" name="search" action="../LibraryServlet" method="POST">
         <input type="hidden" name="command" value="go_to_catalog_page"/>
-        <input class="search_text" type="text" name="search" placeholder=
-                <fmt:message key="catalog.search.placeholder"/>/>
+        <input class="search_text" type="text" name="search" value="${sessionScope.search}"
+               placeholder=<fmt:message key="catalog.search.placeholder"/>/>
         <button type="submit" class="btn btn-info"><fmt:message key="catalog.search.button.text"/></button>
     </form>
 
