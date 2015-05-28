@@ -30,9 +30,9 @@
             <tr>
                 <td><c:out value="${item.getBook().getTitle()}"/></td>
                 <td><c:out value="${item.getBook().getAuthor()}"/></td>
-                <td><c:out value="${item.getBook().getYear()}"/></td>
-                <td><c:out value="${item.getQuantity()}"/></td>
-                <td><c:out value="${item.getBook().getType()}"/></td>
+                <td class="table_col_year"><c:out value="${item.getBook().getYear()}"/></td>
+                <td class="table_col_quantity"><c:out value="${item.getQuantity()}"/></td>
+                <td class="table_col_bookType"><c:out value="${item.getBook().getType()}"/></td>
             </tr>
         </c:forEach>
     </table>

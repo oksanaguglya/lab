@@ -25,17 +25,6 @@ public class LoginCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         String page;
-
-       /* if (enc == null)
-        {
-           try{
-               request.setCharacterEncoding("UTF-8");
-               String enc2 = request.getCharacterEncoding();
-           }catch (UnsupportedEncodingException e){
-               String a = "jf";
-        }
-
-        }*/
         String login = request.getParameter(LOGIN_PARAM);
         String password = request.getParameter(PASSWORD_PARAM);
         HttpSession session = request.getSession(true);

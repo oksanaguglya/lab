@@ -57,6 +57,7 @@ public class CatalogDao extends AbstractDao {
                     LOG.error(ex.getMessage());
                 }
             }
+            closeConnection();
         }
         return items;
     }
@@ -82,6 +83,7 @@ public class CatalogDao extends AbstractDao {
                     LOG.error(ex.getMessage());
                 }
             }
+            closeConnection();
         }
         return result;
     }
