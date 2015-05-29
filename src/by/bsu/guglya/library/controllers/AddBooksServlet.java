@@ -11,7 +11,8 @@ import java.io.IOException;
 
 public class AddBooksServlet extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         if (request.getParameter("command") != null) {
             int t = 0;

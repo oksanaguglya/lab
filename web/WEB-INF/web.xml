@@ -15,12 +15,12 @@
         <url-pattern>/LibraryServlet</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>AddBookServlet</servlet-name>
-        <servlet-class>by.bsu.guglya.library.controllers.AddBookServlet</servlet-class>
+        <servlet-name>AddBooksServlet</servlet-name>
+        <servlet-class>by.bsu.guglya.library.controllers.AddBooksServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>AddBookServlet</servlet-name>
-        <url-pattern>/AddBookServlet</url-pattern>
+        <servlet-name>AddBooksServlet</servlet-name>
+        <url-pattern>/AddBooksServlet</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

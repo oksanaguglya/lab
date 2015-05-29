@@ -13,10 +13,9 @@
                 var items = $("input:checked").map(function() {
                     return this.value;
                 }).get();
-                items = JSON.stringify(items);
                 $.ajax({ url:"http://localhost:8080/AddBooksServlet",
                     type:"POST",
-                    data: { selectedItems: items, command: "add_books" },
+                    data: JSON.stringify({ selectedItems: items, command: "add_books" }),
                     dataType:'json',
                     success:function(data){
                         alert("success");
