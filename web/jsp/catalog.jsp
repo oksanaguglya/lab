@@ -15,12 +15,15 @@
                 }).get();
                 $.ajax({ url:"http://localhost:8080/AddBooksServlet",
                     type:"POST",
-                    data: JSON.stringify({ selectedItems: items, command: "add_books" }),
+                    data: { selectedItems: items },
                     dataType:'json',
-                    success:function(data){
+                    success:function(data) {
                         alert("success");
-                        // codes....
-                    }})
+                    },
+                    error:function(data) {
+                        alert("error" + JSON.stringify(data));
+                    }
+                })
             });
         });
     </script>

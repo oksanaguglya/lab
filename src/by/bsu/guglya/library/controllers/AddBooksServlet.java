@@ -1,7 +1,7 @@
 package by.bsu.guglya.library.controllers;
 
-import by.bsu.guglya.library.commands.Command;
-import by.bsu.guglya.library.commands.CommandFactory;
+import jdk.nashorn.internal.ir.debug.JSONWriter;
+import org.json.simple.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,9 +14,9 @@ public class AddBooksServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (request.getParameter("command") != null) {
-            int t = 0;
-        }
+        String[] selectedItems = request.getParameterValues("selectedItems[]");
+        request.getSession().setAttribute("selectedItems", selectedItems);
+        response.getWriter().write("{}");
     }
 }
 
