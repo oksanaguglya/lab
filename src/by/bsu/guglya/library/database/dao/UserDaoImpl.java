@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public class UserDaoImpl extends UserDao {
 
     private static final Logger LOG = Logger.getLogger(UserDaoImpl.class);
-    public static final String REQUEST_GET_USER = "select * from library.user join library.user_type on library.user.user_type = library.user_type.user_type_id where login=? and password=?;";
+    public static final String REQUEST_GET_USER = "select * from library.user join library.user_type on library.user.user_type = library.user_type.iduser_type where login=? and password=?;";
     //public static final String INSERT_CLIENT = "insert into user (login,password,user_type) values (?,?,?)";
     //public static final String GET_IDTYPE = "select iduser_type from user_type where type=?";
 
