@@ -13,9 +13,10 @@
                 var items = $("input:checked").map(function() {
                     return this.value;
                 }).get();
-                $.ajax({ url:"http://localhost:8080/LibraryServlet",
+                items = JSON.stringify(items);
+                $.ajax({ url:"http://localhost:8080/AddBooksServlet",
                     type:"POST",
-                    data: { selectedItems: items },
+                    data: { selectedItems: items, command: "add_books" },
                     dataType:'json',
                     success:function(data){
                         alert("success");
@@ -30,7 +31,7 @@
     </head>
     <body>
 
-    <form class="search" name="search" action="../LibraryServlet" method="POST">
+    <form class="search" name="search" action="../LibraryServlet" id="form" method="POST">
         <input type="hidden" name="command" value="go_to_catalog_page"/>
         <input class="search_text" type="text" name="search" value="${sessionScope.search}"
                placeholder=<fmt:message key="catalog.search.placeholder"/>/>
@@ -124,6 +125,9 @@
     <c:choose>
         <c:when test="${sessionScope.user.getType() == 'READER'}">
             <button type="submit" id="sendBtn" class="btn btn-home" name=home><fmt:message key="catalog.add"/></button>
+            <form name="addBooks" method="POST" action="LibraryServlet">
+                <input type="hidden" name="command" value="add_books"/>
+            </form>
         </c:when>
         <c:otherwise>
         </c:otherwise>

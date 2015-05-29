@@ -20,6 +20,7 @@ public class CommandFactory {
         commands.put("go_to_about_us_page", new GoToAboutUsPageCommand());
         commands.put("go_to_catalog_page", new GoToCatalogPageCommand());
         commands.put("registration", new RegistrationCommand());
+        commands.put("add_books", new AddBooksCommand());
     }
 
     public Command getCommand(HttpServletRequest request) {
