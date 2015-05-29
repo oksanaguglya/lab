@@ -49,7 +49,7 @@ public class UserDaoImpl extends UserDao {
             ps.setString(2, password);
             ResultSet resultSet = ps.executeQuery();
             if (resultSet.first()) {
-                int idUser = resultSet.getInt("user.user_id");
+                int idUser = resultSet.getInt("user.iduser");
                 String type = resultSet.getString("user_type.type");
                 user = new User(idUser, login, password, type.toUpperCase());
             }
