@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 public class Book {
 
     public enum TypeOfBook{
-        HOME, READING_ROOM
+        LIBRARY_CARD, READING_ROOM
     }
 
     private String title;

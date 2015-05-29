@@ -66,8 +66,8 @@
                 <td class="table_col_year"><c:out value="${item.getBook().getYear()}"/></td>
                 <td class="table_col_quantity"><c:out value="${item.getQuantity()}"/></td>
                 <c:choose>
-                    <c:when test="${item.getBook().getType() == 'HOME'}">
-                        <td class="table_col_bookType"><fmt:message key="catalog.home"></fmt:message></td></c:when>
+                    <c:when test="${item.getBook().getType() == 'LIBRARY_CARD'}">
+                        <td class="table_col_bookType"><fmt:message key="catalog.library_card"></fmt:message></td></c:when>
                     <c:otherwise>
                         <td class="table_col_bookType"><fmt:message key="catalog.reading_room"></fmt:message></td></</c:otherwise>
                 </c:choose>
