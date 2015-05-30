@@ -11,24 +11,24 @@
     <body>
     <div class="enter">
         <div class="enter-list">
-            <form class="pad" name="submitForm1" method="POST" action="LibraryServlet">
+            <form class="pad-enter-list" name="submitForm1" method="POST" action="LibraryServlet">
                 <input type="hidden" name="command" value="go_to_login_page">
                 <A HREF="javascript:document.submitForm1.submit()"><fmt:message key="login.link"/></A>
             </form>
-            <form class="pad" name="submitForm2" method="POST" action="LibraryServlet">
+            <form class="pad-enter-list" name="submitForm2" method="POST" action="LibraryServlet">
                 <input type="hidden" name="command" value="go_to_registration_page">
                 <A HREF="javascript:document.submitForm2.submit()"><fmt:message key="register.link"/></A>
             </form>
         </div>
         <ul class="list">
             <li>
-                <form class="pad" name="submitForm3" method="POST" action="LibraryServlet">
+                <form class="pad-enter-list" name="submitForm3" method="POST" action="LibraryServlet">
                     <input type="hidden" name="command" value="go_to_catalog_page">
                     <A HREF="javascript:document.submitForm3.submit()"><fmt:message key="main.catalog"/></A>
                 </form>
             </li>
             <li>
-                <form class="pad" name="submitForm4" method="POST" action="LibraryServlet">
+                <form class="pad-enter-list" name="submitForm4" method="POST" action="LibraryServlet">
                     <input type="hidden" name="command" value="go_to_about_us_page">
                     <A HREF="javascript:document.submitForm4.submit()"><fmt:message key="about_us.link"/></A>
                 </form>

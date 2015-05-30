@@ -20,10 +20,17 @@ BODY {
     display: inline-block;
 }
 
-.header-button {
-    width: 10%;
-    padding-top: 24px;
-    display: inline-block;
+.header-title-wrap2 {
+    margin-left: 12%;
+    text-align: center;
+}
+
+.btn-header-home {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
 }
 
 .btn {
@@ -34,11 +41,18 @@ BODY {
     cursor: pointer;
 }
 
-.btn-home {
+.pad-enter-list {
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 20px;
+}
+
+/*//////////////////////////////////////*/
+/*.btn-home {
     width: 90px;
     height: 40px;
     border-radius: 10px;
-}
+}*/
 
 .btn-lang {
     width: 40px;
@@ -61,12 +75,6 @@ BODY {
     font-weight: bold;
 }
 
-.pad {
-    padding-left: 15px;
-    padding-right: 15px;
-    font-size: 20px;
-}
-
 .list {
     width: 20%;
     text-align: left;
@@ -81,11 +89,6 @@ BODY {
 .login-form {
     width: 17%;
     margin: auto;
-}
-
-.header-title-wrap2 {
-    margin-left: 12%;
-    text-align: center;
 }
 
 .footer {
@@ -122,12 +125,12 @@ th {
     background-color: #92b2ed;
 }
 
-.table_col_year, .table_col_quantity{
+.table_col_year, .table_col_quantity {
     width: 80px;
     text-align: center;
 }
 
-.table_col_bookType{
+.table_col_bookType {
     width: 150px;
     text-align: center;
 }
@@ -138,10 +141,10 @@ th {
 }
 
 .pagination ul {
-   /* position: fixed;
-    bottom: 25%;
-    left: 0%;
-    right: 0%;*/
+    /* position: fixed;
+     bottom: 25%;
+     left: 0%;
+     right: 0%;*/
     margin-left: 0;
     padding-left: 0;
     text-align: center;
@@ -155,13 +158,13 @@ th {
     padding: 2px 6px;
 }
 
-.pagination ul li a{
+.pagination ul li a {
     color: #666f80;
     font-size: 26px;
     text-decoration: none;
 }
 
-.pagination ul li a:hover{
+.pagination ul li a:hover {
     background: #f5f5f5;
     -webkit-border-radius: 1px;
     -moz-border-radius: 1px;
@@ -172,22 +175,22 @@ th {
     font-weight: bold;
 }
 
-.pagination ul li.pagination_active a{
+.pagination ul li.pagination_active a {
     color: #2d4c80;
     font-size: 30px;
     font-weight: bold;
 }
 
-.pagination ul li.pagination_active a:hover{
+.pagination ul li.pagination_active a:hover {
     background: none;
 }
 
-.search{
+.search {
     text-align: center;
     padding: 18px;
 }
 
-.search_text{
+.search_text {
     width: 30%;
 }
 

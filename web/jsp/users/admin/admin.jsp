@@ -11,7 +11,7 @@
     <body>
     <div class="enter">
         <div class="enter-list">
-            <form name="submitForm1" method="POST" action="LibraryServlet">
+            <form class="pad-enter-list" name="submitForm1" method="POST" action="LibraryServlet">
                 <input type="hidden" name="command" value="log_out">
                 <A HREF="javascript:document.submitForm1.submit()"><fmt:message key="login.out"/></A>
             </form>

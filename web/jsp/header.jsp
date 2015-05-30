@@ -14,13 +14,13 @@
     <div>
         <span class="header-title-wrap">
             <div class="header-title-wrap2">
-            <h2 class="header"><fmt:message key="header.library"/></h2>
+                <form action="LibraryServlet" method="POST">
+                    <input type="hidden" name="command" value="home"/>
+                    <button type="submit" class="btn-header-home" name=home><h2 class="header"><fmt:message
+                            key="header.library"/></h2></button>
+                </form>
             </div>
         </span>
-        <form action="LibraryServlet" method="POST" class="header-button">
-            <input type="hidden" name="command" value="home"/>
-            <button type="submit" class="btn btn-home" name=home><fmt:message key="header.home"/></button>
-        </form>
     </div>
     </body>
 </fmt:bundle>
