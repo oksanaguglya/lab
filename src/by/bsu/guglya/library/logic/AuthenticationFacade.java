@@ -6,9 +6,9 @@ import by.bsu.guglya.library.database.dao.UserDaoImpl;
 
 public class AuthenticationFacade {
 
-    public static boolean checkLogin(String login, String password) {
+    public static boolean checkUserExist(String login, String password) {
         UserDao userDAO = new UserDaoImpl();
-        boolean result = userDAO.checkLogin(login, password);
+        boolean result = userDAO.checkUserExist(login, password);
         return result;
     }
 

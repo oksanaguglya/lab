@@ -1,7 +1,7 @@
 @import url("//fonts.googleapis.com/css?family=Lobster|Cabin:400,700");
 
 BODY {
-    background-image: url(/image/background.jpeg);
+    background-image: url(/images/background.jpeg);
     margin: 0;
 }
 
@@ -39,6 +39,7 @@ BODY {
     border-color: cornflowerblue;
     border-radius: 5px;
     cursor: pointer;
+    outline: none;
 }
 
 .pad-enter-list {
@@ -73,6 +74,11 @@ BODY {
     display: inline-flex;
     font-size: 18px;
     font-weight: bold;
+
+}
+
+li {
+    list-style-type: none; /* Убираем маркеры */
 }
 
 .list {
@@ -100,7 +106,7 @@ BODY {
     font-size: 16px;
 }
 
-.text-danger {
+.text-message {
     text-align: center;
     font-size: 14px;
 }

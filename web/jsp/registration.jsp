@@ -36,10 +36,10 @@
                 <div><fmt:message key="login.password"/></div>
                 <input type="password" name="repeatPassword" placeholder=<fmt:message
                         key="register.repeat"/>/><br/><br/>
-                <button type="submit" class="btn btn-info"><fmt:message key="login.submit"/></button>
+                <button type="submit" class="btn btn-info"><fmt:message key="registration.submit"/></button>
             </form>
         </div>
-        <div class="text-danger"><h2>${wrongRepPassword}</h2></div>
+        <div class="text-message"><h2>${wrongRepPassword}${existLoginMessage}${errorRegMessage}</h2></div>
     </div>
     </body>
     <%@include file="footer.jsp" %>

@@ -26,7 +26,7 @@ public class LoginCommand implements Command {
         String password = request.getParameter(PASSWORD_PARAM);
         HttpSession session = request.getSession(true);
         String locale = (String)session.getAttribute(LOCALE_ATTR);
-        if (AuthenticationFacade.checkLogin(login, password)) {
+        if (AuthenticationFacade.checkUserExist(login, password)) {
             User user = AuthenticationFacade.returnUser(login, password);
             session.setAttribute(USER_ATTR, user);
             switch (user.getType()) {

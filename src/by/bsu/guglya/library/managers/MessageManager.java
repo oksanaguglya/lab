@@ -8,8 +8,10 @@ public class MessageManager {
     private ResourceBundle resourceBundle;
     private static final String BUNDLE_NAME = "by.bsu.guglya.library.resources.messages";
     public static final String LOGIN_ERROR_MESSAGE = "LOGIN_ERROR_MESSAGE";
-    public static final String WRONG_REPEATED_PASSWORD_MESSAGE = " WRONG_REPEATED_PASSWORD_MESSAGE";
-
+    public static final String WRONG_REPEATED_PASSWORD_MESSAGE = "WRONG_REPEATED_PASSWORD_MESSAGE";
+    public static final String EXIST_LOGIN_MESSAGE = "EXIST_LOGIN_MESSAGE";
+    public static final String REGISTRATION_SUCCESS_MESSAGE = "REGISTRATION_SUCCESS_MESSAGE";
+    public static final String REGISTRATION_ERROR_MESSAGE = "REGISTRATION_ERROR_MESSAGE";
 
     public MessageManager(String locale) {
         String language = locale.substring(0, 2);

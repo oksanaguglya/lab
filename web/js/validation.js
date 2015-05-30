@@ -2,7 +2,7 @@ function validateForm() {
     var x = document.forms["log"]["login"].value;
     var y = document.forms["log"]["password"].value;
     if (x == null || x == "") {
-        alert("Name must be filled out");
+        alert("Login must be filled out");
         return false;
     }
     if (y == null || y == "") {
@@ -16,7 +16,7 @@ function validateRegisterForm() {
     var y = document.forms["reg"]["password"].value;
     var z = document.forms["reg"]["repeatPassword"].value;
     if (x == null || x == "") {
-        alert("Name must be filled out");
+        alert("Login must be filled out");
         return false;
     }
     if (y == null || y == "") {
@@ -24,7 +24,7 @@ function validateRegisterForm() {
         return false;
     }
     if (z == null || z == "") {
-        alert("The second password must be filled out");
+        alert("The repeated password must be filled out");
         return false;
     }
 }

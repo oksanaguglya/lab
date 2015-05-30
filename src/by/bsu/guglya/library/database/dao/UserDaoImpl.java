@@ -10,16 +10,17 @@ import java.sql.SQLException;
 public class UserDaoImpl extends UserDao {
 
     private static final Logger LOG = Logger.getLogger(UserDaoImpl.class);
-    public static final String REQUEST_GET_USER = "select * from library.user join library.user_type on library.user.user_type = library.user_type.iduser_type where login=? and password=?;";
-    //public static final String INSERT_CLIENT = "insert into user (login,password,user_type) values (?,?,?)";
-    //public static final String GET_IDTYPE = "select iduser_type from user_type where type=?";
+    public static final String GET_USER = "select * from library.user join library.user_type on library.user.user_type = library.user_type.iduser_type where login=? and password=?;";
+    public static final String INSERT_READER = "insert into library.user (login, password, user_type) values (?,?,?);";
+    public static final String GET_IDUSER_TYPE = "select iduser_type from library.user_type where type=?";
+    public static final String GET_LOGIN = "select * from library.user where login=?;";
 
     @Override
-    public boolean checkLogin(String login, String password) {
+    public boolean checkUserExist(String login, String password) {
         boolean result = false;
         PreparedStatement ps = null;
         try {
-            ps = conn.prepareStatement(REQUEST_GET_USER);
+            ps = conn.prepareStatement(GET_USER);
             ps.setString(1, login);
             ps.setString(2, password);
             ResultSet resultSet = ps.executeQuery();
@@ -44,7 +45,7 @@ public class UserDaoImpl extends UserDao {
         User user = null;
         PreparedStatement ps = null;
         try {
-            ps = conn.prepareStatement(REQUEST_GET_USER);
+            ps = conn.prepareStatement(GET_USER);
             ps.setString(1, login);
             ps.setString(2, password);
             ResultSet resultSet = ps.executeQuery();
@@ -68,31 +69,31 @@ public class UserDaoImpl extends UserDao {
         return user;
     }
 
-/*    @Override
-    public boolean registerClient(String login, String password, int account) {
+    @Override
+    public boolean registrateClient(String login, String password) {
         boolean result = false;
         PreparedStatement idTypePS = null;
         PreparedStatement insertClientPS = null;
         PreparedStatement selectClientPS = null;
         try {
             conn.setAutoCommit(false);
-            idTypePS = conn.prepareStatement(GET_IDTYPE);
+            idTypePS = conn.prepareStatement(GET_IDUSER_TYPE);
             idTypePS.setString(1, User.TypeOfUser.READER.toString());
-            insertClientPS = conn.prepareStatement(INSERT_CLIENT);
-            selectClientPS = conn.prepareStatement(REQUEST_GET_USER);
+            insertClientPS = conn.prepareStatement(INSERT_READER);
+            selectClientPS = conn.prepareStatement(GET_USER);
             try {
                 ResultSet resultSet = idTypePS.executeQuery();
                 resultSet.next();
-                int idTypeClient = resultSet.getInt("user_type_id");
+                int idUserTypeReader = resultSet.getInt("iduser_type");
                 insertClientPS.setString(1, login);
                 insertClientPS.setString(2, password);
-                insertClientPS.setInt(3, idTypeClient);
+                insertClientPS.setInt(3, idUserTypeReader);
                 insertClientPS.executeUpdate();
                 selectClientPS.setString(1, login);
                 selectClientPS.setString(2, password);
                 resultSet = selectClientPS.executeQuery();
                 resultSet.next();
-                int idUser = resultSet.getInt("user_id");
+                int idUser = resultSet.getInt("iduser");
                 conn.commit();
                 result = true;
             } catch (SQLException ex) {
@@ -115,5 +116,29 @@ public class UserDaoImpl extends UserDao {
             closeConnection();
         }
         return result;
-    }*/
+    }
+
+    @Override
+    public boolean checkLoginExist(String login) {
+        boolean result = false;
+        PreparedStatement ps = null;
+        try {
+            ps = conn.prepareStatement(GET_LOGIN);
+            ps.setString(1, login);
+            ResultSet resultSet = ps.executeQuery();
+            result = resultSet.first();
+        } catch (SQLException ex) {
+            LOG.error(ex.getMessage());
+        } finally {
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    LOG.error(ex.getMessage());
+                }
+            }
+            closeConnection();
+        }
+        return result;
+    }
 }
