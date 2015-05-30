@@ -18,7 +18,7 @@ public class CommandFactory {
         commands.put("log_out", new LogoutCommand());
         commands.put("home", new HomeCommand());
         commands.put("go_to_about_us_page", new GoToAboutUsPageCommand());
-        commands.put("go_to_catalog_page", new GoToCatalogPageCommand());
+        commands.put("go_to_catalog_page", new CatalogCommand());
         commands.put("registration", new RegistrationCommand());
         commands.put("add_books", new AddBooksCommand());
     }

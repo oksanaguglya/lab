@@ -5,7 +5,7 @@ import by.bsu.guglya.library.managers.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class GoToCatalogPageCommand implements Command {
+public class CatalogCommand implements Command {
 
     private static final String PAGE_NO_PARAM = "page";
     private static final String SEARCH_PARAM = "search";
