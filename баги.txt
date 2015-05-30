@@ -20,6 +20,7 @@
 
 Вопросы:
 1)сделать константу USER_ATTR public?
+2)сессия?? homecommand
 
 
 
