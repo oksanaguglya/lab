@@ -17,10 +17,10 @@ public class HomeCommand implements Command {
         if(user != null){
             switch (user.getType()){
                 case ADMINISTRATOR:
-                    page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.ADMINISTRATOR_PATH_JSP);
+                    page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.HOME_PATH_JSP);
                     return page;
                 case READER:
-                    page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.READER_PATH_JSP);
+                    page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.HOME_PATH_JSP);
                     return page;
             }
         }

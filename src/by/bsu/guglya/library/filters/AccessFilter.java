@@ -9,6 +9,7 @@ public class AccessFilter implements Filter {
     private FilterConfig filterConfig;
     private static final String USER_ATTR = "user";
     private static final String INDEX_PATH = "/index.jsp";
+    private static final String HOME_PATH = "/jsp/home.jsp";
 
     public AccessFilter() {
     }
@@ -21,14 +22,14 @@ public class AccessFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-  /*      HttpServletRequest r = (HttpServletRequest) request;
+        HttpServletRequest r = (HttpServletRequest) request;
         if (r.getSession().getAttribute(USER_ATTR) != null) {
             chain.doFilter(request, response);
         } else {
             r.getServletContext().getRequestDispatcher(INDEX_PATH).forward(request, response);
             chain.doFilter(request, response);
-        }*/
-        chain.doFilter(request, response);
+        }
+        //chain.doFilter(request, response);
     }
 
     @Override

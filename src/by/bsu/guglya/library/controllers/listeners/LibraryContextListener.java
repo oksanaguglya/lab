@@ -12,7 +12,8 @@ public class LibraryContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext servletContext = sce.getServletContext();
-        String log4jFile = servletContext.getRealPath("/")+servletContext.getInitParameter("log4j");
+        //String log4jFile = servletContext.getRealPath("/")+servletContext.getInitParameter("log4j");
+        String log4jFile = servletContext.getInitParameter("log4j");
         DOMConfigurator.configure(log4jFile);
     }
 

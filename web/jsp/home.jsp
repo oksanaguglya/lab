@@ -1,5 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%--<script>history.forward();</script>--%>
+<%--
+<%
+response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+response.setDateHeader("Expires", 0);
+%>
+--%>
 <!DOCTYPE html>
 <html>
 <fmt:setLocale value="${locale}" scope="session"/>
@@ -11,14 +19,24 @@
     <body>
     <div class="enter">
         <div class="enter-list">
-            <form class="pad-enter-list" name="submitForm1" method="POST" action="LibraryServlet">
-                <input type="hidden" name="command" value="go_to_login_page">
-                <A HREF="javascript:document.submitForm1.submit()"><fmt:message key="login.link"/></A>
-            </form>
-            <form class="pad-enter-list" name="submitForm2" method="POST" action="LibraryServlet">
-                <input type="hidden" name="command" value="go_to_registration_page">
-                <A HREF="javascript:document.submitForm2.submit()"><fmt:message key="register.link"/></A>
-            </form>
+            <c:choose>
+                <c:when test="${sessionScope.user.getType() == 'READER' || sessionScope.user.getType() == 'ADMINISTRATOR'}">
+                    <form class="pad-enter-list" name="submitForm1" method="POST" action="LibraryServlet">
+                        <input type="hidden" name="command" value="log_out">
+                        <A HREF="javascript:document.submitForm1.submit()"><fmt:message key="login.out"/></A>
+                    </form>
+                </c:when>
+                <c:otherwise>
+                    <form class="pad-enter-list" name="submitForm1" method="POST" action="LibraryServlet">
+                        <input type="hidden" name="command" value="go_to_login_page">
+                        <A HREF="javascript:document.submitForm1.submit()"><fmt:message key="login.link"/></A>
+                    </form>
+                    <form class="pad-enter-list" name="submitForm2" method="POST" action="LibraryServlet">
+                        <input type="hidden" name="command" value="go_to_registration_page">
+                        <A HREF="javascript:document.submitForm2.submit()"><fmt:message key="register.link"/></A>
+                    </form>
+                </c:otherwise>
+            </c:choose>
         </div>
         <ul class="list">
             <li>
@@ -34,12 +52,17 @@
                 </form>
             </li>
         </ul>
+
+        <c:if test="${sessionScope.user.getType() != 'READER' && sessionScope.user.getType() != 'ADMINISTRATOR'}">
         <form action="LibraryServlet" method="POST" id="change_language" class="lang-button">
             <h2><fmt:message key="home.lang"/></h2>
             <input type="hidden" name="command" value="change_language"/>
             <button type="submit" class="btn btn-lang" name=locale value="RU"><fmt:message key="header.ru"/></button>
             <button type="submit" class="btn btn-lang" name=locale value="EN"><fmt:message key="header.en"/></button>
         </form>
+        </c:if>
+
+        <h2>${sessionScope.user.getLogin()}</h2>
     </div>
     </body>
     <%@include file="footer.jsp" %>
