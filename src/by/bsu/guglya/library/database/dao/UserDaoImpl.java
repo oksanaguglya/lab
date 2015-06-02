@@ -7,9 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserDaoImpl extends UserDao {
+public class UserDAOImpl extends UserDAO {
 
-    private static final Logger LOG = Logger.getLogger(UserDaoImpl.class);
+    private static final Logger LOG = Logger.getLogger(UserDAOImpl.class);
     public static final String GET_USER = "select * from library.user join library.user_type on library.user.user_type = library.user_type.iduser_type where login=? and password=?;";
     public static final String INSERT_READER = "insert into library.user (login, password, user_type) values (?,?,?);";
     public static final String GET_IDUSER_TYPE = "select iduser_type from library.user_type where type=?";

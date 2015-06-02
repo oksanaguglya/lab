@@ -10,9 +10,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CatalogDao extends AbstractDao {
+public class CatalogDAO extends AbstractDAO {
 
-    private static final Logger LOG = Logger.getLogger(CatalogDao.class);
+    private static final Logger LOG = Logger.getLogger(CatalogDAO.class);
     public static final String REQUEST_CATALOG_ITEMS =
             "select catalog.idcatalog, book.title, book.author, book.year, catalog.quantity, book_type.type from library.book " +
             "join library.catalog on library.catalog.book = library.book.idbook " +
