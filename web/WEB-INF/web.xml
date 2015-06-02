@@ -2,10 +2,6 @@
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          version="2.5">
-    <context-param>
-        <param-name>log4j</param-name>
-        <param-value>WEB-INF/log4j.xml</param-value>
-    </context-param>
     <servlet>
         <servlet-name>LibraryServlet</servlet-name>
         <servlet-class>by.bsu.guglya.library.controllers.LibraryServlet</servlet-class>
@@ -22,9 +18,19 @@
         <servlet-name>AddBooksServlet</servlet-name>
         <url-pattern>/AddBooksServlet</url-pattern>
     </servlet-mapping>
+
+    <listener>
+        <listener-class>by.bsu.guglya.library.controllers.listeners.LibraryContextListener</listener-class>
+    </listener>
+    <context-param>
+        <param-name>log4j</param-name>
+        <param-value>WEB-INF/log4j.xml</param-value>
+    </context-param>
+
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+
     <filter>
         <filter-name>EncodingFilter</filter-name>
         <filter-class>by.bsu.guglya.library.filters.EncodingFilter</filter-class>
@@ -43,11 +49,15 @@
     </filter>
     <filter-mapping>
         <filter-name>AccessFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/jsp/*</url-pattern>
     </filter-mapping>
     <session-config>
         <session-timeout>
-            30
+            5
         </session-timeout>
     </session-config>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/jsp/error.jsp</location>
+    </error-page>
 </web-app>
