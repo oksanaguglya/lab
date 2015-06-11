@@ -140,7 +140,7 @@
 
     <c:choose>
         <c:when test="${sessionScope.user.getType() == 'READER'}">
-            <form class="btn-order" name="orderBooks" action="LibraryServlet" method="POST">
+            <form name="orderBooks" action="LibraryServlet" method="POST">
                 <input type="hidden" name="command" value="order_books"/>
                 <input type="hidden" id="items" name="selectedItems" value=""/>
                 <button type="submit" id="sendBtn" class="btn btn-order" name="orderBook"><fmt:message

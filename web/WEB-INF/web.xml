@@ -10,14 +10,6 @@
         <servlet-name>LibraryServlet</servlet-name>
         <url-pattern>/LibraryServlet</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>AddBooksServlet</servlet-name>
-        <servlet-class>by.bsu.guglya.library.controllers.AddBooksServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AddBooksServlet</servlet-name>
-        <url-pattern>/AddBooksServlet</url-pattern>
-    </servlet-mapping>
     <listener>
         <listener-class>by.bsu.guglya.library.controllers.listeners.LibraryContextListener</listener-class>
     </listener>
@@ -49,9 +41,7 @@
         <url-pattern>/jsp/*</url-pattern>
     </filter-mapping>
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
     <error-page>
         <error-code>500</error-code>

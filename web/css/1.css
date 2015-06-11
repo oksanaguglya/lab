@@ -52,6 +52,7 @@ BODY {
 .btn-order {
     margin-left: 5%;
 }
+
 .inline {
     display: inline-block;
 }
@@ -75,7 +76,6 @@ BODY {
     display: inline-flex;
     font-size: 18px;
     font-weight: bold;
-
 }
 
 li {
@@ -148,7 +148,7 @@ th {
 }
 
 .table_col_check{
-    width: 22px;
+    width: 25px;
     text-align: center;
 }
 
