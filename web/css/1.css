@@ -49,11 +49,12 @@ BODY {
 }
 
 /*//////////////////////////////////////*/
-/*.btn-home {
-    width: 90px;
-    height: 40px;
-    border-radius: 10px;
-}*/
+.btn-order {
+    margin-left: 5%;
+}
+.inline {
+    display: inline-block;
+}
 
 .btn-lang {
     width: 40px;
@@ -123,7 +124,7 @@ li {
 table {
     margin: auto;
     background: #fff8dd;
-    width: 85%;
+    width: 90%;
     table-layout: fixed;
 }
 
@@ -131,8 +132,13 @@ th {
     background-color: #92b2ed;
 }
 
-.table_col_year, .table_col_quantity {
+.table_col_year {
     width: 80px;
+    text-align: center;
+}
+
+.table_col_quantity{
+    width: 60px;
     text-align: center;
 }
 
@@ -141,16 +147,17 @@ th {
     text-align: center;
 }
 
+.table_col_check{
+    width: 22px;
+    text-align: center;
+}
+
 .pagination {
-    padding: 20px;
+    text-align: center;
     clear: both;
 }
 
 .pagination ul {
-    /* position: fixed;
-     bottom: 25%;
-     left: 0%;
-     right: 0%;*/
     margin-left: 0;
     padding-left: 0;
     text-align: center;

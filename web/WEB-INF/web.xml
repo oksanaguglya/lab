@@ -18,7 +18,6 @@
         <servlet-name>AddBooksServlet</servlet-name>
         <url-pattern>/AddBooksServlet</url-pattern>
     </servlet-mapping>
-
     <listener>
         <listener-class>by.bsu.guglya.library.controllers.listeners.LibraryContextListener</listener-class>
     </listener>
@@ -26,11 +25,9 @@
         <param-name>log4j</param-name>
         <param-value>WEB-INF/log4j.xml</param-value>
     </context-param>
-
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
-
     <filter>
         <filter-name>EncodingFilter</filter-name>
         <filter-class>by.bsu.guglya.library.filters.EncodingFilter</filter-class>
@@ -53,7 +50,7 @@
     </filter-mapping>
     <session-config>
         <session-timeout>
-            5
+            30
         </session-timeout>
     </session-config>
     <error-page>

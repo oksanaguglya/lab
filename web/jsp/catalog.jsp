@@ -40,11 +40,11 @@
         <button type="submit" class="btn btn-info"><fmt:message key="catalog.search.button.text"/></button>
     </form>
 
-    <table border="2" id="table" cellpadding="8" cellspacing="1">
+    <table border="2" id="table" cellpadding="5" cellspacing="1">
         <tr>
             <c:choose>
                 <c:when test="${sessionScope.user.getType() == 'READER'}">
-                    <th></th>
+                    <th class="table_col_check"></th>
                 </c:when>
                 <c:otherwise>
                 </c:otherwise>
@@ -59,7 +59,7 @@
             <tr>
                 <c:choose>
                     <c:when test="${sessionScope.user.getType() == 'READER'}">
-                        <td><input type="radio" name="selectedItem${item.getId()}" value="${item.getId()}"/></td>
+                        <td class="table_col_check"><input type="radio" name="selectedItem${item.getId()}" value="${item.getId()}"/></td>
                     </c:when>
                     <c:otherwise>
                     </c:otherwise>
@@ -79,7 +79,15 @@
     </table>
     <br>
 
-    <div class="pagination">
+    <c:choose>
+        <c:when test="${sessionScope.user.getType() == 'READER'}">
+            <button type="submit" id="sendBtn" class="btn btn-order inline" name="orderBook"><fmt:message key="catalog.orderBooks"/></button>
+        </c:when>
+        <c:otherwise>
+        </c:otherwise>
+    </c:choose>
+
+    <div class="pagination inline">
         <ul>
             <c:if test="${currentPage != 1}">
                 <li>
@@ -123,17 +131,8 @@
             </c:if>
         </ul>
     </div>
+
     </body>
-    <c:choose>
-        <c:when test="${sessionScope.user.getType() == 'READER'}">
-            <button type="submit" id="sendBtn" class="btn btn-home" name=home><fmt:message key="catalog.add"/></button>
-            <form name="addBooks" method="POST" action="LibraryServlet">
-                <input type="hidden" name="command" value="add_books"/>
-            </form>
-        </c:when>
-        <c:otherwise>
-        </c:otherwise>
-    </c:choose>
     <%@include file="footer.jsp" %>
 </fmt:bundle>
 </html>
