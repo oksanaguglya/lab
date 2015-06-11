@@ -53,16 +53,19 @@ response.setDateHeader("Expires", 0);
             </li>
         </ul>
 
-        <c:if test="${sessionScope.user.getType() != 'READER' && sessionScope.user.getType() != 'ADMINISTRATOR'}">
-        <form action="LibraryServlet" method="POST" id="change_language" class="lang-button">
-            <h2><fmt:message key="home.lang"/></h2>
-            <input type="hidden" name="command" value="change_language"/>
-            <button type="submit" class="btn btn-lang" name=locale value="RU"><fmt:message key="header.ru"/></button>
-            <button type="submit" class="btn btn-lang" name=locale value="EN"><fmt:message key="header.en"/></button>
-        </form>
-        </c:if>
-
-        <h2>${sessionScope.user.getLogin()}</h2>
+        <c:choose>
+            <c:when test="${sessionScope.user.getType() != 'READER' && sessionScope.user.getType() != 'ADMINISTRATOR'}">
+                <form action="LibraryServlet" method="POST" id="change_language" class="lang-button">
+                    <h2><fmt:message key="home.lang"/></h2>
+                    <input type="hidden" name="command" value="change_language"/>
+                    <button type="submit" class="btn btn-lang" name=locale value="RU"><fmt:message key="header.ru"/></button>
+                    <button type="submit" class="btn btn-lang" name=locale value="EN"><fmt:message key="header.en"/></button>
+                </form>
+            </c:when>
+            <c:otherwise>
+                <h2>${sessionScope.user.getLogin()}<fmt:message key="home.hello"/></h2>
+            </c:otherwise>
+        </c:choose>
     </div>
     </body>
     <%@include file="footer.jsp" %>

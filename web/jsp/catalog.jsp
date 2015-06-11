@@ -146,7 +146,7 @@
                 <button type="submit" id="sendBtn" class="btn btn-order" name="orderBook"><fmt:message
                         key="catalog.orderBooks"/></button>
             </form>
-            <div class="text-message"><h2>${successOrderMessage}</h2></div>
+            <div class="text-message"><h2>${successOrderMessage}${orderNoChecksMessage}</h2></div>
         </c:when>
         <c:otherwise>
         </c:otherwise>

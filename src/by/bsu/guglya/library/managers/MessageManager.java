@@ -13,6 +13,7 @@ public class MessageManager {
     public static final String REGISTRATION_SUCCESS_MESSAGE = "REGISTRATION_SUCCESS_MESSAGE";
     public static final String REGISTRATION_ERROR_MESSAGE = "REGISTRATION_ERROR_MESSAGE";
     public static final String ORDER_SUCCESS_MESSAGE = "ORDER_SUCCESS_MESSAGE";
+    public static final String ORDER_NO_CHECKS_MESSAGE = "ORDER_NO_CHECKS_MESSAGE";
 
     public MessageManager(String locale) {
         String language = locale.substring(0, 2);
