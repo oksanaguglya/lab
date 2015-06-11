@@ -10,17 +10,18 @@ public class Book {
         LIBRARY_CARD, READING_ROOM
     }
 
+    //private  int idBook;
     private String title;
     private String author;
     private int year;
     private TypeOfBook type;
 
     public Book(String title, String author, int year, TypeOfBook type) {
-        this.title = title;
-        this.author = author;
-        this.year = year;
-        this.type = type;
-    }
+    this.title = title;
+    this.author = author;
+    this.year = year;
+    this.type = type;
+}
 
     public String getTitle() {
         return title;

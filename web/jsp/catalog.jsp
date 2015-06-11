@@ -8,22 +8,26 @@
     <script src="http://code.jquery.com/jquery-latest.js">
     </script>
     <script>
-        $(document).ready(function(){
-            $("#sendBtn").click(function(e){
-                var items = $("input:checked").map(function() {
+        $(document).ready(function () {
+            $("#sendBtn").click(function (e) {
+                var items = $("input:checked").map(function () {
                     return this.value;
                 }).get();
-                $.ajax({ url:"http://localhost:8080/AddBooksServlet",
-                    type:"POST",
-                    data: { selectedItems: items },
-                    dataType:'json',
-                    success:function(data) {
-                        alert("success");
-                    },
-                    error:function(data) {
-                        alert("error" + JSON.stringify(data));
-                    }
-                })
+                document.getElementById('items').value = items;
+                /*$.ajax({ url:"http://localhost:8080/AddBooksServlet",*/
+                /* $.ajax({ url:"/AddBooksServlet",
+                 type:"POST",
+                 data: { selectedItems: items },
+                 dataType:'json',
+                 success:function(data) {
+                 alert("success");
+                 },
+                 error:function(data) {
+                 alert("error" + JSON.stringify(data));
+                 }
+                 })*/
+                /*$.post('/LibraryServlet', {command : 'add_books', selectedItems: items }, function(data){ });*/
+                /*$.post('/LibraryServlet', {command: 'add_books', selectedItems: items});*/
             });
         });
     </script>
@@ -32,7 +36,6 @@
         <link href="/css/1.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-
     <form class="search" name="search" action="../LibraryServlet" id="form" method="POST">
         <input type="hidden" name="command" value="go_to_catalog_page"/>
         <input class="search_text" type="text" name="search" value="${sessionScope.search}"
@@ -57,37 +60,32 @@
         </tr>
         <c:forEach var="item" items="${requestScope.catalogItems}">
             <tr>
-                <c:choose>
-                    <c:when test="${sessionScope.user.getType() == 'READER'}">
-                        <td class="table_col_check"><input type="radio" name="selectedItem${item.getId()}" value="${item.getId()}"/></td>
-                    </c:when>
-                    <c:otherwise>
-                    </c:otherwise>
-                </c:choose>
-                <td><c:out value="${item.getBook().getTitle()}"/></td>
-                <td><c:out value="${item.getBook().getAuthor()}"/></td>
-                <td class="table_col_year"><c:out value="${item.getBook().getYear()}"/></td>
-                <td class="table_col_quantity"><c:out value="${item.getQuantity()}"/></td>
-                <c:choose>
-                    <c:when test="${item.getBook().getType() == 'LIBRARY_CARD'}">
-                        <td class="table_col_bookType"><fmt:message key="catalog.library_card"></fmt:message></td></c:when>
-                    <c:otherwise>
-                        <td class="table_col_bookType"><fmt:message key="catalog.reading_room"></fmt:message></td></</c:otherwise>
-                </c:choose>
+            <c:choose>
+                <c:when test="${sessionScope.user.getType() == 'READER'}">
+                    <td class="table_col_check"><input type="radio" name="selectedItem${item.getId()}"
+                                                       value="${item.getId()}"/></td>
+                </c:when>
+                <c:otherwise>
+                </c:otherwise>
+            </c:choose>
+            <td><c:out value="${item.getBook().getTitle()}"/></td>
+            <td><c:out value="${item.getBook().getAuthor()}"/></td>
+            <td class="table_col_year"><c:out value="${item.getBook().getYear()}"/></td>
+            <td class="table_col_quantity"><c:out value="${item.getQuantity()}"/></td>
+            <c:choose>
+                <c:when test="${item.getBook().getType() == 'LIBRARY_CARD'}">
+                    <td class="table_col_bookType"><fmt:message key="catalog.library_card"></fmt:message></td>
+                </c:when>
+                <c:otherwise>
+                    <td class="table_col_bookType"><fmt:message key="catalog.reading_room"></fmt:message></td>
+                    </</c:otherwise>
+            </c:choose>
             </tr>
         </c:forEach>
     </table>
     <br>
 
-    <c:choose>
-        <c:when test="${sessionScope.user.getType() == 'READER'}">
-            <button type="submit" id="sendBtn" class="btn btn-order inline" name="orderBook"><fmt:message key="catalog.orderBooks"/></button>
-        </c:when>
-        <c:otherwise>
-        </c:otherwise>
-    </c:choose>
-
-    <div class="pagination inline">
+    <div class="pagination">
         <ul>
             <c:if test="${currentPage != 1}">
                 <li>
@@ -131,6 +129,20 @@
             </c:if>
         </ul>
     </div>
+
+    <c:choose>
+        <c:when test="${sessionScope.user.getType() == 'READER'}">
+            <form class="btn-order" name="orderBooks" action="LibraryServlet" method="POST">
+                <input type="hidden" name="command" value="order_books"/>
+                <input type="hidden" id="items" name="selectedItems" value=""/>
+                <button type="submit" id="sendBtn" class="btn btn-order" name="orderBook"><fmt:message
+                        key="catalog.orderBooks"/></button>
+            </form>
+            <div class="text-message"><h2>${successOrderMessage}</h2></div>
+        </c:when>
+        <c:otherwise>
+        </c:otherwise>
+    </c:choose>
 
     </body>
     <%@include file="footer.jsp" %>
