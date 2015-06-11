@@ -29,6 +29,14 @@
                 /*$.post('/LibraryServlet', {command : 'add_books', selectedItems: items }, function(data){ });*/
                 /*$.post('/LibraryServlet', {command: 'add_books', selectedItems: items});*/
             });
+
+            $('#table').on('click', '#radio', function() {
+                if (this.getAttribute('checked')) {
+                    $(this).removeAttr('checked')
+                } else {
+                    $(this).attr('checked', true)
+                }
+            });
         });
     </script>
     <%@include file="header.jsp" %>
@@ -63,7 +71,7 @@
             <c:choose>
                 <c:when test="${sessionScope.user.getType() == 'READER'}">
                     <td class="table_col_check"><input type="radio" name="selectedItem${item.getId()}"
-                                                       value="${item.getId()}"/></td>
+                                                       value="${item.getId()}" id="radio"/></td>
                 </c:when>
                 <c:otherwise>
                 </c:otherwise>
