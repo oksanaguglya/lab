@@ -16,7 +16,7 @@
         <div class="enter-list">
             <form name="login" method="POST" action="LibraryServlet">
                 <input type="hidden" name="command" value="go_to_login_page">
-                <A HREF="javascript:document.submitForm1.submit()"><fmt:message key="login.link"/></A>
+                <A HREF="javascript:document.login.submit()"><fmt:message key="login.link"/></A>
             </form>
         </div>
     </div>

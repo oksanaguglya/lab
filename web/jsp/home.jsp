@@ -15,17 +15,17 @@
                 <c:when test="${sessionScope.user.getType() == 'READER' || sessionScope.user.getType() == 'ADMINISTRATOR'}">
                     <form class="pad-enter-list" name="logOut" method="POST" action="LibraryServlet">
                         <input type="hidden" name="command" value="log_out">
-                        <A HREF="javascript:document.submitForm1.submit()"><fmt:message key="login.out"/></A>
+                        <A HREF="javascript:document.logOut.submit()"><fmt:message key="login.out"/></A>
                     </form>
                 </c:when>
                 <c:otherwise>
                     <form class="pad-enter-list" name="login" method="POST" action="LibraryServlet">
                         <input type="hidden" name="command" value="go_to_login_page">
-                        <A HREF="javascript:document.submitForm1.submit()"><fmt:message key="login.link"/></A>
+                        <A HREF="javascript:document.login.submit()"><fmt:message key="login.link"/></A>
                     </form>
                     <form class="pad-enter-list" name="registration" method="POST" action="LibraryServlet">
                         <input type="hidden" name="command" value="go_to_registration_page">
-                        <A HREF="javascript:document.submitForm2.submit()"><fmt:message key="register.link"/></A>
+                        <A HREF="javascript:document.registration.submit()"><fmt:message key="register.link"/></A>
                     </form>
                 </c:otherwise>
             </c:choose>
@@ -34,13 +34,13 @@
             <li>
                 <form class="pad-enter-list" name="catalog" method="POST" action="LibraryServlet">
                     <input type="hidden" name="command" value="go_to_catalog_page">
-                    <A HREF="javascript:document.submitForm3.submit()"><fmt:message key="main.catalog"/></A>
+                    <A HREF="javascript:document.catalog.submit()"><fmt:message key="main.catalog"/></A>
                 </form>
             </li>
             <li>
                 <form class="pad-enter-list" name="aboutUs" method="POST" action="LibraryServlet">
                     <input type="hidden" name="command" value="go_to_about_us_page">
-                    <A HREF="javascript:document.submitForm4.submit()"><fmt:message key="about_us.link"/></A>
+                    <A HREF="javascript:document.aboutUs.submit()"><fmt:message key="about_us.link"/></A>
                 </form>
             </li>
         </ul>

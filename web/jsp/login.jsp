@@ -16,7 +16,7 @@
         <div class="enter-list">
             <form name="registration" method="POST" action="LibraryServlet">
                 <input type="hidden" name="command" value="go_to_registration_page">
-                <A HREF="javascript:document.submitForm2.submit()"><fmt:message key="register.link"/></A>
+                <A HREF="javascript:document.registration.submit()"><fmt:message key="register.link"/></A>
             </form>
         </div>
     </div>
