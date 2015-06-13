@@ -5,8 +5,7 @@
 <html>
 <fmt:setLocale value="${locale}" scope="session"/>
 <fmt:bundle basename="by.bsu.guglya.library.resources.gui">
-    <script src="http://code.jquery.com/jquery-latest.js">
-    </script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script>
         $(document).ready(function () {
             $("#sendBtn").click(function (e) {
@@ -14,23 +13,9 @@
                     return this.value;
                 }).get();
                 document.getElementById('items').value = items;
-                /*$.ajax({ url:"http://localhost:8080/AddBooksServlet",*/
-                /* $.ajax({ url:"/AddBooksServlet",
-                 type:"POST",
-                 data: { selectedItems: items },
-                 dataType:'json',
-                 success:function(data) {
-                 alert("success");
-                 },
-                 error:function(data) {
-                 alert("error" + JSON.stringify(data));
-                 }
-                 })*/
-                /*$.post('/LibraryServlet', {command : 'add_books', selectedItems: items }, function(data){ });*/
-                /*$.post('/LibraryServlet', {command: 'add_books', selectedItems: items});*/
             });
 
-            $('#table').on('click', '#radio', function() {
+            $('#table').on('click', '#radio', function () {
                 if (this.getAttribute('checked')) {
                     $(this).removeAttr('checked')
                 } else {
@@ -44,9 +29,10 @@
         <link href="/css/1.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
+
     <form class="search" name="search" action="../LibraryServlet" id="form" method="POST">
         <input type="hidden" name="command" value="go_to_catalog_page"/>
-        <input class="search_text" type="text" name="search" value="${sessionScope.search}"
+        <input class="search-text" type="text" name="search" value="${sessionScope.search}"
                placeholder=<fmt:message key="catalog.search.placeholder"/>/>
         <button type="submit" class="btn btn-info"><fmt:message key="catalog.search.button.text"/></button>
     </form>
@@ -55,22 +41,22 @@
         <tr>
             <c:choose>
                 <c:when test="${sessionScope.user.getType() == 'READER'}">
-                    <th class="table_col_check"></th>
+                    <th class="table-col-check"></th>
                 </c:when>
                 <c:otherwise>
                 </c:otherwise>
             </c:choose>
             <th><fmt:message key="catalog.title"></fmt:message></th>
             <th><fmt:message key="catalog.author"></fmt:message></th>
-            <th class="table_col_year"><fmt:message key="catalog.year"></fmt:message></th>
-            <th class="table_col_quantity"><fmt:message key="catalog.quantity"></fmt:message></th>
-            <th class="table_col_bookType"><fmt:message key="catalog.bookType"></fmt:message></th>
+            <th class="table-col-year"><fmt:message key="catalog.year"></fmt:message></th>
+            <th class="table-col-quantity"><fmt:message key="catalog.quantity"></fmt:message></th>
+            <th class="table-col-bookType"><fmt:message key="catalog.bookType"></fmt:message></th>
         </tr>
         <c:forEach var="item" items="${requestScope.catalogItems}">
             <tr>
             <c:choose>
                 <c:when test="${sessionScope.user.getType() == 'READER'}">
-                    <td class="table_col_check"><input type="radio" name="selectedItem${item.getId()}"
+                    <td class="table-col-check"><input type="radio" name="selectedItem${item.getId()}"
                                                        value="${item.getId()}" id="radio"/></td>
                 </c:when>
                 <c:otherwise>
@@ -78,14 +64,14 @@
             </c:choose>
             <td><c:out value="${item.getBook().getTitle()}"/></td>
             <td><c:out value="${item.getBook().getAuthor()}"/></td>
-            <td class="table_col_year"><c:out value="${item.getBook().getYear()}"/></td>
-            <td class="table_col_quantity"><c:out value="${item.getQuantity()}"/></td>
+            <td class="table-col-year"><c:out value="${item.getBook().getYear()}"/></td>
+            <td class="table-col-quantity"><c:out value="${item.getQuantity()}"/></td>
             <c:choose>
                 <c:when test="${item.getBook().getType() == 'LIBRARY_CARD'}">
-                    <td class="table_col_bookType"><fmt:message key="catalog.library_card"></fmt:message></td>
+                    <td class="table-col-bookType"><fmt:message key="catalog.library_card"></fmt:message></td>
                 </c:when>
                 <c:otherwise>
-                    <td class="table_col_bookType"><fmt:message key="catalog.reading_room"></fmt:message></td>
+                    <td class="table-col-bookType"><fmt:message key="catalog.reading_room"></fmt:message></td>
                     </</c:otherwise>
             </c:choose>
             </tr>

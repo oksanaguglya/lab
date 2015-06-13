@@ -132,22 +132,22 @@ th {
     background-color: #92b2ed;
 }
 
-.table_col_year {
+.table-col-year {
     width: 80px;
     text-align: center;
 }
 
-.table_col_quantity{
+.table-col-quantity{
     width: 60px;
     text-align: center;
 }
 
-.table_col_bookType {
+.table-col-bookType {
     width: 150px;
     text-align: center;
 }
 
-.table_col_check{
+.table-col-check{
     width: 25px;
     text-align: center;
 }
@@ -203,7 +203,7 @@ th {
     padding: 18px;
 }
 
-.search_text {
+.search-text {
     width: 32%;
 }
 

@@ -14,7 +14,7 @@
     <script src="js/validation.js"></script>
     <div class="enter">
         <div class="enter-list">
-            <form name="submitForm1" method="POST" action="LibraryServlet">
+            <form name="login" method="POST" action="LibraryServlet">
                 <input type="hidden" name="command" value="go_to_login_page">
                 <A HREF="javascript:document.submitForm1.submit()"><fmt:message key="login.link"/></A>
             </form>
@@ -24,7 +24,7 @@
         <div class="login-form">
             <h4><fmt:message key="register.link"/></h4>
 
-            <form name="reg" action="../LibraryServlet" onsubmit="return validateRegisterForm()" method="POST">
+            <form name="registration" action="../LibraryServlet" onsubmit="return validateRegisterForm()" method="POST">
                 <input type="hidden" name="command" value="registration"/>
 
                 <div><fmt:message key="login.login"/></div>
