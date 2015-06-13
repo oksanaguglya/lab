@@ -129,6 +129,7 @@
             <form name="orderBooks" action="LibraryServlet" method="POST">
                 <input type="hidden" name="command" value="order_books"/>
                 <input type="hidden" id="items" name="selectedItems" value=""/>
+                <input type="hidden" name="page" value=${currentPage}>
                 <button type="submit" id="sendBtn" class="btn btn-order" name="orderBook"><fmt:message
                         key="catalog.orderBooks"/></button>
             </form>

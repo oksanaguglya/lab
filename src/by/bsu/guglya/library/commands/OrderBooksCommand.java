@@ -9,10 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 public class OrderBooksCommand implements Command {
+
     private final static String USER_ATTR = "user";
     private final static String LOCALE_PARAM = "locale";
     private final static String SUCCESS_ORDER_MESSAGE_ATTR = "successOrderMessage";
     private final static String ORDER_NO_CHECKS_MESSAGE_ATTR = "orderNoChecksMessage";
+
     @Override
     public String execute(HttpServletRequest request) {
         HttpSession session = request.getSession(true);
