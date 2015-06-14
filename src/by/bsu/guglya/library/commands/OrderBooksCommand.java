@@ -14,6 +14,8 @@ public class OrderBooksCommand implements Command {
     private final static String LOCALE_PARAM = "locale";
     private final static String SUCCESS_ORDER_MESSAGE_ATTR = "successOrderMessage";
     private final static String ORDER_NO_CHECKS_MESSAGE_ATTR = "orderNoChecksMessage";
+    private final static String NUM_OF_ORDERS_MESSAGE_ATTR = "numOfOrdersMessage";
+    private final static String NUM_OF_SUCCESS_ORDERS_MESSAGE_ATTR = "numOfSuccessOrdersMessage";
 
     @Override
     public String execute(HttpServletRequest request) {
@@ -29,12 +31,18 @@ public class OrderBooksCommand implements Command {
                 String[] selectedItemsArray = selectedItems.split(",");
                 User user = (User)session.getAttribute(USER_ATTR);
                 int idUser = user.getIdUser();
+                int numOfOrders = 0;
+                int numOfSuccessOrders = 0;
                 for(String idBook : selectedItemsArray){
+                    numOfOrders++;
                     if(OrderLogic.addOrder(idBook, idUser)){
+                        numOfSuccessOrders++;
                     }
                 }
                 String message = messageManager.getProperty(MessageManager.ORDER_SUCCESS_MESSAGE);
                 request.setAttribute(SUCCESS_ORDER_MESSAGE_ATTR, message);
+                request.setAttribute(NUM_OF_SUCCESS_ORDERS_MESSAGE_ATTR, numOfSuccessOrders);
+                request.setAttribute(NUM_OF_ORDERS_MESSAGE_ATTR, numOfOrders);
             }
         }
         String page = new CatalogCommand().execute(request);

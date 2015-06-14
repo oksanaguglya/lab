@@ -79,6 +79,22 @@
     </table>
     <br>
 
+<%--    <div class="btn-order inline">
+    <c:choose>
+        <c:when test="${sessionScope.user.getType() == 'READER'}">
+            <form name="orderBooks" action="LibraryServlet" method="POST">
+                <input type="hidden" name="command" value="order_books"/>
+                <input type="hidden" id="items" name="selectedItems" value=""/>
+                <input type="hidden" name="page" value=${currentPage}>
+                <button type="submit" id="sendBtn" class="btn" name="orderBook"><fmt:message
+                        key="catalog.orderBooks"/></button>
+            </form>
+        </c:when>
+        <c:otherwise>
+        </c:otherwise>
+    </c:choose>
+    </div>--%>
+
     <div class="pagination">
         <ul>
             <c:if test="${currentPage != 1}">
@@ -124,6 +140,20 @@
         </ul>
     </div>
 
+<%--    <c:choose>
+        <c:when test="${sessionScope.user.getType() == 'READER'}">
+            <div class="center">
+                <div class="text-message inline"><h2>${orderNoChecksMessage}${successOrderMessage}</h2></div>
+                <c:if test="${numOfOrdersMessage > 0}">
+                    <div class="text-message inline"><h2>(${numOfSuccessOrdersMessage}/${numOfOrdersMessage})</h2></div>
+                </c:if>
+            </div>
+        </c:when>
+        <c:otherwise>
+        </c:otherwise>
+    </c:choose>--%>
+
+
     <c:choose>
         <c:when test="${sessionScope.user.getType() == 'READER'}">
             <form name="orderBooks" action="LibraryServlet" method="POST">
@@ -133,7 +163,12 @@
                 <button type="submit" id="sendBtn" class="btn btn-order" name="orderBook"><fmt:message
                         key="catalog.orderBooks"/></button>
             </form>
-            <div class="text-message"><h2>${successOrderMessage}${orderNoChecksMessage}</h2></div>
+            <div class="center">
+            <div class="text-message inline"><h2>${orderNoChecksMessage}${successOrderMessage}</h2></div>
+            <c:if test="${numOfOrdersMessage > 0}">
+            <div class="text-message inline"><h2>(${numOfSuccessOrdersMessage}/${numOfOrdersMessage})</h2></div>
+            </c:if>
+            </div>
         </c:when>
         <c:otherwise>
         </c:otherwise>

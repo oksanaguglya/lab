@@ -16,13 +16,34 @@ BODY {
 }
 
 .header-title-wrap {
-    width: 89%;
+     width: 86%;
+     display: inline-block;
+ }
+
+.header-title-wrap1 {
+    width: 10%;
     display: inline-block;
+    text-align: center;
+}
+
+.basket{
+    background: transparent url("/images/basket.jpg") no-repeat;
+    background-size: 70px;
+    display: inline-block;
+    vertical-align: middle;
+    height: 57px;
+    width: 73px;
 }
 
 .header-title-wrap2 {
-    margin-left: 12%;
+    margin-left: 17%;
     text-align: center;
+}
+
+.header-title-wrap3 {
+
+    margin: auto;
+
 }
 
 .btn-header-home {
@@ -206,5 +227,14 @@ th {
 .search-text {
     width: 32%;
 }
+
+.center{
+    text-align: center;
+}
+
+.margin-auto{
+    margin: auto;
+}
+
 
 

@@ -19,7 +19,7 @@ public class OrderDAO extends AbstractDAO{
         try{
             conn.setAutoCommit(false);
             idTypePS = conn.prepareStatement(GET_IDORDER_TYPE);
-            idTypePS.setString(1, Order.TypeOfOrder.IN_PROCESSING.toString());
+            idTypePS.setString(1, Order.TypeOfOrder.NEW.toString());
             insertOrderPS = conn.prepareStatement(INSERT_ORDER);
             try{
                 ResultSet resultSet = idTypePS.executeQuery();

@@ -21,6 +21,18 @@
                 </form>
             </div>
         </span>
+        <c:choose>
+            <c:when test="${sessionScope.user.getType() == 'READER'}">
+                 <span class="header-title-wrap1">
+                    <form name="basket" action="LibraryServlet" method="POST">
+                        <input type="hidden" name="command" value="my_basket"/>
+                        <button type="submit" name="basket" class="btn basket"></button>
+                    </form>
+                </span>
+            </c:when>
+            <c:otherwise>
+            </c:otherwise>
+        </c:choose>
     </div>
     </body>
 </fmt:bundle>
