@@ -54,10 +54,10 @@
             <th><fmt:message key="catalog.author"></fmt:message></th>
             <th class="table-col-year"><fmt:message key="catalog.year"></fmt:message></th>
             <th class="table-col-bookType"><fmt:message key="catalog.bookType"></fmt:message></th>
-            <th class="table-col-quantity">В наличии</th>
+            <th class="table-col-quantity"><fmt:message key="catalog.quantity"></fmt:message></th>
             <c:choose>
                 <c:when test="${sessionScope.user.getType() == 'READER'}">
-                    <th class="table-col-qty">Кол-во заказа</th>
+                    <th class="table-col-qty"><fmt:message key="catalog.qty"></fmt:message></th>
                 </c:when>
                 <c:otherwise></c:otherwise>
             </c:choose>
@@ -99,13 +99,13 @@
         <div class="btn-order">
             <c:choose>
                 <c:when test="${sessionScope.user.getType() == 'READER'}">
-                    <form name="orderBooks" action="LibraryServlet" method="POST">
-                        <input type="hidden" name="command" value="order_books"/>
+                    <form name="AddBooksToBasket" action="LibraryServlet" method="POST">
+                        <input type="hidden" name="command" value="add_books_to_basket"/>
                         <input type="hidden" id="items" name="selectedItems" value=""/>
                         <input type="hidden" id="qty" name="selectedItemsQty" value=""/>
                         <input type="hidden" name="page" value=${currentPage}>
-                        <button type="submit" id="sendBtn" class="btn" name="orderBook"><fmt:message
-                                key="catalog.orderBooks"/></button>
+                        <button type="submit" id="sendBtn" class="btn" name="AddBooksToBasket"><fmt:message
+                                key="catalog.addBooksToBasket"/></button>
                     </form>
                 </c:when>
                 <c:otherwise>

@@ -1,6 +1,6 @@
 package by.bsu.guglya.library.database.dao;
 
-import by.bsu.guglya.library.beans.Order;
+import by.bsu.guglya.library.beans.OrderItem;
 import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
@@ -12,14 +12,14 @@ public class OrderDAO extends AbstractDAO{
     public static final String GET_IDORDER_TYPE = "select idorder_type from library.order_type where type=?;";
     public static final String INSERT_ORDER = "insert into library.order (user, book, quantity, state) values (?,?,?,?);";
 
-    public boolean addOrder(String idBook, int idUser){
+    public boolean addOrder(String idBook, int idUser, int qty){
         boolean result = false;
         PreparedStatement idTypePS = null;
         PreparedStatement insertOrderPS = null;
         try{
             conn.setAutoCommit(false);
             idTypePS = conn.prepareStatement(GET_IDORDER_TYPE);
-            idTypePS.setString(1, Order.TypeOfOrder.NEW.toString());
+            idTypePS.setString(1, OrderItem.TypeOfOrder.NEW.toString());
             insertOrderPS = conn.prepareStatement(INSERT_ORDER);
             try{
                 ResultSet resultSet = idTypePS.executeQuery();
@@ -27,7 +27,6 @@ public class OrderDAO extends AbstractDAO{
                 int idOrderTypeProc = resultSet.getInt("idorder_type");
                 insertOrderPS.setInt(1, idUser);
                 insertOrderPS.setString(2, idBook);
-                int qty = 1;
                 insertOrderPS.setInt(3, qty);
                 insertOrderPS.setInt(4, idOrderTypeProc);
                 insertOrderPS.executeUpdate();

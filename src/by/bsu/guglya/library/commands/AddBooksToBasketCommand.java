@@ -7,9 +7,11 @@ import by.bsu.guglya.library.managers.MessageManager;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 
-public class OrderBooksCommand implements Command {
+public class AddBooksToBasketCommand implements Command {
 
+    private HashMap<String, String> orderBooks = new HashMap<String, String>();
     private final static String USER_ATTR = "user";
     private final static String LOCALE_PARAM = "locale";
     private final static String SUCCESS_ORDER_MESSAGE_ATTR = "successOrderMessage";
@@ -30,13 +32,19 @@ public class OrderBooksCommand implements Command {
                 request.setAttribute(ORDER_NO_CHECKS_MESSAGE_ATTR, message);
             }else{
                 String[] selectedItemsArray = selectedItems.split(",");
+                String[] selectedItemsQtyArray = selectedItemsQty.split(",");
+                for(int i = 0; i < selectedItemsArray.length; i++){
+                    orderBooks.put(selectedItemsArray[i], selectedItemsQtyArray[i]);
+                }
                 User user = (User)session.getAttribute(USER_ATTR);
                 int idUser = user.getIdUser();
+                int qty = 1;
                 int numOfOrders = 0;
                 int numOfSuccessOrders = 0;
                 for(String idBook : selectedItemsArray){
                     numOfOrders++;
-                    if(OrderLogic.addOrder(idBook, idUser)){
+                    qty = Integer.parseInt(orderBooks.get(idBook));
+                    if(OrderLogic.addOrder(idBook, idUser, qty)){
                         numOfSuccessOrders++;
                     }
                 }

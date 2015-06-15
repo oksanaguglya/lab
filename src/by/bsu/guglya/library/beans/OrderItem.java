@@ -1,6 +1,6 @@
 package by.bsu.guglya.library.beans;
 
-public class Order {
+public class OrderItem {
 
     public enum TypeOfOrder{
         NEW, IN_PROCESSING, APPROVED
@@ -11,7 +11,7 @@ public class Order {
     private int quantity;
     private TypeOfOrder type;
 
-    public Order(int idUser, int idBook, int quantity, TypeOfOrder type) {
+    public OrderItem(int idUser, int idBook, int quantity, TypeOfOrder type) {
         this.idUser = idUser;
         this.idBook = idBook;
         this.quantity = quantity;
