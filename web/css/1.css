@@ -40,12 +40,6 @@ BODY {
     text-align: center;
 }
 
-.header-title-wrap3 {
-
-    margin: auto;
-
-}
-
 .btn-header-home {
     background-color: transparent;
     border: none;
@@ -69,9 +63,8 @@ BODY {
     font-size: 20px;
 }
 
-/*//////////////////////////////////////*/
 .btn-order {
-    margin-left: 5%;
+    margin-left: 18%;
 }
 
 .inline {
@@ -174,6 +167,7 @@ th {
 }
 
 .pagination {
+    margin-right: 40%;
     text-align: center;
     clear: both;
 }
@@ -234,6 +228,16 @@ th {
 
 .margin-auto{
     margin: auto;
+}
+
+.btn-wrap{
+    width: 29%;
+    display: inline-block;
+}
+
+.pagination-wrap{
+    width:70%;
+    display: inline-block;
 }
 
 

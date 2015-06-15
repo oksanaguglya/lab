@@ -79,95 +79,78 @@
     </table>
     <br>
 
-<%--    <div class="btn-order inline">
+    <span class="btn-wrap">
+        <div class="btn-order">
+            <c:choose>
+                <c:when test="${sessionScope.user.getType() == 'READER'}">
+                    <form name="orderBooks" action="LibraryServlet" method="POST">
+                        <input type="hidden" name="command" value="order_books"/>
+                        <input type="hidden" id="items" name="selectedItems" value=""/>
+                        <input type="hidden" name="page" value=${currentPage}>
+                        <button type="submit" id="sendBtn" class="btn" name="orderBook"><fmt:message
+                                key="catalog.orderBooks"/></button>
+                    </form>
+                </c:when>
+                <c:otherwise>
+                </c:otherwise>
+            </c:choose>
+        </div>
+    </span>
+
+    <span class="pagination-wrap">
+        <div class="pagination">
+            <ul>
+                <c:if test="${currentPage != 1}">
+                    <li>
+                        <form name="goPreviousPageForm" method="POST" action="LibraryServlet">
+                            <input type="hidden" name="command" value="go_to_catalog_page">
+                            <input type="hidden" name="page" value=${currentPage - 1}>
+                            <A HREF="javascript:document.goPreviousPageForm.submit()" class="pagination_prev"><</A>
+                        </form>
+                    </li>
+                </c:if>
+
+
+                <c:forEach var="i" begin="1" end="${noOfPages}">
+                    <c:choose>
+                        <c:when test="${currentPage eq i}">
+                            <li class="pagination_active">
+                                <a href="#">${i}</a>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li>
+                                <form id="goPageForm${i}" method="POST" action="LibraryServlet">
+                                    <input type="hidden" name="command" value="go_to_catalog_page">
+                                    <input type="hidden" name="page" value=${i}>
+                                    <A HREF="javascript:document.getElementById('goPageForm${i}').submit()">${i}</A>
+                                </form>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+
+
+                <c:if test="${currentPage lt noOfPages}">
+                    <li>
+                        <form name="goNextPageForm" method="POST" action="LibraryServlet">
+                            <input type="hidden" name="command" value="go_to_catalog_page"/>
+                            <input type="hidden" name="page" value=${currentPage + 1}>
+                            <A HREF="javascript:document.goNextPageForm.submit()" class="pagination_next">></A>
+                        </form>
+                    </li>
+                </c:if>
+            </ul>
+        </div>
+    </span>
+
     <c:choose>
-        <c:when test="${sessionScope.user.getType() == 'READER'}">
-            <form name="orderBooks" action="LibraryServlet" method="POST">
-                <input type="hidden" name="command" value="order_books"/>
-                <input type="hidden" id="items" name="selectedItems" value=""/>
-                <input type="hidden" name="page" value=${currentPage}>
-                <button type="submit" id="sendBtn" class="btn" name="orderBook"><fmt:message
-                        key="catalog.orderBooks"/></button>
-            </form>
-        </c:when>
-        <c:otherwise>
-        </c:otherwise>
-    </c:choose>
-    </div>--%>
-
-    <div class="pagination">
-        <ul>
-            <c:if test="${currentPage != 1}">
-                <li>
-                    <form name="goPreviousPageForm" method="POST" action="LibraryServlet">
-                        <input type="hidden" name="command" value="go_to_catalog_page">
-                        <input type="hidden" name="page" value=${currentPage - 1}>
-                        <A HREF="javascript:document.goPreviousPageForm.submit()" class="pagination_prev"><</A>
-                    </form>
-                </li>
-            </c:if>
-
-
-            <c:forEach var="i" begin="1" end="${noOfPages}">
-                <c:choose>
-                    <c:when test="${currentPage eq i}">
-                        <li class="pagination_active">
-                            <a href="#">${i}</a>
-                        </li>
-                    </c:when>
-                    <c:otherwise>
-                        <li>
-                            <form id="goPageForm${i}" method="POST" action="LibraryServlet">
-                                <input type="hidden" name="command" value="go_to_catalog_page">
-                                <input type="hidden" name="page" value=${i}>
-                                <A HREF="javascript:document.getElementById('goPageForm${i}').submit()">${i}</A>
-                            </form>
-                        </li>
-                    </c:otherwise>
-                </c:choose>
-            </c:forEach>
-
-
-            <c:if test="${currentPage lt noOfPages}">
-                <li>
-                    <form name="goNextPageForm" method="POST" action="LibraryServlet">
-                        <input type="hidden" name="command" value="go_to_catalog_page"/>
-                        <input type="hidden" name="page" value=${currentPage + 1}>
-                        <A HREF="javascript:document.goNextPageForm.submit()" class="pagination_next">></A>
-                    </form>
-                </li>
-            </c:if>
-        </ul>
-    </div>
-
-<%--    <c:choose>
         <c:when test="${sessionScope.user.getType() == 'READER'}">
             <div class="center">
                 <div class="text-message inline"><h2>${orderNoChecksMessage}${successOrderMessage}</h2></div>
                 <c:if test="${numOfOrdersMessage > 0}">
                     <div class="text-message inline"><h2>(${numOfSuccessOrdersMessage}/${numOfOrdersMessage})</h2></div>
                 </c:if>
-            </div>
-        </c:when>
-        <c:otherwise>
-        </c:otherwise>
-    </c:choose>--%>
-
-
-    <c:choose>
-        <c:when test="${sessionScope.user.getType() == 'READER'}">
-            <form name="orderBooks" action="LibraryServlet" method="POST">
-                <input type="hidden" name="command" value="order_books"/>
-                <input type="hidden" id="items" name="selectedItems" value=""/>
-                <input type="hidden" name="page" value=${currentPage}>
-                <button type="submit" id="sendBtn" class="btn btn-order" name="orderBook"><fmt:message
-                        key="catalog.orderBooks"/></button>
-            </form>
-            <div class="center">
-            <div class="text-message inline"><h2>${orderNoChecksMessage}${successOrderMessage}</h2></div>
-            <c:if test="${numOfOrdersMessage > 0}">
-            <div class="text-message inline"><h2>(${numOfSuccessOrdersMessage}/${numOfOrdersMessage})</h2></div>
-            </c:if>
             </div>
         </c:when>
         <c:otherwise>
