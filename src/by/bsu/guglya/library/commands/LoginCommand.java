@@ -3,7 +3,7 @@ package by.bsu.guglya.library.commands;
 import by.bsu.guglya.library.beans.User;
 import by.bsu.guglya.library.managers.ConfigurationManager;
 import by.bsu.guglya.library.managers.MessageManager;
-import by.bsu.guglya.library.logic.AuthenticationFacade;
+import by.bsu.guglya.library.logic.AuthenticationLogic;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,8 +26,8 @@ public class LoginCommand implements Command {
         String password = request.getParameter(PASSWORD_PARAM);
         HttpSession session = request.getSession(true);
         String locale = (String)session.getAttribute(LOCALE_ATTR);
-        if (AuthenticationFacade.checkUserExist(login, password)) {
-            User user = AuthenticationFacade.returnUser(login, password);
+        if (AuthenticationLogic.checkUserExist(login, password)) {
+            User user = AuthenticationLogic.returnUser(login, password);
             session.setAttribute(USER_ATTR, user);
             switch (user.getType()) {
                 case ADMINISTRATOR:

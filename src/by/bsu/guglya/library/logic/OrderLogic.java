@@ -25,4 +25,13 @@ public class OrderLogic {
         return result;
     }
 
+    public static boolean delOrder(int idUser, int idOrder)
+    {
+        OrderDAO orderDAO = new OrderDAO();
+        boolean result = orderDAO.delOrder(idUser, idOrder);
+        return result;
+    }
+
+
+
 }
