@@ -23,6 +23,7 @@ public class OrderBooksCommand implements Command {
         String locale = (String)session.getAttribute(LOCALE_PARAM);
         MessageManager messageManager = new MessageManager(locale);
         String selectedItems = request.getParameter("selectedItems");
+        String selectedItemsQty = request.getParameter("selectedItemsQty");
         if (selectedItems != null) {
             if(selectedItems.equals("")){
                 String message = messageManager.getProperty(MessageManager.ORDER_NO_CHECKS_MESSAGE);

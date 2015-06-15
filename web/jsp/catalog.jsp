@@ -13,6 +13,11 @@
                     return this.value;
                 }).get();
                 document.getElementById('items').value = items;
+                var qty = [];
+                items.forEach(function(item, i, items) {
+                    qty.push(document.getElementById('qty' + item).value);
+                });
+                document.getElementById('qty').value = qty;
             });
 
             $('#table').on('click', '#radio', function () {
@@ -43,14 +48,19 @@
                 <c:when test="${sessionScope.user.getType() == 'READER'}">
                     <th class="table-col-check"></th>
                 </c:when>
-                <c:otherwise>
-                </c:otherwise>
+                <c:otherwise></c:otherwise>
             </c:choose>
             <th><fmt:message key="catalog.title"></fmt:message></th>
             <th><fmt:message key="catalog.author"></fmt:message></th>
             <th class="table-col-year"><fmt:message key="catalog.year"></fmt:message></th>
-            <th class="table-col-quantity"><fmt:message key="catalog.quantity"></fmt:message></th>
             <th class="table-col-bookType"><fmt:message key="catalog.bookType"></fmt:message></th>
+            <th class="table-col-quantity">В наличии</th>
+            <c:choose>
+                <c:when test="${sessionScope.user.getType() == 'READER'}">
+                    <th class="table-col-qty">Кол-во заказа</th>
+                </c:when>
+                <c:otherwise></c:otherwise>
+            </c:choose>
         </tr>
         <c:forEach var="item" items="${requestScope.catalogItems}">
             <tr>
@@ -59,20 +69,26 @@
                     <td class="table-col-check"><input type="radio" name="selectedItem${item.getId()}"
                                                        value="${item.getId()}" id="radio"/></td>
                 </c:when>
-                <c:otherwise>
-                </c:otherwise>
+                <c:otherwise></c:otherwise>
             </c:choose>
             <td><c:out value="${item.getBook().getTitle()}"/></td>
             <td><c:out value="${item.getBook().getAuthor()}"/></td>
             <td class="table-col-year"><c:out value="${item.getBook().getYear()}"/></td>
-            <td class="table-col-quantity"><c:out value="${item.getQuantity()}"/></td>
             <c:choose>
                 <c:when test="${item.getBook().getType() == 'LIBRARY_CARD'}">
                     <td class="table-col-bookType"><fmt:message key="catalog.library_card"></fmt:message></td>
                 </c:when>
                 <c:otherwise>
                     <td class="table-col-bookType"><fmt:message key="catalog.reading_room"></fmt:message></td>
-                    </</c:otherwise>
+                </c:otherwise>
+            </c:choose>
+            <td class="table-col-quantity"><c:out value="${item.getQuantity()}"/></td>
+            <c:choose>
+                <c:when test="${sessionScope.user.getType() == 'READER'}">
+                    <td class="table-col-qty"><input class="text-qty" type="text" name="qty${item.getId()}"
+                                                          value="1" id="qty${item.getId()}"/></td>
+                </c:when>
+                <c:otherwise></c:otherwise>
             </c:choose>
             </tr>
         </c:forEach>
@@ -86,6 +102,7 @@
                     <form name="orderBooks" action="LibraryServlet" method="POST">
                         <input type="hidden" name="command" value="order_books"/>
                         <input type="hidden" id="items" name="selectedItems" value=""/>
+                        <input type="hidden" id="qty" name="selectedItemsQty" value=""/>
                         <input type="hidden" name="page" value=${currentPage}>
                         <button type="submit" id="sendBtn" class="btn" name="orderBook"><fmt:message
                                 key="catalog.orderBooks"/></button>

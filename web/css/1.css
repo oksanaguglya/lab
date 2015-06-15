@@ -147,22 +147,22 @@ th {
 }
 
 .table-col-year {
-    width: 80px;
+    width: 8%;
     text-align: center;
 }
 
 .table-col-quantity{
-    width: 60px;
+    width: 8%;
     text-align: center;
 }
 
 .table-col-bookType {
-    width: 150px;
+    width: 14%;
     text-align: center;
 }
 
 .table-col-check{
-    width: 25px;
+    width: 4%;
     text-align: center;
 }
 
@@ -246,5 +246,14 @@ th {
     margin-left: 25%;
 }
 
+.text-qty{
+    width: 30%;
+    text-align: center;
+}
+
+.table-col-qty{
+    width: 7%;
+    text-align: center;
+}
 
 
