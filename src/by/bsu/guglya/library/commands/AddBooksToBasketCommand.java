@@ -1,5 +1,6 @@
 package by.bsu.guglya.library.commands;
 
+import by.bsu.guglya.library.beans.OrderItem;
 import by.bsu.guglya.library.beans.User;
 import by.bsu.guglya.library.logic.OrderLogic;
 import by.bsu.guglya.library.managers.ConfigurationManager;
@@ -39,13 +40,22 @@ public class AddBooksToBasketCommand implements Command {
                 User user = (User)session.getAttribute(USER_ATTR);
                 int idUser = user.getIdUser();
                 int qty = 1;
+                int state = 1;
                 int numOfOrders = 0;
                 int numOfSuccessOrders = 0;
                 for(String idBook : selectedItemsArray){
                     numOfOrders++;
                     qty = Integer.parseInt(orderBooks.get(idBook));
-                    if(OrderLogic.addOrder(idBook, idUser, qty)){
-                        numOfSuccessOrders++;
+                    if(qty != 0){
+                        if(OrderLogic.orderExist(idBook, idUser,state)){
+                            if(OrderLogic.addQtyToOrder(idBook, idUser, qty, state)){
+                                numOfSuccessOrders++;
+                            }
+                        }else{
+                            if(OrderLogic.addOrder(idBook, idUser, qty)){
+                                numOfSuccessOrders++;
+                            }
+                        }
                     }
                 }
                 String message = messageManager.getProperty(MessageManager.ORDER_SUCCESS_MESSAGE);
