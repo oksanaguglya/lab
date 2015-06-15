@@ -6,15 +6,16 @@ import java.util.List;
 
 public class SearchResult {
 
-    private List<CatalogItem> items;
+//  private List<CatalogItem> items;
+    private List<?> items;
     private int count;
 
-    public SearchResult(List<CatalogItem> items, int count) {
+    public SearchResult(List<?> items, int count) {
         this.items = items;
         this.count = count;
     }
 
-    public List<CatalogItem> getItems() {
+    public List<?> getItems() {
         return items;
     }
 

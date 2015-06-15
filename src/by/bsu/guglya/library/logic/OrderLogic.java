@@ -1,6 +1,5 @@
 package by.bsu.guglya.library.logic;
 
-import by.bsu.guglya.library.beans.OrderItem;
 import by.bsu.guglya.library.database.dao.OrderDAO;
 
 public class OrderLogic {
