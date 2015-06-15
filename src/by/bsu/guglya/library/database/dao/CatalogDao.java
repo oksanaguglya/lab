@@ -1,7 +1,7 @@
 package by.bsu.guglya.library.database.dao;
 
 import by.bsu.guglya.library.beans.Book;
-import by.bsu.guglya.library.beans.CatalogItem;
+import by.bsu.guglya.library.logic.TableItem;
 import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
@@ -25,8 +25,8 @@ public class CatalogDAO extends AbstractDAO {
             "join library.catalog on library.catalog.book = library.book.idbook " +
             "where library.book.title like ? or library.book.author like ?;";
 
-    public List<CatalogItem> getItems(String searchText, int offset, int limit) {
-        List<CatalogItem> items = new ArrayList<CatalogItem>(limit);
+    public List<TableItem> getItems(String searchText, int offset, int limit) {
+        List<TableItem> items = new ArrayList<TableItem>(limit);
         PreparedStatement ps = null;
         try {
             ps = conn.prepareStatement(REQUEST_CATALOG_ITEMS);
@@ -35,7 +35,7 @@ public class CatalogDAO extends AbstractDAO {
             ps.setInt(3, limit);
             ps.setInt(4, offset);
             ResultSet resultSet = ps.executeQuery();
-            CatalogItem item = null;
+            TableItem item = null;
             Book book = null;
             while (resultSet.next()) {
                 int idCatalog = resultSet.getInt("idcatalog");
@@ -45,7 +45,7 @@ public class CatalogDAO extends AbstractDAO {
                 String bookType = resultSet.getString("type");
                 book = new Book(title, author, year, Book.TypeOfBook.valueOf(bookType));
                 int quantity = resultSet.getInt("quantity");
-                item = new CatalogItem(idCatalog, book, quantity);
+                item = new TableItem(idCatalog, book, quantity);
                 items.add(item);
             }
         } catch (SQLException ex) {

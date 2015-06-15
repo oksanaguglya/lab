@@ -4,7 +4,7 @@ import by.bsu.guglya.library.beans.User;
 import by.bsu.guglya.library.database.dao.UserDAO;
 import by.bsu.guglya.library.database.dao.UserDAOImpl;
 
-public class AuthenticationFacade {
+public class AuthenticationLogic {
 
     public static boolean checkUserExist(String login, String password) {
         UserDAO userDAO = new UserDAOImpl();

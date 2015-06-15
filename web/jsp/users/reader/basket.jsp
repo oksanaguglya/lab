@@ -10,7 +10,6 @@
         <link href="/css/1.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-
     <table border="2" id="table" cellpadding="5" cellspacing="1">
         <tr>
             <th><fmt:message key="catalog.title"></fmt:message></th>
@@ -18,7 +17,7 @@
             <th class="table-col-year"><fmt:message key="catalog.year"></fmt:message></th>
             <th class="table-col-bookType"><fmt:message key="catalog.bookType"></fmt:message></th>
             <th class="table-col-qty"><fmt:message key="catalog.qty"></fmt:message></th>
-
+            <th class="table-col-del"></th>
         </tr>
         <c:forEach var="item" items="${requestScope.basketItems}">
             <tr>
@@ -34,7 +33,14 @@
                     </c:otherwise>
                 </c:choose>
                 <td class="table-col-qty"><c:out value="${item.getQuantity()}"/></td>
-
+                <td class="table-col-del">
+                    <form name="DelBookFromBasket" action="LibraryServlet" method="POST">
+                        <input type="hidden" name="command" value="del_book_from_basket"/>
+                        <input type="hidden" name="idOrderDel" value="${item.getId()}">
+                        <input type="hidden" name="page" value=${currentPage}>
+                        <button class="btn del" type="submit" id="del${item.getId()}" name="delBook"></button>
+                    </form>
+                </td>
             </tr>
         </c:forEach>
     </table>
@@ -103,6 +109,7 @@
         </div>
     </span>
 
+    <div class="text-message"><h2>${successDelBookFromBasket}</h2></div>
    <%-- <c:choose>
         <c:when test="${sessionScope.user.getType() == 'READER'}">
             <div class="center">

@@ -10,7 +10,6 @@ public class Book {
         LIBRARY_CARD, READING_ROOM
     }
 
-    //private  int idBook;
     private String title;
     private String author;
     private int year;

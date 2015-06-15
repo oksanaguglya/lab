@@ -20,7 +20,7 @@ BODY {
  }
 
 .header-title-wrap1 {
-    width: 9.7%;
+    width: 9.6%;
     display: inline-block;
     vertical-align: super;
     text-align: right;
@@ -28,11 +28,11 @@ BODY {
 
 .basket{
     background: transparent url("/images/basket.jpg") no-repeat;
-    background-size: 70px;
+    background-size: 60px;
     display: inline-block;
     vertical-align: middle;
-    height: 57px;
-    width: 73px;
+    height: 50px;
+    width: 63px;
 }
 
 .header-title-wrap2 {
@@ -251,9 +251,22 @@ th {
     text-align: center;
 }
 
-.table-col-qty{
-    width: 7%;
+.table-col-qty {
+    width: 8%;
     text-align: center;
 }
 
+.table-col-del{
+    width: 4%;
+    text-align: center;
+}
+
+.del{
+    background: transparent url("/images/del.png") no-repeat;
+    background-size: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    height: 23px;
+    width: 23px;
+}
 

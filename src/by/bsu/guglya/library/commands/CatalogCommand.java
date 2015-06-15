@@ -1,6 +1,7 @@
 package by.bsu.guglya.library.commands;
 
-import by.bsu.guglya.library.logic.SearchItemsFacade;
+import by.bsu.guglya.library.logic.PageItemsLogic;
+import by.bsu.guglya.library.logic.PageItems;
 import by.bsu.guglya.library.managers.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +30,7 @@ public class CatalogCommand implements Command {
                 searchText = request.getSession().getAttribute(SEARCH_PARAM).toString();
             }
         }
-        SearchResult result = SearchItemsFacade.search(searchText, pageNo);
+        PageItems result = PageItemsLogic.search(searchText, pageNo);
 
         request.setAttribute(CATALOG_ITEMS_LIST_PARAM, result.getItems());
         request.setAttribute(NO_OF_PAGE_PARAM, result.getCount());

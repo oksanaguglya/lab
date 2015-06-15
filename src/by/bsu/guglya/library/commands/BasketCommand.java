@@ -1,7 +1,8 @@
 package by.bsu.guglya.library.commands;
 
 import by.bsu.guglya.library.beans.User;
-import by.bsu.guglya.library.logic.SearchItemsFacade;
+import by.bsu.guglya.library.logic.PageItemsLogic;
+import by.bsu.guglya.library.logic.PageItems;
 import by.bsu.guglya.library.managers.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +25,7 @@ public class BasketCommand implements Command{
         HttpSession session = request.getSession(true);
         User user = (User)session.getAttribute(USER_ATTR);
         int idUser = user.getIdUser();
-        SearchResult result = SearchItemsFacade.userBasket(idUser, pageNo);
+        PageItems result = PageItemsLogic.userBasket(idUser, pageNo);
 
         request.setAttribute(BASKET_ITEMS_LIST_PARAM, result.getItems());
         request.setAttribute(NO_OF_PAGE_PARAM, result.getCount());
