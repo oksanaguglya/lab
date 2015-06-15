@@ -29,7 +29,7 @@ public class CatalogCommand implements Command {
                 searchText = request.getSession().getAttribute(SEARCH_PARAM).toString();
             }
         }
-        SearchResult result = SearchItemsFacade.Search(searchText, pageNo);
+        SearchResult result = SearchItemsFacade.search(searchText, pageNo);
 
         request.setAttribute(CATALOG_ITEMS_LIST_PARAM, result.getItems());
         request.setAttribute(NO_OF_PAGE_PARAM, result.getCount());

@@ -1,9 +1,7 @@
 package by.bsu.guglya.library.commands;
 
-import by.bsu.guglya.library.beans.OrderItem;
 import by.bsu.guglya.library.beans.User;
 import by.bsu.guglya.library.logic.OrderLogic;
-import by.bsu.guglya.library.managers.ConfigurationManager;
 import by.bsu.guglya.library.managers.MessageManager;
 
 import javax.servlet.http.HttpServletRequest;

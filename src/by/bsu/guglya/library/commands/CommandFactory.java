@@ -21,6 +21,7 @@ public class CommandFactory {
         commands.put("go_to_catalog_page", new CatalogCommand());
         commands.put("registration", new RegistrationCommand());
         commands.put("add_books_to_basket", new AddBooksToBasketCommand());
+        commands.put("my_basket", new BasketCommand());
     }
 
     public Command getCommand(HttpServletRequest request) {
