@@ -1,7 +1,6 @@
 package by.bsu.guglya.library.commands;
 
-import by.bsu.guglya.library.logic.AuthenticationFacade;
-import by.bsu.guglya.library.logic.RegistrationFacade;
+import by.bsu.guglya.library.logic.RegistrationLogic;
 import by.bsu.guglya.library.managers.ConfigurationManager;
 import by.bsu.guglya.library.managers.MessageManager;
 
@@ -33,12 +32,12 @@ public class RegistrationCommand implements Command {
             request.setAttribute(WRONG_REPEATED_PASSWORD_ATTR, message);
             page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.REGISTRATION_PATH_JSP);
         } else {
-            if (RegistrationFacade.checkLoginExist(login)) {
+            if (RegistrationLogic.checkLoginExist(login)) {
                 String message = messageManager.getProperty(MessageManager.EXIST_LOGIN_MESSAGE);
                 request.setAttribute(EXIST_LOGIN_MESSAGE_ATTR, message);
                 page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.REGISTRATION_PATH_JSP);
             } else {
-                if (RegistrationFacade.registrateClient(login, password)) {
+                if (RegistrationLogic.registrateClient(login, password)) {
                     String message = messageManager.getProperty(MessageManager.REGISTRATION_SUCCESS_MESSAGE);
                     request.setAttribute(SUCCESS_MESSAGE_ATTR, message);
                     page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.LOGIN_PATH_JSP);

@@ -3,7 +3,7 @@ package by.bsu.guglya.library.logic;
 import by.bsu.guglya.library.database.dao.UserDAO;
 import by.bsu.guglya.library.database.dao.UserDAOImpl;
 
-public class RegistrationFacade {
+public class RegistrationLogic {
     public static boolean registrateClient(String login, String password)
     {
         UserDAO userDao = new UserDAOImpl();
