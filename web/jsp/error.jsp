@@ -10,7 +10,9 @@
         <title><fmt:message key="errorpage.title"/></title>
     </head>
     <body>
-    <div class="text-message"><h2><fmt:message key="errorpage.message"/></h2></div>
+    <div class="text-error">
+        <div class="text-message"><h2><fmt:message key="errorpage.message"/></h2></div>
+    </div>
     </body>
 </fmt:bundle>
 </html>

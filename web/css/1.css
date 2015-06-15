@@ -1,5 +1,4 @@
 @import url("//fonts.googleapis.com/css?family=Lobster|Cabin:400,700");
-
 BODY {
     background-image: url(/images/background.jpeg);
     margin: 0;
@@ -16,14 +15,15 @@ BODY {
 }
 
 .header-title-wrap {
-     width: 86%;
+     width: 85%;
      display: inline-block;
  }
 
 .header-title-wrap1 {
-    width: 10%;
+    width: 9.7%;
     display: inline-block;
-    text-align: center;
+    vertical-align: super;
+    text-align: right;
 }
 
 .basket{
@@ -36,7 +36,7 @@ BODY {
 }
 
 .header-title-wrap2 {
-    margin-left: 17%;
+    margin-left: 18%;
     text-align: center;
 }
 
@@ -238,6 +238,12 @@ th {
 .pagination-wrap{
     width:70%;
     display: inline-block;
+}
+
+.text-error{
+    width: 50%;
+    margin-top: 20%;
+    margin-left: 25%;
 }
 
 
