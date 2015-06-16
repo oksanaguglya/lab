@@ -24,7 +24,7 @@
         <div class="login-form">
             <h4><fmt:message key="login.authorization"/></h4>
 
-            <form name="log" action="../LibraryServlet" onsubmit="return validateForm()" method="POST">
+            <form name="log" action="LibraryServlet" onsubmit="return validateForm()" method="POST">
                 <input type="hidden" name="command" value="login"/>
 
                 <div><fmt:message key="login.login"/></div>

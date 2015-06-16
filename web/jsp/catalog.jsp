@@ -35,7 +35,7 @@
     </head>
     <body>
 
-    <form class="search" name="search" action="../LibraryServlet" id="form" method="POST">
+    <form class="search" name="search" action="LibraryServlet" id="form" method="POST">
         <input type="hidden" name="command" value="go_to_catalog_page"/>
         <input class="search-text" type="text" name="search" value="${sessionScope.search}"
                placeholder=<fmt:message key="catalog.search.placeholder"/>/>

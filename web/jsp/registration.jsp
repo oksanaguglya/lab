@@ -24,7 +24,7 @@
         <div class="login-form">
             <h4><fmt:message key="register.link"/></h4>
 
-            <form name="reg" action="../LibraryServlet" onsubmit="return validateRegisterForm()" method="POST">
+            <form name="reg" action="LibraryServlet" onsubmit="return validateRegisterForm()" method="POST">
                 <input type="hidden" name="command" value="registration"/>
 
                 <div><fmt:message key="login.login"/></div>

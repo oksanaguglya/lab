@@ -7,9 +7,8 @@ import java.io.IOException;
 public class AccessFilter implements Filter {
 
     private FilterConfig filterConfig;
-    private static final String USER_ATTR = "user";
+    //private static final String USER_ATTR = "user";
     private static final String INDEX_PATH = "/index.jsp";
-    private static final String HOME_PATH = "/jsp/home.jsp";
 
     public AccessFilter() {
     }
@@ -20,16 +19,17 @@ public class AccessFilter implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
             throws IOException, ServletException {
-        HttpServletRequest r = (HttpServletRequest) request;
-        if (r.getSession().getAttribute(USER_ATTR) != null) {
-            chain.doFilter(request, response);
-        } else {
-            r.getServletContext().getRequestDispatcher(INDEX_PATH).forward(request, response);
-            chain.doFilter(request, response);
-        }
-        //chain.doFilter(request, response);
+       HttpServletRequest req = (HttpServletRequest) request;
+        /*if (r.getSession().getAttribute(USER_ATTR) != null) {
+            filterChain.doFilter(request, response);
+        } else {*/
+       //Если ресурс находится в другом контексте, то необходимо предварительно получить контекст методом
+       req.getServletContext().getRequestDispatcher(INDEX_PATH).forward(request, response);
+            //filterChain.doFilter(request, response);
+        /*}*/
+        //filterChain.doFilter(request, response);
     }
 
     @Override

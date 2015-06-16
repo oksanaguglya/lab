@@ -1,0 +1,44 @@
+16.06.2015 19:20:11 [http-bio-8080-exec-10] INFO  by.bsu.guglya.library.database.dao.CatalogDAO 
+ cat
+16.06.2015 19:21:35 [http-bio-8080-exec-5] INFO  by.bsu.guglya.library.database.dao.CatalogDAO 
+ cat
+16.06.2015 19:22:29 [http-bio-8080-exec-10] INFO  by.bsu.guglya.library.database.dao.CatalogDAO 
+ cat
+16.06.2015 19:58:08 [http-bio-8080-exec-7] INFO  by.bsu.guglya.library.database.dao.CatalogDAO 
+ cat
+16.06.2015 20:06:41 [http-bio-8080-exec-4] INFO  by.bsu.guglya.library.database.dao.CatalogDAO 
+ cat
+16.06.2015 20:12:16 [http-bio-8080-exec-10] INFO  by.bsu.guglya.library.database.dao.CatalogDAO 
+ cat
+16.06.2015 20:14:26 [http-bio-8080-exec-8] INFO  by.bsu.guglya.library.database.dao.CatalogDAO 
+ cat
+16.06.2015 20:18:39 [http-bio-8080-exec-10] INFO  by.bsu.guglya.library.database.dao.CatalogDAO 
+ cat
+16.06.2015 20:25:43 [http-bio-8080-exec-6] INFO  by.bsu.guglya.library.database.dao.CatalogDAO 
+ cat
+16.06.2015 20:25:44 [http-bio-8080-exec-7] INFO  by.bsu.guglya.library.database.dao.CatalogDAO 
+ cat
+16.06.2015 20:25:45 [http-bio-8080-exec-8] INFO  by.bsu.guglya.library.database.dao.CatalogDAO 
+ cat
+16.06.2015 20:26:57 [http-bio-8080-exec-6] INFO  by.bsu.guglya.library.database.dao.CatalogDAO 
+ cat
+16.06.2015 20:28:41 [http-bio-8080-exec-4] INFO  by.bsu.guglya.library.database.dao.CatalogDAO 
+ cat
+16.06.2015 20:28:48 [http-bio-8080-exec-5] INFO  by.bsu.guglya.library.database.dao.CatalogDAO 
+ cat
+16.06.2015 20:28:55 [http-bio-8080-exec-3] INFO  by.bsu.guglya.library.database.dao.CatalogDAO 
+ cat
+16.06.2015 20:28:58 [http-bio-8080-exec-3] INFO  by.bsu.guglya.library.database.dao.CatalogDAO 
+ cat
+16.06.2015 20:31:05 [http-bio-8080-exec-8] INFO  by.bsu.guglya.library.database.dao.CatalogDAO 
+ cat
+16.06.2015 20:31:21 [http-bio-8080-exec-8] INFO  by.bsu.guglya.library.database.dao.CatalogDAO 
+ cat
+16.06.2015 20:31:27 [http-bio-8080-exec-8] INFO  by.bsu.guglya.library.database.dao.CatalogDAO 
+ cat
+16.06.2015 20:31:39 [http-bio-8080-exec-8] INFO  by.bsu.guglya.library.database.dao.CatalogDAO 
+ cat
+16.06.2015 20:42:00 [http-bio-8080-exec-6] INFO  by.bsu.guglya.library.database.dao.CatalogDAO 
+ cat
+16.06.2015 20:45:51 [http-bio-8080-exec-6] INFO  by.bsu.guglya.library.database.dao.CatalogDAO 
+ cat
