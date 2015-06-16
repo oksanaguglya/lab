@@ -26,6 +26,7 @@ public class CatalogDAO extends AbstractDAO {
             "where library.book.title like ? or library.book.author like ?;";
 
     public List<TableItem> getItems(String searchText, int offset, int limit) {
+        LOG.info("cat");
         List<TableItem> items = new ArrayList<TableItem>(limit);
         PreparedStatement ps = null;
         try {

@@ -13,7 +13,7 @@ import java.util.List;
 
 public class BasketDAO extends AbstractDAO {
 
-    private static final Logger LOG = Logger.getLogger(OrderDAO.class);
+    private static final Logger LOG = Logger.getLogger(BasketDAO.class);
     public static final String GET_IDORDER_TYPE = "select idorder_type from library.order_type where type=?;";
     public static final String REQUEST_BASKET_ITEMS = "select order.idorder, book.title, book.author, book.year, order.quantity from library.order " +
             "join library.book on library.order.book = library.book.idbook " +
