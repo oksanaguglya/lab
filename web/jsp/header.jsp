@@ -22,8 +22,8 @@
             </div>
         </span>
 
-        <c:if test="${pageContext.request.servletPath != '/jsp/users/reader/basket.jsp'}">
-            <c:if test="${sessionScope.user.getType() == 'READER'}">
+        <c:if test="${sessionScope.user.getType() == 'READER'}">
+            <c:if test="${pageContext.request.servletPath != '/jsp/users/reader/basket.jsp'}">
                  <span class="header-title-wrap1">
                     <form name="basket" action="LibraryServlet" method="POST">
                         <input type="hidden" name="command" value="my_basket"/>

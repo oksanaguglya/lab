@@ -10,6 +10,7 @@
         <link href="/css/1.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
+    <c:if test="${noOfPages != 0}">
     <table border="2" id="table" cellpadding="5" cellspacing="1">
         <tr>
             <th><fmt:message key="catalog.title"></fmt:message></th>
@@ -61,6 +62,7 @@
             </c:choose>
         </div>
     </span>
+    </c:if>
 
     <span class="pagination-wrap">
         <div class="pagination">
@@ -110,18 +112,7 @@
     </span>
 
     <div class="text-message"><h2>${successDelBookFromBasket}</h2></div>
-   <%-- <c:choose>
-        <c:when test="${sessionScope.user.getType() == 'READER'}">
-            <div class="center">
-                <div class="text-message inline"><h2>${orderNoChecksMessage}${successOrderMessage}</h2></div>
-                <c:if test="${numOfOrdersMessage > 0}">
-                    <div class="text-message inline"><h2>(${numOfSuccessOrdersMessage}/${numOfOrdersMessage})</h2></div>
-                </c:if>
-            </div>
-        </c:when>
-        <c:otherwise>
-        </c:otherwise>
-    </c:choose>--%>
+    <div class="text-message"><h2>${emptyBasketMessage}</h2></div>
 
     </body>
     <%@include file="../../footer.jsp" %>
