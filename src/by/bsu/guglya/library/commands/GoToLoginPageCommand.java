@@ -11,4 +11,5 @@ public class GoToLoginPageCommand implements Command{
         String page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.LOGIN_PATH_JSP);
         return page;
     }
+
 }

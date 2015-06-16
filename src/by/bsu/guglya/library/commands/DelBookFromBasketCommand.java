@@ -16,7 +16,8 @@ public class DelBookFromBasketCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
-        HttpSession session = request.getSession(true);
+        //HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession();
         String locale = (String)session.getAttribute(LOCALE_PARAM);
         MessageManager messageManager = new MessageManager(locale);
         User user = (User)session.getAttribute(USER_ATTR);

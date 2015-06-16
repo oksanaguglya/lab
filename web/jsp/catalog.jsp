@@ -42,6 +42,7 @@
         <button type="submit" class="btn btn-info"><fmt:message key="catalog.search.button.text"/></button>
     </form>
 
+    <c:if test="${noOfPages != 0}">
     <table border="2" id="table" cellpadding="5" cellspacing="1">
         <tr>
             <c:choose>
@@ -113,6 +114,7 @@
             </c:choose>
         </div>
     </span>
+    </c:if>
 
     <span class="pagination-wrap">
         <div class="pagination">
@@ -161,6 +163,7 @@
         </div>
     </span>
 
+    <div class="text-message"><h2>${emptySearchResultMessage}</h2></div>
     <c:choose>
         <c:when test="${sessionScope.user.getType() == 'READER'}">
             <div class="center">

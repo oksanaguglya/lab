@@ -11,4 +11,5 @@ public class GoToRegistrationPageCommand implements Command{
         String page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.REGISTRATION_PATH_JSP);
         return page;
     }
+
 }
