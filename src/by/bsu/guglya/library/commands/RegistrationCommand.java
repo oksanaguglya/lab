@@ -21,7 +21,7 @@ public class RegistrationCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         String page;
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(true);
         String locale = (String) session.getAttribute(LOCALE_PARAM);
         MessageManager messageManager = new MessageManager(locale);
         String login = request.getParameter(LOGIN_PARAM);

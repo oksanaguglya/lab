@@ -16,11 +16,16 @@ public class MessageManager {
     public static final String ORDER_NO_CHECKS_MESSAGE = "ORDER_NO_CHECKS_MESSAGE";
     public static final String DEL_BOOK_FROM_BASKET_MESSAGE = "DEL_BOOK_FROM_BASKET_MESSAGE";
     public static final String EMPTY_BASKET_MESSAGE = "EMPTY_BASKET_MESSAGE";
+    public static final String EMPTY_SEARCH_RESULT_MESSAGE = "EMPTY_SEARCH_RESULT_MESSAGE";
 
     public MessageManager(String locale) {
-        String language = locale.substring(0, 2);
-        String country = locale.substring(3);
-        this.resourceBundle = ResourceBundle.getBundle(BUNDLE_NAME, new Locale(language, country));
+        if(locale == null){
+            this.resourceBundle = ResourceBundle.getBundle(BUNDLE_NAME, new Locale("ru", "RU"));
+        }else{
+            String language = locale.substring(0, 2);
+            String country = locale.substring(3);
+            this.resourceBundle = ResourceBundle.getBundle(BUNDLE_NAME, new Locale(language, country));
+        }
     }
 
     public String getProperty(String key) {
