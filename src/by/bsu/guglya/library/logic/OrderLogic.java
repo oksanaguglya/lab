@@ -32,6 +32,11 @@ public class OrderLogic {
         return result;
     }
 
-
+    public static boolean makeOrder(int idUser)
+    {
+        OrderDAO orderDAO = new OrderDAO();
+        boolean result = orderDAO.makeOrder(idUser);
+        return result;
+    }
 
 }

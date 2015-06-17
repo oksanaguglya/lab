@@ -23,6 +23,9 @@ public class CommandFactory {
         commands.put("add_books_to_basket", new AddBooksToBasketCommand());
         commands.put("my_basket", new BasketCommand());
         commands.put("del_book_from_basket", new DelBookFromBasketCommand());
+        commands.put("make_an_order", new MakeOrderCommand());
+        //commands.put("go_to_order_reader_page", new ReaderOrderCommand());
+        //commands.put("go_to_order_admin_page", new AdminOrderCommand());
     }
 
     public Command getCommand(HttpServletRequest request) {

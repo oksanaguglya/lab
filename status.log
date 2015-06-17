@@ -6,3 +6,63 @@
  Application is started!
 17.06.2015 01:35:09 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
  Application is started!
+17.06.2015 20:12:45 [RMI TCP Connection(2)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+17.06.2015 20:32:26 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+17.06.2015 20:36:05 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+17.06.2015 20:36:55 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+17.06.2015 20:37:41 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+17.06.2015 20:39:10 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+17.06.2015 20:41:01 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+17.06.2015 20:42:20 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+17.06.2015 20:43:17 [RMI TCP Connection(5)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+17.06.2015 20:45:00 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+17.06.2015 20:50:12 [RMI TCP Connection(2)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+17.06.2015 21:18:10 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+17.06.2015 21:38:10 [RMI TCP Connection(2)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+17.06.2015 21:42:10 [RMI TCP Connection(5)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+17.06.2015 21:54:54 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+17.06.2015 21:58:08 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+17.06.2015 21:59:28 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+17.06.2015 22:05:15 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+17.06.2015 22:05:23 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.BasketDAO 
+ You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'by book.title limit 7 offset 0' at line 1
+17.06.2015 22:07:24 [http-bio-8080-exec-4] ERROR by.bsu.guglya.library.database.dao.BasketDAO 
+ You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'by book.title limit 7 offset 0' at line 1
+17.06.2015 22:07:53 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+17.06.2015 22:08:35 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+17.06.2015 22:11:48 [RMI TCP Connection(5)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+17.06.2015 22:15:55 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+17.06.2015 22:18:10 [RMI TCP Connection(5)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+17.06.2015 22:24:47 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+17.06.2015 22:28:13 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+17.06.2015 23:00:56 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+17.06.2015 23:03:03 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+17.06.2015 23:19:53 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!

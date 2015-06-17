@@ -18,20 +18,28 @@ public class BasketDAO extends AbstractDAO {
     public static final String REQUEST_BASKET_ITEMS = "select order.idorder, book.title, book.author, book.year, order.quantity from library.order " +
             "join library.book on library.order.book = library.book.idbook " +
             "join library.order_type on library.order.state = library.order_type.idorder_type " +
-            "where library.order.user=? " +
+            "where library.order.user=? and library.order.state=? " +
             "order by book.title limit ? offset ?;";
     public static final String REQUEST_BASKET_ITEMS_COUNT =
             "select count(*) from library.order where library.order.user=? and library.order.state=?;";
 
     public List<TableItem> getItems(int idUser, int offset, int limit) {
         List<TableItem> items = new ArrayList<TableItem>(limit);
+        PreparedStatement idTypePS = null;
         PreparedStatement ps = null;
+        ResultSet resultSet = null;
         try {
+            idTypePS = conn.prepareStatement(GET_IDORDER_TYPE);
+            idTypePS.setString(1, Order.TypeOfOrder.NEW.toString());
+            resultSet = idTypePS.executeQuery();
+            resultSet.next();
+            int idOrderTypeNew = resultSet.getInt("idorder_type");
             ps = conn.prepareStatement(REQUEST_BASKET_ITEMS);
             ps.setInt(1, idUser);
-            ps.setInt(2, limit);
-            ps.setInt(3, offset);
-            ResultSet resultSet = ps.executeQuery();
+            ps.setInt(2, idOrderTypeNew);
+            ps.setInt(3, limit);
+            ps.setInt(4, offset);
+            resultSet = ps.executeQuery();
             TableItem item = null;
             Book book = null;
             while (resultSet.next()) {
@@ -71,10 +79,10 @@ public class BasketDAO extends AbstractDAO {
             idTypePS.setString(1, Order.TypeOfOrder.NEW.toString());
             resultSet = idTypePS.executeQuery();
             resultSet.next();
-            int idOrderTypeProc = resultSet.getInt("idorder_type");
+            int idOrderTypeNew = resultSet.getInt("idorder_type");
             ps = conn.prepareStatement(REQUEST_BASKET_ITEMS_COUNT);
             ps.setInt(1, idUser);
-            ps.setInt(2, idOrderTypeProc);
+            ps.setInt(2, idOrderTypeNew);
             resultSet = ps.executeQuery();
             while (resultSet.next()) {
                 result = resultSet.getInt("count(*)");

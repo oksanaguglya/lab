@@ -114,6 +114,11 @@ public class UserDAOImpl extends UserDAO {
         } catch (SQLException ex) {
             LOG.error(ex.getMessage());
         } finally {
+            try {
+                conn.setAutoCommit(true);
+            } catch (SQLException ex) {
+                LOG.error(ex.getMessage());
+            }
             closeConnection();
         }
         return result;

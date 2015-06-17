@@ -52,7 +52,7 @@
             <c:choose>
                 <c:when test="${sessionScope.user.getType() == 'READER'}">
                     <form name="AddBooksToBasket" action="LibraryServlet" method="POST">
-                        <input type="hidden" name="command" value="add_books_to_basket"/>
+                        <input type="hidden" name="command" value="make_an_order"/>
                         <input type="hidden" name="page" value=${currentPage}>
                         <button type="submit" id="sendBtn" class="btn" name="AddBooksToBasket">Оформить заказ</button>
                     </form>
@@ -111,7 +111,7 @@
         </div>
     </span>
 
-    <div class="text-message"><h2>${successDelBookFromBasket}</h2></div>
+    <div class="text-message"><h2>${successDelBookFromBasket}${OrderMakeSuccessMessage}${OrderMakeNoSuccessMessage}</h2></div>
     <div class="text-message"><h2>${emptyBasketMessage}</h2></div>
 
     </body>
