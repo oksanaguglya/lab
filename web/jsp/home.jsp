@@ -34,9 +34,28 @@
             <li>
                 <form class="pad-enter-list" name="catalog" method="POST" action="LibraryServlet">
                     <input type="hidden" name="command" value="go_to_catalog_page">
-                    <A HREF="javascript:document.catalog.submit()"><fmt:message key="main.catalog"/></A>
+                    <A HREF="javascript:document.catalog.submit()"><fmt:message key="home.catalog"/></A>
                 </form>
             </li>
+
+            <c:if test="${sessionScope.user.getType() == 'READER'}">
+                <li>
+                    <form class="pad-enter-list" name="order" method="POST" action="LibraryServlet">
+                        <input type="hidden" name="command" value="go_to_order_reader_page">
+                        <A HREF="javascript:document.order.submit()"><fmt:message key="home.order_reader"/></A>
+                    </form>
+                </li>
+            </c:if>
+
+            <c:if test="${sessionScope.user.getType() == 'ADMINISTRATOR'}">
+                <li>
+                    <form class="pad-enter-list" name="order" method="POST" action="LibraryServlet">
+                        <input type="hidden" name="command" value="go_to_order_admin_page">
+                        <A HREF="javascript:document.order.submit()"><fmt:message key="home.order_admin"/></A>
+                    </form>
+                </li>
+            </c:if>
+
             <li>
                 <form class="pad-enter-list" name="aboutUs" method="POST" action="LibraryServlet">
                     <input type="hidden" name="command" value="go_to_about_us_page">
@@ -45,19 +64,21 @@
             </li>
         </ul>
 
-        <c:choose>
-            <c:when test="${sessionScope.user.getType() != 'READER' && sessionScope.user.getType() != 'ADMINISTRATOR'}">
-                <form name="changeLang" action="LibraryServlet" method="POST" id="change_language" class="lang-button">
-                    <h2><fmt:message key="home.lang"/></h2>
-                    <input type="hidden" name="command" value="change_language"/>
-                    <button type="submit" class="btn btn-lang" name=locale value="RU"><fmt:message key="header.ru"/></button>
-                    <button type="submit" class="btn btn-lang" name=locale value="EN"><fmt:message key="header.en"/></button>
-                </form>
-            </c:when>
-            <c:otherwise>
-                <h2>${sessionScope.user.getLogin()}<fmt:message key="home.hello"/></h2>
-            </c:otherwise>
-        </c:choose>
+
+        <c:if test="${sessionScope.user.getType() != 'READER' && sessionScope.user.getType() != 'ADMINISTRATOR'}">
+            <form name="changeLang" action="LibraryServlet" method="POST" id="change_language" class="lang-button">
+                <h2><fmt:message key="home.lang"/></h2>
+                <input type="hidden" name="command" value="change_language"/>
+                <button type="submit" class="btn btn-lang" name=locale value="RU"><fmt:message
+                        key="header.ru"/></button>
+                <button type="submit" class="btn btn-lang" name=locale value="EN"><fmt:message
+                        key="header.en"/></button>
+            </form>
+        </c:if>
+        <c:if test="${sessionScope.user.getType() == 'READER'}">
+            <h2>${sessionScope.user.getLogin()}<fmt:message key="home.hello"/></h2>
+        </c:if>
+
     </div>
     </body>
     <%@include file="footer.jsp" %>
