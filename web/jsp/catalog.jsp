@@ -14,7 +14,7 @@
                 }).get();
                 document.getElementById('items').value = items;
                 var qty = [];
-                items.forEach(function(item, i, items) {
+                items.forEach(function (item, i, items) {
                     qty.push(document.getElementById('qty' + item).value);
                 });
                 document.getElementById('qty').value = qty;
@@ -43,58 +43,59 @@
     </form>
 
     <c:if test="${noOfPages != 0}">
-    <table border="2" id="table" cellpadding="5" cellspacing="1">
-        <tr>
-            <c:choose>
-                <c:when test="${sessionScope.user.getType() == 'READER'}">
-                    <th class="table-col-check"></th>
-                </c:when>
-                <c:otherwise></c:otherwise>
-            </c:choose>
-            <th><fmt:message key="catalog.title"></fmt:message></th>
-            <th><fmt:message key="catalog.author"></fmt:message></th>
-            <th class="table-col-year"><fmt:message key="catalog.year"></fmt:message></th>
-            <th class="table-col-bookType"><fmt:message key="catalog.bookType"></fmt:message></th>
-            <th class="table-col-quantity"><fmt:message key="catalog.quantity"></fmt:message></th>
-            <c:choose>
-                <c:when test="${sessionScope.user.getType() == 'READER'}">
-                    <th class="table-col-qty"><fmt:message key="catalog.qty"></fmt:message></th>
-                </c:when>
-                <c:otherwise></c:otherwise>
-            </c:choose>
-        </tr>
-        <c:forEach var="item" items="${requestScope.catalogItems}">
+        <table border="2" id="table" cellpadding="5" cellspacing="1">
             <tr>
-            <c:choose>
-                <c:when test="${sessionScope.user.getType() == 'READER'}">
-                    <td class="table-col-check"><input type="radio" name="selectedItem${item.getId()}"
-                                                       value="${item.getId()}" id="radio"/></td>
-                </c:when>
-                <c:otherwise></c:otherwise>
-            </c:choose>
-            <td><c:out value="${item.getBook().getTitle()}"/></td>
-            <td><c:out value="${item.getBook().getAuthor()}"/></td>
-            <td class="table-col-year"><c:out value="${item.getBook().getYear()}"/></td>
-            <c:choose>
-                <c:when test="${item.getBook().getType() == 'LIBRARY_CARD'}">
-                    <td class="table-col-bookType"><fmt:message key="catalog.library_card"></fmt:message></td>
-                </c:when>
-                <c:otherwise>
-                    <td class="table-col-bookType"><fmt:message key="catalog.reading_room"></fmt:message></td>
-                </c:otherwise>
-            </c:choose>
-            <td class="table-col-quantity"><c:out value="${item.getQuantity()}"/></td>
-            <c:choose>
-                <c:when test="${sessionScope.user.getType() == 'READER'}">
-                    <td class="table-col-qty"><input class="text-qty" type="text" name="qty${item.getId()}"
-                                                          value="1" id="qty${item.getId()}"/></td>
-                </c:when>
-                <c:otherwise></c:otherwise>
-            </c:choose>
+                <c:choose>
+                    <c:when test="${sessionScope.user.getType() == 'READER'}">
+                        <th class="table-col-check"></th>
+                    </c:when>
+                    <c:otherwise></c:otherwise>
+                </c:choose>
+                <th><fmt:message key="catalog.title"></fmt:message></th>
+                <th><fmt:message key="catalog.author"></fmt:message></th>
+                <th class="table-col-year"><fmt:message key="catalog.year"></fmt:message></th>
+                <th class="table-col-bookType"><fmt:message key="catalog.bookType"></fmt:message></th>
+                <th class="table-col-quantity"><fmt:message key="catalog.quantity"></fmt:message></th>
+                <c:choose>
+                    <c:when test="${sessionScope.user.getType() == 'READER'}">
+                        <th class="table-col-qty"><fmt:message key="catalog.qty"></fmt:message></th>
+                    </c:when>
+                    <c:otherwise></c:otherwise>
+                </c:choose>
             </tr>
-        </c:forEach>
-    </table>
-    <br>
+            <c:forEach var="item" items="${requestScope.catalogItems}">
+                <tr>
+                    <c:choose>
+                        <c:when test="${sessionScope.user.getType() == 'READER'}">
+                            <td class="table-col-check"><input type="radio" name="selectedItem${item.getId()}"
+                                                               value="${item.getId()}" id="radio"/></td>
+                        </c:when>
+                        <c:otherwise></c:otherwise>
+                    </c:choose>
+                    <td><c:out value="${item.getBook().getTitle()}"/></td>
+                    <td><c:out value="${item.getBook().getAuthor()}"/></td>
+                    <td class="table-col-year"><c:out value="${item.getBook().getYear()}"/></td>
+                    <c:choose>
+                        <%--<c:when test="${item.getBook().getType() == 'LIBRARY_CARD'}">--%>
+                        <c:when test="${item.getBook().getType() == 'LIBRARY_CARD'}">
+                            <td class="table-col-bookType"><fmt:message key="catalog.library_card"></fmt:message></td>
+                        </c:when>
+                        <c:otherwise>
+                            <td class="table-col-bookType"><fmt:message key="catalog.reading_room"></fmt:message></td>
+                        </c:otherwise>
+                    </c:choose>
+                    <td class="table-col-quantity"><c:out value="${item.getQuantity()}"/></td>
+                    <c:choose>
+                        <c:when test="${sessionScope.user.getType() == 'READER'}">
+                            <td class="table-col-qty"><input class="text-qty" type="text" name="qty${item.getId()}"
+                                                             value="1" id="qty${item.getId()}"/></td>
+                        </c:when>
+                        <c:otherwise></c:otherwise>
+                    </c:choose>
+                </tr>
+            </c:forEach>
+        </table>
+        <br>
 
     <span class="btn-wrap">
         <div class="btn-order">
@@ -117,49 +118,51 @@
     </c:if>
 
     <span class="pagination-wrap">
-        <div class="pagination">
-            <ul>
-                <c:if test="${currentPage != 1}">
-                    <li>
-                        <form name="goPreviousPageForm" method="POST" action="LibraryServlet">
-                            <input type="hidden" name="command" value="go_to_catalog_page">
-                            <input type="hidden" name="page" value=${currentPage - 1}>
-                            <A HREF="javascript:document.goPreviousPageForm.submit()" class="pagination_prev"><</A>
-                        </form>
-                    </li>
-                </c:if>
+        <div class="pagination-wrap2">
+            <div class="pagination">
+                <ul>
+                    <c:if test="${currentPage != 1}">
+                        <li>
+                            <form name="goPreviousPageForm" method="POST" action="LibraryServlet">
+                                <input type="hidden" name="command" value="go_to_catalog_page">
+                                <input type="hidden" name="page" value=${currentPage - 1}>
+                                <A HREF="javascript:document.goPreviousPageForm.submit()" class="pagination_prev"><</A>
+                            </form>
+                        </li>
+                    </c:if>
 
 
-                <c:forEach var="i" begin="1" end="${noOfPages}">
-                    <c:choose>
-                        <c:when test="${currentPage eq i}">
-                            <li class="pagination_active">
-                                <a href="#">${i}</a>
-                            </li>
-                        </c:when>
-                        <c:otherwise>
-                            <li>
-                                <form id="goPageForm${i}" method="POST" action="LibraryServlet">
-                                    <input type="hidden" name="command" value="go_to_catalog_page">
-                                    <input type="hidden" name="page" value=${i}>
-                                    <A HREF="javascript:document.getElementById('goPageForm${i}').submit()">${i}</A>
-                                </form>
-                            </li>
-                        </c:otherwise>
-                    </c:choose>
-                </c:forEach>
+                    <c:forEach var="i" begin="1" end="${noOfPages}">
+                        <c:choose>
+                            <c:when test="${currentPage eq i}">
+                                <li class="pagination_active">
+                                    <a href="#">${i}</a>
+                                </li>
+                            </c:when>
+                            <c:otherwise>
+                                <li>
+                                    <form id="goPageForm${i}" method="POST" action="LibraryServlet">
+                                        <input type="hidden" name="command" value="go_to_catalog_page">
+                                        <input type="hidden" name="page" value=${i}>
+                                        <A HREF="javascript:document.getElementById('goPageForm${i}').submit()">${i}</A>
+                                    </form>
+                                </li>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
 
 
-                <c:if test="${currentPage lt noOfPages}">
-                    <li>
-                        <form name="goNextPageForm" method="POST" action="LibraryServlet">
-                            <input type="hidden" name="command" value="go_to_catalog_page"/>
-                            <input type="hidden" name="page" value=${currentPage + 1}>
-                            <A HREF="javascript:document.goNextPageForm.submit()" class="pagination_next">></A>
-                        </form>
-                    </li>
-                </c:if>
-            </ul>
+                    <c:if test="${currentPage lt noOfPages}">
+                        <li>
+                            <form name="goNextPageForm" method="POST" action="LibraryServlet">
+                                <input type="hidden" name="command" value="go_to_catalog_page"/>
+                                <input type="hidden" name="page" value=${currentPage + 1}>
+                                <A HREF="javascript:document.goNextPageForm.submit()" class="pagination_next">></A>
+                            </form>
+                        </li>
+                    </c:if>
+                </ul>
+            </div>
         </div>
     </span>
 

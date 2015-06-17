@@ -167,7 +167,7 @@ th {
 }
 
 .pagination {
-    margin-right: 40%;
+    /*margin-right: 40%;*/
     text-align: center;
     clear: both;
 }
@@ -240,6 +240,10 @@ th {
     display: inline-block;
 }
 
+.pagination-wrap2{
+    margin-right: 40%;
+}
+
 .text-error{
     width: 50%;
     margin-top: 20%;
@@ -258,6 +262,11 @@ th {
 
 .table-col-del{
     width: 4%;
+    text-align: center;
+}
+
+.table-col-state{
+    width: 11%;
     text-align: center;
 }
 

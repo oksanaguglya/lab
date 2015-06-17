@@ -19,6 +19,8 @@ public class ConfigurationManager {
     public final static String ABOUT_US_PATH_JSP = "ABOUT_US_PATH_JSP";
     public final static String CATALOG_PATH_JSP = "CATALOG_PATH_JSP";
     public final static String BASKET_PATH_JSP = "BASKET_PATH_JSP";
+    public final static String ORDER_READER_PATH_JSP = "ORDER_READER_PATH_JSP";
+    //public final static String ORDER_READER_PATH_JSP = "ORDER_READER_PATH_JSP";
 
     public static ConfigurationManager getInstance() {
         try {

@@ -19,6 +19,7 @@ public class MessageManager {
     public static final String EMPTY_SEARCH_RESULT_MESSAGE = "EMPTY_SEARCH_RESULT_MESSAGE";
     public static final String ORDER_MADE_SUCCESS_MESSAGE = "ORDER_MADE_SUCCESS_MESSAGE";
     public static final String ORDER_MADE_NO_SUCCESS_MESSAGE = "ORDER_MADE_NO_SUCCESS_MESSAGE";
+    public static final String EMPTY_SEARCH_ORDER_MESSAGE = "EMPTY_SEARCH_ORDER_MESSAGE";
 
     public MessageManager(String locale) {
         if(locale == null){

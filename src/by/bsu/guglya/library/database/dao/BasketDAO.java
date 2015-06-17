@@ -15,8 +15,9 @@ public class BasketDAO extends AbstractDAO {
 
     private static final Logger LOG = Logger.getLogger(BasketDAO.class);
     public static final String GET_IDORDER_TYPE = "select idorder_type from library.order_type where type=?;";
-    public static final String REQUEST_BASKET_ITEMS = "select order.idorder, book.title, book.author, book.year, order.quantity from library.order " +
+    public static final String REQUEST_BASKET_ITEMS = "select order.idorder, book.title, book.author, book.year, order.quantity, book_type.type from library.order " +
             "join library.book on library.order.book = library.book.idbook " +
+            "join library.book_type on library.book.book_type=library.book_type.idbook_type " +
             "join library.order_type on library.order.state = library.order_type.idorder_type " +
             "where library.order.user=? and library.order.state=? " +
             "order by book.title limit ? offset ?;";
@@ -47,9 +48,8 @@ public class BasketDAO extends AbstractDAO {
                 String title = resultSet.getString("title");
                 String author = resultSet.getString("author");
                 int year = resultSet.getInt("year");
-                /*String bookType = resultSet.getString("type");*/
-                /*book = new Book(title, author, year, Book.TypeOfBook.valueOf(bookType));*/
-                book = new Book(title, author, year, Book.TypeOfBook.LIBRARY_CARD);
+                String bookType = resultSet.getString("type");
+                book = new Book(title, author, year, Book.TypeOfBook.valueOf(bookType));
                 int quantity = resultSet.getInt("quantity");
                 item = new TableItem(idOrder, book, quantity);
                 items.add(item);
