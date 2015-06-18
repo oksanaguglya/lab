@@ -29,6 +29,14 @@ public class OrderDAO extends AbstractDAO {
             "select count(*) from library.order " +
             "join library.book on library.order.book = library.book.idbook " +
             "where (book.title like ? or book.author like ?) and library.order.user=? and library.order.state!=?;";
+    public static final String REQUEST_NEW_ORDER_ITEMS = "select order.idorder, book.title, book.author, book.year, order.quantity, book_type.type, order_type.type from library.order " +
+            "join library.book on library.order.book = library.book.idbook " +
+            "join library.book_type on library.book.book_type=library.book_type.idbook_type " +
+            "join library.order_type on library.order.state = library.order_type.idorder_type " +
+            "where library.order.state=? " +
+            "order by book.title limit ? offset ?;";
+    public static final String REQUEST_NEW_ORDERS_ITEMS_COUNT =
+            "select count(*) from library.order where library.order.state=?;";
 
     public boolean addOrder(String idBook, int idUser, int qty) {
         boolean result = false;
@@ -284,6 +292,83 @@ public class OrderDAO extends AbstractDAO {
             ps.setString(2, "%" + searchText + "%");
             ps.setInt(3, idUser);
             ps.setInt(4, idOrderTypeNew);
+            resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                result = resultSet.getInt("count(*)");
+            }
+        } catch (SQLException ex) {
+            LOG.error(ex.getMessage());
+        } finally {
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    LOG.error(ex.getMessage());
+                }
+            }
+            closeConnection();
+        }
+        return result;
+    }
+
+    public List<TableItem> getNewOrderItems(int offset, int limit) {
+        List<TableItem> items = new ArrayList<TableItem>(limit);
+        PreparedStatement idTypePS = null;
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        try {
+            idTypePS = conn.prepareStatement(GET_IDORDER_TYPE);
+            idTypePS.setString(1, Order.TypeOfOrder.IN_PROCESSING.toString());
+            resultSet = idTypePS.executeQuery();
+            resultSet.next();
+            int idOrderTypeProc = resultSet.getInt("idorder_type");
+            ps = conn.prepareStatement(REQUEST_NEW_ORDER_ITEMS);
+            ps.setInt(1, idOrderTypeProc);
+            ps.setInt(2, limit);
+            ps.setInt(3, offset);
+            resultSet = ps.executeQuery();
+            TableItem item = null;
+            Book book = null;
+            while (resultSet.next()) {
+                int idOrder = resultSet.getInt("idorder");
+                String title = resultSet.getString("title");
+                String author = resultSet.getString("author");
+                int year = resultSet.getInt("year");
+                String bookType = resultSet.getString("book_type.type");
+                book = new Book(title, author, year, Book.TypeOfBook.valueOf(bookType));
+                int quantity = resultSet.getInt("quantity");
+                String state = resultSet.getString("order_type.type");
+                item = new TableItem(idOrder, book, quantity, state);
+                items.add(item);
+            }
+        } catch (SQLException ex) {
+            LOG.error(ex.getMessage());
+        } finally {
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    LOG.error(ex.getMessage());
+                }
+            }
+            closeConnection();
+        }
+        return items;
+    }
+
+    public int getNewOrderItemsCount() {
+        PreparedStatement idTypePS = null;
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        int result = 0;
+        try {
+            idTypePS = conn.prepareStatement(GET_IDORDER_TYPE);
+            idTypePS.setString(1, Order.TypeOfOrder.IN_PROCESSING.toString());
+            resultSet = idTypePS.executeQuery();
+            resultSet.next();
+            int idOrderTypeProc = resultSet.getInt("idorder_type");
+            ps = conn.prepareStatement(REQUEST_NEW_ORDERS_ITEMS_COUNT);
+            ps.setInt(1, idOrderTypeProc);
             resultSet = ps.executeQuery();
             while (resultSet.next()) {
                 result = resultSet.getInt("count(*)");

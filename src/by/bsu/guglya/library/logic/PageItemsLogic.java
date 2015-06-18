@@ -35,4 +35,12 @@ public class PageItemsLogic {
         int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / ITEMS_PER_ORDERS_PAGE);
         return new PageItems(items, noOfPages);
     }
+
+    public static PageItems newOrders(int pageNo) {
+        OrderDAO orderDAO = new OrderDAO();
+        List<TableItem> items = orderDAO.getNewOrderItems((pageNo - 1) * ITEMS_PER_ORDERS_PAGE, ITEMS_PER_ORDERS_PAGE);
+        int noOfRecords = orderDAO.getNewOrderItemsCount();
+        int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / ITEMS_PER_ORDERS_PAGE);
+        return new PageItems(items, noOfPages);
+    }
 }

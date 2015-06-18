@@ -144,3 +144,55 @@
  Application is started!
 18.06.2015 02:44:04 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
  Application is started!
+18.06.2015 03:01:58 [RMI TCP Connection(2)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+18.06.2015 03:29:44 [RMI TCP Connection(2)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+18.06.2015 03:31:51 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+18.06.2015 03:32:08 [http-bio-8080-exec-3] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ No value specified for parameter 4
+18.06.2015 03:32:08 [http-bio-8080-exec-3] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ No value specified for parameter 2
+18.06.2015 03:33:10 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+18.06.2015 03:33:22 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ No value specified for parameter 4
+18.06.2015 03:33:22 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ No value specified for parameter 2
+18.06.2015 03:33:25 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ No value specified for parameter 4
+18.06.2015 03:33:25 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ No value specified for parameter 2
+18.06.2015 03:33:30 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ No value specified for parameter 4
+18.06.2015 03:33:30 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ No value specified for parameter 2
+18.06.2015 03:34:07 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ No value specified for parameter 4
+18.06.2015 03:34:07 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ No value specified for parameter 2
+18.06.2015 03:34:11 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ No value specified for parameter 4
+18.06.2015 03:34:11 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ No value specified for parameter 2
+18.06.2015 03:34:53 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+18.06.2015 03:35:31 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ No value specified for parameter 4
+18.06.2015 03:35:31 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ No value specified for parameter 2
+18.06.2015 03:35:34 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ No value specified for parameter 4
+18.06.2015 03:35:34 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ No value specified for parameter 2
+18.06.2015 03:36:00 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
+18.06.2015 03:36:31 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ No value specified for parameter 4
+18.06.2015 03:38:59 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ No value specified for parameter 4
+18.06.2015 03:38:59 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ No value specified for parameter 2
+18.06.2015 03:39:32 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application is started!
