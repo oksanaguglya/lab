@@ -40,18 +40,24 @@
 
             <c:if test="${sessionScope.user.getType() == 'READER'}">
                 <li>
-                    <form class="pad-enter-list" name="order" method="POST" action="LibraryServlet">
+                    <form class="pad-enter-list" name="orderReader" method="POST" action="LibraryServlet">
                         <input type="hidden" name="command" value="go_to_order_reader_page">
-                        <A HREF="javascript:document.order.submit()"><fmt:message key="home.order_reader"/></A>
+                        <A HREF="javascript:document.orderReader.submit()"><fmt:message key="home.order_reader"/></A>
                     </form>
                 </li>
             </c:if>
 
             <c:if test="${sessionScope.user.getType() == 'ADMINISTRATOR'}">
                 <li>
-                    <form class="pad-enter-list" name="order" method="POST" action="LibraryServlet">
-                        <input type="hidden" name="command" value="go_to_order_admin_page">
-                        <A HREF="javascript:document.order.submit()"><fmt:message key="home.order_admin"/></A>
+                    <form class="pad-enter-list" name="orderNewAdmin" method="POST" action="LibraryServlet">
+                        <input type="hidden" name="command" value="go_to_new_order_admin_page">
+                        <A HREF="javascript:document.orderNewAdmin.submit()"><fmt:message key="home.new_order_admin"/></A>
+                    </form>
+                </li>
+                <li>
+                    <form class="pad-enter-list" name="orderLoginAdmin" method="POST" action="LibraryServlet">
+                        <input type="hidden" name="command" value="go_to_login_order_admin_page">
+                        <A HREF="javascript:document.orderLoginAdmin.submit()"><fmt:message key="home.login_order_admin"/></A>
                     </form>
                 </li>
             </c:if>
