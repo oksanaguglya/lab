@@ -2,15 +2,19 @@
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
 
 <log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
-    <appender name="file" class="org.apache.log4j.FileAppender">
+    <appender name="FileTxtAppender" class="org.apache.log4j.FileAppender">
         <param name="File" value="D:/Projects/Lab/status.log" />
+        <!--<param name="File" value="../log/status.log" />-->
+        <param name="Append" value="true"/>
+        <param name="Threshold" value="INFO"/>
         <layout class="org.apache.log4j.PatternLayout" >
             <param name="ConversionPattern" value="%d{dd.MM.yyyy HH:mm:ss} [%t] %-5p %c %x%n %m%n"/>
         </layout>
     </appender>
     <root>
         <priority value="debug"/>
-        <appender-ref ref="file" />
+        <appender-ref ref="FileTxtAppender" />
     </root>
 </log4j:configuration>
+
 

@@ -1,6 +1,8 @@
+<%@ page import="by.bsu.guglya.library.managers.ConfigurationManager" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="tag" uri="/WEB-INF/taglib" %>
 <!DOCTYPE html>
 <html>
 <fmt:setLocale value="${locale}" scope="session"/>
@@ -11,6 +13,8 @@
         <title><fmt:message key="title"/></title>
     </head>
     <body>
+    <tag:langmenu forwardString="${pageContext.request.servletPath}"/>
+
     <div>
         <span class="header-title-wrap">
             <div class="header-title-wrap2">

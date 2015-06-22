@@ -1,10 +1,11 @@
-package by.bsu.guglya.library.commands;
+package by.bsu.guglya.library.commands.navigation;
 
+import by.bsu.guglya.library.commands.Command;
 import by.bsu.guglya.library.managers.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class GoToRegistrationPageCommand implements Command{
+public class GoToRegistrationPageCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
