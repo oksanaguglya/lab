@@ -1,6 +1,7 @@
-package by.bsu.guglya.library.commands;
+package by.bsu.guglya.library.commands.authorization;
 
 import by.bsu.guglya.library.beans.User;
+import by.bsu.guglya.library.commands.Command;
 import by.bsu.guglya.library.managers.ConfigurationManager;
 import by.bsu.guglya.library.managers.MessageManager;
 import by.bsu.guglya.library.logic.AuthenticationLogic;

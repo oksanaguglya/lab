@@ -21,10 +21,13 @@ public class MessageManager {
     public static final String ORDER_MADE_NO_SUCCESS_MESSAGE = "ORDER_MADE_NO_SUCCESS_MESSAGE";
     public static final String EMPTY_SEARCH_ORDER_MESSAGE = "EMPTY_SEARCH_ORDER_MESSAGE";
     public static final String EMPTY_SEARCH_NEW_ORDER_MESSAGE = "EMPTY_SEARCH_NEW_ORDER_MESSAGE";
+    public static final String EMPTY_SEARCH_LOGIN_ORDER_MESSAGE = "EMPTY_SEARCH_LOGIN_ORDER_MESSAGE";
+    public static final String DEFAULT_LANGUAGE = "ru";
+    public static final String DEFAULT_COUNTRY = "RU";
 
     public MessageManager(String locale) {
         if(locale == null){
-            this.resourceBundle = ResourceBundle.getBundle(BUNDLE_NAME, new Locale("ru", "RU"));
+            this.resourceBundle = ResourceBundle.getBundle(BUNDLE_NAME, new Locale(DEFAULT_LANGUAGE, DEFAULT_COUNTRY));
         }else{
             String language = locale.substring(0, 2);
             String country = locale.substring(3);
