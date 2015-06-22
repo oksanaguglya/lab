@@ -1,6 +1,8 @@
-package by.bsu.guglya.library.commands;
+package by.bsu.guglya.library.commands.basket;
 
 import by.bsu.guglya.library.beans.User;
+import by.bsu.guglya.library.commands.Command;
+import by.bsu.guglya.library.commands.basket.BasketCommand;
 import by.bsu.guglya.library.logic.OrderLogic;
 import by.bsu.guglya.library.managers.MessageManager;
 
