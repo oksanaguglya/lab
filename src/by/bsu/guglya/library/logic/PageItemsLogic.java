@@ -43,4 +43,12 @@ public class PageItemsLogic {
         int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / ITEMS_PER_ORDERS_PAGE);
         return new PageItems(items, noOfPages);
     }
+
+    public static PageItems getAllOrders(String searchText, int pageNo) {
+        OrderDAO orderDAO = new OrderDAO();
+        List<TableItem> items = orderDAO.getAllOrderItems(searchText, (pageNo - 1) * ITEMS_PER_ORDERS_PAGE, ITEMS_PER_ORDERS_PAGE);
+        int noOfRecords = orderDAO.getAllOrderItemsCount(searchText);
+        int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / ITEMS_PER_ORDERS_PAGE);
+        return new PageItems(items, noOfPages);
+    }
 }

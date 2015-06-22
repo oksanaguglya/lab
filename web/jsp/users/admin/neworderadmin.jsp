@@ -21,15 +21,18 @@
     <c:if test="${noOfPages != 0}">
         <table border="2" id="table" cellpadding="5" cellspacing="1">
             <tr>
+                <th class="table-col-reader"><fmt:message key="order.reader"></fmt:message></th>
                 <th><fmt:message key="catalog.title"></fmt:message></th>
                 <th><fmt:message key="catalog.author"></fmt:message></th>
                 <th class="table-col-year"><fmt:message key="catalog.year"></fmt:message></th>
                 <th class="table-col-bookType"><fmt:message key="catalog.bookType"></fmt:message></th>
                 <th class="table-col-qty"><fmt:message key="catalog.qty"></fmt:message></th>
-                <th class="table-col-state"><fmt:message key="order.state"></fmt:message></th>
+                <%--<th class="table-col-state"><fmt:message key="order.state"></fmt:message></th>--%>
+                <th class="table-col-process"></th>
             </tr>
             <c:forEach var="item" items="${requestScope.newOrdersItems}">
                 <tr>
+                    <td class="table-col-reader"><c:out value="${item.getLogin()}"/></td>
                     <td><c:out value="${item.getBook().getTitle()}"/></td>
                     <td><c:out value="${item.getBook().getAuthor()}"/></td>
                     <td class="table-col-year"><c:out value="${item.getBook().getYear()}"/></td>
@@ -42,17 +45,29 @@
                         </c:otherwise>
                     </c:choose>
                     <td class="table-col-qty"><c:out value="${item.getQuantity()}"/></td>
-                    <c:choose>
+                   <%-- <c:choose>
                         <c:when test="${item.getState() == 'APPROVED'}">
-                            <td class="table-col-qty"><fmt:message key="order.approved"></fmt:message></td>
+                            <td class="table-col-state"><fmt:message key="order.approved"></fmt:message></td>
                         </c:when>
                         <c:when test="${item.getState() == 'DENIED'}">
-                            <td class="table-col-qty"><fmt:message key="order.denied"></fmt:message></td>
+                            <td class="table-col-state"><fmt:message key="order.denied"></fmt:message></td>
                         </c:when>
                         <c:otherwise>
-                            <td class="table-col-qty"><fmt:message key="order.proc"></fmt:message></td>
+                            <td class="table-col-state"><fmt:message key="order.proc"></fmt:message></td>
                         </c:otherwise>
-                    </c:choose>
+                    </c:choose>--%>
+                    <td class="table-col-process">
+                        <div class="center">
+                            <form class="inline" name="ProcessOrder" action="LibraryServlet" method="POST">
+                                <input type="hidden" name="command" value="process_order"/>
+                                <input type="hidden" name="idCatalog" value="${item.getId()}">
+                                <input type="hidden" name="page" value=${currentPage}>
+                                <%--<input type="hidden" name="action" value=>--%>
+                                <button class="btn" type="submit" name="approveBook"><fmt:message key="catalog.approve"></fmt:message></button>
+                                <button class="btn" type="submit" name="deniedBook"><fmt:message key="catalog.deny"></fmt:message></button>
+                            </form>
+                        </div>
+                    </td>
                 </tr>
             </c:forEach>
         </table>
