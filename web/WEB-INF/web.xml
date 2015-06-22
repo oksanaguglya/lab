@@ -15,7 +15,7 @@
     </listener>
     <context-param>
         <param-name>log4j</param-name>
-        <param-value>log4j.xml</param-value>
+        <param-value>D:\Projects\Lab\src\log4j.xml</param-value>
     </context-param>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

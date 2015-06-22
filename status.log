@@ -1,198 +1,64 @@
-17.06.2015 01:24:03 [RMI TCP Connection(5)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started
-17.06.2015 01:25:11 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started
-17.06.2015 01:25:59 [RMI TCP Connection(2)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-17.06.2015 01:35:09 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-17.06.2015 20:12:45 [RMI TCP Connection(2)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-17.06.2015 20:32:26 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-17.06.2015 20:36:05 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-17.06.2015 20:36:55 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-17.06.2015 20:37:41 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-17.06.2015 20:39:10 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-17.06.2015 20:41:01 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-17.06.2015 20:42:20 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-17.06.2015 20:43:17 [RMI TCP Connection(5)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-17.06.2015 20:45:00 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-17.06.2015 20:50:12 [RMI TCP Connection(2)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-17.06.2015 21:18:10 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-17.06.2015 21:38:10 [RMI TCP Connection(2)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-17.06.2015 21:42:10 [RMI TCP Connection(5)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-17.06.2015 21:54:54 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-17.06.2015 21:58:08 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-17.06.2015 21:59:28 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-17.06.2015 22:05:15 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-17.06.2015 22:05:23 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.BasketDAO 
- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'by book.title limit 7 offset 0' at line 1
-17.06.2015 22:07:24 [http-bio-8080-exec-4] ERROR by.bsu.guglya.library.database.dao.BasketDAO 
- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'by book.title limit 7 offset 0' at line 1
-17.06.2015 22:07:53 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-17.06.2015 22:08:35 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-17.06.2015 22:11:48 [RMI TCP Connection(5)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-17.06.2015 22:15:55 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-17.06.2015 22:18:10 [RMI TCP Connection(5)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-17.06.2015 22:24:47 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-17.06.2015 22:28:13 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-17.06.2015 23:00:56 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-17.06.2015 23:03:03 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-17.06.2015 23:19:53 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 00:43:05 [RMI TCP Connection(5)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 00:43:14 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.state from library.order join library.book on library.order.book = library.book' at line 1
-18.06.2015 00:43:14 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- Unknown column 'book.title' in 'where clause'
-18.06.2015 00:44:55 [http-bio-8080-exec-1] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.state from library.order join library.book on library.order.book = library.book' at line 1
-18.06.2015 00:44:55 [http-bio-8080-exec-1] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- Unknown column 'book.title' in 'where clause'
-18.06.2015 00:47:30 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 00:47:36 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- Unknown column 'book.title' in 'where clause'
-18.06.2015 00:48:40 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 00:52:31 [http-bio-8080-exec-2] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- Unknown column 'book.title' in 'where clause'
-18.06.2015 01:03:47 [http-bio-8080-exec-4] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- Unknown column 'book.title' in 'where clause'
-18.06.2015 01:04:08 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 01:04:16 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- Unknown column 'book.title' in 'where clause'
-18.06.2015 01:05:19 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 01:06:54 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- Unknown column 'book.title' in 'where clause'
-18.06.2015 01:08:56 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 01:09:05 [http-bio-8080-exec-2] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- Unknown column 'book.title' in 'where clause'
-18.06.2015 01:11:16 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 01:15:08 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 01:17:31 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 01:20:59 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 01:22:40 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 01:24:08 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 01:48:25 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 01:48:45 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- Invalid value for getInt() - 'IN_PROCESSING'
-18.06.2015 01:48:48 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- Invalid value for getInt() - 'IN_PROCESSING'
-18.06.2015 01:48:49 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- Invalid value for getInt() - 'IN_PROCESSING'
-18.06.2015 01:54:47 [http-bio-8080-exec-9] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- Invalid value for getInt() - 'IN_PROCESSING'
-18.06.2015 01:58:27 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 02:01:03 [RMI TCP Connection(5)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 02:02:19 [RMI TCP Connection(5)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 02:03:44 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 02:10:48 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 02:12:29 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 02:20:16 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 02:28:18 [RMI TCP Connection(2)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 02:36:27 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 02:41:02 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 02:42:33 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 02:44:04 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 03:01:58 [RMI TCP Connection(2)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 03:29:44 [RMI TCP Connection(2)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 03:31:51 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 03:32:08 [http-bio-8080-exec-3] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- No value specified for parameter 4
-18.06.2015 03:32:08 [http-bio-8080-exec-3] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- No value specified for parameter 2
-18.06.2015 03:33:10 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 03:33:22 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- No value specified for parameter 4
-18.06.2015 03:33:22 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- No value specified for parameter 2
-18.06.2015 03:33:25 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- No value specified for parameter 4
-18.06.2015 03:33:25 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- No value specified for parameter 2
-18.06.2015 03:33:30 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- No value specified for parameter 4
-18.06.2015 03:33:30 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- No value specified for parameter 2
-18.06.2015 03:34:07 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- No value specified for parameter 4
-18.06.2015 03:34:07 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- No value specified for parameter 2
-18.06.2015 03:34:11 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- No value specified for parameter 4
-18.06.2015 03:34:11 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- No value specified for parameter 2
-18.06.2015 03:34:53 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 03:35:31 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- No value specified for parameter 4
-18.06.2015 03:35:31 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- No value specified for parameter 2
-18.06.2015 03:35:34 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- No value specified for parameter 4
-18.06.2015 03:35:34 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- No value specified for parameter 2
-18.06.2015 03:36:00 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
-18.06.2015 03:36:31 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- No value specified for parameter 4
-18.06.2015 03:38:59 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- No value specified for parameter 4
-18.06.2015 03:38:59 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
- No value specified for parameter 2
-18.06.2015 03:39:32 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
- Application is started!
+22.06.2015 21:34:20           [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+22.06.2015 22:54:40 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+22.06.2015 23:11:45 [localhost-startStop-2] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application destroyed!
+22.06.2015 23:11:59 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+22.06.2015 23:15:57 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+22.06.2015 23:37:02 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+22.06.2015 23:47:03 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+22.06.2015 23:57:00 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 00:32:49 [RMI TCP Connection(2)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 00:33:18 [localhost-startStop-2] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application destroyed!
+23.06.2015 00:34:11 [RMI TCP Connection(5)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 00:41:44 [localhost-startStop-2] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application destroyed!
+23.06.2015 00:42:01 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 00:44:40 [localhost-startStop-2] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application destroyed!
+23.06.2015 00:44:57 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 00:45:13 [localhost-startStop-1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application destroyed!
+23.06.2015 00:45:32 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 00:46:02 [localhost-startStop-2] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application destroyed!
+23.06.2015 00:46:19 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 00:47:08 [localhost-startStop-1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application destroyed!
+23.06.2015 00:47:24 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 00:48:36 [localhost-startStop-2] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application destroyed!
+23.06.2015 00:48:51 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 00:57:13 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 00:59:04 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 01:01:38 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 01:02:22 [RMI TCP Connection(5)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 01:03:03 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 01:07:53 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 01:27:20 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 01:30:09 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 01:40:19 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!

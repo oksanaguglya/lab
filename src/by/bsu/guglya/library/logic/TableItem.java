@@ -8,6 +8,7 @@ public class TableItem {
     private Book book;
     private int quantity;
     private String state;
+    private String login;
 
     public TableItem(int id, Book book, int quantity) {
         this.id = id;
@@ -20,6 +21,14 @@ public class TableItem {
         this.book = book;
         this.quantity = quantity;
         this.state = state;
+    }
+
+    public TableItem(int id, Book book, int quantity, String state, String login) {
+        this.id = id;
+        this.book = book;
+        this.quantity = quantity;
+        this.state = state;
+        this.login = login;
     }
 
     public int getId() { return id; }
@@ -44,5 +53,13 @@ public class TableItem {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 }
