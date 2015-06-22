@@ -3,19 +3,34 @@ package by.bsu.guglya.library.database.dao;
 import by.bsu.guglya.library.database.ConnectionPool;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
-public class AbstractDAO {
+/**
+ * This abstract class holds connection with database
+ * Also contains a method of closing the connection
+ * @author Oksana Guglya
+ */
+public abstract class AbstractDAO {
 
     protected Connection conn;
 
-    public AbstractDAO() {
-        conn = ConnectionPool.getInstance().getConnection();
+    public AbstractDAO(){
+        try{
+            conn = ConnectionPool.getInstance().getConnection();
+        }catch(SQLException ex){
+
+        }
+
     }
 
     public void closeConnection()
     {
-        ConnectionPool.getInstance().returnConnection(conn);
-    }
+        try{
+            ConnectionPool.getInstance().returnConnection(conn);
+        }catch(SQLException ex){
 
+        }
+
+    }
 
 }

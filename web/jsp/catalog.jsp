@@ -60,6 +60,9 @@
                     <c:when test="${sessionScope.user.getType() == 'READER'}">
                         <th class="table-col-qty"><fmt:message key="catalog.qty"></fmt:message></th>
                     </c:when>
+                    <c:when test="${sessionScope.user.getType() == 'ADMINISTRATOR'}">
+                        <th class="table-col-del_edit"></th>
+                    </c:when>
                     <c:otherwise></c:otherwise>
                 </c:choose>
             </tr>
@@ -90,6 +93,28 @@
                             <td class="table-col-qty"><input class="text-qty" type="text" name="qty${item.getId()}"
                                                              value="1" id="qty${item.getId()}"/></td>
                         </c:when>
+                        <c:when test="${sessionScope.user.getType() == 'ADMINISTRATOR'}">
+                            <td class="table-col-del_edit">
+                                <div class="center">
+                                    <form class="inline" name="EditBookFromCatalog" action="LibraryServlet"
+                                          method="POST">
+                                        <input type="hidden" name="command" value="edit_book_from_catalog"/>
+                                        <input type="hidden" name="idCatalog" value="${item.getId()}">
+                                        <input type="hidden" name="page" value=${currentPage}>
+                                        <button class="btn edit" type="submit" id="del${item.getId()}"
+                                                name="delBook"></button>
+                                    </form>
+                                    <form class="inline" name="DelBookFromCatalog" action="LibraryServlet"
+                                          method="POST">
+                                        <input type="hidden" name="command" value="del_book_from_catalog"/>
+                                        <input type="hidden" name="idCatalog" value="${item.getId()}">
+                                        <input type="hidden" name="page" value=${currentPage}>
+                                        <button class="btn del" type="submit" id="del${item.getId()}"
+                                                name="delBook"></button>
+                                    </form>
+                                </div>
+                            </td>
+                        </c:when>
                         <c:otherwise></c:otherwise>
                     </c:choose>
                 </tr>
@@ -108,6 +133,14 @@
                         <input type="hidden" name="page" value=${currentPage}>
                         <button type="submit" id="sendBtn" class="btn" name="AddBooksToBasket"><fmt:message
                                 key="catalog.addBooksToBasket"/></button>
+                    </form>
+                </c:when>
+                <c:when test="${sessionScope.user.getType() == 'ADMINISTRATOR'}">
+                    <form name="AddBookToCatalog" action="LibraryServlet" method="POST">
+                        <input type="hidden" name="command" value="add_book_to_catalog"/>
+                       <%-- <input type="hidden" name="page" value=${currentPage}>--%>
+                        <button type="submit" id="sendBtn" class="btn" name="AddBookToCatalog"><fmt:message
+                                key="catalog.addBookToCatalog"/></button>
                     </form>
                 </c:when>
                 <c:otherwise>
