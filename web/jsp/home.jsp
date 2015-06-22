@@ -72,7 +72,9 @@
             </li>
         </ul>
 
-
+        <c:if test="${sessionScope.user.getType() != 'READER' && sessionScope.user.getType() != 'ADMINISTRATOR'}">
+        <div id="book_image" class="book_image"></div>
+        </c:if>
         <%--<c:if test="${sessionScope.user.getType() != 'READER' && sessionScope.user.getType() != 'ADMINISTRATOR'}">
             <form name="changeLang" action="LibraryServlet" method="POST" id="change_language" class="lang-button">
                 <h2><fmt:message key="home.lang"/></h2>

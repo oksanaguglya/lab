@@ -18,10 +18,23 @@ A:visited {
     letter-spacing: 5px;
 }
 
+.header-background{
+    background-color: rgb(248, 225, 250);
+}
+
 .header-title-wrap {
-     width: 85%;
+     width: 70%;
      display: inline-block;
  }
+
+.header-title-wrap0 {
+    width: 15%;
+    display: inline-block;
+    text-align: left;
+    vertical-align: sub;
+    font-size: 14pt;
+    font-weight: bold;
+}
 
 .header-title-wrap1 {
     width: 9.6%;
@@ -40,7 +53,11 @@ A:visited {
 }
 
 .header-title-wrap2 {
-    margin-left: 18%;
+    margin-left: 0%;
+    text-align: center;
+}
+.header-title-wrap3 {
+    margin-left: 16%;
     text-align: center;
 }
 
@@ -64,6 +81,7 @@ A:visited {
 .pad-enter-list {
     padding-left: 15px;
     padding-right: 15px;
+   /* padding-top: 20px;*/
     font-size: 20px;
 }
 
@@ -305,5 +323,15 @@ th {
     vertical-align: middle;
     height: 23px;
     width: 23px;
+}
+
+.book_image{
+    background: url("/images/book.jpg") no-repeat;
+    background-size: 400px;
+    display: inline-block;
+    vertical-align: middle;
+    height: 350px;
+    width: 600px;
+    margin-left: 18%;
 }
 

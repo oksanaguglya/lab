@@ -13,9 +13,13 @@
         <title><fmt:message key="title"/></title>
     </head>
     <body>
-    <tag:langmenu forwardString="${pageContext.request.servletPath}"/>
 
-    <div>
+    <div class="header-background">
+        <span class="header-title-wrap0">
+            <div class="header-title-wrap3">
+                <tag:langmenu forwardString="${pageContext.request.servletPath}"/>
+            </div>
+        </span>
         <span class="header-title-wrap">
             <div class="header-title-wrap2">
                 <form name="home" action="LibraryServlet" method="POST">
