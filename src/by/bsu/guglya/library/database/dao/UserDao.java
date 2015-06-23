@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class UserDAO extends AbstractDAO {
 
-    private static final Logger LOG = Logger.getLogger(UserDAO.class);
+    private static final Logger logger = Logger.getLogger(UserDAO.class);
     public static final String GET_USER = "select * from library.user join library.user_type on library.user.user_type = library.user_type.iduser_type where login=? and password=?;";
     public static final String INSERT_READER = "insert into library.user (login, password, user_type) values (?,?,?);";
     public static final String GET_IDUSER_TYPE = "select iduser_type from library.user_type where type=?";
@@ -18,20 +18,28 @@ public class UserDAO extends AbstractDAO {
     public boolean checkUserExist(String login, String password) {
         boolean result = false;
         PreparedStatement ps = null;
+        ResultSet resultSet = null;
         try {
             ps = conn.prepareStatement(GET_USER);
             ps.setString(1, login);
             ps.setString(2, password);
-            ResultSet resultSet = ps.executeQuery();
+            resultSet = ps.executeQuery();
             result = resultSet.first();
         } catch (SQLException ex) {
-            LOG.error(ex.getMessage());
+            logger.error(ex.getMessage());
         } finally {
             if (ps != null) {
                 try {
                     ps.close();
                 } catch (SQLException ex) {
-                    LOG.error(ex.getMessage());
+                    logger.error(ex.getMessage());
+                }
+            }
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException ex) {
+                    logger.error(ex);
                 }
             }
             closeConnection();
@@ -54,13 +62,13 @@ public class UserDAO extends AbstractDAO {
                 user = new User(idUser, login, password, type.toUpperCase());
             }
         } catch (SQLException ex) {
-            LOG.error(ex.getMessage());
+            logger.error(ex.getMessage());
         } finally {
             if (ps != null) {
                 try {
                     ps.close();
                 } catch (SQLException ex) {
-                    LOG.error(ex.getMessage());
+                    logger.error(ex.getMessage());
                 }
             }
             closeConnection();
@@ -97,7 +105,7 @@ public class UserDAO extends AbstractDAO {
                 result = true;
             } catch (SQLException ex) {
                 conn.rollback();
-                LOG.error(ex.getMessage());
+                logger.error(ex.getMessage());
             } finally {
                 if (selectClientPS != null) {
                     selectClientPS.close();
@@ -110,12 +118,12 @@ public class UserDAO extends AbstractDAO {
                 }
             }
         } catch (SQLException ex) {
-            LOG.error(ex.getMessage());
+            logger.error(ex.getMessage());
         } finally {
             try {
                 conn.setAutoCommit(true);
             } catch (SQLException ex) {
-                LOG.error(ex.getMessage());
+                logger.error(ex.getMessage());
             }
             closeConnection();
         }
@@ -131,13 +139,13 @@ public class UserDAO extends AbstractDAO {
             ResultSet resultSet = ps.executeQuery();
             result = resultSet.first();
         } catch (SQLException ex) {
-            LOG.error(ex.getMessage());
+            logger.error(ex.getMessage());
         } finally {
             if (ps != null) {
                 try {
                     ps.close();
                 } catch (SQLException ex) {
-                    LOG.error(ex.getMessage());
+                    logger.error(ex.getMessage());
                 }
             }
             closeConnection();

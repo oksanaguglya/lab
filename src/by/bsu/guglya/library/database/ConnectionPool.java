@@ -13,6 +13,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * This class creates and closes connections with database
+ *
  * @author Oksana Guglya
  */
 public class ConnectionPool {
@@ -34,27 +35,48 @@ public class ConnectionPool {
     /**
      * This is a blocking queue of connections
      */
-    private BlockingQueue<Connection> connections;
+    private static BlockingQueue<Connection> connections;
     /**
      * This is a quantity of connections in blocking queue
      */
-    private int countConnections;
-
+    private static int countConnections;
     /**
-     * This constructor registers driver and create linked blocking queue for connections
+     * This is a constructor
+     */
+    private ConnectionPool(){
+    }
+    /**
+     * This method returns a connection pool instance or call init method to create it
+     * @return a connection pool
      * @throws SQLException a SQLException
      */
-    private ConnectionPool() throws SQLException {
+    public static ConnectionPool getInstance() throws SQLException {
+        try {
+            lock.lock();
+            if (instance == null) {
+                instance = init();
+                //instance = new ConnectionPool();
+            }
+        } finally {
+            lock.unlock();
+        }
+        return instance;
+    }
+    /**
+     * This method initialize a connection pool instance
+     * @return a connection pool
+     * @throws SQLException a SQLException
+     */
+    private static ConnectionPool init() throws SQLException {
         try {
             //Registers the given driver with the DriverManager. A newly-loaded driver class should call the method
             // registerDriver to make itself known to the DriverManager.
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-            connections = new LinkedBlockingQueue<Connection>(MAX_POOL_SIZE);
         } catch (SQLException ex) {
             logger.error(ex.getMessage());
             throw new SQLException("Can't register database driver!");
         }
-        /*try {
+        try {
             String url = ConfigurationManager.getInstance().getProperty(ConfigurationManager.DATABASE_URL);
             //Attempts to establish a connection to the given database URL. The DriverManager attempts to select
             // an appropriate driver from the set of registered JDBC drivers.
@@ -67,32 +89,16 @@ public class ConnectionPool {
         } catch (SQLException ex) {
             logger.error(ex.getMessage());
             throw new SQLException("Can't connect to database!");
-        }*/
-    }
-
-    /**
-     * This method returns a connection pool instance or creates it if connection pool instance is null
-     * @return a connection pool
-     * @throws SQLException a SQLException
-     */
-    public static ConnectionPool getInstance() throws SQLException{
-        try {
-            lock.lock();
-            if (instance == null) {
-                instance = new ConnectionPool();
-            }
-        } finally {
-            lock.unlock();
         }
-        return instance;
+        return new ConnectionPool();
     }
-
     /**
      * This method returns a connection or create it if capacity allows
+     *
      * @return a connection
      * @throws SQLException a exception if connection is null
      */
-    public Connection getConnection() throws SQLException{
+    public Connection getConnection() throws SQLException {
         Connection connection = null;
         try {
             //Retrieves and removes the head of this queue, or returns null if this queue is empty.
