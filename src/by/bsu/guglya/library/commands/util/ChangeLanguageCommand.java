@@ -26,8 +26,8 @@ public class ChangeLanguageCommand implements Command {
     }
 
     private static final String LOCALE_ATTR = "locale";
-    private static final String PAGE_NO_PARAM = "page";
-    private static final String CURRENT_PAGE_ATTR = "currentPage1";
+    private static final String PAGE_NO_ATTR = "page";
+    private static final String CURRENT_PAGE_ATTR = "currentPage";
     private static final String PARAM_PAGE = "forwardPage";
     private static final String catalogPage = "/jsp/catalog.jsp";
     private static final String basketPage = "/jsp/users/reader/basket.jsp";
@@ -45,10 +45,12 @@ public class ChangeLanguageCommand implements Command {
         String lang = Locale.valueOf(locale).getLang();
         HttpSession session = request.getSession(true);
         session.setAttribute(LOCALE_ATTR, lang);
-        int currentPage = (int)(request.getSession().getAttribute(CURRENT_PAGE_ATTR));
+        if(session.getAttribute(CURRENT_PAGE_ATTR) != null){
+            int currentPage = (int)session.getAttribute(CURRENT_PAGE_ATTR);
+            request.setAttribute(PAGE_NO_ATTR, currentPage);
+        }
         switch(forwardPageDir){
             case catalogPage:
-                request.setAttribute(PAGE_NO_PARAM, currentPage);
                 return new CatalogCommand().execute(request);
             case basketPage:
                 return new BasketCommand().execute(request);

@@ -236,3 +236,25 @@
  Application started!
 23.06.2015 22:22:46 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
  Application started!
+23.06.2015 22:34:16 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 22:39:50 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 22:39:59 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.CatalogDAO 
+ You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-5' at line 1
+23.06.2015 22:40:00 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.CatalogDAO 
+ You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-5' at line 1
+23.06.2015 22:40:01 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.CatalogDAO 
+ You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-5' at line 1
+23.06.2015 22:40:04 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.CatalogDAO 
+ You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-5' at line 1
+23.06.2015 22:41:26 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 22:45:42 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 22:49:44 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 22:53:07 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 22:56:27 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
