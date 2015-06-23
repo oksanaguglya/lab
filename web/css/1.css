@@ -78,9 +78,12 @@ A:visited {
 }
 
 .pad-enter-list {
-    padding-left: 15px;
     padding-right: 15px;
     font-size: 20px;
+}
+
+.pad-left15{
+    padding-left: 15px;
 }
 
 .header-wrap{
@@ -121,10 +124,12 @@ li {
 }
 
 .list {
-    width: 20%;
+    width: 25%;
     text-align: left;
     font-size: 20px;
     font-weight: bold;
+    margin-left: 5%;
+    padding-left: 0;
 }
 
 .list li {

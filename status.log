@@ -174,3 +174,39 @@
  Application destroyed!
 23.06.2015 20:27:16 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
  Application started!
+23.06.2015 20:29:29 [localhost-startStop-2] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application destroyed!
+23.06.2015 20:29:44 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 20:34:07 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 20:40:01 [localhost-startStop-2] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application destroyed!
+23.06.2015 20:40:17 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 20:45:06 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 20:46:37 [localhost-startStop-2] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application destroyed!
+23.06.2015 20:46:54 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 20:50:42 [localhost-startStop-2] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application destroyed!
+23.06.2015 20:50:56 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 21:08:37 [localhost-startStop-2] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application destroyed!
+23.06.2015 21:08:51 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 21:14:54 [localhost-startStop-2] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application destroyed!
+23.06.2015 21:15:08 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 21:18:30 [RMI TCP Connection(2)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 21:19:17 [localhost-startStop-2] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application destroyed!
+23.06.2015 21:19:35 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.06.2015 21:27:08 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
