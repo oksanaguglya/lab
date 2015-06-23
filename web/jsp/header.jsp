@@ -13,12 +13,10 @@
         <title><fmt:message key="title"/></title>
     </head>
     <body>
-
-    <div class="header-background">
+    <div class="header-wrap">
+        <div class="header-background">
         <span class="header-title-wrap0">
-            <div class="header-title-wrap3">
                 <tag:langmenu forwardString="${pageContext.request.servletPath}"/>
-            </div>
         </span>
         <span class="header-title-wrap">
             <div class="header-title-wrap2">
@@ -30,16 +28,17 @@
             </div>
         </span>
 
-        <c:if test="${sessionScope.user.getType() == 'READER'}">
-            <c:if test="${pageContext.request.servletPath != '/jsp/users/reader/basket.jsp'}">
+            <c:if test="${sessionScope.user.getType() == 'READER'}">
+                <c:if test="${pageContext.request.servletPath != '/jsp/users/reader/basket.jsp'}">
                  <span class="header-title-wrap1">
                     <form name="basket" action="LibraryServlet" method="POST">
                         <input type="hidden" name="command" value="my_basket"/>
                         <button type="submit" name="basket" class="btn basket"></button>
                     </form>
                 </span>
+                </c:if>
             </c:if>
-        </c:if>
+        </div>
     </div>
     </body>
 </fmt:bundle>
