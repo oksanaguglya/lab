@@ -16,6 +16,7 @@ public class CatalogCommand implements Command {
     private static final String CATALOG_ITEMS_LIST_PARAM = "catalogItems";
     private static final String NO_OF_PAGE_PARAM = "noOfPages";
     private static final String CURRENT_PAGE_PARAM = "currentPage";
+    private static final String CURRENT_PAGE_ATTR = "currentPage1";
     private final static String LOCALE_PARAM = "locale";
     private final static String EMPTY_SEARCH_RESULT_MESSAGE_ATTR = "emptySearchResultMessage";
 
@@ -28,6 +29,9 @@ public class CatalogCommand implements Command {
         int pageNo = 1;
         if(request.getParameter(PAGE_NO_PARAM) != null) {
             pageNo = Integer.parseInt(request.getParameter(PAGE_NO_PARAM));
+        }
+        if(request.getAttribute(PAGE_NO_PARAM) != null) {
+            pageNo = (int)request.getAttribute(PAGE_NO_PARAM);
         }
 
         String searchText = "";
@@ -49,6 +53,8 @@ public class CatalogCommand implements Command {
         request.setAttribute(CATALOG_ITEMS_LIST_PARAM, result.getItems());
         request.setAttribute(NO_OF_PAGE_PARAM, result.getCount());
         request.setAttribute(CURRENT_PAGE_PARAM, pageNo);
+        request.getSession().setAttribute(CURRENT_PAGE_ATTR, pageNo);
+        //session.setAttribute(CURRENT_PAGE_ATTR, pageNo);
 
         String page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.CATALOG_PATH_JSP);
         return page;
