@@ -99,7 +99,7 @@
                                     <form class="inline" name="EditBookFromCatalog" action="LibraryServlet"
                                           method="POST">
                                         <input type="hidden" name="command" value="edit_book_from_catalog"/>
-                                        <input type="hidden" name="idCatalog" value="${item.getId()}">
+                                        <input type="hidden" name="id" value="${item.getId()}">
                                         <input type="hidden" name="page" value=${currentPage}>
                                         <button class="btn edit" type="submit" id="del${item.getId()}"
                                                 name="delBook"></button>
@@ -107,7 +107,7 @@
                                     <form class="inline" name="DelBookFromCatalog" action="LibraryServlet"
                                           method="POST">
                                         <input type="hidden" name="command" value="del_book_from_catalog"/>
-                                        <input type="hidden" name="idCatalog" value="${item.getId()}">
+                                        <input type="hidden" name="id" value="${item.getId()}">
                                         <input type="hidden" name="page" value=${currentPage}>
                                         <button class="btn del" type="submit" id="del${item.getId()}"
                                                 name="delBook"></button>

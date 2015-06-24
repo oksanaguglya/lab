@@ -2,22 +2,22 @@ package by.bsu.guglya.library.beans;
 
 public class CatalogItem {
 
-    private int idCatalog;
+    private int id;
     private Book book;
     private int quantity;
 
-    public CatalogItem(int idCatalog, Book book, int quantity) {
-        this.idCatalog = idCatalog;
+    public CatalogItem(int id, Book book, int quantity) {
+        this.id = id;
         this.book = book;
         this.quantity = quantity;
     }
 
-    public int getIdCatalog() {
-        return idCatalog;
+    public int getId() {
+        return id;
     }
 
-    public void setIdCatalog(int idCatalog) {
-        this.idCatalog = idCatalog;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Book getBook() {

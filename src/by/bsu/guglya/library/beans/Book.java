@@ -16,13 +16,6 @@ public class Book {
     private int year;
     private TypeOfBook type;
 
-    public Book(String title, String author, int year, TypeOfBook type) {
-    this.title = title;
-    this.author = author;
-    this.year = year;
-    this.type = type;
-}
-
     public Book(int id, String title, String author, int year, TypeOfBook type) {
         this.id = id;
         this.title = title;

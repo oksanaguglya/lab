@@ -2,6 +2,7 @@ package by.bsu.guglya.library.commands.basket;
 
 import by.bsu.guglya.library.beans.User;
 import by.bsu.guglya.library.commands.Command;
+import by.bsu.guglya.library.logic.LogicException;
 import by.bsu.guglya.library.logic.PageItemsLogic;
 import by.bsu.guglya.library.logic.PageItems;
 import by.bsu.guglya.library.managers.ConfigurationManager;
@@ -21,9 +22,11 @@ public class BasketCommand implements Command {
     private final static String USER_ATTR = "user";
     private final static String LOCALE_PARAM = "locale";
     private final static String EMPTY_BASKET_MESSAGE_ATTR = "emptyBasketMessage";
+    private static final String DATABASE_ERROR_MESSAGE_ATTR = "errorDatabaseMessage";
 
     @Override
     public String execute(HttpServletRequest request) {
+        String page;
         //HttpSession session = request.getSession(true);
         HttpSession session = request.getSession();
         String locale = (String) session.getAttribute(LOCALE_PARAM);
@@ -38,8 +41,14 @@ public class BasketCommand implements Command {
         }
 
         User user = (User) session.getAttribute(USER_ATTR);
-        int idUser = user.getId();
-        PageItems result = PageItemsLogic.userBasket(idUser, pageNo);
+        PageItems result;
+        try{
+            result = PageItemsLogic.userBasket(user, pageNo);
+        }catch(LogicException ex){
+            request.setAttribute(DATABASE_ERROR_MESSAGE_ATTR, ex.getMessage());
+            page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.ERROR_PATH_JSP);
+            return page;
+        }
 
         if (result.getCount() == 0) {
             String message = messageManager.getProperty(MessageManager.EMPTY_BASKET_MESSAGE);
@@ -51,7 +60,7 @@ public class BasketCommand implements Command {
         request.setAttribute(CURRENT_PAGE_PARAM, pageNo);
         session.setAttribute(CURRENT_PAGE_ATTR, pageNo);
 
-        String page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.BASKET_PATH_JSP);
+        page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.BASKET_PATH_JSP);
         return page;
     }
 }

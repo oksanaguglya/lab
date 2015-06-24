@@ -57,7 +57,6 @@ public class CatalogCommand implements Command {
             return page;
         }
 
-
         if (result.getCount() == 0) {
             String message = messageManager.getProperty(MessageManager.EMPTY_SEARCH_RESULT_MESSAGE);
             request.setAttribute(EMPTY_SEARCH_RESULT_MESSAGE_ATTR, message);

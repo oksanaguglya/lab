@@ -1,8 +1,11 @@
 package by.bsu.guglya.library.commands.catalog;
 
+import by.bsu.guglya.library.beans.Order;
 import by.bsu.guglya.library.beans.User;
 import by.bsu.guglya.library.commands.Command;
+import by.bsu.guglya.library.logic.LogicException;
 import by.bsu.guglya.library.logic.OrderLogic;
+import by.bsu.guglya.library.managers.ConfigurationManager;
 import by.bsu.guglya.library.managers.MessageManager;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,9 +21,11 @@ public class AddBooksToBasketCommand implements Command {
     private final static String ORDER_NO_CHECKS_MESSAGE_ATTR = "orderNoChecksMessage";
     private final static String NUM_OF_ORDERS_MESSAGE_ATTR = "numOfOrdersMessage";
     private final static String NUM_OF_SUCCESS_ORDERS_MESSAGE_ATTR = "numOfSuccessOrdersMessage";
+    private static final String DATABASE_ERROR_MESSAGE_ATTR = "errorDatabaseMessage";
 
     @Override
     public String execute(HttpServletRequest request) {
+        String page;
         //HttpSession session = request.getSession(true);
         HttpSession session = request.getSession();
         String locale = (String)session.getAttribute(LOCALE_PARAM);
@@ -39,22 +44,28 @@ public class AddBooksToBasketCommand implements Command {
                 }
                 User user = (User)session.getAttribute(USER_ATTR);
                 int idUser = user.getId();
-                int qty = 1;
-                int state = 1;
+                int qty = 0;
+                Order.TypeOfOrder state = Order.TypeOfOrder.NEW;
                 int numOfOrders = 0;
                 int numOfSuccessOrders = 0;
                 for(String idBook : selectedItemsArray){
                     numOfOrders++;
                     qty = Integer.parseInt(orderBooks.get(idBook));
                     if(qty != 0){
-                        if(OrderLogic.orderExist(idBook, idUser, state)){
-                            if(OrderLogic.addQtyToOrder(idBook, idUser, qty, state)){
-                                numOfSuccessOrders++;
+                        try{
+                            if(OrderLogic.orderExist(idBook, idUser, state)){
+                                if(OrderLogic.addQtyToOrder(idBook, idUser, qty, state)){
+                                    numOfSuccessOrders++;
+                                }
+                            }else{
+                                if(OrderLogic.addOrder(idBook, idUser, qty, state)){
+                                    numOfSuccessOrders++;
+                                }
                             }
-                        }else{
-                            if(OrderLogic.addOrder(idBook, idUser, qty)){
-                                numOfSuccessOrders++;
-                            }
+                        } catch(LogicException ex){
+                            request.setAttribute(DATABASE_ERROR_MESSAGE_ATTR, ex.getMessage());
+                            page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.ERROR_PATH_JSP);
+                            return page;
                         }
                     }
                 }
@@ -64,7 +75,7 @@ public class AddBooksToBasketCommand implements Command {
                 request.setAttribute(NUM_OF_ORDERS_MESSAGE_ATTR, numOfOrders);
             }
         }
-        String page = new CatalogCommand().execute(request);
+        page = new CatalogCommand().execute(request);
         return page;
     }
 }
