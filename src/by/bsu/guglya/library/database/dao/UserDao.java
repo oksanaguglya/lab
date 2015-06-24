@@ -136,9 +136,8 @@ public class UserDAO extends AbstractDAO {
             ps.setString(1, login);
             ps.setString(2, password);
             ps.setInt(3, idUserTypeReader);
-            throw new SQLException();
-            //ps.executeUpdate();
-            //result = true;
+            ps.executeUpdate();
+            result = true;
         } catch (SQLException ex) {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
@@ -159,7 +158,7 @@ public class UserDAO extends AbstractDAO {
             }
             closeConnection();
         }
-        //return result;
+        return result;
     }
 
 }

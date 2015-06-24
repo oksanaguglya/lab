@@ -372,3 +372,11 @@
  
 24.06.2015 17:09:31 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
  Application started!
+24.06.2015 17:38:50 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 17:43:27 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 17:43:51 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.UserDAO 
+ 
+24.06.2015 17:45:11 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
