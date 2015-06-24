@@ -1,8 +1,8 @@
 package by.bsu.guglya.library.commands.catalog;
 
 import by.bsu.guglya.library.commands.Command;
+import by.bsu.guglya.library.logic.CatalogLogic;
 import by.bsu.guglya.library.logic.LogicException;
-import by.bsu.guglya.library.logic.PageItemsLogic;
 import by.bsu.guglya.library.logic.PageItems;
 import by.bsu.guglya.library.managers.ConfigurationManager;
 import by.bsu.guglya.library.managers.MessageManager;
@@ -50,7 +50,7 @@ public class CatalogCommand implements Command {
 
         PageItems result;
         try{
-            result = PageItemsLogic.catalogSearch(searchText, pageNo);
+            result = CatalogLogic.getCatalogItems(searchText, pageNo);
         }catch(LogicException ex){
             request.setAttribute(DATABASE_ERROR_MESSAGE_ATTR, ex.getMessage());
             page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.ERROR_PATH_JSP);

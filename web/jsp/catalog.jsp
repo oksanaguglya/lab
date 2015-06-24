@@ -107,7 +107,7 @@
                                     <form class="inline" name="DelBookFromCatalog" action="LibraryServlet"
                                           method="POST">
                                         <input type="hidden" name="command" value="del_book_from_catalog"/>
-                                        <input type="hidden" name="id" value="${item.getId()}">
+                                        <input type="hidden" name="idCatalogDel" value="${item.getId()}">
                                         <input type="hidden" name="page" value=${currentPage}>
                                         <button class="btn del" type="submit" id="del${item.getId()}"
                                                 name="delBook"></button>
@@ -207,6 +207,11 @@
                 <c:if test="${numOfOrdersMessage > 0}">
                     <div class="text-message inline"><h2>(${numOfSuccessOrdersMessage}/${numOfOrdersMessage})</h2></div>
                 </c:if>
+            </div>
+        </c:when>
+        <c:when test="${sessionScope.user.getType() == 'ADMINISTRATOR'}">
+            <div class="center">
+                <div class="text-message"><h2>${successDelBookFromCatalog}</h2></div>
             </div>
         </c:when>
         <c:otherwise>
