@@ -2,7 +2,6 @@ package by.bsu.guglya.library.commands.basket;
 
 import by.bsu.guglya.library.beans.User;
 import by.bsu.guglya.library.commands.Command;
-import by.bsu.guglya.library.commands.basket.BasketCommand;
 import by.bsu.guglya.library.logic.OrderLogic;
 import by.bsu.guglya.library.managers.MessageManager;
 
@@ -23,7 +22,7 @@ public class MakeOrderCommand implements Command {
         String locale = (String)session.getAttribute(LOCALE_PARAM);
         MessageManager messageManager = new MessageManager(locale);
         User user = (User)session.getAttribute(USER_ATTR);
-        int idUser = user.getIdUser();
+        int idUser = user.getId();
         if(OrderLogic.makeOrder(idUser)){
             String message = messageManager.getProperty(MessageManager.ORDER_MADE_SUCCESS_MESSAGE);
             request.setAttribute(ORDER_MADE_SUCCESS_MESSAGE_ATTR, message);

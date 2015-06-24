@@ -1,6 +1,7 @@
 package by.bsu.guglya.library.commands.catalog;
 
 import by.bsu.guglya.library.commands.Command;
+import by.bsu.guglya.library.logic.LogicException;
 import by.bsu.guglya.library.logic.PageItemsLogic;
 import by.bsu.guglya.library.logic.PageItems;
 import by.bsu.guglya.library.managers.ConfigurationManager;
@@ -20,9 +21,11 @@ public class CatalogCommand implements Command {
     private static final String CURRENT_PAGE_ATTR = "currentPage";
     private final static String LOCALE_PARAM = "locale";
     private final static String EMPTY_SEARCH_RESULT_MESSAGE_ATTR = "emptySearchResultMessage";
+    private static final String DATABASE_ERROR_MESSAGE_ATTR = "errorDatabaseMessage";
 
     @Override
     public String execute(HttpServletRequest request) {
+        String page;
         HttpSession session = request.getSession(true);
         String locale = (String) session.getAttribute(LOCALE_PARAM);
         MessageManager messageManager = new MessageManager(locale);
@@ -38,13 +41,22 @@ public class CatalogCommand implements Command {
         String searchText = "";
         if (request.getParameter(SEARCH_PARAM) != null) {
             searchText = request.getParameter(SEARCH_PARAM);
-            request.getSession().setAttribute(SEARCH_PARAM, searchText);
+            session.setAttribute(SEARCH_PARAM, searchText);
         } else {
             if (request.getSession().getAttribute(SEARCH_PARAM) != null) {
-                searchText = request.getSession().getAttribute(SEARCH_PARAM).toString();
+                searchText = session.getAttribute(SEARCH_PARAM).toString();
             }
         }
-        PageItems result = PageItemsLogic.search(searchText, pageNo);
+
+        PageItems result;
+        try{
+            result = PageItemsLogic.catalogSearch(searchText, pageNo);
+        }catch(LogicException ex){
+            request.setAttribute(DATABASE_ERROR_MESSAGE_ATTR, ex.getMessage());
+            page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.ERROR_PATH_JSP);
+            return page;
+        }
+
 
         if (result.getCount() == 0) {
             String message = messageManager.getProperty(MessageManager.EMPTY_SEARCH_RESULT_MESSAGE);
@@ -56,7 +68,7 @@ public class CatalogCommand implements Command {
         request.setAttribute(CURRENT_PAGE_PARAM, pageNo);
         session.setAttribute(CURRENT_PAGE_ATTR, pageNo);
 
-        String page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.CATALOG_PATH_JSP);
+        page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.CATALOG_PATH_JSP);
         return page;
     }
 }

@@ -11,11 +11,11 @@
     </head>
     <body>
 
-    <%--<form class="search" name="search" action="LibraryServlet" id="form" method="POST">
+    <%--<form class="catalogSearch" name="catalogSearch" action="LibraryServlet" id="form" method="POST">
         <input type="hidden" name="command" value="go_to_order_reader_page">
-        <input class="search-text" type="text" name="searchOrder" value="${sessionScope.searchOrder}"
-               placeholder=<fmt:message key="catalog.search.placeholder"/>/>
-        <button type="submit" class="btn btn-info"><fmt:message key="catalog.search.button.text"/></button>
+        <input class="catalogSearch-text" type="text" name="searchOrder" value="${sessionScope.searchOrder}"
+               placeholder=<fmt:message key="catalog.catalogSearch.placeholder"/>/>
+        <button type="submit" class="btn btn-info"><fmt:message key="catalog.catalogSearch.button.text"/></button>
     </form>--%>
 
     <c:if test="${noOfPages != 0}">

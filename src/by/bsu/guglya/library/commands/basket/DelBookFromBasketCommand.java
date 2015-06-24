@@ -2,7 +2,6 @@ package by.bsu.guglya.library.commands.basket;
 
 import by.bsu.guglya.library.beans.User;
 import by.bsu.guglya.library.commands.Command;
-import by.bsu.guglya.library.commands.basket.BasketCommand;
 import by.bsu.guglya.library.logic.OrderLogic;
 import by.bsu.guglya.library.managers.MessageManager;
 
@@ -23,7 +22,7 @@ public class DelBookFromBasketCommand implements Command {
         String locale = (String)session.getAttribute(LOCALE_PARAM);
         MessageManager messageManager = new MessageManager(locale);
         User user = (User)session.getAttribute(USER_ATTR);
-        int idUser = user.getIdUser();
+        int idUser = user.getId();
         int idOrder = Integer.parseInt(request.getParameter(ODER_ID_PARAM));
         if(OrderLogic.delOrder(idUser, idOrder)){
             String message = messageManager.getProperty(MessageManager.DEL_BOOK_FROM_BASKET_MESSAGE);
