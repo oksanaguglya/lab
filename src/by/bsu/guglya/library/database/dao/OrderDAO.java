@@ -48,7 +48,7 @@ public class OrderDAO extends AbstractDAO {
     public static final String REQUEST_LOGIN_ORDERS_ITEMS_COUNT =
             "select count(*) from library.order join library.user on library.order.user = library.user.iduser where (user.login like ?) and library.order.state!=?;";
 
-    public boolean addOrder(String idBook, int idUser, int qty) throws DAOException{
+    public boolean addOrder(String idBook, int idUser, int qty) {
         boolean result = false;
         PreparedStatement idTypePS = null;
         PreparedStatement insertOrderPS = null;
@@ -92,7 +92,7 @@ public class OrderDAO extends AbstractDAO {
         return result;
     }
 
-    public boolean orderExist(String idBook, int idUser, int state) throws DAOException{
+    public boolean orderExist(String idBook, int idUser, int state) {
         boolean result = false;
         PreparedStatement ps = null;
         try {
@@ -117,7 +117,7 @@ public class OrderDAO extends AbstractDAO {
         return result;
     }
 
-    public boolean addQtyToOrder(String idBook, int idUser, int qty, int state) throws DAOException{
+    public boolean addQtyToOrder(String idBook, int idUser, int qty, int state) {
         boolean result = false;
         PreparedStatement ps = null;
         try {
@@ -143,7 +143,7 @@ public class OrderDAO extends AbstractDAO {
         return result;
     }
 
-    public boolean delOrder(int idUser, int idOrder) throws DAOException{
+    public boolean delOrder(int idUser, int idOrder) {
         boolean result = false;
         PreparedStatement idTypePS = null;
         PreparedStatement ps = null;
@@ -187,7 +187,7 @@ public class OrderDAO extends AbstractDAO {
         return result;
     }
 
-    public boolean makeOrder(int idUser) throws DAOException{
+    public boolean makeOrder(int idUser) {
         boolean result = false;
         PreparedStatement idTypePSNew = null;
         PreparedStatement idTypePSProc = null;
@@ -238,7 +238,7 @@ public class OrderDAO extends AbstractDAO {
         return result;
     }
 
-    public List<TableItem> getOrderItems(String searchText, int idUser, int offset, int limit) throws DAOException{
+    public List<TableItem> getOrderItems(String searchText, int idUser, int offset, int limit) {
         List<TableItem> items = new ArrayList<TableItem>(limit);
         PreparedStatement idTypePS = null;
         PreparedStatement ps = null;
@@ -286,7 +286,7 @@ public class OrderDAO extends AbstractDAO {
         return items;
     }
 
-    public int getOrderItemsCount(String searchText, int idUser) throws DAOException{
+    public int getOrderItemsCount(String searchText, int idUser) {
         PreparedStatement idTypePS = null;
         PreparedStatement ps = null;
         ResultSet resultSet = null;
@@ -321,7 +321,7 @@ public class OrderDAO extends AbstractDAO {
         return result;
     }
 
-    public List<TableItem> getNewOrderItems(int offset, int limit) throws DAOException{
+    public List<TableItem> getNewOrderItems(int offset, int limit) {
         List<TableItem> items = new ArrayList<TableItem>(limit);
         PreparedStatement idTypePS = null;
         PreparedStatement ps = null;
@@ -367,7 +367,7 @@ public class OrderDAO extends AbstractDAO {
         return items;
     }
 
-    public int getNewOrderItemsCount() throws DAOException{
+    public int getNewOrderItemsCount() {
         PreparedStatement idTypePS = null;
         PreparedStatement ps = null;
         ResultSet resultSet = null;
@@ -399,7 +399,7 @@ public class OrderDAO extends AbstractDAO {
         return result;
     }
 
-    public List<TableItem> getAllOrderItems(String searchText, int offset, int limit) throws DAOException{
+    public List<TableItem> getAllOrderItems(String searchText, int offset, int limit) {
         List<TableItem> items = new ArrayList<TableItem>(limit);
         PreparedStatement idTypePS = null;
         PreparedStatement ps = null;
@@ -451,7 +451,7 @@ public class OrderDAO extends AbstractDAO {
         return items;
     }
 
-    public int getAllOrderItemsCount(String searchText) throws DAOException{
+    public int getAllOrderItemsCount(String searchText) {
         PreparedStatement idTypePS = null;
         PreparedStatement ps = null;
         ResultSet resultSet = null;

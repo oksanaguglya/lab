@@ -1,29 +1,18 @@
 package by.bsu.guglya.library.logic;
 
-import by.bsu.guglya.library.database.dao.DAOException;
 import by.bsu.guglya.library.database.dao.UserDAO;
 
 public class RegistrationLogic {
-
-    public static boolean registrateClient(String login, String password) throws LogicException {
+    public static boolean registrateClient(String login, String password)
+    {
         UserDAO userDao = new UserDAO();
-        boolean result = false;
-        try{
-            result = userDao.registrateClient(login, password);
-        }catch(DAOException ex){
-            throw new LogicException(ex.getMessage());
-        }
+        boolean result = userDao.registrateClient(login, password);
         return result;
     }
 
-    public static boolean checkLoginExist(String login)throws LogicException {
+    public static boolean checkLoginExist(String login){
         UserDAO userDao = new UserDAO();
-        boolean result = false;
-        try{
-            result = userDao.checkLoginExist(login);
-        }catch(DAOException ex){
-            throw new LogicException(ex.getMessage());
-        }
+        boolean result = userDao.checkLoginExist(login);
         return result;
     }
 }
