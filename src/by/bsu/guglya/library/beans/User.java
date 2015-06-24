@@ -5,7 +5,7 @@ public class User {
     public enum TypeOfUser {
         ADMINISTRATOR, READER
     }
-    private int idUser;
+    private int id;
     private String login;
     private String password;
     private TypeOfUser type;
@@ -13,8 +13,8 @@ public class User {
     public User() {
     }
 
-    public User(int idUser, String login, String password,String type) {
-        this.idUser = idUser;
+    public User(int id, String login, String password,String type) {
+        this.id = id;
         this.login = login;
         this.password = password;
         this.type = TypeOfUser.valueOf(type);
@@ -24,8 +24,8 @@ public class User {
         return type;
     }
 
-    public int getIdUser() {
-        return idUser;
+    public int getId() {
+        return id;
     }
 
     public String getLogin() {
@@ -36,8 +36,8 @@ public class User {
         return password;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setLogin(String login) {
@@ -57,8 +57,8 @@ public class User {
      */
     @Override
     public boolean equals(Object other) {
-        return (other instanceof User) && (idUser != 0)
-                ? idUser == ((User) other).idUser
+        return (other instanceof User) && (id != 0)
+                ? id == ((User) other).id
                 : (other == this);
     }
     /**

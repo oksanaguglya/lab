@@ -1,18 +1,20 @@
 package by.bsu.guglya.library.logic;
 
+import by.bsu.guglya.library.beans.TableItem;
+
 import java.util.List;
 
 public class PageItems {
 
-    private List<TableItem> items;
+    private List<?> items;
     private int count;
 
-    public PageItems(List<TableItem> items, int count) {
+    public PageItems(List<?> items, int count) {
         this.items = items;
         this.count = count;
     }
 
-    public List<TableItem> getItems() {
+    public List<?> getItems() {
         return items;
     }
 

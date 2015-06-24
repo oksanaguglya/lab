@@ -26,7 +26,6 @@ public class UserDAO extends AbstractDAO {
             ps.setString(2, password);
             resultSet = ps.executeQuery();
             result = resultSet.first();
-            //throw new SQLException();
         } catch (SQLException ex) {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");

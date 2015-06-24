@@ -1,4 +1,4 @@
-package by.bsu.guglya.library.logic;
+package by.bsu.guglya.library.beans;
 
 import by.bsu.guglya.library.beans.Book;
 
