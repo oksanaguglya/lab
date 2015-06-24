@@ -18,8 +18,6 @@ public class UserDAO extends AbstractDAO {
     public boolean checkUserExist(String login, String password) throws DAOException {
         boolean result = false;
         getConnection();
-        PreparedStatement ps = null;
-        ResultSet resultSet = null;
         try {
             ps = conn.prepareStatement(GET_USER);
             ps.setString(1, login);
@@ -30,20 +28,6 @@ public class UserDAO extends AbstractDAO {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
         } finally {
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException ex) {
-                    logger.error(ex.getMessage());
-                }
-            }
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException ex) {
-                    logger.error(ex);
-                }
-            }
             closeConnection();
         }
         return result;
@@ -52,8 +36,6 @@ public class UserDAO extends AbstractDAO {
     public User returnUser(String login, String password) throws DAOException {
         User user = null;
         getConnection();
-        PreparedStatement ps = null;
-        ResultSet resultSet = null;
         try {
             ps = conn.prepareStatement(GET_USER);
             ps.setString(1, login);
@@ -68,20 +50,6 @@ public class UserDAO extends AbstractDAO {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
         } finally {
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException ex) {
-                    logger.error(ex.getMessage());
-                }
-            }
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException ex) {
-                    logger.error(ex);
-                }
-            }
             closeConnection();
         }
         return user;
@@ -90,8 +58,6 @@ public class UserDAO extends AbstractDAO {
     public boolean checkLoginExist(String login) throws DAOException {
         boolean result = false;
         getConnection();
-        PreparedStatement ps = null;
-        ResultSet resultSet = null;
         try {
             ps = conn.prepareStatement(GET_LOGIN);
             ps.setString(1, login);
@@ -101,30 +67,14 @@ public class UserDAO extends AbstractDAO {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
         } finally {
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException ex) {
-                    logger.error(ex.getMessage());
-                }
-            }
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException ex) {
-                    logger.error(ex);
-                }
-            }
             closeConnection();
         }
         return result;
     }
 
-    public boolean registrateClient(String login, String password) throws DAOException {
+    public boolean registrateUser(String login, String password) throws DAOException {
         boolean result = false;
         getConnection();
-        PreparedStatement ps = null;
-        ResultSet resultSet = null;
         try {
             ps = conn.prepareStatement(GET_IDUSER_TYPE);
             ps.setString(1, User.TypeOfUser.READER.toString().toLowerCase());
@@ -141,20 +91,6 @@ public class UserDAO extends AbstractDAO {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
         } finally {
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException ex) {
-                    logger.error(ex.getMessage());
-                }
-            }
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException ex) {
-                    logger.error(ex);
-                }
-            }
             closeConnection();
         }
         return result;

@@ -9,7 +9,7 @@ public class RegistrationLogic {
         UserDAO userDao = new UserDAO();
         boolean result = false;
         try{
-            result = userDao.registrateClient(login, password);
+            result = userDao.registrateUser(login, password);
         }catch(DAOException ex){
             throw new LogicException(ex.getMessage());
         }
