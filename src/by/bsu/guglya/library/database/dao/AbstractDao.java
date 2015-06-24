@@ -1,8 +1,11 @@
 package by.bsu.guglya.library.database.dao;
 
 import by.bsu.guglya.library.database.ConnectionPool;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -14,13 +17,13 @@ public abstract class AbstractDAO {
 
     protected Connection conn;
 
+    protected PreparedStatement ps;
+
+    protected ResultSet resultSet;
+
+    private static final Logger logger = Logger.getLogger(AbstractDAO.class);
+
     public AbstractDAO(){
-        //сделать конструктор пустым!
-        /*try{
-            conn = ConnectionPool.getInstance().getConnection();
-        }catch(SQLException ex){
-            //throw new DAOException(ex);
-        }*/
     }
 
     public void getConnection() throws DAOException{
@@ -32,6 +35,20 @@ public abstract class AbstractDAO {
     }
 
     public void closeConnection() throws DAOException{
+        if (ps != null) {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+                logger.error(ex.getMessage());
+            }
+        }
+        if (resultSet != null) {
+            try {
+                resultSet.close();
+            } catch (SQLException ex) {
+                logger.error(ex);
+            }
+        }
         try{
             ConnectionPool.getInstance().returnConnection(conn);
         }catch(SQLException ex){

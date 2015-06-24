@@ -53,7 +53,7 @@ public class AddBooksToBasketCommand implements Command {
                     qty = Integer.parseInt(orderBooks.get(idBook));
                     if(qty != 0){
                         try{
-                            if(OrderLogic.orderExist(idBook, idUser, state)){
+                            if(OrderLogic.checkOrderExist(idBook, idUser, state)){
                                 if(OrderLogic.addQtyToOrder(idBook, idUser, qty, state)){
                                     numOfSuccessOrders++;
                                 }
