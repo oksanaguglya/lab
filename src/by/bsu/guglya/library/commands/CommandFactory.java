@@ -6,15 +6,16 @@ import by.bsu.guglya.library.commands.authorization.RegistrationCommand;
 import by.bsu.guglya.library.commands.catalog.AddBooksToBasketCommand;
 import by.bsu.guglya.library.commands.basket.BasketCommand;
 import by.bsu.guglya.library.commands.basket.DelBookFromBasketCommand;
-import by.bsu.guglya.library.commands.basket.MakeOrderCommand;
+import by.bsu.guglya.library.commands.basket.MakeOrderFromBasketCommand;
 import by.bsu.guglya.library.commands.catalog.CatalogCommand;
+import by.bsu.guglya.library.commands.catalog.DelBookFromCatalogCommand;
 import by.bsu.guglya.library.commands.navigation.GoToAboutUsPageCommand;
-import by.bsu.guglya.library.commands.navigation.GoToHomeCommand;
+import by.bsu.guglya.library.commands.navigation.GoToHomePageCommand;
 import by.bsu.guglya.library.commands.navigation.GoToLoginPageCommand;
 import by.bsu.guglya.library.commands.navigation.GoToRegistrationPageCommand;
-import by.bsu.guglya.library.commands.order.OrderLoginAdminCommand;
-import by.bsu.guglya.library.commands.order.OrderNewAdminCommand;
-import by.bsu.guglya.library.commands.order.OrderReaderCommand;
+import by.bsu.guglya.library.commands.order.AllUserOrdersCommand;
+import by.bsu.guglya.library.commands.order.NewOrdersCommand;
+import by.bsu.guglya.library.commands.order.UserOrdersCommand;
 import by.bsu.guglya.library.commands.util.ChangeLanguageCommand;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,17 +34,18 @@ public class CommandFactory {
         commands.put("go_to_login_page", new GoToLoginPageCommand());
         commands.put("go_to_registration_page", new GoToRegistrationPageCommand());
         commands.put("log_out", new LogoutCommand());
-        commands.put("home", new GoToHomeCommand());
+        commands.put("home", new GoToHomePageCommand());
         commands.put("go_to_about_us_page", new GoToAboutUsPageCommand());
         commands.put("go_to_catalog_page", new CatalogCommand());
         commands.put("registration", new RegistrationCommand());
         commands.put("add_books_to_basket", new AddBooksToBasketCommand());
         commands.put("my_basket", new BasketCommand());
         commands.put("del_book_from_basket", new DelBookFromBasketCommand());
-        commands.put("make_an_order", new MakeOrderCommand());
-        commands.put("go_to_order_reader_page", new OrderReaderCommand());
-        commands.put("go_to_new_order_admin_page", new OrderNewAdminCommand());
-        commands.put("go_to_login_order_admin_page", new OrderLoginAdminCommand());
+        commands.put("make_an_order", new MakeOrderFromBasketCommand());
+        commands.put("go_to_order_reader_page", new UserOrdersCommand());
+        commands.put("go_to_new_order_admin_page", new NewOrdersCommand());
+        commands.put("go_to_login_order_admin_page", new AllUserOrdersCommand());
+        commands.put("del_book_from_catalog", new DelBookFromCatalogCommand());
     }
 
     public Command getCommand(HttpServletRequest request) {

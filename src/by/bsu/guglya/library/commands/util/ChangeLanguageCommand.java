@@ -3,10 +3,9 @@ package by.bsu.guglya.library.commands.util;
 import by.bsu.guglya.library.commands.Command;
 import by.bsu.guglya.library.commands.basket.BasketCommand;
 import by.bsu.guglya.library.commands.catalog.CatalogCommand;
-import by.bsu.guglya.library.commands.order.OrderLoginAdminCommand;
-import by.bsu.guglya.library.commands.order.OrderNewAdminCommand;
-import by.bsu.guglya.library.commands.order.OrderReaderCommand;
-import by.bsu.guglya.library.managers.ConfigurationManager;
+import by.bsu.guglya.library.commands.order.AllUserOrdersCommand;
+import by.bsu.guglya.library.commands.order.NewOrdersCommand;
+import by.bsu.guglya.library.commands.order.UserOrdersCommand;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -31,9 +30,9 @@ public class ChangeLanguageCommand implements Command {
     private static final String PARAM_PAGE = "forwardPage";
     private static final String catalogPage = "/jsp/catalog.jsp";
     private static final String basketPage = "/jsp/users/reader/basket.jsp";
-    private static final String orderReaderPage = "/jsp/users/reader/orderreader.jsp";
-    private static final String loginOrderAdminPage = "/jsp/users/admin/loginorderadmin.jsp";
-    private static final String newOrderAdminPage = "/jsp/users/admin/neworderadmin.jsp";
+    private static final String orderReaderPage = "/jsp/users/reader/userorders.jsp";
+    private static final String loginOrderAdminPage = "/jsp/users/admin/allorders.jsp";
+    private static final String newOrderAdminPage = "/jsp/users/admin/neworders.jsp";
 
     public ChangeLanguageCommand() {
     }
@@ -55,11 +54,11 @@ public class ChangeLanguageCommand implements Command {
             case basketPage:
                 return new BasketCommand().execute(request);
             case orderReaderPage:
-                return new OrderReaderCommand().execute(request);
+                return new UserOrdersCommand().execute(request);
             case loginOrderAdminPage:
-                return new OrderLoginAdminCommand().execute(request);
+                return new AllUserOrdersCommand().execute(request);
             case newOrderAdminPage:
-                return new OrderNewAdminCommand().execute(request);
+                return new NewOrdersCommand().execute(request);
             default:
                 return forwardPageDir;
         }

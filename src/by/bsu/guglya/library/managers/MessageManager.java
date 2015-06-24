@@ -22,6 +22,7 @@ public class MessageManager {
     public static final String EMPTY_SEARCH_ORDER_MESSAGE = "EMPTY_SEARCH_ORDER_MESSAGE";
     public static final String EMPTY_SEARCH_NEW_ORDER_MESSAGE = "EMPTY_SEARCH_NEW_ORDER_MESSAGE";
     public static final String EMPTY_SEARCH_LOGIN_ORDER_MESSAGE = "EMPTY_SEARCH_LOGIN_ORDER_MESSAGE";
+    public static final String DEL_BOOK_FROM_CATALOG_MESSAGE = "DEL_BOOK_FROM_CATALOG_MESSAGE";
     //public static final String DEFAULT_LANGUAGE = "ru";
     //public static final String DEFAULT_COUNTRY = "RU";
 

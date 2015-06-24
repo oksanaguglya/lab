@@ -10,7 +10,7 @@ import by.bsu.guglya.library.managers.MessageManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-public class MakeOrderCommand implements Command {
+public class MakeOrderFromBasketCommand implements Command {
 
     private final static String USER_ATTR = "user";
     private final static String LOCALE_PARAM = "locale";

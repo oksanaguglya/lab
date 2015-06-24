@@ -7,7 +7,7 @@ import by.bsu.guglya.library.managers.ConfigurationManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-public class GoToHomeCommand implements Command {
+public class GoToHomePageCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
