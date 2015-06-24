@@ -6,32 +6,42 @@ public class Order {
         NEW, IN_PROCESSING, APPROVED, DENIED
     }
 
-    private int idUser;
-    private int idBook;
+    private int id;
+    private User user;
+    private Book book;
     private int quantity;
     private TypeOfOrder type;
 
-    public Order(int idUser, int idBook, int quantity, TypeOfOrder type) {
-        this.idUser = idUser;
-        this.idBook = idBook;
+    public Order(int id, User user, Book book, int quantity, TypeOfOrder type) {
+        this.id = id;
+        this.user = user;
+        this.book = book;
         this.quantity = quantity;
         this.type = type;
     }
 
-    public int getIdUser() {
-        return idUser;
+    public int getId() {
+        return id;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getIdBook() {
-        return idBook;
+    public User getUser() {
+        return user;
     }
 
-    public void setIdBook(int idBook) {
-        this.idBook = idBook;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
     }
 
     public int getQuantity() {

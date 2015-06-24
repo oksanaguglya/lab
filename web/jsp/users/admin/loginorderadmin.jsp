@@ -31,7 +31,7 @@
             </tr>
             <c:forEach var="item" items="${requestScope.allOrdersItems}">
                 <tr>
-                    <td class="table-col-reader"><c:out value="${item.getLogin()}"/></td>
+                    <td class="table-col-reader"><c:out value="${item.getUser().getLogin()}"/></td>
                     <td><c:out value="${item.getBook().getTitle()}"/></td>
                     <td><c:out value="${item.getBook().getAuthor()}"/></td>
                     <td class="table-col-year"><c:out value="${item.getBook().getYear()}"/></td>
@@ -45,10 +45,10 @@
                     </c:choose>
                     <td class="table-col-qty"><c:out value="${item.getQuantity()}"/></td>
                     <c:choose>
-                        <c:when test="${item.getState() == 'APPROVED'}">
+                        <c:when test="${item.getType() == 'APPROVED'}">
                             <td class="table-col-qty"><fmt:message key="order.approved"></fmt:message></td>
                         </c:when>
-                        <c:when test="${item.getState() == 'DENIED'}">
+                        <c:when test="${item.getType() == 'DENIED'}">
                             <td class="table-col-qty"><fmt:message key="order.denied"></fmt:message></td>
                         </c:when>
                         <c:otherwise>

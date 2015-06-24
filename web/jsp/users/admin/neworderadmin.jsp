@@ -32,7 +32,7 @@
             </tr>
             <c:forEach var="item" items="${requestScope.newOrdersItems}">
                 <tr>
-                    <td class="table-col-reader"><c:out value="${item.getLogin()}"/></td>
+                    <td class="table-col-reader"><c:out value="${item.getUser().getLogin()}"/></td>
                     <td><c:out value="${item.getBook().getTitle()}"/></td>
                     <td><c:out value="${item.getBook().getAuthor()}"/></td>
                     <td class="table-col-year"><c:out value="${item.getBook().getYear()}"/></td>
@@ -60,7 +60,7 @@
                         <div class="center">
                             <form class="inline" name="ProcessOrder" action="LibraryServlet" method="POST">
                                 <input type="hidden" name="command" value="process_order"/>
-                                <input type="hidden" name="idCatalog" value="${item.getId()}">
+                                <input type="hidden" name="id" value="${item.getId()}">
                                 <input type="hidden" name="page" value=${currentPage}>
                                 <%--<input type="hidden" name="action" value=>--%>
                                 <button class="btn" type="submit" name="approveBook"><fmt:message key="catalog.approve"></fmt:message></button>
