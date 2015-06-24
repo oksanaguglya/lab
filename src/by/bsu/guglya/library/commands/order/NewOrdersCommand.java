@@ -1,17 +1,16 @@
 package by.bsu.guglya.library.commands.order;
 
-import by.bsu.guglya.library.beans.User;
 import by.bsu.guglya.library.commands.Command;
 import by.bsu.guglya.library.logic.LogicException;
+import by.bsu.guglya.library.logic.OrderLogic;
 import by.bsu.guglya.library.logic.PageItems;
-import by.bsu.guglya.library.logic.PageItemsLogic;
 import by.bsu.guglya.library.managers.ConfigurationManager;
 import by.bsu.guglya.library.managers.MessageManager;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-public class OrderNewAdminCommand implements Command {
+public class NewOrdersCommand implements Command {
 
     private static final String PAGE_NO_PARAM = "page";
     private static final String PAGE_NO_ATTR = "page";
@@ -41,7 +40,7 @@ public class OrderNewAdminCommand implements Command {
 
         PageItems result;
         try{
-            result = PageItemsLogic.newOrders(pageNo);
+            result = OrderLogic.getNewOrderItems(pageNo);
         }catch(LogicException ex){
             request.setAttribute(DATABASE_ERROR_MESSAGE_ATTR, ex.getMessage());
             page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.ERROR_PATH_JSP);

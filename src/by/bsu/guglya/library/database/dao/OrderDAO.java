@@ -58,36 +58,17 @@ public class OrderDAO extends AbstractDAO {
     public static final String GET_LOGIN_ORDERS_ITEMS_COUNT =
             "select count(*) from library.order join library.user on library.order.user = library.user.iduser where (user.login like ?) and library.order.state!=?;";
 
-    public int getIdOrderType(Order.TypeOfOrder state) throws DAOException {
+    private int getIdOrderType(Order.TypeOfOrder type) throws DAOException {
         int result = 0;
-        getConnection();
-        PreparedStatement ps = null;
-        ResultSet resultSet = null;
         try {
             ps = conn.prepareStatement(GET_IDORDER_TYPE);
-            ps.setString(1, state.toString().toLowerCase());
+            ps.setString(1, type.toString().toLowerCase());
             resultSet = ps.executeQuery();
             resultSet.next();
             result = resultSet.getInt("idorder_type");
         } catch (SQLException ex) {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
-        } finally {
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException ex) {
-                    logger.error(ex.getMessage());
-                }
-            }
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException ex) {
-                    logger.error(ex);
-                }
-            }
-            closeConnection();
         }
         return result;
     }
@@ -95,8 +76,6 @@ public class OrderDAO extends AbstractDAO {
     public boolean orderExist(String idBook, int idUser, Order.TypeOfOrder state) throws DAOException {
         boolean result = false;
         getConnection();
-        PreparedStatement ps = null;
-        ResultSet resultSet = null;
         int idOrderType = getIdOrderType(state);
         try {
             ps = conn.prepareStatement(GET_ORDER);
@@ -109,20 +88,6 @@ public class OrderDAO extends AbstractDAO {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
         } finally {
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException ex) {
-                    logger.error(ex.getMessage());
-                }
-            }
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException ex) {
-                    logger.error(ex);
-                }
-            }
             closeConnection();
         }
         return result;
@@ -131,7 +96,6 @@ public class OrderDAO extends AbstractDAO {
     public boolean addQtyToOrder(String idBook, int idUser, int qty, Order.TypeOfOrder state) throws DAOException {
         boolean result = false;
         getConnection();
-        PreparedStatement ps = null;
         int idOrderType = getIdOrderType(state);
         try {
             ps = conn.prepareStatement(UPDATE_ORDER_WITH_QTY);
@@ -145,13 +109,6 @@ public class OrderDAO extends AbstractDAO {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
         } finally {
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException ex) {
-                    logger.error(ex.getMessage());
-                }
-            }
             closeConnection();
         }
         return result;
@@ -160,7 +117,6 @@ public class OrderDAO extends AbstractDAO {
     public boolean addOrder(String idBook, int idUser, int qty, Order.TypeOfOrder state) throws DAOException {
         boolean result = false;
         getConnection();
-        PreparedStatement ps = null;
         int idOrderType = getIdOrderType(state);
         try {
             ps = conn.prepareStatement(INSERT_ORDER);
@@ -174,13 +130,6 @@ public class OrderDAO extends AbstractDAO {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
         } finally {
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException ex) {
-                    logger.error(ex.getMessage());
-                }
-            }
             closeConnection();
         }
         return result;
@@ -189,10 +138,6 @@ public class OrderDAO extends AbstractDAO {
     public List<Order> getUserBasketItems(User user, int offset, int limit) throws DAOException {
         List<Order> items = new ArrayList<>(limit);
         getConnection();
-        PreparedStatement ps = null;
-        ResultSet resultSet = null;
-        Order item = null;
-        Book book = null;
         int idOrderType = getIdOrderType(Order.TypeOfOrder.NEW);
         try {
             ps = conn.prepareStatement(GET_BASKET_ITEMS);
@@ -201,6 +146,8 @@ public class OrderDAO extends AbstractDAO {
             ps.setInt(3, limit);
             ps.setInt(4, offset);
             resultSet = ps.executeQuery();
+            Order item = null;
+            Book book = null;
             while (resultSet.next()) {
                 int idOrder = resultSet.getInt("idorder");
                 String title = resultSet.getString("title");
@@ -217,30 +164,14 @@ public class OrderDAO extends AbstractDAO {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
         } finally {
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException ex) {
-                    logger.error(ex.getMessage());
-                }
-            }
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException ex) {
-                    logger.error(ex);
-                }
-            }
             closeConnection();
         }
         return items;
     }
 
     public int getUserBasketItemsCount(int idUser) throws DAOException {
-        getConnection();
-        PreparedStatement ps = null;
-        ResultSet resultSet = null;
         int result = 0;
+        getConnection();
         int idOrderType = getIdOrderType(Order.TypeOfOrder.NEW);
         try {
             ps = conn.prepareStatement(GET_BASKET_ITEMS_COUNT);
@@ -253,30 +184,15 @@ public class OrderDAO extends AbstractDAO {
         } catch (SQLException ex) {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
-        } finally {
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException ex) {
-                    logger.error(ex.getMessage());
-                }
-            }
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException ex) {
-                    logger.error(ex);
-                }
-            }
+        } finally{
             closeConnection();
         }
         return result;
     }
 
     public boolean delOrder(int idOrder) throws DAOException {
-        getConnection();
         boolean result = false;
-        PreparedStatement ps = null;
+        getConnection();
         try {
             ps = conn.prepareStatement(DELETE_ORDER_BY_ID);
             ps.setInt(1, idOrder);
@@ -286,13 +202,6 @@ public class OrderDAO extends AbstractDAO {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
         } finally {
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException ex) {
-                    logger.error(ex.getMessage());
-                }
-            }
             closeConnection();
         }
         return result;
@@ -301,7 +210,6 @@ public class OrderDAO extends AbstractDAO {
     public boolean makeOrder(int idUser) throws DAOException {
         boolean result = false;
         getConnection();
-        PreparedStatement ps = null;
         int idOrderTypeNew = getIdOrderType(Order.TypeOfOrder.NEW);
         int idOrderTypeProc = getIdOrderType(Order.TypeOfOrder.IN_PROCESSING);
         try {
@@ -315,26 +223,15 @@ public class OrderDAO extends AbstractDAO {
              logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
         } finally {
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException ex) {
-                    logger.error(ex.getMessage());
-                }
-            }
             closeConnection();
         }
         return result;
     }
 
     public List<Order> getOrderItems(String searchText, User user, int offset, int limit) throws DAOException {
-        getConnection();
         List<Order> items = new ArrayList<>(limit);
-        PreparedStatement ps = null;
-        ResultSet resultSet = null;
+        getConnection();
         int idOrderType = getIdOrderType(Order.TypeOfOrder.NEW);
-        Order item = null;
-        Book book = null;
         try {
             ps = conn.prepareStatement(GET_ORDER_ITEMS);
             ps.setString(1, "%" + searchText + "%");
@@ -344,6 +241,8 @@ public class OrderDAO extends AbstractDAO {
             ps.setInt(5, limit);
             ps.setInt(6, offset);
             resultSet = ps.executeQuery();
+            Order item = null;
+            Book book = null;
             while (resultSet.next()) {
                 int idOrder = resultSet.getInt("idorder");
                 String title = resultSet.getString("title");
@@ -361,31 +260,14 @@ public class OrderDAO extends AbstractDAO {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
         } finally {
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException ex) {
-                    logger.error(ex.getMessage());
-                }
-            }
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException ex) {
-                    logger.error(ex);
-                }
-            }
             closeConnection();
         }
         return items;
     }
 
     public int getOrderItemsCount(String searchText, int idUser) throws DAOException {
-        getConnection();
-        PreparedStatement idTypePS = null;
-        PreparedStatement ps = null;
-        ResultSet resultSet = null;
         int result = 0;
+        getConnection();
         int idOrderType = getIdOrderType(Order.TypeOfOrder.NEW);
         try {
             ps = conn.prepareStatement(GET_ORDERS_ITEMS_COUNT);
@@ -401,40 +283,24 @@ public class OrderDAO extends AbstractDAO {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
         } finally {
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException ex) {
-                    logger.error(ex.getMessage());
-                }
-            }
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException ex) {
-                    logger.error(ex);
-                }
-            }
             closeConnection();
         }
         return result;
     }
 
     public List<Order> getNewOrderItems(int offset, int limit) throws DAOException {
-        getConnection();
         List<Order> items = new ArrayList<>(limit);
-        PreparedStatement ps = null;
-        ResultSet resultSet = null;
+        getConnection();
         int idOrderType = getIdOrderType(Order.TypeOfOrder.IN_PROCESSING);
-        Order item = null;
-        Book book = null;
-        User user = null;
         try {
             ps = conn.prepareStatement(GET_NEW_ORDER_ITEMS);
             ps.setInt(1, idOrderType);
             ps.setInt(2, limit);
             ps.setInt(3, offset);
             resultSet = ps.executeQuery();
+            Order item = null;
+            Book book = null;
+            User user = null;
             while (resultSet.next()) {
                 int idOrder = resultSet.getInt("idorder");
                 String title = resultSet.getString("title");
@@ -457,30 +323,14 @@ public class OrderDAO extends AbstractDAO {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
         } finally {
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException ex) {
-                    logger.error(ex.getMessage());
-                }
-            }
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException ex) {
-                    logger.error(ex);
-                }
-            }
             closeConnection();
         }
         return items;
     }
 
     public int getNewOrderItemsCount() throws DAOException {
-        getConnection();
-        PreparedStatement ps = null;
-        ResultSet resultSet = null;
         int result = 0;
+        getConnection();
         int idOrderType = getIdOrderType(Order.TypeOfOrder.IN_PROCESSING);
         try {
             ps = conn.prepareStatement(GET_NEW_ORDERS_ITEMS_COUNT);
@@ -493,34 +343,15 @@ public class OrderDAO extends AbstractDAO {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
         } finally {
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException ex) {
-                    logger.error(ex.getMessage());
-                }
-            }
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException ex) {
-                    logger.error(ex);
-                }
-            }
             closeConnection();
         }
         return result;
     }
 
     public List<Order> getAllOrderItems(String searchText, int offset, int limit) throws DAOException {
-        getConnection();
         List<Order> items = new ArrayList<Order>(limit);
-        PreparedStatement ps = null;
-        ResultSet resultSet = null;
+        getConnection();
         int idOrderType = getIdOrderType(Order.TypeOfOrder.NEW);
-        Order item = null;
-        Book book = null;
-        User user = null;
         try {
             ps = conn.prepareStatement(GET_LOGIN_ORDER_ITEMS);
             if (searchText == "") {
@@ -532,6 +363,9 @@ public class OrderDAO extends AbstractDAO {
             ps.setInt(3, limit);
             ps.setInt(4, offset);
             resultSet = ps.executeQuery();
+            Order item = null;
+            Book book = null;
+            User user = null;
             while (resultSet.next()) {
                 int idOrder = resultSet.getInt("idorder");
                 String title = resultSet.getString("title");
@@ -554,30 +388,14 @@ public class OrderDAO extends AbstractDAO {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
         } finally {
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException ex) {
-                    logger.error(ex.getMessage());
-                }
-            }
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException ex) {
-                    logger.error(ex);
-                }
-            }
             closeConnection();
         }
         return items;
     }
 
     public int getAllOrderItemsCount(String searchText) throws DAOException {
-        getConnection();
-        PreparedStatement ps = null;
-        ResultSet resultSet = null;
         int result = 0;
+        getConnection();
         int idOrderType = getIdOrderType(Order.TypeOfOrder.NEW);
         try {
             ps = conn.prepareStatement(GET_LOGIN_ORDERS_ITEMS_COUNT);
@@ -595,20 +413,6 @@ public class OrderDAO extends AbstractDAO {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
         } finally {
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException ex) {
-                    logger.error(ex.getMessage());
-                }
-            }
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException ex) {
-                    logger.error(ex);
-                }
-            }
             closeConnection();
         }
         return result;
