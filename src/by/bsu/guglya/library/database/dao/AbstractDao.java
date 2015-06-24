@@ -16,11 +16,11 @@ public abstract class AbstractDAO {
 
     public AbstractDAO(){
         //сделать конструктор пустым!
-        try{
+        /*try{
             conn = ConnectionPool.getInstance().getConnection();
         }catch(SQLException ex){
             //throw new DAOException(ex);
-        }
+        }*/
     }
 
     public void getConnection() throws DAOException{

@@ -38,7 +38,7 @@ public class BasketCommand implements Command {
         }
 
         User user = (User) session.getAttribute(USER_ATTR);
-        int idUser = user.getIdUser();
+        int idUser = user.getId();
         PageItems result = PageItemsLogic.userBasket(idUser, pageNo);
 
         if (result.getCount() == 0) {

@@ -10,6 +10,7 @@ public class Book {
         LIBRARY_CARD, READING_ROOM
     }
 
+    private int id;
     private String title;
     private String author;
     private int year;
@@ -21,6 +22,22 @@ public class Book {
     this.year = year;
     this.type = type;
 }
+
+    public Book(int id, String title, String author, int year, TypeOfBook type) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.type = type;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;

@@ -1,7 +1,7 @@
 package by.bsu.guglya.library.database.dao;
 
 import by.bsu.guglya.library.beans.Book;
-import by.bsu.guglya.library.logic.TableItem;
+import by.bsu.guglya.library.beans.TableItem;
 import by.bsu.guglya.library.beans.Order;
 import org.apache.log4j.Logger;
 
