@@ -258,3 +258,117 @@
  Application started!
 23.06.2015 22:56:27 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
  Application started!
+24.06.2015 00:59:47 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 13:07:32 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 13:09:07 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 13:11:48 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 13:22:41 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 13:23:45 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 13:28:19 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 13:36:24 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 13:41:45 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 13:42:56 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 13:46:28 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 13:47:54 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 13:48:46 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 13:49:49 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 13:51:39 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 13:54:57 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 13:57:32 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 14:05:23 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 15:31:26 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 15:33:21 [RMI TCP Connection(2)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 15:37:19 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 15:40:14 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 15:40:53 [http-bio-8080-exec-1] ERROR by.bsu.guglya.library.database.ConnectionPool 
+ 
+24.06.2015 15:40:53 [http-bio-8080-exec-1] ERROR by.bsu.guglya.library.database.ConnectionPool 
+ 
+24.06.2015 15:46:31 [localhost-startStop-2] ERROR by.bsu.guglya.library.database.ConnectionPool 
+ 
+24.06.2015 15:46:31 [localhost-startStop-2] ERROR by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ java.sql.SQLException: Can't register database driver!
+24.06.2015 15:46:50 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 15:47:36 [http-bio-8080-exec-2] ERROR by.bsu.guglya.library.database.ConnectionPool 
+ 
+24.06.2015 15:47:36 [http-bio-8080-exec-2] ERROR by.bsu.guglya.library.database.ConnectionPool 
+ 
+24.06.2015 15:50:46 [localhost-startStop-2] ERROR by.bsu.guglya.library.database.ConnectionPool 
+ 
+24.06.2015 15:50:46 [localhost-startStop-2] ERROR by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ java.sql.SQLException: Can't register database driver!
+24.06.2015 15:51:07 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 15:51:38 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.ConnectionPool 
+ 
+24.06.2015 15:51:38 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.ConnectionPool 
+ 
+24.06.2015 15:51:42 [http-bio-8080-exec-3] ERROR by.bsu.guglya.library.database.ConnectionPool 
+ 
+24.06.2015 15:51:42 [http-bio-8080-exec-3] ERROR by.bsu.guglya.library.database.ConnectionPool 
+ 
+24.06.2015 15:52:39 [localhost-startStop-2] ERROR by.bsu.guglya.library.database.ConnectionPool 
+ 
+24.06.2015 15:52:39 [localhost-startStop-2] ERROR by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ java.sql.SQLException: Can't connect to database!
+24.06.2015 15:52:57 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 15:53:30 [http-bio-8080-exec-1] ERROR by.bsu.guglya.library.database.dao.UserDAO 
+ 
+24.06.2015 15:58:03 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 15:59:45 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 15:59:55 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.UserDAO 
+ 
+24.06.2015 16:40:39 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 16:45:34 [RMI TCP Connection(5)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 16:54:12 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 16:54:41 [http-bio-8080-exec-2] ERROR by.bsu.guglya.library.database.dao.UserDAO 
+ 
+24.06.2015 16:56:46 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 16:57:03 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.UserDAO 
+ 
+24.06.2015 16:57:30 [http-bio-8080-exec-2] ERROR by.bsu.guglya.library.database.dao.UserDAO 
+ 
+24.06.2015 17:00:48 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 17:02:17 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 17:04:01 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 17:05:37 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 17:06:52 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 17:07:20 [http-bio-8080-exec-7] ERROR by.bsu.guglya.library.database.dao.UserDAO 
+ 
+24.06.2015 17:09:31 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
