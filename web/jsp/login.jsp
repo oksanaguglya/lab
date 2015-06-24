@@ -35,7 +35,7 @@
                 <button type="submit" class="btn btn-info"><fmt:message key="login.submit"/></button>
             </form>
         </div>
-        <div class="text-message"><h2>${emptyFieldMessage}${noUserMessage}${successRegMessage}</h2></div>
+        <div class="text-message"><h2>${noUserMessage}${successRegMessage}</h2></div>
     </div>
     </body>
 </fmt:bundle>

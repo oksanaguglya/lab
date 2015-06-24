@@ -15,28 +15,22 @@ public abstract class AbstractDAO {
     protected Connection conn;
 
     public AbstractDAO(){
-        //сделать конструктор пустым!
         try{
             conn = ConnectionPool.getInstance().getConnection();
         }catch(SQLException ex){
-            //throw new DAOException(ex);
+
         }
+
     }
 
-    public void getConnection() throws DAOException{
-        try{
-            conn = ConnectionPool.getInstance().getConnection();
-        }catch(SQLException ex){
-            throw new DAOException(ex.getMessage());
-        }
-    }
-
-    public void closeConnection() throws DAOException{
+    public void closeConnection()
+    {
         try{
             ConnectionPool.getInstance().returnConnection(conn);
         }catch(SQLException ex){
-            throw new DAOException(ex.getMessage());
+
         }
+
     }
 
 }

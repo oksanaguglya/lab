@@ -25,7 +25,7 @@ public class CatalogDAO extends AbstractDAO {
             "join library.catalog on library.catalog.book = library.book.idbook " +
             "where library.book.title like ? or library.book.author like ?;";
 
-    public List<TableItem> getItems(String searchText, int offset, int limit) throws DAOException{
+    public List<TableItem> getItems(String searchText, int offset, int limit) {
         List<TableItem> items = new ArrayList<TableItem>(limit);
         PreparedStatement ps = null;
         try {
@@ -63,7 +63,7 @@ public class CatalogDAO extends AbstractDAO {
         return items;
     }
 
-    public int getCatalogItemsCount(String searchText) throws DAOException{
+    public int getCatalogItemsCount(String searchText) {
         PreparedStatement ps = null;
         int result = 0;
         try {

@@ -24,7 +24,7 @@ public class BasketDAO extends AbstractDAO {
     public static final String REQUEST_BASKET_ITEMS_COUNT =
             "select count(*) from library.order where library.order.user=? and library.order.state=?;";
 
-    public List<TableItem> getItems(int idUser, int offset, int limit) throws DAOException{
+    public List<TableItem> getItems(int idUser, int offset, int limit) {
         List<TableItem> items = new ArrayList<TableItem>(limit);
         PreparedStatement idTypePS = null;
         PreparedStatement ps = null;
@@ -69,7 +69,7 @@ public class BasketDAO extends AbstractDAO {
         return items;
     }
 
-    public int getBasketItemsCount(int idUser) throws DAOException{
+    public int getBasketItemsCount(int idUser) {
         PreparedStatement idTypePS = null;
         PreparedStatement ps = null;
         ResultSet resultSet = null;
