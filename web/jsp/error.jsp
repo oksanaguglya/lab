@@ -19,6 +19,7 @@
             <div class="text-message"><h2>Database error!</h2></div>
             <div class="text-message"><h2>(${errorDatabaseMessage})</h2></div>
         </c:if>
+                
         <div class="center">
             <form name="home" action="LibraryServlet" method="POST">
                 <input type="hidden" name="command" value="home"/>
