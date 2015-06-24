@@ -43,10 +43,10 @@
                     </c:choose>
                     <td class="table-col-qty"><c:out value="${item.getQuantity()}"/></td>
                     <c:choose>
-                        <c:when test="${item.getState() == 'APPROVED'}">
+                        <c:when test="${item.getType() == 'APPROVED'}">
                             <td class="table-col-qty"><fmt:message key="order.approved"></fmt:message></td>
                         </c:when>
-                        <c:when test="${item.getState() == 'DENIED'}">
+                        <c:when test="${item.getType() == 'DENIED'}">
                             <td class="table-col-qty"><fmt:message key="order.denied"></fmt:message></td>
                         </c:when>
                         <c:otherwise>

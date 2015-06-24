@@ -420,3 +420,61 @@
  Application started!
 24.06.2015 19:02:13 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
  Application started!
+24.06.2015 19:08:28 [RMI TCP Connection(2)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 19:12:02 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 19:17:33 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 21:32:45 [RMI TCP Connection(2)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 21:36:56 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 21:39:14 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 21:47:09 [http-bio-8080-exec-4] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ Unknown column 'user.type' in 'field list'
+24.06.2015 21:47:14 [http-bio-8080-exec-4] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ Unknown column 'user.type' in 'field list'
+24.06.2015 21:47:17 [http-bio-8080-exec-4] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ Unknown column 'user.type' in 'field list'
+24.06.2015 21:47:23 [http-bio-8080-exec-4] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ Unknown column 'user.type' in 'field list'
+24.06.2015 21:47:27 [http-bio-8080-exec-4] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ Unknown column 'user.type' in 'field list'
+24.06.2015 21:48:20 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 21:51:24 [http-bio-8080-exec-8] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ Unknown column 'user.type' in 'field list'
+24.06.2015 21:52:02 [RMI TCP Connection(4)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 21:52:45 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 21:57:55 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 21:58:07 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ Unknown column 'library.user_type.user_type_id' in 'on clause'
+24.06.2015 22:02:32 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 22:03:37 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 22:06:32 [RMI TCP Connection(2)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 22:07:17 [http-bio-8080-exec-2] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ Unknown column 'user.type' in 'field list'
+24.06.2015 22:09:04 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 22:10:45 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 22:13:52 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 22:15:35 [RMI TCP Connection(5)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 22:18:10 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 22:22:50 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 22:24:29 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+24.06.2015 22:25:55 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!

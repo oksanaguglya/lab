@@ -2,6 +2,7 @@ package by.bsu.guglya.library.commands.order;
 
 import by.bsu.guglya.library.beans.User;
 import by.bsu.guglya.library.commands.Command;
+import by.bsu.guglya.library.logic.LogicException;
 import by.bsu.guglya.library.logic.PageItems;
 import by.bsu.guglya.library.logic.PageItemsLogic;
 import by.bsu.guglya.library.managers.ConfigurationManager;
@@ -22,9 +23,11 @@ public class OrderReaderCommand implements Command {
     private static final String CURRENT_PAGE_ATTR = "currentPage";
     private final static String LOCALE_PARAM = "locale";
     private final static String EMPTY_ORDERS_RESULT_MESSAGE_ATTR = "emptySearchOrderMessage";
+    private static final String DATABASE_ERROR_MESSAGE_ATTR = "errorDatabaseMessage";
 
     @Override
     public String execute(HttpServletRequest request) {
+        String page;
         //HttpSession session = request.getSession(true);
         HttpSession session = request.getSession();
         String locale = (String) session.getAttribute(LOCALE_PARAM);
@@ -49,8 +52,14 @@ public class OrderReaderCommand implements Command {
         }
 
         User user = (User) session.getAttribute(USER_ATTR);
-        int idUser = user.getId();
-        PageItems result = PageItemsLogic.userOrders(searchText, idUser, pageNo);
+        PageItems result;
+        try{
+            result = PageItemsLogic.userOrders(searchText, user, pageNo);
+        }catch(LogicException ex){
+            request.setAttribute(DATABASE_ERROR_MESSAGE_ATTR, ex.getMessage());
+            page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.ERROR_PATH_JSP);
+            return page;
+        }
 
         if (result.getCount() == 0) {
             String message = messageManager.getProperty(MessageManager.EMPTY_SEARCH_ORDER_MESSAGE);
@@ -62,7 +71,7 @@ public class OrderReaderCommand implements Command {
         request.setAttribute(CURRENT_PAGE_PARAM, pageNo);
         session.setAttribute(CURRENT_PAGE_ATTR, pageNo);
 
-        String page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.ORDER_READER_PATH_JSP);
+        page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.ORDER_READER_PATH_JSP);
         return page;
     }
 }

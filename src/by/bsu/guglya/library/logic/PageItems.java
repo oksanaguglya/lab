@@ -1,7 +1,5 @@
 package by.bsu.guglya.library.logic;
 
-import by.bsu.guglya.library.beans.TableItem;
-
 import java.util.List;
 
 public class PageItems {
