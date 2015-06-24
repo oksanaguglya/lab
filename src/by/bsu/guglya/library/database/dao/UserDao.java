@@ -11,12 +11,13 @@ public class UserDAO extends AbstractDAO {
 
     private static final Logger logger = Logger.getLogger(UserDAO.class);
     public static final String GET_USER = "select * from library.user join library.user_type on library.user.user_type = library.user_type.iduser_type where login=? and password=?;";
-    public static final String INSERT_READER = "insert into library.user (login, password, user_type) values (?,?,?);";
-    public static final String GET_IDUSER_TYPE = "select iduser_type from library.user_type where type=?";
     public static final String GET_LOGIN = "select * from library.user where login=?;";
+    public static final String GET_IDUSER_TYPE = "select iduser_type from library.user_type where type=?";
+    public static final String INSERT_READER = "insert into library.user (login, password, user_type) values (?,?,?);";
 
-    public boolean checkUserExist(String login, String password) {
+    public boolean checkUserExist(String login, String password) throws DAOException {
         boolean result = false;
+        getConnection();
         PreparedStatement ps = null;
         ResultSet resultSet = null;
         try {
@@ -25,8 +26,10 @@ public class UserDAO extends AbstractDAO {
             ps.setString(2, password);
             resultSet = ps.executeQuery();
             result = resultSet.first();
+            //throw new SQLException();
         } catch (SQLException ex) {
             logger.error(ex.getMessage());
+            throw new DAOException("Error while trying to access the database!");
         } finally {
             if (ps != null) {
                 try {
@@ -47,15 +50,16 @@ public class UserDAO extends AbstractDAO {
         return result;
     }
 
-
-    public User returnUser(String login, String password) {
+    public User returnUser(String login, String password) throws DAOException {
         User user = null;
+        getConnection();
         PreparedStatement ps = null;
+        ResultSet resultSet = null;
         try {
             ps = conn.prepareStatement(GET_USER);
             ps.setString(1, login);
             ps.setString(2, password);
-            ResultSet resultSet = ps.executeQuery();
+            resultSet = ps.executeQuery();
             if (resultSet.first()) {
                 int idUser = resultSet.getInt("user.iduser");
                 String type = resultSet.getString("user_type.type");
@@ -63,12 +67,20 @@ public class UserDAO extends AbstractDAO {
             }
         } catch (SQLException ex) {
             logger.error(ex.getMessage());
+            throw new DAOException("Error while trying to access the database!");
         } finally {
             if (ps != null) {
                 try {
                     ps.close();
                 } catch (SQLException ex) {
                     logger.error(ex.getMessage());
+                }
+            }
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException ex) {
+                    logger.error(ex);
                 }
             }
             closeConnection();
@@ -76,70 +88,19 @@ public class UserDAO extends AbstractDAO {
         return user;
     }
 
-
-    public boolean registrateClient(String login, String password) {
+    public boolean checkLoginExist(String login) throws DAOException {
         boolean result = false;
-        PreparedStatement idTypePS = null;
-        PreparedStatement insertClientPS = null;
-        PreparedStatement selectClientPS = null;
-        try {
-            conn.setAutoCommit(false);
-            idTypePS = conn.prepareStatement(GET_IDUSER_TYPE);
-            idTypePS.setString(1, User.TypeOfUser.READER.toString());
-            insertClientPS = conn.prepareStatement(INSERT_READER);
-            selectClientPS = conn.prepareStatement(GET_USER);
-            try {
-                ResultSet resultSet = idTypePS.executeQuery();
-                resultSet.next();
-                int idUserTypeReader = resultSet.getInt("iduser_type");
-                insertClientPS.setString(1, login);
-                insertClientPS.setString(2, password);
-                insertClientPS.setInt(3, idUserTypeReader);
-                insertClientPS.executeUpdate();
-                selectClientPS.setString(1, login);
-                selectClientPS.setString(2, password);
-                resultSet = selectClientPS.executeQuery();
-                resultSet.next();
-                int idUser = resultSet.getInt("iduser");
-                conn.commit();
-                result = true;
-            } catch (SQLException ex) {
-                conn.rollback();
-                logger.error(ex.getMessage());
-            } finally {
-                if (selectClientPS != null) {
-                    selectClientPS.close();
-                }
-                if (insertClientPS != null) {
-                    insertClientPS.close();
-                }
-                if (idTypePS != null) {
-                    idTypePS.close();
-                }
-            }
-        } catch (SQLException ex) {
-            logger.error(ex.getMessage());
-        } finally {
-            try {
-                conn.setAutoCommit(true);
-            } catch (SQLException ex) {
-                logger.error(ex.getMessage());
-            }
-            closeConnection();
-        }
-        return result;
-    }
-
-    public boolean checkLoginExist(String login) {
-        boolean result = false;
+        getConnection();
         PreparedStatement ps = null;
+        ResultSet resultSet = null;
         try {
             ps = conn.prepareStatement(GET_LOGIN);
             ps.setString(1, login);
-            ResultSet resultSet = ps.executeQuery();
+            resultSet = ps.executeQuery();
             result = resultSet.first();
         } catch (SQLException ex) {
             logger.error(ex.getMessage());
+            throw new DAOException("Error while trying to access the database!");
         } finally {
             if (ps != null) {
                 try {
@@ -148,8 +109,57 @@ public class UserDAO extends AbstractDAO {
                     logger.error(ex.getMessage());
                 }
             }
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException ex) {
+                    logger.error(ex);
+                }
+            }
             closeConnection();
         }
         return result;
     }
+
+    public boolean registrateClient(String login, String password) throws DAOException {
+        boolean result = false;
+        getConnection();
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        try {
+            ps = conn.prepareStatement(GET_IDUSER_TYPE);
+            ps.setString(1, User.TypeOfUser.READER.toString().toLowerCase());
+            resultSet = ps.executeQuery();
+            resultSet.next();
+            int idUserTypeReader = resultSet.getInt("iduser_type");
+            ps = conn.prepareStatement(INSERT_READER);
+            ps.setString(1, login);
+            ps.setString(2, password);
+            ps.setInt(3, idUserTypeReader);
+            throw new SQLException();
+            //ps.executeUpdate();
+            //result = true;
+        } catch (SQLException ex) {
+            logger.error(ex.getMessage());
+            throw new DAOException("Error while trying to access the database!");
+        } finally {
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    logger.error(ex.getMessage());
+                }
+            }
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException ex) {
+                    logger.error(ex);
+                }
+            }
+            closeConnection();
+        }
+        //return result;
+    }
+
 }
