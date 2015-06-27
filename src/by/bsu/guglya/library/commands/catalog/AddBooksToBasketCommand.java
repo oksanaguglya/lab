@@ -10,6 +10,8 @@ import by.bsu.guglya.library.managers.MessageManager;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 public class AddBooksToBasketCommand implements Command {
@@ -48,6 +50,9 @@ public class AddBooksToBasketCommand implements Command {
                 Order.TypeOfOrder state = Order.TypeOfOrder.NEW;
                 int numOfOrders = 0;
                 int numOfSuccessOrders = 0;
+                Date d = new Date();
+                SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+                String date = format.format(d);
                 for(String idBook : selectedItemsArray){
                     numOfOrders++;
                     qty = Integer.parseInt(orderBooks.get(idBook));
@@ -58,7 +63,7 @@ public class AddBooksToBasketCommand implements Command {
                                     numOfSuccessOrders++;
                                 }
                             }else{
-                                if(OrderLogic.addOrder(idBook, idUser, qty, state)){
+                                if(OrderLogic.addOrder(idBook, idUser, qty, state, date)){
                                     numOfSuccessOrders++;
                                 }
                             }

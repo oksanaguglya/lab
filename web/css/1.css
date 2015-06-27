@@ -137,7 +137,7 @@ li {
     width: 150%;
 }
 
-.login-form {
+.login-form, .add-book-form {
     width: 17%;
     margin: auto;
 }
@@ -172,12 +172,16 @@ table {
     table-layout: fixed;
 }
 
+.fs{
+    font-size: 14px;
+}
+
 th {
     background-color: #92b2ed;
 }
 
 .table-col-year {
-    width: 10%;
+    width: 8%;
     text-align: center;
 }
 
@@ -187,7 +191,7 @@ th {
 }
 
 .table-col-bookType {
-    width: 16%;
+    width: 12%;
     text-align: center;
 }
 
@@ -196,8 +200,12 @@ th {
     text-align: center;
 }
 
+.table-col-date{
+    width: 11%;
+    text-align: center;
+}
+
 .pagination {
-    /*margin-right: 40%;*/
     text-align: center;
     clear: both;
 }
@@ -311,7 +319,7 @@ th {
 }
 
 .table-col-reader{
-    width: 11%;
+    width: 17%;
     text-align: center;
 }
 
@@ -333,11 +341,7 @@ th {
     width: 23px;
 }
 
-.book_image{
-    background: url("/images/book.jpg") no-repeat;
-    background-size: 40%;
-    height: 350px;
-    width: 100%;
-    margin-left: 30%;
+.text-width{
+    width: 130%;
 }
 

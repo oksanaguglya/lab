@@ -25,6 +25,12 @@ public class CatalogDAO extends AbstractDAO {
             "from library.book " +
             "join library.catalog on library.catalog.book = library.book.idbook " +
             "where library.book.title like ? or library.book.author like ?;";
+    public static final String UPDATE_CATALOG_QTY = "update library.catalog " +
+            "join library.order on library.catalog.book=library.order.book " +
+            "set library.catalog.quantity=library.catalog.quantity-? where library.order.idorder=?;";
+    public static final String GET_CATALOG_ITEM_QTY = "select catalog.quantity from library.catalog "+
+    "join library.order on library.catalog.book=library.order.book " +
+    "where library.order.idorder=?;";
 
     public List<CatalogItem> getCatalogItems(String searchText, int offset, int limit) throws DAOException{
         List<CatalogItem> items = new ArrayList<>(limit);
@@ -95,4 +101,32 @@ public class CatalogDAO extends AbstractDAO {
         }
         return result;
     }
+
+    public boolean subCatalogItemQty(int idOrder, int qty) throws DAOException {
+        boolean result = false;
+        getConnection();
+        try {
+            ps = conn.prepareStatement(GET_CATALOG_ITEM_QTY);
+            ps.setInt(1, idOrder);
+            resultSet = ps.executeQuery();
+            resultSet.next();
+            int quantity = resultSet.getInt("catalog.quantity");
+            if(quantity > 0){
+                ps = conn.prepareStatement(UPDATE_CATALOG_QTY);
+                ps.setInt(1, qty);
+                ps.setInt(2, idOrder);
+                ps.executeUpdate();
+                result = true;
+            }else{
+                result = false;
+            }
+        } catch (SQLException ex) {
+            logger.error(ex.getMessage());
+            throw new DAOException("Error while trying to access the database!");
+        } finally {
+            closeConnection();
+        }
+        return result;
+    }
+
 }

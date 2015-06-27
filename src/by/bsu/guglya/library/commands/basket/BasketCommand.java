@@ -41,9 +41,10 @@ public class BasketCommand implements Command {
         }
 
         User user = (User) session.getAttribute(USER_ATTR);
+        int idUser = user.getId();
         PageItems result;
         try{
-            result = OrderLogic.getUserBasketItems(user, pageNo);
+            result = OrderLogic.getUserBasketItems(idUser, pageNo);
         }catch(LogicException ex){
             request.setAttribute(DATABASE_ERROR_MESSAGE_ATTR, ex.getMessage());
             page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.ERROR_PATH_JSP);
