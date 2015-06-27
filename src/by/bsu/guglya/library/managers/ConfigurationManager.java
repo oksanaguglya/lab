@@ -23,6 +23,7 @@ public class ConfigurationManager {
     public final static String ORDER_NEW_ADMIN_PATH_JSP = "ORDER_NEW_ADMIN_PATH_JSP";
     public final static String ORDER_LOGIN_ADMIN_PATH_JSP = "ORDER_LOGIN_ADMIN_PATH_JSP";
     public final static String ERROR_PATH_JSP = "ERROR_PATH_JSP";
+    public final static String ADD_BOOK_TO_CATALOG_PATH_JSP = "ADD_BOOK_TO_CATALOG_PATH_JSP";
 
     public static ConfigurationManager getInstance() {
         try {

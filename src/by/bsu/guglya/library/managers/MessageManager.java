@@ -23,6 +23,11 @@ public class MessageManager {
     public static final String EMPTY_SEARCH_NEW_ORDER_MESSAGE = "EMPTY_SEARCH_NEW_ORDER_MESSAGE";
     public static final String EMPTY_SEARCH_LOGIN_ORDER_MESSAGE = "EMPTY_SEARCH_LOGIN_ORDER_MESSAGE";
     public static final String DEL_BOOK_FROM_CATALOG_MESSAGE = "DEL_BOOK_FROM_CATALOG_MESSAGE";
+    public static final String NOT_DEL_BOOK_FROM_CATALOG_MESSAGE = "NOT_DEL_BOOK_FROM_CATALOG_MESSAGE";
+    public static final String ORDER_PROCESS_APPROVED_MESSAGE = "ORDER_PROCESS_APPROVED_MESSAGE";
+    public static final String ORDER_PROCESS_DENIED_MESSAGE = "ORDER_PROCESS_DENIED_MESSAGE";
+    public static final String ORDER_PROCESS_NO_SUCCESS_MESSAGE = "ORDER_PROCESS_NO_SUCCESS_MESSAGE";
+    public static final String ORDER_PROCESS_NOT_ENOUGH_MESSAGE = "ORDER_PROCESS_NO_ENOUGH_MESSAGE";
     //public static final String DEFAULT_LANGUAGE = "ru";
     //public static final String DEFAULT_COUNTRY = "RU";
 

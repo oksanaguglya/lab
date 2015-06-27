@@ -9,6 +9,8 @@ import by.bsu.guglya.library.managers.MessageManager;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MakeOrderFromBasketCommand implements Command {
 
@@ -27,8 +29,11 @@ public class MakeOrderFromBasketCommand implements Command {
         MessageManager messageManager = new MessageManager(locale);
         User user = (User)session.getAttribute(USER_ATTR);
         int idUser = user.getId();
+        Date d = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yy HH:mm");
+        String date = format.format(d);
         try{
-            if(OrderLogic.makeOrder(idUser)){
+            if(OrderLogic.makeOrder(idUser, date)){
                 String message = messageManager.getProperty(MessageManager.ORDER_MADE_SUCCESS_MESSAGE);
                 request.setAttribute(ORDER_MADE_SUCCESS_MESSAGE_ATTR, message);
             }else{
