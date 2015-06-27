@@ -52,9 +52,10 @@ public class UserOrdersCommand implements Command {
         }
 
         User user = (User) session.getAttribute(USER_ATTR);
+        int idUser = user.getId();
         PageItems result;
         try{
-            result = OrderLogic.getUserOrderItems(searchText, user, pageNo);
+            result = OrderLogic.getUserOrderItems(searchText, idUser, pageNo);
         }catch(LogicException ex){
             request.setAttribute(DATABASE_ERROR_MESSAGE_ATTR, ex.getMessage());
             page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.ERROR_PATH_JSP);

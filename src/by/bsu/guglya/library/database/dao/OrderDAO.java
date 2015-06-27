@@ -2,13 +2,14 @@ package by.bsu.guglya.library.database.dao;
 
 import by.bsu.guglya.library.beans.Book;
 import by.bsu.guglya.library.beans.Order;
+import by.bsu.guglya.library.beans.OrderAddition;
 import by.bsu.guglya.library.beans.User;
 import org.apache.log4j.Logger;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class OrderDAO extends AbstractDAO {
@@ -16,7 +17,7 @@ public class OrderDAO extends AbstractDAO {
     public static final String GET_IDORDER_TYPE = "select idorder_type from library.order_type where type=?;";
     public static final String GET_ORDER = "select * from library.order where library.order.book=? and library.order.user=? and library.order.state=?;";
     public static final String UPDATE_ORDER_WITH_QTY = "update library.order set library.order.quantity=library.order.quantity+? where library.order.book=? and library.order.user=? and library.order.state=?;";
-    public static final String INSERT_ORDER = "insert into library.order (user, book, quantity, state) values (?,?,?,?);";
+    public static final String INSERT_ORDER = "insert into library.order (user, book, quantity, state, date_of_order) values (?,?,?,?,?);";
     public static final String GET_BASKET_ITEMS = "select order.idorder, book.idbook, book.title, book.author, book.year, order.quantity, book_type.type from library.order " +
             "join library.book on library.order.book = library.book.idbook " +
             "join library.book_type on library.book.book_type=library.book_type.idbook_type " +
@@ -26,7 +27,12 @@ public class OrderDAO extends AbstractDAO {
     public static final String GET_BASKET_ITEMS_COUNT =
             "select count(*) from library.order where library.order.user=? and library.order.state=?;";
     public static final String DELETE_ORDER_BY_ID = "delete from library.order where library.order.idorder=?;";
-    public static final String CHANGE_ORDER_STATE = "update library.order set library.order.state=? where library.order.user=? and library.order.state=?;";
+    public static final String CHANGE_ORDER_STATE_AND_DATE = "update library.order set library.order.state=?, library.order.date_of_order=? where library.order.user=? and library.order.state=?;";
+    public static final String CHANGE_ORDER_STATE = "update library.order set library.order.state=? where library.order.idorder=?;";
+    public static final String GET_ORDERS_BY_ID_CATALOG =
+            "select library.order.idorder from library.order " +
+            "join library.catalog on library.order.book=library.catalog.book " +
+            "where library.catalog.idcatalog=?;";
     public static final String GET_ORDER_ITEMS = "select order.idorder, book.idbook, book.title, book.author, book.year, order.quantity, book_type.type, order_type.type from library.order " +
             "join library.book on library.order.book = library.book.idbook " +
             "join library.book_type on library.book.book_type=library.book_type.idbook_type " +
@@ -37,24 +43,25 @@ public class OrderDAO extends AbstractDAO {
             "select count(*) from library.order " +
                     "join library.book on library.order.book = library.book.idbook " +
                     "where (book.title like ? or book.author like ?) and library.order.user=? and library.order.state!=?;";
-    public static final String GET_NEW_ORDER_ITEMS = "select order.idorder, book.idbook, book.title, book.author, book.year, order.quantity, book_type.type, order_type.type, user.iduser, user.login, user.password, user_type.type from library.order " +
+    public static final String GET_NEW_ORDER_ITEMS = "select order.idorder, book.idbook, book.title, book.author, book.year, order.quantity, book_type.type, order_type.type, user.iduser, user.login, order.date_of_order, catalog.quantity from library.order " +
             "join library.book on library.order.book = library.book.idbook " +
             "join library.book_type on library.book.book_type=library.book_type.idbook_type " +
             "join library.order_type on library.order.state = library.order_type.idorder_type " +
             "join library.user on library.order.user = library.user.iduser " +
-            "join library.user_type on library.user.user_type = library.user_type.iduser_type " +
+         /*   "join library.user_type on library.user.user_type = library.user_type.iduser_type " +*/
+            "join library.catalog on library.book.idbook = library.catalog.book " +
             "where library.order.state=? " +
-            "order by book.title limit ? offset ?;";
+            "order by order.date_of_order limit ? offset ?;";
     public static final String GET_NEW_ORDERS_ITEMS_COUNT =
             "select count(*) from library.order where library.order.state=?;";
-    public static final String GET_LOGIN_ORDER_ITEMS = "select order.idorder, book.idbook, book.title, book.author, book.year, order.quantity, book_type.type, order_type.type, user.login, user.iduser, user.password, user_type.type from library.order " +
+    public static final String GET_LOGIN_ORDER_ITEMS = "select order.idorder, book.idbook, book.title, book.author, book.year, order.quantity, book_type.type, order_type.type, user.login, user.iduser, order.date_of_order from library.order " +
             "join library.book on library.order.book = library.book.idbook " +
             "join library.book_type on library.book.book_type=library.book_type.idbook_type " +
             "join library.order_type on library.order.state = library.order_type.idorder_type " +
             "join library.user on library.order.user = library.user.iduser " +
-            "join library.user_type on library.user.user_type = library.user_type.iduser_type " +
+           /* "join library.user_type on library.user.user_type = library.user_type.iduser_type " +*/
             "where (user.login like ?) and library.order.state!=? " +
-            "order by book.title limit ? offset ?;";
+            "order by order.date_of_order limit ? offset ?;";
     public static final String GET_LOGIN_ORDERS_ITEMS_COUNT =
             "select count(*) from library.order join library.user on library.order.user = library.user.iduser where (user.login like ?) and library.order.state!=?;";
 
@@ -114,7 +121,7 @@ public class OrderDAO extends AbstractDAO {
         return result;
     }
 
-    public boolean addOrder(String idBook, int idUser, int qty, Order.TypeOfOrder state) throws DAOException {
+    public boolean addOrder(String idBook, int idUser, int qty, Order.TypeOfOrder state, String date) throws DAOException {
         boolean result = false;
         getConnection();
         int idOrderType = getIdOrderType(state);
@@ -124,6 +131,7 @@ public class OrderDAO extends AbstractDAO {
             ps.setString(2, idBook);
             ps.setInt(3, qty);
             ps.setInt(4, idOrderType);
+            ps.setString(5, date);
             ps.executeUpdate();
             result = true;
         } catch (SQLException ex) {
@@ -135,13 +143,13 @@ public class OrderDAO extends AbstractDAO {
         return result;
     }
 
-    public List<Order> getUserBasketItems(User user, int offset, int limit) throws DAOException {
+    public List<Order> getUserBasketItems(int idUser, int offset, int limit) throws DAOException {
         List<Order> items = new ArrayList<>(limit);
         getConnection();
         int idOrderType = getIdOrderType(Order.TypeOfOrder.NEW);
         try {
             ps = conn.prepareStatement(GET_BASKET_ITEMS);
-            ps.setInt(1, user.getId());
+            ps.setInt(1, idUser);
             ps.setInt(2, idOrderType);
             ps.setInt(3, limit);
             ps.setInt(4, offset);
@@ -157,7 +165,7 @@ public class OrderDAO extends AbstractDAO {
                 int idBook = resultSet.getInt("idbook");
                 book = new Book(idBook, title, author, year, Book.TypeOfBook.valueOf(bookType.toUpperCase()));
                 int quantity = resultSet.getInt("quantity");
-                item = new Order(idOrder, user, book, quantity, Order.TypeOfOrder.NEW);
+                item = new Order(idOrder, idUser, book, quantity, Order.TypeOfOrder.NEW);
                 items.add(item);
             }
         } catch (SQLException ex) {
@@ -207,16 +215,17 @@ public class OrderDAO extends AbstractDAO {
         return result;
     }
 
-    public boolean makeOrder(int idUser) throws DAOException {
+    public boolean makeOrder(int idUser, String date) throws DAOException {
         boolean result = false;
         getConnection();
         int idOrderTypeNew = getIdOrderType(Order.TypeOfOrder.NEW);
         int idOrderTypeProc = getIdOrderType(Order.TypeOfOrder.IN_PROCESSING);
         try {
-            ps = conn.prepareStatement(CHANGE_ORDER_STATE);
+            ps = conn.prepareStatement(CHANGE_ORDER_STATE_AND_DATE);
                 ps.setInt(1, idOrderTypeProc);
-                ps.setInt(2, idUser);
-                ps.setInt(3, idOrderTypeNew);
+                ps.setString(2, date);
+                ps.setInt(3, idUser);
+                ps.setInt(4, idOrderTypeNew);
                 ps.executeUpdate();
                 result = true;
         } catch (SQLException ex) {
@@ -228,7 +237,26 @@ public class OrderDAO extends AbstractDAO {
         return result;
     }
 
-    public List<Order> getOrderItems(String searchText, User user, int offset, int limit) throws DAOException {
+    public boolean changeOrderState(int idOrder, Order.TypeOfOrder state) throws DAOException {
+        boolean result = false;
+        getConnection();
+        int idOrderType = getIdOrderType(state);
+        try {
+            ps = conn.prepareStatement(CHANGE_ORDER_STATE);
+            ps.setInt(1, idOrderType);
+            ps.setInt(2, idOrder);
+            ps.executeUpdate();
+            result = true;
+        } catch (SQLException ex) {
+            logger.error(ex.getMessage());
+            throw new DAOException("Error while trying to access the database!");
+        } finally {
+            closeConnection();
+        }
+        return result;
+    }
+
+    public List<Order> getOrderItems(String searchText, int idUser, int offset, int limit) throws DAOException {
         List<Order> items = new ArrayList<>(limit);
         getConnection();
         int idOrderType = getIdOrderType(Order.TypeOfOrder.NEW);
@@ -236,7 +264,7 @@ public class OrderDAO extends AbstractDAO {
             ps = conn.prepareStatement(GET_ORDER_ITEMS);
             ps.setString(1, "%" + searchText + "%");
             ps.setString(2, "%" + searchText + "%");
-            ps.setInt(3, user.getId());
+            ps.setInt(3, idUser);
             ps.setInt(4, idOrderType);
             ps.setInt(5, limit);
             ps.setInt(6, offset);
@@ -253,7 +281,7 @@ public class OrderDAO extends AbstractDAO {
                 book = new Book(idBook, title, author, year, Book.TypeOfBook.valueOf(bookType.toUpperCase()));
                 int quantity = resultSet.getInt("quantity");
                 String state = resultSet.getString("order_type.type");
-                item = new Order(idOrder, user, book, quantity, Order.TypeOfOrder.valueOf(state.toUpperCase()));
+                item = new Order(idOrder, idUser, book, quantity, Order.TypeOfOrder.valueOf(state.toUpperCase()));
                 items.add(item);
             }
         } catch (SQLException ex) {
@@ -288,8 +316,8 @@ public class OrderDAO extends AbstractDAO {
         return result;
     }
 
-    public List<Order> getNewOrderItems(int offset, int limit) throws DAOException {
-        List<Order> items = new ArrayList<>(limit);
+    public List<OrderAddition> getNewOrderItems(int offset, int limit) throws DAOException {
+        List<OrderAddition> items = new ArrayList<>(limit);
         getConnection();
         int idOrderType = getIdOrderType(Order.TypeOfOrder.IN_PROCESSING);
         try {
@@ -298,7 +326,7 @@ public class OrderDAO extends AbstractDAO {
             ps.setInt(2, limit);
             ps.setInt(3, offset);
             resultSet = ps.executeQuery();
-            Order item = null;
+            OrderAddition order = null;
             Book book = null;
             User user = null;
             while (resultSet.next()) {
@@ -313,11 +341,10 @@ public class OrderDAO extends AbstractDAO {
                 String state = resultSet.getString("order_type.type");
                 int idUser= resultSet.getInt("user.iduser");
                 String login = resultSet.getString("login");
-                String password = resultSet.getString("password");
-                String userType = resultSet.getString("user_type.type");
-                user = new User(idUser, login, password, userType.toUpperCase());
-                item = new Order(idOrder, user, book, quantity, Order.TypeOfOrder.valueOf(state.toUpperCase()));
-                items.add(item);
+                String date = resultSet.getString("date_of_order");
+                int qty = resultSet.getInt("catalog.quantity");
+                order = new OrderAddition(idOrder, idUser, book, quantity, Order.TypeOfOrder.valueOf(state.toUpperCase()), date, login, qty);
+                items.add(order);
             }
         } catch (SQLException ex) {
             logger.error(ex.getMessage());
@@ -348,8 +375,8 @@ public class OrderDAO extends AbstractDAO {
         return result;
     }
 
-    public List<Order> getAllOrderItems(String searchText, int offset, int limit) throws DAOException {
-        List<Order> items = new ArrayList<Order>(limit);
+    public List<OrderAddition> getAllOrderItems(String searchText, int offset, int limit) throws DAOException {
+        List<OrderAddition> items = new ArrayList<>(limit);
         getConnection();
         int idOrderType = getIdOrderType(Order.TypeOfOrder.NEW);
         try {
@@ -363,9 +390,8 @@ public class OrderDAO extends AbstractDAO {
             ps.setInt(3, limit);
             ps.setInt(4, offset);
             resultSet = ps.executeQuery();
-            Order item = null;
+            OrderAddition item = null;
             Book book = null;
-            User user = null;
             while (resultSet.next()) {
                 int idOrder = resultSet.getInt("idorder");
                 String title = resultSet.getString("title");
@@ -377,11 +403,9 @@ public class OrderDAO extends AbstractDAO {
                 int quantity = resultSet.getInt("quantity");
                 String state = resultSet.getString("order_type.type");
                 int idUser= resultSet.getInt("user.iduser");
+                String date = resultSet.getString("date_of_order");
                 String login = resultSet.getString("login");
-                String password = resultSet.getString("password");
-                String userType = resultSet.getString("user_type.type");
-                user = new User(idUser, login, password, userType.toUpperCase());
-                item = new Order(idOrder, user, book, quantity, Order.TypeOfOrder.valueOf(state.toUpperCase()));
+                item = new OrderAddition(idOrder, idUser, book, quantity, Order.TypeOfOrder.valueOf(state.toUpperCase()), date, login);
                 items.add(item);
             }
         } catch (SQLException ex) {
@@ -409,6 +433,23 @@ public class OrderDAO extends AbstractDAO {
             while (resultSet.next()) {
                 result = resultSet.getInt("count(*)");
             }
+        } catch (SQLException ex) {
+            logger.error(ex.getMessage());
+            throw new DAOException("Error while trying to access the database!");
+        } finally {
+            closeConnection();
+        }
+        return result;
+    }
+
+    public boolean bookInOrder( int idCatalog) throws DAOException {
+        boolean result = false;
+        getConnection();
+        try {
+            ps = conn.prepareStatement(GET_ORDERS_BY_ID_CATALOG);
+            ps.setInt(1, idCatalog);
+            resultSet = ps.executeQuery();
+            result = resultSet.first();
         } catch (SQLException ex) {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");

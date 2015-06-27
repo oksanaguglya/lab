@@ -7,17 +7,27 @@ public class Order {
     }
 
     private int id;
-    private User user;
+    private int idUser;
     private Book book;
     private int quantity;
     private TypeOfOrder type;
+    private String dateOfOrder;
 
-    public Order(int id, User user, Book book, int quantity, TypeOfOrder type) {
+    public Order(int id, int idUser, Book book, int quantity, TypeOfOrder type) {
         this.id = id;
-        this.user = user;
+        this.idUser = idUser;
         this.book = book;
         this.quantity = quantity;
         this.type = type;
+
+    }
+    public Order(int id, int idUser, Book book, int quantity, TypeOfOrder type, String dateOfOrder) {
+        this.id = id;
+        this.idUser = idUser;
+        this.book = book;
+        this.quantity = quantity;
+        this.type = type;
+        this.dateOfOrder = dateOfOrder;
     }
 
     public int getId() {
@@ -28,12 +38,12 @@ public class Order {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public int getIdUser() {
+        return idUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
     public Book getBook() {
@@ -59,4 +69,13 @@ public class Order {
     public void setType(TypeOfOrder type) {
         this.type = type;
     }
+
+    public String getDateOfOrder() {
+        return dateOfOrder;
+    }
+
+    public void setDateOfOrder(String dateOfOrder) {
+        this.dateOfOrder = dateOfOrder;
+    }
+
 }
