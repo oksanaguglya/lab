@@ -39,7 +39,8 @@
                 <button type="submit" class="btn btn-info"><fmt:message key="registration.submit"/></button>
             </form>
         </div>
-        <div class="text-message"><h2>${emptyFieldMessage}${wrongRepPassword}${existLoginMessage}${errorRegMessage}</h2></div>
+        <div class="text-message"><h2>${emptyFieldMessage}${wrongRepPassword}${existLoginMessage}${errorRegMessage}</h2>
+        </div>
     </div>
     </body>
     <%@include file="footer.jsp" %>

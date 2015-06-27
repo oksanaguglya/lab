@@ -69,12 +69,16 @@
                     <td class="fs"><c:out value="${item.getBook().getTitle()}"/></td>
                     <td class="fs"><c:out value="${item.getBook().getAuthor()}"/></td>
                     <td class="table-col-year fs"><c:out value="${item.getBook().getYear()}"/></td>
-                    <c:if test="${item.getBook().getType() == 'LIBRARY_CARD'}">
-                        <td class="table-col-bookType fs"><fmt:message key="catalog.library_card"></fmt:message></td>
-                    </c:if>
-                    <c:if test="${item.getBook().getType() == 'READING_ROOM'}">
-                        <td class="table-col-bookType fs"><fmt:message key="catalog.reading_room"></fmt:message></td>
-                    </c:if>
+                    <c:choose>
+                        <c:when test="${item.getCatalogItem().getBook().getType() == 'READING_ROOM'}">
+                            <td class="table-col-bookType fs"><fmt:message
+                                    key="catalog.reading_room"></fmt:message></td>
+                        </c:when>
+                        <c:otherwise>
+                            <td class="table-col-bookType fs"><fmt:message
+                                    key="catalog.library_card"></fmt:message></td>
+                        </c:otherwise>
+                    </c:choose>
                     <td class="table-col-quantity fs"><c:out value="${item.getQuantity()}"/></td>
                     <c:if test="${sessionScope.user.getType() == 'READER'}">
                         <td class="table-col-qty fs"><input class="text-qty" type="text" name="qty" value="1"

@@ -9,8 +9,12 @@
         <link href="/css/1.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-    <div class="about"><div class="enter"><h2><fmt:message key="about_us.text1"/></h2></div></div>
-    <div class="about"><div class="enter"><h2><fmt:message key="about_us.text2"/></h2></div></div>
+    <div class="about">
+        <div class="enter"><h2><fmt:message key="about_us.text1"/></h2></div>
+    </div>
+    <div class="about">
+        <div class="enter"><h2><fmt:message key="about_us.text2"/></h2></div>
+    </div>
     </body>
     <%@include file="footer.jsp" %>
 </fmt:bundle>

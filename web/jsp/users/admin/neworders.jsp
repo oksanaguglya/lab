@@ -60,7 +60,7 @@
         <br>
     </c:if>
         <%--Pagination--%>
-    <tag:pagination currentPage="${currentPage}" command="   go_to_new_orders_page"
+    <tag:pagination currentPage="${currentPage}" command="go_to_new_orders_page"
                     numberOfPages="${noOfPages}"></tag:pagination>
         <%--Messages--%>
     <div class="text-message"><h2>${emptySearchNewOrderMessage}</h2></div>

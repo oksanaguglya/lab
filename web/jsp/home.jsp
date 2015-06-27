@@ -32,10 +32,6 @@
         </div>
         <ul class="list">
             <li>
-                <%--<form class="pad-enter-list" name="catalog" method="POST" action="LibraryServlet">
-                    <input type="hidden" name="command" value="go_to_catalog_page">
-                    <A HREF="javascript:document.catalog.submit()"><fmt:message key="home.catalog"/></A>
-                </form>--%>
                 <a href="/LibraryServlet?command=go_to_catalog_page" class="pad-enter-list"><fmt:message key="home.catalog"/></a>
             </li>
 
@@ -64,27 +60,9 @@
             </c:if>
 
             <li>
-                <%--<form class="pad-enter-list" name="aboutUs" method="POST" action="LibraryServlet">
-                    <input type="hidden" name="command" value="go_to_about_us_page">
-                    <A HREF="javascript:document.aboutUs.submit()"><fmt:message key="about_us.link"/></A>
-                </form>--%>
                 <a href="/LibraryServlet?command=go_to_about_us_page" class="pad-enter-list"><fmt:message key="about_us.link"/></a>
             </li>
         </ul>
-
-       <%-- <c:if test="${sessionScope.user.getType() != 'READER' && sessionScope.user.getType() != 'ADMINISTRATOR'}">
-        <div id="book_image" class="book_image"></div>
-        </c:if>--%>
-        <%--<c:if test="${sessionScope.user.getType() != 'READER' && sessionScope.user.getType() != 'ADMINISTRATOR'}">
-            <form name="changeLang" action="LibraryServlet" method="POST" id="change_language" class="lang-button">
-                <h2><fmt:message key="home.lang"/></h2>
-                <input type="hidden" name="command" value="change_language"/>
-                <button type="submit" class="btn btn-lang" name=locale value="RU"><fmt:message
-                        key="header.ru"/></button>
-                <button type="submit" class="btn btn-lang" name=locale value="EN"><fmt:message
-                        key="header.en"/></button>
-            </form>
-        </c:if>--%>
 
         <c:if test="${sessionScope.user.getType() == 'READER'}">
             <h2>${sessionScope.user.getLogin()}<fmt:message key="home.hello"/></h2>

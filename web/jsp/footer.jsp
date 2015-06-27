@@ -8,8 +8,9 @@
     </head>
     <body>
     <div class="footer">
-        <h4><a href="mailto:<fmt:message key="footer.mail"/>"><fmt:message key="footer"/><fmt:message key="footer.mail"/></a></h4>
-        </div>
+        <h4><a href="mailto:<fmt:message key="footer.mail"/>"><fmt:message key="footer"/><fmt:message
+                key="footer.mail"/></a></h4>
+    </div>
     </body>
 </fmt:bundle>
 </html>
