@@ -1,5 +1,6 @@
 package by.bsu.guglya.library.commands.basket;
 
+import by.bsu.guglya.library.beans.Order;
 import by.bsu.guglya.library.beans.User;
 import by.bsu.guglya.library.commands.Command;
 import by.bsu.guglya.library.logic.LogicException;
@@ -32,8 +33,10 @@ public class MakeOrderFromBasketCommand implements Command {
         Date d = new Date();
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yy HH:mm");
         String date = format.format(d);
+        Order.TypeOfOrder state = Order.TypeOfOrder.NEW;
+        Order.TypeOfOrder newState = Order.TypeOfOrder.IN_PROCESSING;
         try{
-            if(OrderLogic.makeOrder(idUser, date)){
+            if(OrderLogic.makeOrder(idUser, state, newState, date)){
                 String message = messageManager.getProperty(MessageManager.ORDER_MADE_SUCCESS_MESSAGE);
                 request.setAttribute(ORDER_MADE_SUCCESS_MESSAGE_ATTR, message);
             }else{

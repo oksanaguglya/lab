@@ -35,4 +35,5 @@ public class CatalogItem {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
 }

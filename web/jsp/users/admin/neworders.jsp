@@ -26,11 +26,11 @@
             <c:forEach var="item" items="${requestScope.newOrdersItems}">
                 <tr>
                     <td class="table-col-date fs"><c:out value="${item.getDateOfOrder()}"/></td>
-                    <td class="table-col-reader fs"><c:out value="${item.getLogin()}"/></td>
-                    <td class="fs"><c:out value="${item.getBook().getTitle()}"/></td>
-                    <td class="table-col-year fs"><c:out value="${item.getBook().getYear()}"/></td>
+                    <td class="table-col-reader fs"><c:out value="${item.getUserName()}"/></td>
+                    <td class="fs"><c:out value="${item.getCatalogItem().getBook().getTitle()}"/></td>
+                    <td class="table-col-year fs"><c:out value="${item.getCatalogItem().getBook().getYear()}"/></td>
                     <c:choose>
-                        <c:when test="${item.getBook().getType() == 'LIBRARY_CARD'}">
+                        <c:when test="${item.getCatalogItem().getBook().getType() == 'LIBRARY_CARD'}">
                             <td class="table-col-bookType fs"><fmt:message
                                     key="catalog.library_card"></fmt:message></td>
                         </c:when>
@@ -39,7 +39,7 @@
                                     key="catalog.reading_room"></fmt:message></td>
                         </c:otherwise>
                     </c:choose>
-                    <td class="table-col-quantity fs"><c:out value="${item.getQty()}"/></td>
+                    <td class="table-col-quantity fs"><c:out value="${item.getCatalogItem().getQuantity()}"/></td>
                     <td class="table-col-qty fs"><c:out value="${item.getQuantity()}"/></td>
                     <td class="table-col-process">
                         <div class="center">

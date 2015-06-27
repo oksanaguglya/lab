@@ -16,8 +16,8 @@ public class CatalogLogic {
         int noOfRecords = 0;
         List<CatalogItem> items = null;
         try {
-            items = catalogDAO.getCatalogItems(searchText, (pageNo - 1) * ITEMS_PER_CATALOG_PAGE, ITEMS_PER_CATALOG_PAGE);
-            noOfRecords = catalogDAO.getCatalogItemsCount(searchText);
+            items = catalogDAO.getCatalogItemsBySearchText(searchText, (pageNo - 1) * ITEMS_PER_CATALOG_PAGE, ITEMS_PER_CATALOG_PAGE);
+            noOfRecords = catalogDAO.getCatalogItemsBySearchTextCount(searchText);
         } catch (DAOException ex) {
             throw new LogicException(ex.getMessage());
         }
@@ -29,18 +29,30 @@ public class CatalogLogic {
         CatalogDAO catalogDAO = new CatalogDAO();
         boolean result = false;
         try{
-            result = catalogDAO.delCatalogItem(idCatalog);
+            result = catalogDAO.delCatalogItemById(idCatalog);
         }catch(DAOException ex){
             throw new LogicException(ex.getMessage());
         }
         return result;
     }
 
+    public static boolean catalogItemInLibrary(int idOrder) throws  LogicException{
+        CatalogDAO catalogDAO = new CatalogDAO();
+        boolean result = false;
+        try{
+            result = catalogDAO.checkCatalogItemQtyGT0(idOrder);
+        }catch(DAOException ex){
+            throw new LogicException(ex.getMessage());
+        }
+        return result;
+    }
+
+
     public static boolean subCatalogItemQty(int idOrder, int qty) throws  LogicException{
         CatalogDAO catalogDAO = new CatalogDAO();
         boolean result = false;
         try{
-            result = catalogDAO.subCatalogItemQty(idOrder, qty);
+            result = catalogDAO.subCatalogItemQtyById(idOrder, qty);
         }catch(DAOException ex){
             throw new LogicException(ex.getMessage());
         }

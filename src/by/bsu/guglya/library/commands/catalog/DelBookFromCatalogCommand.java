@@ -2,7 +2,6 @@ package by.bsu.guglya.library.commands.catalog;
 
 
 import by.bsu.guglya.library.commands.Command;
-import by.bsu.guglya.library.commands.basket.BasketCommand;
 import by.bsu.guglya.library.logic.CatalogLogic;
 import by.bsu.guglya.library.logic.LogicException;
 import by.bsu.guglya.library.logic.OrderLogic;
@@ -29,7 +28,7 @@ public class DelBookFromCatalogCommand implements Command {
         MessageManager messageManager = new MessageManager(locale);
         int idCatalog = Integer.parseInt(request.getParameter(CATALOG_ID_PARAM));
         try{
-            if(OrderLogic.bookInOrder(idCatalog)){
+            if(OrderLogic.catalogItemActiveInOrder(idCatalog)){
                 String message = messageManager.getProperty(MessageManager.NOT_DEL_BOOK_FROM_CATALOG_MESSAGE);
                 request.setAttribute(UNSUCCESSFUL_DEL_BOOK_FROM_CATALOG_MESSAGE_ATTR, message);
             }else{
