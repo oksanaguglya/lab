@@ -53,17 +53,17 @@ public class AddBooksToBasketCommand implements Command {
                 Date d = new Date();
                 SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
                 String date = format.format(d);
-                for(String idBook : selectedItemsArray){
+                for(String idCatalog : selectedItemsArray){
                     numOfOrders++;
-                    qty = Integer.parseInt(orderBooks.get(idBook));
+                    qty = Integer.parseInt(orderBooks.get(idCatalog));
                     if(qty != 0){
                         try{
-                            if(OrderLogic.checkOrderExist(idBook, idUser, state)){
-                                if(OrderLogic.addQtyToOrder(idBook, idUser, qty, state)){
+                            if(OrderLogic.checkOrderExist(idCatalog, idUser, state)){
+                                if(OrderLogic.addQtyToOrder(idCatalog, idUser, qty, state)){
                                     numOfSuccessOrders++;
                                 }
                             }else{
-                                if(OrderLogic.addOrder(idBook, idUser, qty, state, date)){
+                                if(OrderLogic.addOrder(idCatalog, idUser, qty, state, date)){
                                     numOfSuccessOrders++;
                                 }
                             }
