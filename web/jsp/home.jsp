@@ -51,7 +51,7 @@
             <c:if test="${sessionScope.user.getType() == 'ADMINISTRATOR'}">
                 <li>
                     <form class="pad-enter-list" name="orderNewAdmin" method="POST" action="LibraryServlet">
-                        <input type="hidden" name="command" value="go_to_new_order_admin_page">
+                        <input type="hidden" name="command" value="go_to_new_orders_page">
                         <A HREF="javascript:document.orderNewAdmin.submit()"><fmt:message key="home.new_order_admin"/></A>
                     </form>
                 </li>

@@ -45,7 +45,7 @@ public class CommandFactory {
         commands.put("del_book_from_basket", new DelBookFromBasketCommand());
         commands.put("make_an_order", new MakeOrderFromBasketCommand());
         commands.put("go_to_order_reader_page", new UserOrdersCommand());
-        commands.put("go_to_new_order_admin_page", new NewOrdersCommand());
+        commands.put("go_to_new_orders_page", new NewOrdersCommand());
         commands.put("go_to_all_user_orders_page", new AllUserOrdersCommand());
         commands.put("del_book_from_catalog", new DelBookFromCatalogCommand());
         commands.put("process_order", new ProcessOrderCommand());

@@ -35,14 +35,16 @@
                     <td class="table-col-reader fs"><c:out value="${item.getUserName()}"/></td>
                     <td class="fs"><c:out value="${item.getCatalogItem().getBook().getTitle()}"/></td>
                     <td class="table-col-year fs"><c:out value="${item.getCatalogItem().getBook().getYear()}"/></td>
-                        <c:if test="${item.getCatalogItem().getBook().getType() == 'LIBRARY_CARD'}">
-                            <td class="table-col-bookType fs"><fmt:message
-                                    key="catalog.library_card"></fmt:message></td>
-                        </c:if>
-                    <c:if test="${item.getCatalogItem().getBook().getType() == 'READING_ROOM'}">
+                    <c:choose>
+                        <c:when test="${item.getCatalogItem().getBook().getType() == 'READING_ROOM'}">
                             <td class="table-col-bookType fs"><fmt:message
                                     key="catalog.reading_room"></fmt:message></td>
-                    </c:if>
+                        </c:when>
+                        <c:otherwise>
+                            <td class="table-col-bookType fs"><fmt:message
+                                    key="catalog.library_card"></fmt:message></td>
+                        </c:otherwise>
+                    </c:choose>
                     <td class="table-col-qty fs"><c:out value="${item.getQuantity()}"/></td>
                     <c:choose>
                         <c:when test="${item.getType() == 'APPROVED'}">
