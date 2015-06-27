@@ -57,7 +57,7 @@
                 </li>
                 <li>
                     <form class="pad-enter-list" name="orderLoginAdmin" method="POST" action="LibraryServlet">
-                        <input type="hidden" name="command" value="go_to_login_order_admin_page">
+                        <input type="hidden" name="command" value="go_to_all_user_orders_page">
                         <A HREF="javascript:document.orderLoginAdmin.submit()"><fmt:message key="home.login_order_admin"/></A>
                     </form>
                 </li>

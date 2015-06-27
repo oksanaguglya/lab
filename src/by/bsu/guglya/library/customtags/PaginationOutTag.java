@@ -34,7 +34,7 @@ public class PaginationOutTag extends TagSupport {
         ResourceBundle resource = ResourceBundle.getBundle(RESOURCE_PATH);
         JspWriter writer = pageContext.getOut();
         try {
-            writer.println("<span class=\"pagination-wrap\"><div class=\"pagination-wrap2\"><div class=\"pagination\">");
+            writer.println("<div class=\"pagination\">");
             writer.println("<ul>");
             if(currentPage > 1){
                 writer.println("<li>");
@@ -57,7 +57,7 @@ public class PaginationOutTag extends TagSupport {
                     writer.println("<input type=\"hidden\" name=\"command\" value=\"" + command + "\">");
                     writer.println("<input type=\"hidden\" name=\"page\" value=\"" + i + "\">");
                     writer.println("<A HREF=\"javascript:document.getElementById('goPageForm" + i + "').submit()\">" + i + "</A>");
-                    writer.println(" </form>");
+                    writer.println("</form>");
                     writer.println("</li>");
                 }
             }
@@ -67,12 +67,12 @@ public class PaginationOutTag extends TagSupport {
                 writer.println("<form name=\"goNextPageForm\" method=\"POST\" action=\"LibraryServlet\">");
                 writer.println("<input type=\"hidden\" name=\"command\" value=\"" + command + "\">");
                 writer.println("<input type=\"hidden\" name=\"page\" value=\"" + (currentPage + 1) + "\">");
-                writer.println(" <A HREF=\"javascript:document.goNextPageForm.submit()\" class=\"pagination_next\">></A>");
-                writer.println(" </form>");
+                writer.println("<A HREF=\"javascript:document.goNextPageForm.submit()\" class=\"pagination_next\">></A>");
+                writer.println("</form>");
                 writer.println("</li>");
             }
             writer.println("</ul>");
-            writer.println("</div></div></span>");
+            writer.println("</div>");
         } catch (IOException ex) {
             logger.error(ex);
         }
