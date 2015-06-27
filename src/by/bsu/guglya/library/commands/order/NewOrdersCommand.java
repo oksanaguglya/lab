@@ -1,5 +1,6 @@
 package by.bsu.guglya.library.commands.order;
 
+import by.bsu.guglya.library.beans.Order;
 import by.bsu.guglya.library.commands.Command;
 import by.bsu.guglya.library.logic.LogicException;
 import by.bsu.guglya.library.logic.OrderLogic;
@@ -39,8 +40,9 @@ public class NewOrdersCommand implements Command {
         }
 
         PageItems result;
+        Order.TypeOfOrder state = Order.TypeOfOrder.IN_PROCESSING;
         try{
-            result = OrderLogic.getNewOrderItems(pageNo);
+            result = OrderLogic.getNewOrderItems(state, pageNo);
         }catch(LogicException ex){
             request.setAttribute(DATABASE_ERROR_MESSAGE_ATTR, ex.getMessage());
             page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.ERROR_PATH_JSP);

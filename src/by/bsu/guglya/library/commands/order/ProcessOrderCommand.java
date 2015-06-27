@@ -44,8 +44,7 @@ public class ProcessOrderCommand implements Command {
         try{
             switch(action){
                 case APPROVE_ORDER:
-                    if(CatalogLogic.subCatalogItemQty(idOrder,1)){
-                        OrderLogic.changeOrderState(idOrder, Order.TypeOfOrder.APPROVED);
+                    if(OrderLogic.giveBook(idOrder)){
                         message = messageManager.getProperty(MessageManager.ORDER_PROCESS_APPROVED_MESSAGE);
                         request.setAttribute(ORDER_PROCESS_APPROVED_MESSAGE_ATTR, message);
                     }else{

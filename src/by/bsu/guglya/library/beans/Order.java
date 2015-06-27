@@ -8,23 +8,43 @@ public class Order {
 
     private int id;
     private int idUser;
-    private Book book;
+    private String userName;
+    private CatalogItem catalogItem;
     private int quantity;
     private TypeOfOrder type;
     private String dateOfOrder;
 
-    public Order(int id, int idUser, Book book, int quantity, TypeOfOrder type) {
+    public Order(int id, int idUser, CatalogItem catalogItem, int quantity, TypeOfOrder type) {
         this.id = id;
         this.idUser = idUser;
-        this.book = book;
+        this.catalogItem = catalogItem;
         this.quantity = quantity;
         this.type = type;
-
     }
-    public Order(int id, int idUser, Book book, int quantity, TypeOfOrder type, String dateOfOrder) {
+
+    public Order(int id, int idUser, String userName, CatalogItem catalogItem, int quantity, TypeOfOrder type) {
         this.id = id;
         this.idUser = idUser;
-        this.book = book;
+        this.userName = userName;
+        this.catalogItem = catalogItem;
+        this.quantity = quantity;
+        this.type = type;
+    }
+
+    public Order(int id, int idUser, CatalogItem catalogItem, int quantity, TypeOfOrder type, String dateOfOrder) {
+        this.id = id;
+        this.idUser = idUser;
+        this.catalogItem = catalogItem;
+        this.quantity = quantity;
+        this.type = type;
+        this.dateOfOrder = dateOfOrder;
+    }
+
+    public Order(int id, int idUser, String userName, CatalogItem catalogItem, int quantity, TypeOfOrder type, String dateOfOrder) {
+        this.id = id;
+        this.idUser = idUser;
+        this.userName = userName;
+        this.catalogItem = catalogItem;
         this.quantity = quantity;
         this.type = type;
         this.dateOfOrder = dateOfOrder;
@@ -46,12 +66,20 @@ public class Order {
         this.idUser = idUser;
     }
 
-    public Book getBook() {
-        return book;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setBook(Book book) {
-        this.book = book;
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public CatalogItem getCatalogItem() {
+        return catalogItem;
+    }
+
+    public void setCatalogItem(CatalogItem catalogItem) {
+        this.catalogItem = catalogItem;
     }
 
     public int getQuantity() {
@@ -77,5 +105,4 @@ public class Order {
     public void setDateOfOrder(String dateOfOrder) {
         this.dateOfOrder = dateOfOrder;
     }
-
 }

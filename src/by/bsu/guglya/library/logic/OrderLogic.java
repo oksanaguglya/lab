@@ -1,12 +1,9 @@
 package by.bsu.guglya.library.logic;
 
 import by.bsu.guglya.library.beans.Order;
-import by.bsu.guglya.library.beans.OrderAddition;
-import by.bsu.guglya.library.beans.User;
 import by.bsu.guglya.library.database.dao.DAOException;
 import by.bsu.guglya.library.database.dao.OrderDAO;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class OrderLogic {
@@ -14,33 +11,33 @@ public class OrderLogic {
     private static final int ITEMS_PER_BASKET_PAGE = 7;
     private static final int ITEMS_PER_ORDERS_PAGE = 5;
 
-    public static boolean checkOrderExist(String idBook, int idUser, Order.TypeOfOrder state) throws LogicException{
+    public static boolean checkOrderExist(String idCatalog, int idUser, Order.TypeOfOrder state) throws LogicException{
         OrderDAO orderDAO = new OrderDAO();
         boolean result = false;
         try{
-            result = orderDAO.orderExist(idBook, idUser, state);
+            result = orderDAO.checkOrderExistByUserAndIdCatalogAndState(idCatalog, idUser, state);
         }catch(DAOException ex){
             throw new LogicException(ex.getMessage());
         }
         return result;
     }
 
-    public static boolean addQtyToOrder(String idBook, int idUser, int qty,  Order.TypeOfOrder state) throws LogicException{
+    public static boolean addQtyToOrder(String idCatalog, int idUser, int qty,  Order.TypeOfOrder state) throws LogicException{
         OrderDAO orderDAO = new OrderDAO();
         boolean result = false;
         try{
-            result = orderDAO.addQtyToOrder(idBook, idUser, qty, state);
+            result = orderDAO.addQtyToOrderByUserAndIdCatalogAndState(idCatalog, idUser, qty, state);
         }catch(DAOException ex){
             throw new LogicException(ex.getMessage());
         }
         return result;
     }
 
-    public static boolean addOrder(String idBook, int idUser, int qty,  Order.TypeOfOrder state, String date) throws LogicException{
+    public static boolean addOrder(String idCatalog, int idUser, int qty,  Order.TypeOfOrder state, String date) throws LogicException{
         OrderDAO orderDAO = new OrderDAO();
         boolean result = false;
         try{
-            result = orderDAO.addOrder(idBook, idUser, qty, state, date);
+            result = orderDAO.addOrder(idCatalog, idUser, qty, state, date);
         }catch(DAOException ex){
             throw new LogicException(ex.getMessage());
         }
@@ -51,18 +48,18 @@ public class OrderLogic {
         OrderDAO orderDAO = new OrderDAO();
         boolean result = false;
         try{
-            result = orderDAO.delOrder(idOrder);
+            result = orderDAO.delOrderById(idOrder);
         }catch(DAOException ex){
             throw new LogicException(ex.getMessage());
         }
         return result;
     }
 
-    public static boolean makeOrder(int idUser, String date) throws  LogicException{
+    public static boolean makeOrder(int idUser, Order.TypeOfOrder state, Order.TypeOfOrder newState, String date) throws  LogicException{
         OrderDAO orderDAO = new OrderDAO();
         boolean result = false;
         try{
-            result = orderDAO.makeOrder(idUser, date);
+            result = orderDAO.changeOrderStateAndDateByUserAndState(idUser, state, newState, date);
         }catch(DAOException ex){
             throw new LogicException(ex.getMessage());
         }
@@ -73,20 +70,20 @@ public class OrderLogic {
         OrderDAO orderDAO = new OrderDAO();
         boolean result = false;
         try{
-            result = orderDAO.changeOrderState(idOrder, state);
+            result = orderDAO.changeOrderStateByIdOrder(idOrder, state);
         }catch(DAOException ex){
             throw new LogicException(ex.getMessage());
         }
         return result;
     }
 
-    public static PageItems getUserBasketItems(int idUser, int pageNo) throws LogicException{
+    public static PageItems getUserBasketItems(int idUser, Order.TypeOfOrder state, int pageNo) throws LogicException{
         OrderDAO orderDAO = new OrderDAO();
         int noOfRecords = 0;
         List<Order> items = null;
         try {
-            items = orderDAO.getUserBasketItems(idUser, (pageNo - 1) * ITEMS_PER_BASKET_PAGE, ITEMS_PER_BASKET_PAGE);
-            noOfRecords = orderDAO.getUserBasketItemsCount(idUser);
+            items = orderDAO.getOrderItemsByUserAndState(idUser, state, (pageNo - 1) * ITEMS_PER_BASKET_PAGE, ITEMS_PER_BASKET_PAGE);
+            noOfRecords = orderDAO.getOrderItemsByUserAndStateCount(idUser, state);
         } catch (DAOException ex) {
             throw new LogicException(ex.getMessage());
         }
@@ -94,13 +91,13 @@ public class OrderLogic {
         return new PageItems(items, noOfPages);
     }
 
-    public static PageItems getUserOrderItems(String searchText, int idUser, int pageNo) throws LogicException{
+    public static PageItems getUserOrderItems(String searchText, int idUser, Order.TypeOfOrder state, int pageNo) throws LogicException{
         OrderDAO orderDAO = new OrderDAO();
         int noOfRecords = 0;
         List<Order> items = null;
         try {
-            items = orderDAO.getOrderItems(searchText, idUser, (pageNo - 1) * ITEMS_PER_ORDERS_PAGE, ITEMS_PER_ORDERS_PAGE);
-            noOfRecords = orderDAO.getOrderItemsCount(searchText, idUser);
+            items = orderDAO.getOrderItemsBySearchTextAndUserNotInState(searchText, idUser, state, (pageNo - 1) * ITEMS_PER_ORDERS_PAGE, ITEMS_PER_ORDERS_PAGE);
+            noOfRecords = orderDAO.getOrderItemsBySearchTextAndUserCount(searchText, idUser, state);
         } catch (DAOException ex) {
             throw new LogicException(ex.getMessage());
         }
@@ -108,13 +105,13 @@ public class OrderLogic {
         return new PageItems(items, noOfPages);
     }
 
-    public static PageItems getNewOrderItems(int pageNo) throws  LogicException{
+    public static PageItems getNewOrderItems(Order.TypeOfOrder state, int pageNo) throws  LogicException{
         OrderDAO orderDAO = new OrderDAO();
         int noOfRecords = 0;
-        List<OrderAddition> items = null;
+        List<Order> items = null;
         try {
-            items = orderDAO.getNewOrderItems((pageNo - 1) * ITEMS_PER_ORDERS_PAGE, ITEMS_PER_ORDERS_PAGE);
-            noOfRecords = orderDAO.getNewOrderItemsCount();
+            items = orderDAO.getOrderItemsByState(state, (pageNo - 1) * ITEMS_PER_ORDERS_PAGE, ITEMS_PER_ORDERS_PAGE);
+            noOfRecords = orderDAO.getOrderItemsByStateCount(state);
         } catch (DAOException ex) {
             throw new LogicException(ex.getMessage());
         }
@@ -122,13 +119,13 @@ public class OrderLogic {
         return new PageItems(items, noOfPages);
     }
 
-    public static PageItems getAllOrderItems(String searchText, int pageNo) throws LogicException{
+    public static PageItems getAllOrderItems(String searchText, Order.TypeOfOrder state, int pageNo) throws LogicException{
         OrderDAO orderDAO = new OrderDAO();
         int noOfRecords = 0;
-        List<OrderAddition> items = null;
+        List<Order> items = null;
         try {
-            items = orderDAO.getAllOrderItems(searchText, (pageNo - 1) * ITEMS_PER_ORDERS_PAGE, ITEMS_PER_ORDERS_PAGE);
-            noOfRecords = orderDAO.getAllOrderItemsCount(searchText);
+            items = orderDAO.getOrderItemsBySearchTextNotInState(searchText, state, (pageNo - 1) * ITEMS_PER_ORDERS_PAGE, ITEMS_PER_ORDERS_PAGE);
+            noOfRecords = orderDAO.getOrderItemsBySearchTextNotInStateCount(searchText, state);
         } catch (DAOException ex) {
             throw new LogicException(ex.getMessage());
         }
@@ -136,16 +133,35 @@ public class OrderLogic {
         return new PageItems(items, noOfPages);
     }
 
-    public static boolean bookInOrder(int idCatalog) throws  LogicException{
+    public static boolean catalogItemActiveInOrder(int idCatalog) throws  LogicException{
         OrderDAO orderDAO = new OrderDAO();
         boolean result = false;
         try{
-            result = orderDAO.bookInOrder(idCatalog);
+            result = orderDAO.checkCatalogItemExistInOrder(idCatalog);
         }catch(DAOException ex){
             throw new LogicException(ex.getMessage());
         }
         return result;
     }
 
+    public static boolean giveBook(int idOrder) throws  LogicException{
+        OrderDAO orderDAO = new OrderDAO();
+        //CatalogDAO catalogDAO = new CatalogDAO();
+        boolean result = false;
+        //try{
+            if(CatalogLogic.catalogItemInLibrary(idOrder)){
+                if(CatalogLogic.subCatalogItemQty(idOrder, 1)){
+                    OrderLogic.changeOrderState(idOrder, Order.TypeOfOrder.APPROVED);
+                    result = true;
+                }
+            }else{
+               result = false;
+            }
+        //}
+        //}//catch(LogicException ex){
+            //throw new LogicException(ex.getMessage());
+        //}
+        return result;
+    }
 
 }

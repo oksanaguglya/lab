@@ -1,5 +1,6 @@
 package by.bsu.guglya.library.commands.order;
 
+import by.bsu.guglya.library.beans.Order;
 import by.bsu.guglya.library.beans.User;
 import by.bsu.guglya.library.commands.Command;
 import by.bsu.guglya.library.logic.LogicException;
@@ -53,9 +54,10 @@ public class UserOrdersCommand implements Command {
 
         User user = (User) session.getAttribute(USER_ATTR);
         int idUser = user.getId();
+        Order.TypeOfOrder state = Order.TypeOfOrder.NEW;
         PageItems result;
         try{
-            result = OrderLogic.getUserOrderItems(searchText, idUser, pageNo);
+            result = OrderLogic.getUserOrderItems(searchText, idUser, state, pageNo);
         }catch(LogicException ex){
             request.setAttribute(DATABASE_ERROR_MESSAGE_ATTR, ex.getMessage());
             page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.ERROR_PATH_JSP);

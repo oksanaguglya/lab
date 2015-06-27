@@ -690,3 +690,27 @@
  Application started!
 27.06.2015 11:28:47 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
  Cannot add or update a child row: a foreign key constraint fails (`library`.`order`, CONSTRAINT `book2` FOREIGN KEY (`book`) REFERENCES `book` (`idbook`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+27.06.2015 11:46:48 [http-bio-8080-exec-10] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ Cannot add or update a child row: a foreign key constraint fails (`library`.`order`, CONSTRAINT `book2` FOREIGN KEY (`book`) REFERENCES `book` (`idbook`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+27.06.2015 12:10:46 [http-bio-8080-exec-9] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ Unknown column 'library.order.book' in 'on clause'
+27.06.2015 13:07:41 [http-bio-8080-exec-2] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ Unknown column 'library.order.book' in 'on clause'
+27.06.2015 14:18:26 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+27.06.2015 14:19:41 [http-bio-8080-exec-2] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ No value specified for parameter 2
+27.06.2015 14:20:15 [http-bio-8080-exec-6] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ No value specified for parameter 2
+27.06.2015 14:22:10 [http-bio-8080-exec-1] ERROR by.bsu.guglya.library.database.dao.OrderDAO 
+ No value specified for parameter 2
+27.06.2015 14:27:00 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+27.06.2015 14:32:50 [RMI TCP Connection(2)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+27.06.2015 14:43:43 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+27.06.2015 14:47:09 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+27.06.2015 14:49:34 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!

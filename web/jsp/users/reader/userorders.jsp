@@ -30,11 +30,11 @@
             </tr>
             <c:forEach var="item" items="${requestScope.ordersItems}">
                 <tr>
-                    <td><c:out value="${item.getBook().getTitle()}"/></td>
-                    <td><c:out value="${item.getBook().getAuthor()}"/></td>
-                    <td class="table-col-year"><c:out value="${item.getBook().getYear()}"/></td>
+                    <td><c:out value="${item.getCatalogItem().getBook().getTitle()}"/></td>
+                    <td><c:out value="${item.getCatalogItem().getBook().getAuthor()}"/></td>
+                    <td class="table-col-year"><c:out value="${item.getCatalogItem().getBook().getYear()}"/></td>
                     <c:choose>
-                        <c:when test="${item.getBook().getType() == 'LIBRARY_CARD'}">
+                        <c:when test="${item.getCatalogItem().getBook().getType() == 'LIBRARY_CARD'}">
                             <td class="table-col-bookType"><fmt:message key="catalog.library_card"></fmt:message></td>
                         </c:when>
                         <c:otherwise>
