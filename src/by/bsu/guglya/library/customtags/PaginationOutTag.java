@@ -11,6 +11,22 @@ import java.util.ResourceBundle;
 public class PaginationOutTag extends TagSupport {
 
     public static final String RESOURCE_PATH = "by.bsu.guglya.library.resources.gui";
+    public static final String FORM_NAME = "form.name";
+    public static final String FORM_NAME_ID = "form.name.id";
+    public static final String FORM_COMMAND = "form.command";
+    public static final String FORM_PAGE = "form.page";
+    public static final String FORM_SUBMIT = "form.submit";
+    public static final String FORM_SUBMIT_ID = "form.submit.id";
+    public static final String ACTIVE_LINK = "active.link";
+    public static final String ALIAS_PAGE = "1";
+
+    private static final int LINKS_PER_PAGE = 10;
+    private static final String FORM_PREV_NAME = "goPreviousPageForm";
+    private static final String FORM_NEXT_NAME = "goNextPageForm";
+    private static final String FORM_MID_NAME = "goPageForm";
+    private static final String FORM_PREV_CLASS = "pagination_prev";
+    private static final String FORM_NEXT_CLASS = "pagination_next";
+
     private int currentPage;
     private String command;
     private int numberOfPages;
@@ -36,39 +52,46 @@ public class PaginationOutTag extends TagSupport {
         try {
             writer.println("<div class=\"pagination\">");
             writer.println("<ul>");
-            if(currentPage > 1){
+            if (currentPage > 1) {
                 writer.println("<li>");
-                writer.println("<form name=\"goPreviousPageForm\" method=\"POST\" action=\"LibraryServlet\">");
-                writer.println("<input type=\"hidden\" name=\"command\" value=\"" + command + "\">");
-                writer.println("<input type=\"hidden\" name=\"page\" value=\"" + (currentPage - 1) + "\">");
-                writer.println(" <A HREF=\"javascript:document.goPreviousPageForm.submit()\" class=\"pagination_prev\"><</A>");
-                writer.println(" </form>");
+                writer.println(resource.getString(FORM_NAME).replace(ALIAS_PAGE, FORM_PREV_NAME));
+                writer.println(resource.getString(FORM_COMMAND).replace(ALIAS_PAGE, command));
+                writer.println(resource.getString(FORM_PAGE).replace(ALIAS_PAGE, String.valueOf(currentPage - 1)));
+                writer.println(String.format(resource.getString(FORM_SUBMIT), FORM_PREV_NAME, FORM_PREV_CLASS, "<"));
                 writer.println("</li>");
             }
 
-            for(int i = 1; i <= numberOfPages; i++){
-                if( currentPage == i){
+            int firstNum, lastNum;
+            if((currentPage % LINKS_PER_PAGE) == 0){
+                firstNum = currentPage - (LINKS_PER_PAGE - 1);
+                lastNum = currentPage;
+            }else{
+                firstNum = (currentPage / LINKS_PER_PAGE) * LINKS_PER_PAGE + 1;
+                lastNum = (firstNum + (LINKS_PER_PAGE - 1) < numberOfPages ? firstNum +(LINKS_PER_PAGE - 1) : numberOfPages);
+            }
+
+
+            for (int i = firstNum; i <= lastNum; i++) {
+                if (currentPage == i) {
                     writer.println("<li class=\"pagination_active\">");
-                    writer.println("<a href=\"#\">" + i + "</a>");
+                    writer.println(resource.getString(ACTIVE_LINK).replace(ALIAS_PAGE, String.valueOf(i)));
                     writer.println("</li>");
-                }else{
+                } else {
                     writer.println("<li>");
-                    writer.println("<form id=\"goPageForm" + i + "\" method=\"POST\" action=\"LibraryServlet\">");
-                    writer.println("<input type=\"hidden\" name=\"command\" value=\"" + command + "\">");
-                    writer.println("<input type=\"hidden\" name=\"page\" value=\"" + i + "\">");
-                    writer.println("<A HREF=\"javascript:document.getElementById('goPageForm" + i + "').submit()\">" + i + "</A>");
-                    writer.println("</form>");
+                    writer.println(String.format(resource.getString(FORM_NAME_ID), FORM_MID_NAME, i));
+                    writer.println(resource.getString(FORM_COMMAND).replace(ALIAS_PAGE, command));
+                    writer.println(resource.getString(FORM_PAGE).replace(ALIAS_PAGE, String.valueOf(i)));
+                    writer.println(String.format(resource.getString(FORM_SUBMIT_ID), FORM_MID_NAME, i, i));
                     writer.println("</li>");
                 }
             }
 
-            if(currentPage < numberOfPages){
+            if (currentPage < numberOfPages) {
                 writer.println("<li>");
-                writer.println("<form name=\"goNextPageForm\" method=\"POST\" action=\"LibraryServlet\">");
-                writer.println("<input type=\"hidden\" name=\"command\" value=\"" + command + "\">");
-                writer.println("<input type=\"hidden\" name=\"page\" value=\"" + (currentPage + 1) + "\">");
-                writer.println("<A HREF=\"javascript:document.goNextPageForm.submit()\" class=\"pagination_next\">></A>");
-                writer.println("</form>");
+                writer.println(resource.getString(FORM_NAME).replace(ALIAS_PAGE, FORM_NEXT_NAME));
+                writer.println(resource.getString(FORM_COMMAND).replace(ALIAS_PAGE, command));
+                writer.println(resource.getString(FORM_PAGE).replace(ALIAS_PAGE, String.valueOf(currentPage + 1)));
+                writer.println(String.format(resource.getString(FORM_SUBMIT), FORM_NEXT_NAME, FORM_NEXT_CLASS, ">"));
                 writer.println("</li>");
             }
             writer.println("</ul>");
@@ -78,5 +101,6 @@ public class PaginationOutTag extends TagSupport {
         }
         return SKIP_BODY;
     }
+
 }
 

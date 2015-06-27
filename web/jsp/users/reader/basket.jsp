@@ -65,7 +65,7 @@
         <%--Pagination--%>
     <span class="pagination-wrap">
         <div class="pagination-wrap2">
-            <tag:pagination currentPage="${currentpage}" command="my_basket"
+            <tag:pagination currentPage="${currentPage}" command="my_basket"
                             numberOfPages="${noOfPages}"></tag:pagination>
         </div>
     </span>

@@ -70,7 +70,7 @@
                     <td class="fs"><c:out value="${item.getBook().getAuthor()}"/></td>
                     <td class="table-col-year fs"><c:out value="${item.getBook().getYear()}"/></td>
                     <c:choose>
-                        <c:when test="${item.getCatalogItem().getBook().getType() == 'READING_ROOM'}">
+                        <c:when test="${item.getBook().getType() == 'READING_ROOM'}">
                             <td class="table-col-bookType fs"><fmt:message
                                     key="catalog.reading_room"></fmt:message></td>
                         </c:when>
