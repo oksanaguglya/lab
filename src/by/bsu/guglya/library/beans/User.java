@@ -5,23 +5,17 @@ public class User {
     public enum TypeOfUser {
         ADMINISTRATOR, READER
     }
+
     private int id;
     private String login;
     private String password;
     private TypeOfUser type;
-
-    public User() {
-    }
 
     public User(int id, String login, String password, String type) {
         this.id = id;
         this.login = login;
         this.password = password;
         this.type = TypeOfUser.valueOf(type);
-    }
-
-    public TypeOfUser getType() {
-        return type;
     }
 
     public int getId() {
@@ -34,6 +28,10 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public TypeOfUser getType() {
+        return type;
     }
 
     public void setId(int id) {

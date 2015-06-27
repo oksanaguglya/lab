@@ -63,4 +63,5 @@ public class Book {
     public void setType(TypeOfBook type) {
         this.type = type;
     }
+
 }

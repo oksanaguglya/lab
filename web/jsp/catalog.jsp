@@ -5,77 +5,77 @@
 <html>
 <fmt:setLocale value="${locale}" scope="session"/>
 <fmt:bundle basename="by.bsu.guglya.library.resources.gui">
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script>
-    $(document).ready(function () {
-        $("#sendBtn").click(function (e) {
-            var items = $("input:checked").map(function () {
-                return this.value;
-            }).get();
-            document.getElementById('items').value = items;
-            var qty = [];
-            items.forEach(function (item, i, items) {
-                qty.push(document.getElementById('qty' + item).value);
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#sendBtn").click(function (e) {
+                var items = $("input:checked").map(function () {
+                    return this.value;
+                }).get();
+                document.getElementById('items').value = items;
+                var qty = [];
+                items.forEach(function (item, i, items) {
+                    qty.push(document.getElementById('qty' + item).value);
+                });
+                document.getElementById('qty').value = qty;
             });
-            document.getElementById('qty').value = qty;
+
+            $('#table').on('click', '#radio', function () {
+                if (this.getAttribute('checked')) {
+                    $(this).removeAttr('checked')
+                } else {
+                    $(this).attr('checked', true)
+                }
+            });
         });
+    </script>
+    <%@include file="header.jsp" %>
+    <head>
+        <link href="/css/1.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
 
-        $('#table').on('click', '#radio', function () {
-            if (this.getAttribute('checked')) {
-                $(this).removeAttr('checked')
-            } else {
-                $(this).attr('checked', true)
-            }
-        });
-    });
-</script>
-<%@include file="header.jsp" %>
-<head>
-    <link href="/css/1.css" rel="stylesheet" type="text/css"/>
-</head>
-<body>
+    <form class="search" name="search" action="LibraryServlet" id="form" method="POST">
+        <input type="hidden" name="command" value="go_to_catalog_page"/>
+        <input class="search-text" type="text" name="search" value="${sessionScope.search}"
+               placeholder=<fmt:message key="catalog.search.placeholder"/>/>
+        <button type="submit" class="btn btn-info"><fmt:message key="catalog.search.button.text"/></button>
+    </form>
 
-<form class="search" name="search" action="LibraryServlet" id="form" method="POST">
-    <input type="hidden" name="command" value="go_to_catalog_page"/>
-    <input class="search-text" type="text" name="search" value="${sessionScope.search}"
-           placeholder=<fmt:message key="catalog.search.placeholder"/>/>
-    <button type="submit" class="btn btn-info"><fmt:message key="catalog.search.button.text"/></button>
-</form>
-
-<c:if test="${noOfPages != 0}">
-    <table border="2" id="table" cellpadding="5" cellspacing="1">
-        <tr>
-            <c:if test="${sessionScope.user.getType() == 'READER'}">
-                <th class="table-col-check"></th>
-            </c:if>
-            <th><fmt:message key="catalog.title"></fmt:message></th>
-            <th><fmt:message key="catalog.author"></fmt:message></th>
-            <th class="table-col-year"><fmt:message key="catalog.year"></fmt:message></th>
-            <th class="table-col-bookType"><fmt:message key="catalog.bookType"></fmt:message></th>
-            <th class="table-col-quantity"><fmt:message key="catalog.quantity"></fmt:message></th>
+    <c:if test="${noOfPages != 0}">
+        <table border="2" id="table" cellpadding="5" cellspacing="1">
+            <tr>
+                <c:if test="${sessionScope.user.getType() == 'READER'}">
+                    <th class="table-col-check"></th>
+                </c:if>
+                <th><fmt:message key="catalog.title"></fmt:message></th>
+                <th><fmt:message key="catalog.author"></fmt:message></th>
+                <th class="table-col-year"><fmt:message key="catalog.year"></fmt:message></th>
+                <th class="table-col-bookType"><fmt:message key="catalog.bookType"></fmt:message></th>
+                <th class="table-col-quantity"><fmt:message key="catalog.quantity"></fmt:message></th>
                 <c:if test="${sessionScope.user.getType() == 'READER'}">
                     <th class="table-col-qty"><fmt:message key="catalog.qty"></fmt:message></th>
                 </c:if>
                 <c:if test="${sessionScope.user.getType() == 'ADMINISTRATOR'}">
                     <th class="table-col-del_edit"></th>
                 </c:if>
-        </tr>
-        <c:forEach var="item" items="${requestScope.catalogItems}">
-            <tr>
+            </tr>
+            <c:forEach var="item" items="${requestScope.catalogItems}">
+                <tr>
                     <c:if test="${sessionScope.user.getType() == 'READER'}">
                         <td class="table-col-check fs"><input type="radio" name="selectedItem${item.getId()}"
                                                               value="${item.getId()}" id="radio"/></td>
                     </c:if>
-                <td class="fs"><c:out value="${item.getBook().getTitle()}"/></td>
-                <td class="fs"><c:out value="${item.getBook().getAuthor()}"/></td>
-                <td class="table-col-year fs"><c:out value="${item.getBook().getYear()}"/></td>
+                    <td class="fs"><c:out value="${item.getBook().getTitle()}"/></td>
+                    <td class="fs"><c:out value="${item.getBook().getAuthor()}"/></td>
+                    <td class="table-col-year fs"><c:out value="${item.getBook().getYear()}"/></td>
                     <c:if test="${item.getBook().getType() == 'LIBRARY_CARD'}">
                         <td class="table-col-bookType fs"><fmt:message key="catalog.library_card"></fmt:message></td>
                     </c:if>
                     <c:if test="${item.getBook().getType() == 'READING_ROOM'}">
                         <td class="table-col-bookType fs"><fmt:message key="catalog.reading_room"></fmt:message></td>
                     </c:if>
-                <td class="table-col-quantity fs"><c:out value="${item.getQuantity()}"/></td>
+                    <td class="table-col-quantity fs"><c:out value="${item.getQuantity()}"/></td>
                     <c:if test="${sessionScope.user.getType() == 'READER'}">
                         <td class="table-col-qty fs"><input class="text-qty" type="text" name="qty${item.getId()}"
                                                             value="1" id="qty${item.getId()}"/></td>
@@ -102,10 +102,10 @@
                             </div>
                         </td>
                     </c:if>
-            </tr>
-        </c:forEach>
-    </table>
-    <br>
+                </tr>
+            </c:forEach>
+        </table>
+        <br>
 
     <span class="btn-wrap">
         <div class="btn-order">
@@ -131,77 +131,31 @@
             </c:choose>
         </div>
     </span>
-</c:if>
+    </c:if>
 
-    <span class="pagination-wrap">
-        <div class="pagination-wrap2">
-            <div class="pagination">
-                <ul>
-                    <c:if test="${currentPage != 1}">
-                        <li>
-                            <form name="goPreviousPageForm" method="POST" action="LibraryServlet">
-                                <input type="hidden" name="command" value="go_to_catalog_page">
-                                <input type="hidden" name="page" value=${currentPage - 1}>
-                                <A HREF="javascript:document.goPreviousPageForm.submit()" class="pagination_prev"><</A>
-                            </form>
-                        </li>
-                    </c:if>
+    <tag:pagination currentPage="${currentPage}" command="go_to_catalog_page"
+                    numberOfPages="${noOfPages}"></tag:pagination>
 
-
-                    <c:forEach var="i" begin="1" end="${noOfPages}">
-                        <c:choose>
-                            <c:when test="${currentPage eq i}">
-                                <li class="pagination_active">
-                                    <a href="#">${i}</a>
-                                </li>
-                            </c:when>
-                            <c:otherwise>
-                                <li>
-                                    <form id="goPageForm${i}" method="POST" action="LibraryServlet">
-                                        <input type="hidden" name="command" value="go_to_catalog_page">
-                                        <input type="hidden" name="page" value=${i}>
-                                        <A HREF="javascript:document.getElementById('goPageForm${i}').submit()">${i}</A>
-                                    </form>
-                                </li>
-                            </c:otherwise>
-                        </c:choose>
-                    </c:forEach>
-
-
-                    <c:if test="${currentPage lt noOfPages}">
-                        <li>
-                            <form name="goNextPageForm" method="POST" action="LibraryServlet">
-                                <input type="hidden" name="command" value="go_to_catalog_page"/>
-                                <input type="hidden" name="page" value=${currentPage + 1}>
-                                <A HREF="javascript:document.goNextPageForm.submit()" class="pagination_next">></A>
-                            </form>
-                        </li>
-                    </c:if>
-                </ul>
+    <div class="text-message"><h2>${emptySearchResultMessage}</h2></div>
+    <c:choose>
+        <c:when test="${sessionScope.user.getType() == 'READER'}">
+            <div class="center">
+                <div class="text-message inline"><h2>${orderNoChecksMessage}${successOrderMessage}</h2></div>
+                <c:if test="${numOfOrdersMessage > 0}">
+                    <div class="text-message inline"><h2>(${numOfSuccessOrdersMessage}/${numOfOrdersMessage})</h2></div>
+                </c:if>
             </div>
-        </div>
-    </span>
+        </c:when>
+        <c:when test="${sessionScope.user.getType() == 'ADMINISTRATOR'}">
+            <div class="center">
+                <div class="text-message"><h2>${successDelBookFromCatalog}${unsuccessfulDelBookFromCatalog}</h2></div>
+            </div>
+        </c:when>
+        <c:otherwise>
+        </c:otherwise>
+    </c:choose>
 
-<div class="text-message"><h2>${emptySearchResultMessage}</h2></div>
-<c:choose>
-    <c:when test="${sessionScope.user.getType() == 'READER'}">
-        <div class="center">
-            <div class="text-message inline"><h2>${orderNoChecksMessage}${successOrderMessage}</h2></div>
-            <c:if test="${numOfOrdersMessage > 0}">
-                <div class="text-message inline"><h2>(${numOfSuccessOrdersMessage}/${numOfOrdersMessage})</h2></div>
-            </c:if>
-        </div>
-    </c:when>
-    <c:when test="${sessionScope.user.getType() == 'ADMINISTRATOR'}">
-        <div class="center">
-            <div class="text-message"><h2>${successDelBookFromCatalog}${unsuccessfulDelBookFromCatalog}</h2></div>
-        </div>
-    </c:when>
-    <c:otherwise>
-    </c:otherwise>
-</c:choose>
-
-</body>
-<%@include file="footer.jsp" %>
+    </body>
+    <%@include file="footer.jsp" %>
 </fmt:bundle>
 </html>

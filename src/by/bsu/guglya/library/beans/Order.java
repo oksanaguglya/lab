@@ -105,4 +105,5 @@ public class Order {
     public void setDateOfOrder(String dateOfOrder) {
         this.dateOfOrder = dateOfOrder;
     }
+
 }
