@@ -1,8 +1,7 @@
-package by.bsu.guglya.library.commands.catalog;
-
+package by.bsu.guglya.library.commands.order;
 
 import by.bsu.guglya.library.commands.Command;
-import by.bsu.guglya.library.logic.CatalogLogic;
+import by.bsu.guglya.library.commands.basket.BasketCommand;
 import by.bsu.guglya.library.logic.LogicException;
 import by.bsu.guglya.library.logic.OrderLogic;
 import by.bsu.guglya.library.managers.ConfigurationManager;
@@ -11,12 +10,11 @@ import by.bsu.guglya.library.managers.MessageManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-public class DelBookFromCatalogCommand implements Command {
+public class DelUserOrderCommand implements Command {
 
     private final static String LOCALE_PARAM = "locale";
-    private final static String CATALOG_ID_PARAM = "idCatalogDel";
-    private final static String SUCCESS_DEL_BOOK_FROM_CATALOG_MESSAGE_ATTR = "successDelBookFromCatalog";
-    private final static String UNSUCCESSFUL_DEL_BOOK_FROM_CATALOG_MESSAGE_ATTR = "unsuccessfulDelBookFromCatalog";
+    private final static String ORDER_ID_PARAM = "idOrderDel";
+    private final static String SUCCESS_DEL_ORDER_MESSAGE_ATTR = "successDelOrderMessage";
     private static final String DATABASE_ERROR_MESSAGE_ATTR = "errorDatabaseMessage";
 
     @Override
@@ -26,21 +24,18 @@ public class DelBookFromCatalogCommand implements Command {
         HttpSession session = request.getSession();
         String locale = (String)session.getAttribute(LOCALE_PARAM);
         MessageManager messageManager = new MessageManager(locale);
-        int idCatalog = Integer.parseInt(request.getParameter(CATALOG_ID_PARAM));
+        int idOrder = Integer.parseInt(request.getParameter(ORDER_ID_PARAM));
         try{
-            if(CatalogLogic.delCatalogItem(idCatalog)){
-                String message = messageManager.getProperty(MessageManager.DEL_BOOK_FROM_CATALOG_MESSAGE);
-                request.setAttribute(SUCCESS_DEL_BOOK_FROM_CATALOG_MESSAGE_ATTR, message);
-            }else{
-                String message = messageManager.getProperty(MessageManager.NOT_DEL_BOOK_FROM_CATALOG_MESSAGE);
-                request.setAttribute(UNSUCCESSFUL_DEL_BOOK_FROM_CATALOG_MESSAGE_ATTR, message);
+            if(OrderLogic.delOrder(idOrder)){
+                String message = messageManager.getProperty(MessageManager.DEL_USER_ORDER_MESSAGE);
+                request.setAttribute(SUCCESS_DEL_ORDER_MESSAGE_ATTR, message);
             }
         }catch(LogicException ex){
             request.setAttribute(DATABASE_ERROR_MESSAGE_ATTR, ex.getMessage());
             page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.ERROR_PATH_JSP);
             return page;
         }
-        page = new CatalogCommand().execute(request);
+        page = new UserOrdersCommand().execute(request);
         return page;
     }
 }

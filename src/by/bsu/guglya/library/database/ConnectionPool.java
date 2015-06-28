@@ -10,7 +10,6 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
-
 /**
  * This class creates and closes connections with database
  *
@@ -55,7 +54,6 @@ public class ConnectionPool {
             lock.lock();
             if (instance == null) {
                 instance = init();
-                //instance = new ConnectionPool();
             }
         } finally {
             lock.unlock();
@@ -69,21 +67,16 @@ public class ConnectionPool {
      */
     private static ConnectionPool init() throws SQLException {
         try {
-            //Registers the given driver with the DriverManager. A newly-loaded driver class should call the method
-            // registerDriver to make itself known to the DriverManager.
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+            //throw new SQLException();
         } catch (SQLException ex) {
             logger.error(ex.getMessage());
             throw new SQLException("Can't register database driver!");
         }
         try {
             String url = ConfigurationManager.getInstance().getProperty(ConfigurationManager.DATABASE_URL);
-            //Attempts to establish a connection to the given database URL. The DriverManager attempts to select
-            // an appropriate driver from the set of registered JDBC drivers.
             Connection connection = DriverManager.getConnection(url);
-            connections = new LinkedBlockingQueue<Connection>(MAX_POOL_SIZE);
-            //Inserts the specified element at the tail of this queue if it is possible to do so immediately without
-            // exceeding the queue's capacity, returning true upon success and false if this queue is full.
+            connections = new LinkedBlockingQueue<>(MAX_POOL_SIZE);
             connections.offer(connection);
             countConnections++;
         } catch (SQLException ex) {
@@ -101,7 +94,6 @@ public class ConnectionPool {
     public Connection getConnection() throws SQLException {
         Connection connection = null;
         try {
-            //Retrieves and removes the head of this queue, or returns null if this queue is empty.
             connection = connections.poll();
             if (connection == null) {
                 if (countConnections < MAX_POOL_SIZE) {
@@ -109,7 +101,6 @@ public class ConnectionPool {
                     connection = DriverManager.getConnection(url);
                     countConnections++;
                 } else {
-                    //Retrieves and removes the head of this queue, waiting if necessary until an element becomes available.
                     connection = connections.take();
                 }
             }
@@ -121,14 +112,12 @@ public class ConnectionPool {
         }
         return connection;
     }
-
     /**
      * This method returns a connection to connection pool
      */
     public void returnConnection(Connection connection) {
         connections.offer(connection);
     }
-
     /**
      * This method tries to close remaining connections of connection pool
      */
@@ -136,8 +125,6 @@ public class ConnectionPool {
         int remainingConnections = countConnections;
         while (remainingConnections > 0) {
             try {
-                //Retrieves and removes the head of this queue, waiting up to the specified wait time if necessary
-                // for an element to become available.
                 connections.poll(WAITING_TIME, TimeUnit.MILLISECONDS).close();
             } catch (SQLException ex) {
                 logger.error(ex.getMessage());

@@ -36,26 +36,4 @@ public class CatalogLogic {
         return result;
     }
 
-    public static boolean catalogItemInLibrary(int idOrder) throws  LogicException{
-        CatalogDAO catalogDAO = new CatalogDAO();
-        boolean result = false;
-        try{
-            result = catalogDAO.checkCatalogItemQtyGT0(idOrder);
-        }catch(DAOException ex){
-            throw new LogicException(ex.getMessage());
-        }
-        return result;
-    }
-
-
-    public static boolean subCatalogItemQty(int idOrder, int qty) throws  LogicException{
-        CatalogDAO catalogDAO = new CatalogDAO();
-        boolean result = false;
-        try{
-            result = catalogDAO.subCatalogItemQtyById(idOrder, qty);
-        }catch(DAOException ex){
-            throw new LogicException(ex.getMessage());
-        }
-        return result;
-    }
 }

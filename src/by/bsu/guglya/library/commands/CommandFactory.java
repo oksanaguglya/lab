@@ -14,10 +14,7 @@ import by.bsu.guglya.library.commands.navigation.GoToAboutUsPageCommand;
 import by.bsu.guglya.library.commands.navigation.GoToHomePageCommand;
 import by.bsu.guglya.library.commands.navigation.GoToLoginPageCommand;
 import by.bsu.guglya.library.commands.navigation.GoToRegistrationPageCommand;
-import by.bsu.guglya.library.commands.order.AllUserOrdersCommand;
-import by.bsu.guglya.library.commands.order.NewOrdersCommand;
-import by.bsu.guglya.library.commands.order.ProcessOrderCommand;
-import by.bsu.guglya.library.commands.order.UserOrdersCommand;
+import by.bsu.guglya.library.commands.order.*;
 import by.bsu.guglya.library.commands.util.ChangeLanguageCommand;
 
 import javax.servlet.http.HttpServletRequest;
@@ -50,6 +47,8 @@ public class CommandFactory {
         commands.put("del_book_from_catalog", new DelBookFromCatalogCommand());
         commands.put("process_order", new ProcessOrderCommand());
         commands.put("go_to_add_book_to_catalog_page", new GoToAddBookToCatalogPageCommand());
+        commands.put("del_user_order", new DelUserOrderCommand());
+        commands.put("return_user_order", new ReturnUserOrderCommand());
     }
 
     public Command getCommand(HttpServletRequest request) {
