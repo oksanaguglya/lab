@@ -25,12 +25,10 @@ public class CatalogDAO extends AbstractDAO {
             "from library.catalog " +
             "join library.book on library.catalog.book = library.book.idbook " +
             "where library.book.title like ? or library.book.author like ?;";
-    public static final String UPDATE_CATALOG_QTY_BY_IDORDER = "update library.catalog " +
-            "join library.order on library.catalog.idcatalog=library.order.catalog_item " +
-            "set library.catalog.quantity=library.catalog.quantity-? where library.order.idorder=?;";
-    public static final String GET_CATALOG_ITEM_QTY = "select catalog.quantity from library.catalog "+
-    "join library.order on library.catalog.idcatalog=library.order.catalog_item " +
-    "where library.order.idorder=?;";
+    public static final String GET_ORDERS_BY_IDCATALOG =
+            "select library.order.idorder from library.order " +
+                    "join library.catalog on library.order.catalog_item=library.catalog.idcatalog " +
+                    "where library.catalog.idcatalog=?;";
 
     public List<CatalogItem> getCatalogItemsBySearchText(String searchText, int offset, int limit) throws DAOException{
         List<CatalogItem> items = new ArrayList<>(limit);
@@ -89,51 +87,18 @@ public class CatalogDAO extends AbstractDAO {
         boolean result = false;
         getConnection();
         try {
-            ps = conn.prepareStatement(DELETE_CATALOG_ITEM_BY_ID);
+            ps = conn.prepareStatement(GET_ORDERS_BY_IDCATALOG);
             ps.setInt(1, idCatalog);
-            ps.executeUpdate();
-            result = true;
-        } catch (SQLException ex) {
-            logger.error(ex.getMessage());
-            throw new DAOException("Error while trying to access the database!");
-        } finally {
-            closeConnection();
-        }
-        return result;
-    }
-
-    public boolean checkCatalogItemQtyGT0(int idOrder) throws DAOException {
-        boolean result = false;
-        getConnection();
-        try {
-            ps = conn.prepareStatement(GET_CATALOG_ITEM_QTY);
-            ps.setInt(1, idOrder);
             resultSet = ps.executeQuery();
-            resultSet.next();
-            int quantity = resultSet.getInt("catalog.quantity");
-            if(quantity > 0){
-                result = true;
-            }else{
+            boolean active = resultSet.first();
+            if(active){
                 result = false;
-            }
-        } catch (SQLException ex) {
-            logger.error(ex.getMessage());
-            throw new DAOException("Error while trying to access the database!");
-        } finally {
-            closeConnection();
-        }
-        return result;
-    }
-
-    public boolean subCatalogItemQtyById(int idOrder, int qty) throws DAOException {
-        boolean result = false;
-        getConnection();
-        try {
-                ps = conn.prepareStatement(UPDATE_CATALOG_QTY_BY_IDORDER);
-                ps.setInt(1, qty);
-                ps.setInt(2, idOrder);
+            }else{
+                ps = conn.prepareStatement(DELETE_CATALOG_ITEM_BY_ID);
+                ps.setInt(1, idCatalog);
                 ps.executeUpdate();
                 result = true;
+            }
         } catch (SQLException ex) {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");

@@ -19,7 +19,6 @@ A:visited {
 }
 
 .header-background{
-    /*background-color: rgb(248, 225, 250);*/
     background-image: url(/images/header_background.jpg);
     border-bottom: 4px double black;
 }
@@ -185,7 +184,7 @@ th {
     text-align: center;
 }
 
-.table-col-quantity{
+.table-col-quantity, .table-col-process-user{
     width: 9%;
     text-align: center;
 }

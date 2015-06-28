@@ -53,6 +53,9 @@
                         <c:when test="${item.getType() == 'DENIED'}">
                             <td class="table-col-state fs"><fmt:message key="order.denied"></fmt:message></td>
                         </c:when>
+                        <c:when test="${item.getType() == 'RETURNED'}">
+                            <td class="table-col-qty fs"><fmt:message key="order.returned"></fmt:message></td>
+                        </c:when>
                         <c:otherwise>
                             <td class="table-col-state fs"><fmt:message key="order.proc"></fmt:message></td>
                         </c:otherwise>
