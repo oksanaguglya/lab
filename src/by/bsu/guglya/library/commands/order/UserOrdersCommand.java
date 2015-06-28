@@ -54,10 +54,9 @@ public class UserOrdersCommand implements Command {
 
         User user = (User) session.getAttribute(USER_ATTR);
         int idUser = user.getId();
-        Order.TypeOfOrder state = Order.TypeOfOrder.NEW;
         PageItems result;
         try{
-            result = OrderLogic.getUserOrderItems(searchText, idUser, state, pageNo);
+            result = OrderLogic.getUserOrderItems(searchText, idUser, pageNo);
         }catch(LogicException ex){
             request.setAttribute(DATABASE_ERROR_MESSAGE_ATTR, ex.getMessage());
             page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.ERROR_PATH_JSP);

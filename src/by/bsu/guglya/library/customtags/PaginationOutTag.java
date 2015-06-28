@@ -11,8 +11,8 @@ import java.util.ResourceBundle;
 public class PaginationOutTag extends TagSupport {
 
     private static final String RESOURCE_PATH = "by.bsu.guglya.library.resources.gui";
-    private static final String FORM_NAME = "form.name";
-    private static final String FORM_NAME_ID = "form.name.id";
+    private static final String FORM_NAME = "form.pagination.prev_next";
+    private static final String FORM_NAME_ID = "form.pagination.id";
     private static final String ACTIVE_LINK = "active.link";
     private static final String ALIAS_PAGE = "1";
     private static final int LINKS_PER_PAGE = 5;

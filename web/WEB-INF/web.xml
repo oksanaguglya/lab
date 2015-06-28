@@ -13,10 +13,17 @@
     <listener>
         <listener-class>by.bsu.guglya.library.controllers.listeners.LibraryContextListener</listener-class>
     </listener>
+    <listener>
+        <listener-class>by.bsu.guglya.library.controllers.listeners.LibrarySessionListener</listener-class>
+    </listener>
     <context-param>
         <param-name>log4j</param-name>
         <param-value>D:\Projects\Lab\src\log4j.xml</param-value>
     </context-param>
+    <!--<context-param>
+        <param-name>javax.servlet.jsp.jstl.fmt.locale</param-name>
+        <param-value>ru_RU</param-value>
+    </context-param>-->
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
@@ -45,6 +52,10 @@
     </session-config>
     <error-page>
         <error-code>500</error-code>
+        <location>/jsp/error.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
         <location>/jsp/error.jsp</location>
     </error-page>
 </web-app>

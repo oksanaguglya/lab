@@ -44,7 +44,7 @@ public class ProcessOrderCommand implements Command {
         try{
             switch(action){
                 case APPROVE_ORDER:
-                    if(OrderLogic.giveBook(idOrder)){
+                    if(OrderLogic.approveOrder(idOrder)){
                         message = messageManager.getProperty(MessageManager.ORDER_PROCESS_APPROVED_MESSAGE);
                         request.setAttribute(ORDER_PROCESS_APPROVED_MESSAGE_ATTR, message);
                     }else{
@@ -53,10 +53,10 @@ public class ProcessOrderCommand implements Command {
                     }
                     break;
                 case DENIED_ORDER:
-                    OrderLogic.changeOrderState(idOrder, Order.TypeOfOrder.DENIED);
-                    message = messageManager.getProperty(MessageManager.ORDER_PROCESS_DENIED_MESSAGE);
-                    request.setAttribute(ORDER_PROCESS_DENIED_MESSAGE_ATTR, message);
-                    break;
+                    if(OrderLogic.denyOrder(idOrder)){
+                        message = messageManager.getProperty(MessageManager.ORDER_PROCESS_DENIED_MESSAGE);
+                        request.setAttribute(ORDER_PROCESS_DENIED_MESSAGE_ATTR, message);
+                    }
                 default:
                     message = messageManager.getProperty(MessageManager.ORDER_PROCESS_NO_SUCCESS_MESSAGE);
                     request.setAttribute(ORDER_PROCESS_NO_SUCCESS_MESSAGE_ATTR, message);
