@@ -28,8 +28,10 @@ public class MessageManager {
     public static final String ORDER_PROCESS_DENIED_MESSAGE = "ORDER_PROCESS_DENIED_MESSAGE";
     public static final String ORDER_PROCESS_NO_SUCCESS_MESSAGE = "ORDER_PROCESS_NO_SUCCESS_MESSAGE";
     public static final String ORDER_PROCESS_NOT_ENOUGH_MESSAGE = "ORDER_PROCESS_NO_ENOUGH_MESSAGE";
-    //public static final String DEFAULT_LANGUAGE = "ru";
-    //public static final String DEFAULT_COUNTRY = "RU";
+    public static final String DEL_USER_ORDER_MESSAGE = "DEL_USER_ORDER_MESSAGE";
+    public static final String RETURN_USER_ORDER_MESSAGE = "RETURN_USER_ORDER_MESSAGE";
+    public static final String DEFAULT_LANGUAGE = "ru";
+    public static final String DEFAULT_COUNTRY = "RU";
 
     public MessageManager(String locale) {
        /* if(locale == null){

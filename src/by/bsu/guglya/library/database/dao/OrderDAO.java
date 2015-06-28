@@ -3,12 +3,16 @@ package by.bsu.guglya.library.database.dao;
 import by.bsu.guglya.library.beans.*;
 import org.apache.log4j.Logger;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class OrderDAO extends AbstractDAO {
     private static final Logger logger = Logger.getLogger(OrderDAO.class);
+    private static ReentrantLock lock = new ReentrantLock();
+
     public static final String GET_IDORDER_TYPE = "select idorder_type from library.order_type where type=?;";
     public static final String GET_ORDER_BY_USER_AND_IDCATALOG_AND_STATE = "select * from library.order where library.order.catalog_item=? and library.order.user=? and library.order.state=?;";
     public static final String UPDATE_ORDER_WITH_QTY_BY_USER_AND_IDCATALOG_AND_STATE = "update library.order set library.order.quantity=library.order.quantity+? where library.order.catalog_item=? and library.order.user=? and library.order.state=?;";
@@ -25,18 +29,14 @@ public class OrderDAO extends AbstractDAO {
     public static final String DELETE_ORDER_BY_ID = "delete from library.order where library.order.idorder=?;";
     public static final String CHANGE_ORDER_STATE_AND_DATE_BY_USER_AND_STATE = "update library.order set library.order.state=?, library.order.date_of_order=? where library.order.user=? and library.order.state=?;";
     public static final String CHANGE_ORDER_STATE_BY_ID = "update library.order set library.order.state=? where library.order.idorder=?;";
-    public static final String GET_ORDERS_BY_IDCATALOG =
-            "select library.order.idorder from library.order " +
-                    "join library.catalog on library.order.catalog_item=library.catalog.idcatalog " +
-                    "where library.catalog.idcatalog=?;";
-    public static final String GET_ORDER_ITEMS_BY_SEARCHTEXT_AND_USER_AND_NOT_IN_STATE = "select order.idorder, user.login, book.idbook, book.title, book.author, book.year, book_type.type, catalog.idcatalog, catalog.quantity, order.quantity, order_type.type from library.order " +
+    public static final String GET_ORDER_ITEMS_BY_SEARCHTEXT_AND_USER_AND_NOT_IN_STATE = "select order.idorder, book.idbook, book.title, book.author, book.year, book_type.type, catalog.idcatalog, catalog.quantity, order.quantity, order_type.type, order.date_of_order from library.order " +
             "join library.order_type on library.order.state = library.order_type.idorder_type " +
             "join library.catalog on library.order.catalog_item = library.catalog.idcatalog " +
             "join library.book on library.book.idbook = library.catalog.book " +
             "join library.book_type on library.book.book_type=library.book_type.idbook_type " +
             "join library.user on library.order.user = library.user.iduser " +
             "where (book.title like ? or book.author like ?) and (library.order.user=? and library.order.state!=?) " +
-            "order by book.title limit ? offset ?;";
+            "order by order.date_of_order limit ? offset ?;";
     public static final String GET_ORDER_ITEMS_BY_SEARCHTEXT_AND_USER_AND_NOT_IN_STATE_COUNT =
             "select count(*) from library.order " +
                     "join library.catalog on library.order.catalog_item = library.catalog.idcatalog " +
@@ -62,6 +62,28 @@ public class OrderDAO extends AbstractDAO {
             "order by order.date_of_order limit ? offset ?;";
     public static final String GET_ORDER_ITEMS_BY_SEARCHTEXT_NOT_IN_STATE_COUNT =
             "select count(*) from library.order join library.user on library.order.user = library.user.iduser where (user.login like ?) and library.order.state!=?;";
+    public static final String GET_QUANTITY_AND_QTY_FOR_ORDERID = "select order.quantity, catalog.quantity from library.order " +
+            "join library.catalog on library.catalog.idcatalog=library.order.catalog_item " +
+            "where library.order.idorder=?;";
+    public static final String UPDATE_CATALOG_SUB_QTY_BY_IDORDER = "update library.catalog " +
+            "join library.order on library.catalog.idcatalog=library.order.catalog_item " +
+            "set library.catalog.quantity=library.catalog.quantity-? where library.order.idorder=?;";
+    public static final String UPDATE_CATALOG_ADD_QTY_BY_IDORDER = "update library.catalog " +
+            "join library.order on library.catalog.idcatalog=library.order.catalog_item " +
+            "set library.catalog.quantity=library.catalog.quantity+? where library.order.idorder=?;";
+
+    private CatalogItem createCatalogItem(ResultSet resultSet) throws SQLException {
+        int idBook = resultSet.getInt("idbook");
+        String title = resultSet.getString("title");
+        String author = resultSet.getString("author");
+        int year = resultSet.getInt("year");
+        String bookType = resultSet.getString("type");
+        Book book = new Book(idBook, title, author, year, Book.TypeOfBook.valueOf(bookType.toUpperCase()));
+        int idCatalog = resultSet.getInt("idcatalog");
+        int quantity = resultSet.getInt("catalog.quantity");
+        CatalogItem catalogItem = new CatalogItem(idCatalog, book, quantity);
+        return catalogItem;
+    }
 
     private int getIdOrderType(Order.TypeOfOrder type) throws DAOException {
         int result = 0;
@@ -152,21 +174,12 @@ public class OrderDAO extends AbstractDAO {
             ps.setInt(3, limit);
             ps.setInt(4, offset);
             resultSet = ps.executeQuery();
-            Order item = null;
             CatalogItem catalogItem = null;
-            Book book = null;
+            Order item = null;
             while (resultSet.next()) {
-                int idBook = resultSet.getInt("idbook");
-                String title = resultSet.getString("title");
-                String author = resultSet.getString("author");
-                int year = resultSet.getInt("year");
-                String bookType = resultSet.getString("type");
-                book = new Book(idBook, title, author, year, Book.TypeOfBook.valueOf(bookType.toUpperCase()));
-                int idCatalog = resultSet.getInt("idcatalog");
-                int quantity = resultSet.getInt("catalog.quantity");
-                int qty = resultSet.getInt("order.quantity");
-                catalogItem = new CatalogItem(idCatalog, book, quantity);
+                catalogItem = createCatalogItem(resultSet);
                 int idOrder = resultSet.getInt("idorder");
+                int qty = resultSet.getInt("order.quantity");
                 item = new Order(idOrder, idUser, catalogItem, qty, Order.TypeOfOrder.NEW);
                 items.add(item);
             }
@@ -273,22 +286,13 @@ public class OrderDAO extends AbstractDAO {
             resultSet = ps.executeQuery();
             Order item = null;
             CatalogItem catalogItem = null;
-            Book book = null;
             while (resultSet.next()) {
-                String title = resultSet.getString("title");
-                String author = resultSet.getString("author");
-                int year = resultSet.getInt("year");
-                String bookType = resultSet.getString("book_type.type");
-                int idBook = resultSet.getInt("idbook");
-                book = new Book(idBook, title, author, year, Book.TypeOfBook.valueOf(bookType.toUpperCase()));
-                int idCatalog = resultSet.getInt("idcatalog");
-                int quantity = resultSet.getInt("catalog.quantity");
-                catalogItem = new CatalogItem(idCatalog, book, quantity);
+                catalogItem = createCatalogItem(resultSet);
                 int idOrder = resultSet.getInt("idorder");
-                String login = resultSet.getString("login");
                 int qty = resultSet.getInt("order.quantity");
                 String orderState = resultSet.getString("order_type.type");
-                item = new Order(idOrder, idUser, login, catalogItem, qty, Order.TypeOfOrder.valueOf(orderState.toUpperCase()));
+                String date = resultSet.getString("date_of_order");
+                item = new Order(idOrder, idUser, catalogItem, qty, Order.TypeOfOrder.valueOf(orderState.toUpperCase()), date);
                 items.add(item);
             }
         } catch (SQLException ex) {
@@ -335,17 +339,8 @@ public class OrderDAO extends AbstractDAO {
             resultSet = ps.executeQuery();
             Order order = null;
             CatalogItem catalogItem = null;
-            Book book = null;
             while (resultSet.next()) {
-                int idBook = resultSet.getInt("idbook");
-                String title = resultSet.getString("title");
-                String author = resultSet.getString("author");
-                int year = resultSet.getInt("year");
-                String bookType = resultSet.getString("book_type.type");
-                book = new Book(idBook, title, author, year, Book.TypeOfBook.valueOf(bookType.toUpperCase()));
-                int idCatalog = resultSet.getInt("idcatalog");
-                int quantity = resultSet.getInt("catalog.quantity");
-                catalogItem = new CatalogItem(idCatalog, book, quantity);
+                catalogItem = createCatalogItem(resultSet);
                 int idOrder = resultSet.getInt("idorder");
                 int idUser = resultSet.getInt("user.iduser");
                 String login = resultSet.getString("login");
@@ -401,17 +396,8 @@ public class OrderDAO extends AbstractDAO {
             resultSet = ps.executeQuery();
             Order item = null;
             CatalogItem catalogItem = null;
-            Book book = null;
             while (resultSet.next()) {
-                String title = resultSet.getString("title");
-                String author = resultSet.getString("author");
-                int year = resultSet.getInt("year");
-                String bookType = resultSet.getString("book_type.type");
-                int idBook = resultSet.getInt("idbook");
-                book = new Book(idBook, title, author, year, Book.TypeOfBook.valueOf(bookType.toUpperCase()));
-                int idCatalog = resultSet.getInt("idcatalog");
-                int quantity = resultSet.getInt("catalog.quantity");
-                catalogItem = new CatalogItem(idCatalog, book, quantity);
+                catalogItem = createCatalogItem(resultSet);
                 int idOrder = resultSet.getInt("idorder");
                 int idUser = resultSet.getInt("user.iduser");
                 String login = resultSet.getString("login");
@@ -455,21 +441,91 @@ public class OrderDAO extends AbstractDAO {
         return result;
     }
 
-    public boolean checkCatalogItemExistInOrder(int idCatalog) throws DAOException {
+    public boolean approveOrderById(int idOrder) throws DAOException {
+        boolean result = false;
+        try {
+            lock.lock();
+            getConnection();
+            int idOrderTypeAppr = getIdOrderType(Order.TypeOfOrder.APPROVED);
+            try {
+                ps = conn.prepareStatement(GET_QUANTITY_AND_QTY_FOR_ORDERID);
+                ps.setInt(1, idOrder);
+                resultSet = ps.executeQuery();
+                resultSet.next();
+                int quantity = resultSet.getInt("order.quantity");
+                int qty = resultSet.getInt("catalog.quantity");
+                if (quantity <= qty) {
+                    try {
+                        conn.setAutoCommit(false);
+                        ps = conn.prepareStatement(UPDATE_CATALOG_SUB_QTY_BY_IDORDER);
+                        ps.setInt(1, quantity);
+                        ps.setInt(2, idOrder);
+                        ps.executeUpdate();
+                        ps = conn.prepareStatement(CHANGE_ORDER_STATE_BY_ID);
+                        ps.setInt(1, idOrderTypeAppr);
+                        ps.setInt(2, idOrder);
+                        ps.executeUpdate();
+                        conn.commit();
+                        result = true;
+                    } catch (SQLException ex) {
+                        conn.rollback();
+                        logger.error(ex.getMessage());
+                        throw new DAOException("Error while trying to access the database!");
+                    } finally {
+                        conn.setAutoCommit(true);
+                    }
+                } else {
+                    result = false;
+                }
+            } catch (SQLException ex) {
+                logger.error(ex.getMessage());
+                throw new DAOException("Error while trying to access the database!");
+            } finally {
+                closeConnection();
+            }
+        } finally {
+            lock.unlock();
+        }
+        return result;
+    }
+
+    public boolean returnOrderById(int idOrder) throws DAOException {
         boolean result = false;
         getConnection();
+        int idOrderTypeRet = getIdOrderType(Order.TypeOfOrder.RETURNED);
         try {
-            ps = conn.prepareStatement(GET_ORDERS_BY_IDCATALOG);
-            ps.setInt(1, idCatalog);
+            ps = conn.prepareStatement(GET_QUANTITY_AND_QTY_FOR_ORDERID);
+            ps.setInt(1, idOrder);
             resultSet = ps.executeQuery();
-            result = resultSet.first();
-        } catch (SQLException ex) {
+            resultSet.next();
+            int quantity = resultSet.getInt("order.quantity");
+            try {
+                conn.setAutoCommit(false);
+                ps = conn.prepareStatement(UPDATE_CATALOG_ADD_QTY_BY_IDORDER);
+                ps.setInt(1, quantity);
+                ps.setInt(2, idOrder);
+                ps.executeUpdate();
+                ps = conn.prepareStatement(CHANGE_ORDER_STATE_BY_ID);
+                ps.setInt(1, idOrderTypeRet);
+                ps.setInt(2, idOrder);
+                ps.executeUpdate();
+                conn.commit();
+                result = true;
+            } catch (SQLException ex) {
+                conn.rollback();
+                logger.error(ex.getMessage());
+                throw new DAOException("Error while trying to access the database!");
+            } finally {
+                conn.setAutoCommit(true);
+            }
+        } catch (SQLException ex){
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
-        } finally {
+        } finally{
             closeConnection();
         }
         return result;
     }
+
 }
 

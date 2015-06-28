@@ -3,7 +3,7 @@ package by.bsu.guglya.library.beans;
 public class Order {
 
     public enum TypeOfOrder{
-        NEW, IN_PROCESSING, APPROVED, DENIED
+        NEW, IN_PROCESSING, APPROVED, DENIED, RETURNED
     }
 
     private int id;
