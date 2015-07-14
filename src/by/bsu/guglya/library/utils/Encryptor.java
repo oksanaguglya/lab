@@ -1,7 +1,7 @@
 package by.bsu.guglya.library.utils;
 
-/**
- * Created by Andrei Navoichyk on 14.07.2015.
- */
+import java.security.NoSuchAlgorithmException;
+
 public interface Encryptor {
+    public String Encrypt(String s) throws NoSuchAlgorithmException;
 }
