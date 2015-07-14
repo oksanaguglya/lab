@@ -8,6 +8,8 @@ import by.bsu.guglya.library.managers.MessageManager;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegistrationCommand implements Command {
 
@@ -63,5 +65,11 @@ public class RegistrationCommand implements Command {
             page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.ERROR_PATH_JSP);
         }
         return page;
+    }
+
+    private boolean checkWithRegex(String s) {
+        Pattern p = Pattern.compile("^[a-zA-Z0-9]{8,20}$");
+        Matcher m = p.matcher(s);
+        return m.matches();
     }
 }
