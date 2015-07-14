@@ -13,4 +13,5 @@ public class LogoutCommand implements Command {
         String page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.INDEX_PATH_JSP);
         return page;
     }
+
 }

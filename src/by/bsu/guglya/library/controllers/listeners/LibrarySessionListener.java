@@ -2,6 +2,7 @@ package by.bsu.guglya.library.controllers.listeners;
 
 import org.apache.log4j.Logger;
 
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
@@ -19,7 +20,7 @@ public class LibrarySessionListener implements HttpSessionListener {
      * @param se a HttpSessionEvent
      */
     public void sessionCreated(HttpSessionEvent se) {
-        logger.info("hello");
+        logger.info("session created");
     }
 
     /**
@@ -27,6 +28,13 @@ public class LibrarySessionListener implements HttpSessionListener {
      * @param se a HttpSessionEvent
      */
     public void sessionDestroyed(HttpSessionEvent se) {
-        logger.info("buy");
+        logger.info("session destroyed");
+        HttpSession session = se.getSession();
+        long now = new java.util.Date().getTime();
+        boolean timeout = (now - session.getLastAccessedTime()) >= ((long)session.getMaxInactiveInterval() * 1000L);
+        if(timeout){
+            session.setAttribute("timeout", true);
+        }
     }
+
 }
