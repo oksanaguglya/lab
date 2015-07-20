@@ -1,9 +1,12 @@
-<project name="library" default="compile">
+<project name="library" default="war">
 
 	<property name="dir.build" value="../.build"/>
 	<property name="dir.classes" value="${dir.build}/classes"/>
 	<property name="dir.src" value="../src"/>
 	<property name="dir.lib" value="../libs"/>
+	<property name="dir.web" value="../web"/>
+	<property name="name.application" value="library"/>
+	<property name="file.war" value="${dir.build}/${name.application}.war"/>
       
 	<path id="libs.jstl">
         	<fileset dir="${dir.lib}/jstl-1.2">
@@ -42,7 +45,7 @@
 		<delete dir="${dir.build}"/>
 	</target>
 
-	<target name="mkdirs">
+	<target name="mkdirs" depends="clean">
 		<mkdir dir="${dir.classes}"/>
 	</target>
 
@@ -52,6 +55,13 @@
                 		<path refid="libs.main.module"/>                                                                 
             		</classpath>
 		</javac>
+	</target>
+
+	<target name="war" depends="compile">
+        	<war destfile="${dir.build}/${file.war}" webxml="${dir.web}/WEB-INF/web.xml"> 
+			<fileset dir="${dir.web}"/>
+			<classes dir="${dir.classes}"/>
+        	</war>
 	</target>
 
 </project>
