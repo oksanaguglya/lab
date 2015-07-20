@@ -1,0 +1,57 @@
+<project name="library" default="compile">
+
+	<property name="dir.build" value="../.build"/>
+	<property name="dir.classes" value="${dir.build}/classes"/>
+	<property name="dir.src" value="../src"/>
+	<property name="dir.lib" value="../libs"/>
+      
+	<path id="libs.jstl">
+        	<fileset dir="${dir.lib}/jstl-1.2">
+            		<include name="*.jar"/>
+        	</fileset>
+    	</path>
+	<path id="libs.log4j">
+        	<fileset dir="${dir.lib}/log4j-1.2.14">
+            		<include name="*.jar"/>
+        	</fileset>
+    	</path>
+	<path id="libs.mysqlconnector">
+        	<fileset dir="${dir.lib}/mysql-connector-5.1.12">
+            		<include name="*.jar"/>
+        	</fileset>
+    	</path> 
+	<path id="libs.servlet-api">
+        	<fileset dir="${dir.lib}/servlet-api">
+            		<include name="*.jar"/>
+        	</fileset>
+    	</path>
+	<path id="libs.jsp-api">
+        	<fileset dir="${dir.lib}/jsp-api">
+            		<include name="*.jar"/>
+        	</fileset>
+    	</path>                                                           
+	<path id="libs.main.module">         
+		<path refid="libs.jstl"/>
+		<path refid="libs.log4j"/>
+		<path refid="libs.mysqlconnector"/> 
+		<path refid="libs.servlet-api"/>
+		<path refid="libs.jsp-api"/>   	
+	</path>
+
+	<target name="clean">
+		<delete dir="${dir.build}"/>
+	</target>
+
+	<target name="mkdirs">
+		<mkdir dir="${dir.classes}"/>
+	</target>
+
+	<target name="compile" depends="mkdirs">
+		<javac srcdir="${dir.src}" destdir="${dir.classes}">                         
+			<classpath>
+                		<path refid="libs.main.module"/>                                                                 
+            		</classpath>
+		</javac>
+	</target>
+
+</project>
