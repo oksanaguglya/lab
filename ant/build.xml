@@ -5,6 +5,10 @@
 	<property name="dir.src" value="../src"/>
 	<property name="dir.lib" value="../libs"/>
 	<property name="dir.web" value="../web"/>
+	<property name="dir.war.content" value="${dir.build}/war.content"/>
+	<property name="dir.war.content.webinf" value="${dir.war.content}/WEB-INF"/>
+	<property name="dir.war.content.webinf.classes" value="${dir.war.content.webinf}/classes"/>
+	<property name="dir.war.content.webinf.lib" value="${dir.war.content.webinf}/lib"/>
 	<property name="name.application" value="library"/>
 	<property name="file.war" value="${dir.build}/${name.application}.war"/>
       
@@ -46,7 +50,9 @@
 	</target>
 
 	<target name="mkdirs" depends="clean">
+		<mkdir dir="${dir.build}"/>
 		<mkdir dir="${dir.classes}"/>
+		<mkdir dir="${dir.war.content}"/>
 	</target>
 
 	<target name="compile" depends="mkdirs">
@@ -57,10 +63,22 @@
 		</javac>
 	</target>
 
-	<target name="war" depends="compile">
-        	<war destfile="${dir.build}/${file.war}" webxml="${dir.web}/WEB-INF/web.xml"> 
-			<fileset dir="${dir.web}"/>
-			<classes dir="${dir.classes}"/>
+	<target name="build.war.content" depends="compile">
+        	<copy todir="${dir.war.content}">
+            		<fileset dir="${dir.web}"/>
+        	</copy>
+		<copy todir="${dir.war.content.webinf.classes}">
+            		<fileset dir="${dir.classes}"/>
+        	</copy>
+       		<copy todir="${dir.war.content.webinf.lib}">
+            		<path refid="libs.main.module"/>
+        	</copy>
+		<copy file="${dir.src}/log4j.xml" todir="${dir.war.content.webinf.classes}"/>                                                                                                 
+	</target>	
+
+	<target name="war" depends="build.war.content">
+        	<war destfile="${dir.build}/${file.war}" webxml="${dir.war.content.webinf}/web.xml"> 
+			<fileset dir="${dir.war.content}" excludes="WEB-INF/web.xml"/>
         	</war>
 	</target>
 
