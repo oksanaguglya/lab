@@ -9,9 +9,14 @@
 	<property name="dir.war.content.webinf" value="${dir.war.content}/WEB-INF"/>
 	<property name="dir.war.content.webinf.classes" value="${dir.war.content.webinf}/classes"/>
 	<property name="dir.war.content.webinf.lib" value="${dir.war.content.webinf}/lib"/>
-	<property name="name.application" value="library"/>
+	<property name="name.application" value="project"/>
 	<property name="file.war" value="${dir.build}/${name.application}.war"/>
       
+	<path id="properties">
+		<fileset dir="${dir.src}/">
+            		<include name="**/*.properties"/>
+        	</fileset>
+	</path>
 	<path id="libs.jstl">
         	<fileset dir="${dir.lib}/jstl-1.2">
             		<include name="*.jar"/>
@@ -69,6 +74,9 @@
         	</copy>
 		<copy todir="${dir.war.content.webinf.classes}">
             		<fileset dir="${dir.classes}"/>
+        	</copy>
+		<copy todir="${dir.war.content.webinf.classes}">
+            		<path refid="properties"/>
         	</copy>
        		<copy todir="${dir.war.content.webinf.lib}">
             		<path refid="libs.main.module"/>
