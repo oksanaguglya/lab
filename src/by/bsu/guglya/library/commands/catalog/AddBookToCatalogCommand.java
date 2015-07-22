@@ -38,7 +38,7 @@ public class AddBookToCatalogCommand implements Command {
         String quantity_str = request.getParameter(QUANTITY_PARAM);
         int idBook;
         try{
-            String message = null;
+            String message;
             if(Validator.validatorCatalogItemInput(title, author, year_str, quantity_str)){
                 int year = Integer.parseInt(year_str);
                 int quantity = Integer.parseInt(quantity_str);
@@ -59,8 +59,8 @@ public class AddBookToCatalogCommand implements Command {
                         message = messageManager.getProperty(MessageManager.ADD_BOOK_TO_CATALOG_UNSUCCESS_MESSAGE);
                     }
                 }
+                request.setAttribute(RESULT_MESSAGE_ATTR, message);
             }
-            request.setAttribute(RESULT_MESSAGE_ATTR, message);
         }catch(InputException ex){
             request.setAttribute(RESULT_MESSAGE_ATTR, ex.getMessage());
             page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.BOOK_EDITOR_CATALOG_PATH_JSP);

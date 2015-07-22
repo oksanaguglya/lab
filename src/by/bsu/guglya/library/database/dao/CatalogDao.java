@@ -34,6 +34,8 @@ public class CatalogDAO extends AbstractDAO {
             "from library.catalog join library.book on library.catalog.book=library.book.idbook " +
             "join library.book_type on library.book.book_type = library.book_type.idbook_type " +
             "where idcatalog=?;";
+    public static final String GET_IDBOOK_BY_IDCATALOG = "select book from library.catalog where library.catalog.idcatalog=?;";
+    public static final String UPDATE_CATALOG_ITEM = "update library.catalog set library.catalog.quantity=? where library.catalog.idcatalog=?;";
 
     public List<CatalogItem> getCatalogItemsBySearchText(String searchText, int offset, int limit) throws DAOException {
         List<CatalogItem> items = new ArrayList<>(limit);
@@ -212,6 +214,50 @@ public class CatalogDAO extends AbstractDAO {
             closeConnection();
         }
         return catalogItem;
+    }
+
+    public boolean changeCatalogItem(int idCatalog, String title, String author, int year, Book.TypeOfBook bookType, int quantity) throws DAOException {
+        boolean result = false;
+        getConnection();
+        try {
+            ps = conn.prepareStatement(BookDAO.GET_IDBOOK_TYPE);
+            ps.setString(1, bookType.toString().toLowerCase());
+            resultSet = ps.executeQuery();
+            resultSet.first();
+            int idBookType = resultSet.getInt("idbook_type");
+            ps = conn.prepareStatement(GET_IDBOOK_BY_IDCATALOG);
+            ps.setInt(1, idCatalog);
+            resultSet = ps.executeQuery();
+            resultSet.first();
+            int idBook = resultSet.getInt("book");
+            try {
+                conn.setAutoCommit(false);
+                ps = conn.prepareStatement(BookDAO.UPDATE_BOOK);
+                ps.setString(1, title);
+                ps.setString(2, author);
+                ps.setInt(3, year);
+                ps.setInt(4, idBookType);
+                ps.setInt(5, idBook);
+                ps.executeUpdate();
+                ps = conn.prepareStatement(UPDATE_CATALOG_ITEM);
+                ps.setInt(1, quantity);
+                ps.setInt(2, idCatalog);
+                ps.executeUpdate();
+                result = true;
+            } catch (SQLException ex) {
+                conn.rollback();
+                logger.error(ex.getMessage());
+                throw new DAOException("Error while trying to access the database!");
+            } finally {
+                conn.setAutoCommit(true);
+            }
+        } catch (SQLException ex) {
+            logger.error(ex.getMessage());
+            throw new DAOException("Error while trying to access the database!");
+        } finally {
+            closeConnection();
+        }
+        return result;
     }
 
 }

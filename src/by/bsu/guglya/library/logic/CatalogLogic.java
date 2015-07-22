@@ -79,4 +79,15 @@ public class CatalogLogic {
         return catalogItem;
     }
 
+    public static boolean changeCatalogItem(int idCatalog, String title, String author, int year, Book.TypeOfBook bookType, int quantity) throws  LogicException{
+        CatalogDAO catalogDAO = new CatalogDAO();
+        boolean result = false;
+        try{
+            result = catalogDAO.changeCatalogItem(idCatalog, title, author, year, bookType, quantity);
+        }catch(DAOException ex){
+            throw new LogicException(ex.getMessage());
+        }
+        return result;
+    }
+
 }
