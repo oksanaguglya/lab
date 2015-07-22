@@ -1,87 +1,85 @@
 function validateForm() {
-    var x = document.forms["log"]["login"].value;
-    var y = document.forms["log"]["password"].value;
-    if (x == null || x == "") {
+    var login = document.forms["log"]["login"].value;
+    var password = document.forms["log"]["password"].value;
+    if (login == null || login == "") {
         alert("Login must be filled out!");
         return false;
     }
-    if (y == null || y == "") {
+    if (password == null || password == "") {
         alert("Password must be filled out!");
         return false;
     }
 }
 
 function validateRegisterForm() {
-    var x = document.forms["reg"]["login"].value;
-    var y = document.forms["reg"]["password"].value;
-    var z = document.forms["reg"]["repeatPassword"].value;
-    if (x == null || x == "") {
+    var login = document.forms["reg"]["login"].value;
+    var password = document.forms["reg"]["password"].value;
+    var repeatPassword = document.forms["reg"]["repeatPassword"].value;
+    var lengthRegex = /^([a-zA-Z\u0430-\u044f\u0410-\u044F_-]{8,20})$/;
+    if (login == null || login == "") {
         alert("Login must be filled out!");
         return false;
     }
-    if(x.length > 20){
+    if(!login.match(lengthRegex)){
         alert("Login is too long!Input not more than 20 symbols!");
         return false;
     }
-    if (y == null || y == "") {
+    if (password == null || password == "") {
         alert("Password must be filled out!");
         return false;
     }
-    if(y.length > 20){
+    if(password.match(lengthRegex)){
         alert("Password is too long!Input not more than 20 symbols!");
         return false;
     }
-    if (z == null || z == "") {
+    if (repeatPassword == null || repeatPassword == "") {
         alert("The repeated password must be filled out!");
         return false;
     }
-    if (!(z == y)) {
+    if (!(repeatPassword == password)) {
         alert("The repeated password is not equals to password!");
         return false;
     }
 }
 
 function validateBookForm() {
-    var x = document.forms["editorBook"]["title"].value;
-    var y = document.forms["editorBook"]["author"].value;
-    var z = document.forms["editorBook"]["year"].value;
-    var q = document.forms["editorBook"]["quantity"].value;
-    if (x == null || x == "") {
+    var title = document.forms["editorBook"]["title"].value;
+    var author = document.forms["editorBook"]["author"].value;
+    var year = document.forms["editorBook"]["year"].value;
+    var quantity = document.forms["editorBook"]["quantity"].value;
+    var lengthRegex = /^([a-zA-Z\u0430-\u044f\u0410-\u044F_-]{1,45})$/;
+    if (title == null || title == "") {
         alert("Title must be filled out!");
         return false;
     }
-    if(x.length > 45){
+    if(!title.match(lengthRegex)){
         alert("Title is too long!Input not more than 45 symbols!");
         return false;
     }
-    if (y == null || y == "") {
+    if (author == null || author == "") {
         alert("Author must be filled out!");
         return false;
     }
-    if(y.length > 45){
+    if(!author.match(lengthRegex)){
         alert("Author is too long!Input not more than 45 symbols!");
         return false;
     }
-    if (z == null || z == "") {
+    if (year == null || year == "") {
         alert("Year must be filled out!");
         return false;
     }
-    var yearRegex = /^[12][0-9]{3}$/;
-    if(!z.match(yearRegex)){
+    var yearRegex = /^[^0][0-9]{0,3}$/;
+    if(!year.match(yearRegex)){
         alert("Incorrect year!");
         return false;
     }
-    if (q == null || q == "") {
+    if (quantity == null || quantity == "") {
         alert("Quantity must be filled out!");
         return false;
     }
     var digitRegex = /^[0-9]+$/;
-    if(!q.match(digitRegex)){
+    if(!quantity.match(digitRegex)){
         alert("Quantity is not a number!");
-        return false;
-    }
-    if (q > 1000) {
-        alert("Incorrect quantity!");
         return false;
     }
 }
