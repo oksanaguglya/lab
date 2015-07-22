@@ -66,11 +66,8 @@ function validateBookForm() {
         alert("Year must be filled out!");
         return false;
     }
-    if(!(!isNaN(parseInt(z)) && isFinite(z))){
-        alert("Year is not a number!");
-        return false;
-    }
-    if(z > 9999){
+    var yearRegex = /^[12][0-9]{3}$/;
+    if(!z.match(yearRegex)){
         alert("Incorrect year!");
         return false;
     }
@@ -78,7 +75,8 @@ function validateBookForm() {
         alert("Quantity must be filled out!");
         return false;
     }
-    if(!(!isNaN(parseInt(q)) && isFinite(q))){
+    var digitRegex = /^[0-9]+$/;
+    if(!q.match(digitRegex)){
         alert("Quantity is not a number!");
         return false;
     }
