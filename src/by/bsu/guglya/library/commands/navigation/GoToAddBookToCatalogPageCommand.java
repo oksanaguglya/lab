@@ -9,7 +9,7 @@ public class GoToAddBookToCatalogPageCommand implements Command{
 
     @Override
     public String execute(HttpServletRequest request) {
-        String page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.ADD_BOOK_TO_CATALOG_PATH_JSP);
+        String page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.BOOK_ADDITION_CATALOG_PATH_JSP);
         return page;
     }
 }

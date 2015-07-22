@@ -44,7 +44,7 @@
         <url-pattern>/jsp/users/*</url-pattern>
     </filter-mapping>
     <session-config>
-        <session-timeout>1</session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
     <error-page>
         <error-code>500</error-code>

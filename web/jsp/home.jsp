@@ -5,9 +5,7 @@
 <fmt:setLocale value="${locale}" scope="session"/>
 <fmt:bundle basename="by.bsu.guglya.library.resources.gui">
     <%@include file="header.jsp" %>
-    <head>
-        <link href="/css/1.css" rel="stylesheet" type="text/css"/>
-    </head>
+    <head></head>
     <body>
     <div class="enter">
         <div class="enter-list">
@@ -32,7 +30,7 @@
         </div>
         <ul class="list">
             <li>
-                <a href="/LibraryServlet?command=go_to_catalog_page" class="pad-enter-list"><fmt:message key="home.catalog"/></a>
+                <a href="/library/LibraryServlet?command=go_to_catalog_page" class="pad-enter-list"><fmt:message key="home.catalog"/></a>
             </li>
 
             <c:if test="${sessionScope.user.getType() == 'READER'}">
@@ -60,7 +58,7 @@
             </c:if>
 
             <li>
-                <a href="/LibraryServlet?command=go_to_about_us_page" class="pad-enter-list"><fmt:message key="about_us.link"/></a>
+                <a href="/library/LibraryServlet?command=go_to_about_us_page" class="pad-enter-list"><fmt:message key="about_us.link"/></a>
             </li>
         </ul>
 

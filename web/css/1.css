@@ -1,10 +1,14 @@
 @import url("//fonts.googleapis.com/css?family=Lobster|Cabin:400,700");
 BODY {
-    background-image: url(/images/background.jpeg);
+    background-image: url(/library/images/background.jpeg);
     margin: 0;
 }
 
 A:visited {
+    color:#0000FF;
+}
+
+A{
     color:#0000FF;
 }
 
@@ -19,7 +23,7 @@ A:visited {
 }
 
 .header-background{
-    background-image: url(/images/header_background.jpg);
+    background-image: url(/library/images/header_background.jpg);
     border-bottom: 4px double black;
 }
 
@@ -46,7 +50,7 @@ A:visited {
 }
 
 .basket{
-    background: transparent url("/images/basket.jpg") no-repeat;
+    background: transparent url("/library/images/basket.jpg") no-repeat;
     background-size: 60px;
     display: inline-block;
     vertical-align: middle;
@@ -323,7 +327,7 @@ th {
 }
 
 .del{
-    background: transparent url("/images/del.png") no-repeat;
+    background: transparent url("/library/images/del.png") no-repeat;
     background-size: 20px;
     display: inline-block;
     vertical-align: middle;
@@ -332,7 +336,7 @@ th {
 }
 
 .edit{
-    background: transparent url("/images/edit.png") no-repeat;
+    background: transparent url("/library/images/edit.png") no-repeat;
     background-size: 20px;
     display: inline-block;
     vertical-align: middle;

@@ -1,6 +1,6 @@
 package by.bsu.guglya.library.logic;
 
-import by.bsu.guglya.library.beans.Order;
+import by.bsu.guglya.library.model.beans.Order;
 import by.bsu.guglya.library.database.dao.DAOException;
 import by.bsu.guglya.library.database.dao.OrderDAO;
 

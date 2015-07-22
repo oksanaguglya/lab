@@ -6,9 +6,7 @@
 <fmt:setLocale value="${locale}" scope="session"/>
 <fmt:bundle basename="by.bsu.guglya.library.resources.gui">
     <%@include file="../../header.jsp" %>
-    <head>
-        <link href="/css/1.css" rel="stylesheet" type="text/css"/>
-    </head>
+    <head></head>
     <body>
         <%--Table of orders--%>
     <c:if test="${noOfPages != 0}">

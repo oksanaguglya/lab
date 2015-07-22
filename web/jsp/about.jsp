@@ -5,9 +5,7 @@
 <fmt:setLocale value="${locale}" scope="session"/>
 <fmt:bundle basename="by.bsu.guglya.library.resources.gui">
     <%@include file="header.jsp" %>
-    <head>
-        <link href="/css/1.css" rel="stylesheet" type="text/css"/>
-    </head>
+    <head></head>
     <body>
     <div class="about">
         <div class="enter"><h2><fmt:message key="about_us.text1"/></h2></div>

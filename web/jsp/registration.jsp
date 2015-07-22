@@ -6,10 +6,7 @@
 <html>
 <fmt:setLocale value="${locale}" scope="session"/>
 <fmt:bundle basename="by.bsu.guglya.library.resources.gui">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="/css/1.css" rel="stylesheet" type="text/css"/>
-    </head>
+    <head></head>
     <body>
     <script src="js/validation.js"></script>
     <div class="enter">
@@ -39,7 +36,7 @@
                 <button type="submit" class="btn btn-info"><fmt:message key="registration.submit"/></button>
             </form>
         </div>
-        <div class="text-message"><h2>${emptyFieldMessage}${wrongRepPassword}${existLoginMessage}${errorRegMessage}</h2>
+        <div class="text-message"><h2>${resultRegMessage}</h2>
         </div>
     </div>
     </body>

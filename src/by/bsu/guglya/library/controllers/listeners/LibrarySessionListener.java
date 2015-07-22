@@ -20,7 +20,7 @@ public class LibrarySessionListener implements HttpSessionListener {
      * @param se a HttpSessionEvent
      */
     public void sessionCreated(HttpSessionEvent se) {
-        logger.info("session created");
+        logger.info("Session created!");
     }
 
     /**
@@ -28,7 +28,7 @@ public class LibrarySessionListener implements HttpSessionListener {
      * @param se a HttpSessionEvent
      */
     public void sessionDestroyed(HttpSessionEvent se) {
-        logger.info("session destroyed");
+        logger.info("Session destroyed!");
         HttpSession session = se.getSession();
         long now = new java.util.Date().getTime();
         boolean timeout = (now - session.getLastAccessedTime()) >= ((long)session.getMaxInactiveInterval() * 1000L);

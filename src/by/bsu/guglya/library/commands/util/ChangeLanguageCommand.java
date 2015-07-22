@@ -3,6 +3,7 @@ package by.bsu.guglya.library.commands.util;
 import by.bsu.guglya.library.commands.Command;
 import by.bsu.guglya.library.commands.basket.BasketCommand;
 import by.bsu.guglya.library.commands.catalog.CatalogCommand;
+import by.bsu.guglya.library.commands.navigation.GoToEditBookInCatalogPageCommand;
 import by.bsu.guglya.library.commands.order.AllUserOrdersCommand;
 import by.bsu.guglya.library.commands.order.NewOrdersCommand;
 import by.bsu.guglya.library.commands.order.UserOrdersCommand;
@@ -33,6 +34,7 @@ public class ChangeLanguageCommand implements Command {
     private static final String orderReaderPage = "/jsp/users/reader/userorders.jsp";
     private static final String loginOrderAdminPage = "/jsp/users/admin/allorders.jsp";
     private static final String newOrderAdminPage = "/jsp/users/admin/neworders.jsp";
+    private static final String bookEditorPage = "/jsp/users/admin/bookeditor.jsp";
 
     public ChangeLanguageCommand() {
     }
@@ -59,6 +61,8 @@ public class ChangeLanguageCommand implements Command {
                 return new AllUserOrdersCommand().execute(request);
             case newOrderAdminPage:
                 return new NewOrdersCommand().execute(request);
+            case bookEditorPage:
+                return new GoToEditBookInCatalogPageCommand().execute(request);
             default:
                 return forwardPageDir;
         }

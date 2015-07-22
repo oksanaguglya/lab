@@ -6,19 +6,17 @@
 <fmt:setLocale value="${locale}" scope="session"/>
 <fmt:bundle basename="by.bsu.guglya.library.resources.gui">
     <%@include file="../../header.jsp" %>
-    <head>
-        <link href="/css/1.css" rel="stylesheet" type="text/css"/>
-    </head>
+    <head></head>
     <body>
-        <%-- Search form--%>
-    <form class="search" name="search" action="LibraryServlet" id="form" method="POST">
-        <input type="hidden" name="command" value="go_to_order_reader_page">
-        <input class="search-text" type="text" name="searchOrder" value="${sessionScope.searchOrder}"
-               placeholder=<fmt:message key="catalog.search.placeholder"/>/>
-        <button type="submit" class="btn btn-info"><fmt:message key="catalog.search.button.text"/></button>
-    </form>
-        <%--Table of orders--%>
     <c:if test="${noOfPages != 0}">
+        <%-- Search form--%>
+        <form class="search" name="search" action="LibraryServlet" id="form" method="POST">
+            <input type="hidden" name="command" value="go_to_order_reader_page">
+            <input class="search-text" type="text" name="searchOrder" value="${sessionScope.searchOrder}"
+                   placeholder=<fmt:message key="catalog.search.placeholder"/>/>
+            <button type="submit" class="btn btn-info"><fmt:message key="catalog.search.button.text"/></button>
+        </form>
+        <%--Table of orders--%>
         <table border="2" id="table" cellpadding="5" cellspacing="1">
             <tr>
                 <th class="table-col-date"><fmt:message key="order.date"></fmt:message></th>

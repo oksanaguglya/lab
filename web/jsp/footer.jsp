@@ -3,9 +3,7 @@
 <html>
 <fmt:setLocale value="${locale}" scope="session"/>
 <fmt:bundle basename="by.bsu.guglya.library.resources.gui">
-    <head>
-        <link href="/css/1.css" rel="stylesheet" type="text/css"/>
-    </head>
+    <head></head>
     <body>
     <div class="footer">
         <h4><a href="mailto:<fmt:message key="footer.mail"/>"><fmt:message key="footer"/><fmt:message

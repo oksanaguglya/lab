@@ -1,8 +1,4 @@
-package by.bsu.guglya.library.beans;
-
-
-import java.util.Locale;
-import java.util.ResourceBundle;
+package by.bsu.guglya.library.model.beans;
 
 public class Book {
 

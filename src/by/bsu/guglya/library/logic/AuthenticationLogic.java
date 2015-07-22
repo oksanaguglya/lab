@@ -1,8 +1,8 @@
 package by.bsu.guglya.library.logic;
 
-import by.bsu.guglya.library.beans.User;
 import by.bsu.guglya.library.database.dao.DAOException;
 import by.bsu.guglya.library.database.dao.UserDAO;
+import by.bsu.guglya.library.model.beans.*;
 
 public class AuthenticationLogic {
 

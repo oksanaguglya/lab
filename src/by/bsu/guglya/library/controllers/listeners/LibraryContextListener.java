@@ -24,28 +24,22 @@ public class LibraryContextListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext servletContext = sce.getServletContext();
 
-        //String path = "C:\\Program Files\\Apache Software Foundation\\Tomcat 7.0\\webapps\\project\\";
-
-        /*String rootPath = servletContext.getRealPath(File.separator);
-        System.setProperty("rootPath", rootPath);
-        String log4jFile = rootPath + servletContext.getInitParameter(nameLogParam);
-        PropertyConfigurator.configureAndWatch(log4jFile);*/
-
-        //PropertyConfigurator.configureAndWatch("D:\\Projects\\Lab\\src\\log4j.xml");
-
-        //logger.info(rootPath);
-        //logger.info(log4jFile);
+        String rootPath = servletContext.getRealPath("/");
+        if(rootPath != null){
+            String log4jFile = rootPath + servletContext.getInitParameter(nameLogParam);
+            PropertyConfigurator.configureAndWatch(log4jFile);
+        }
         logger.info("Application started!");
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-       /*try{
+       try{
            ConnectionPool.getInstance().closeConnections();
            logger.info("Application destroyed!");
         }catch(SQLException ex){
             logger.error(ex);
-        }*/
+        }
     }
 
 }

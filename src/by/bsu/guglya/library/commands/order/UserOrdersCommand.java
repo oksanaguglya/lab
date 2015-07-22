@@ -1,7 +1,7 @@
 package by.bsu.guglya.library.commands.order;
 
-import by.bsu.guglya.library.beans.Order;
-import by.bsu.guglya.library.beans.User;
+import by.bsu.guglya.library.model.beans.Order;
+import by.bsu.guglya.library.model.beans.User;
 import by.bsu.guglya.library.commands.Command;
 import by.bsu.guglya.library.logic.LogicException;
 import by.bsu.guglya.library.logic.OrderLogic;

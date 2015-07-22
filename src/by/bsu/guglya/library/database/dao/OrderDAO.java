@@ -1,7 +1,7 @@
 package by.bsu.guglya.library.database.dao;
 
-import by.bsu.guglya.library.beans.*;
 import org.apache.log4j.Logger;
+import by.bsu.guglya.library.model.beans.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

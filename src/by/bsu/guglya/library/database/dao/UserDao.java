@@ -1,10 +1,8 @@
 package by.bsu.guglya.library.database.dao;
 
-import by.bsu.guglya.library.beans.User;
+import by.bsu.guglya.library.model.beans.*;
 import org.apache.log4j.Logger;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDAO extends AbstractDAO {

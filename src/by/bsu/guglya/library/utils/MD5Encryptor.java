@@ -24,4 +24,5 @@ public class MD5Encryptor implements Encryptor{
         }
         return encryptedString;
     }
+
 }

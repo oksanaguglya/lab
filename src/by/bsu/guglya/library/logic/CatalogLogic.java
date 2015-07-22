@@ -1,9 +1,8 @@
 package by.bsu.guglya.library.logic;
 
-import by.bsu.guglya.library.beans.CatalogItem;
 import by.bsu.guglya.library.database.dao.CatalogDAO;
 import by.bsu.guglya.library.database.dao.DAOException;
-import by.bsu.guglya.library.database.dao.OrderDAO;
+import  by.bsu.guglya.library.model.beans.*;
 
 import java.util.List;
 
@@ -34,6 +33,50 @@ public class CatalogLogic {
             throw new LogicException(ex.getMessage());
         }
         return result;
+    }
+
+    public static boolean addCatalogItem(int idBook, int quantity) throws  LogicException{
+        CatalogDAO catalogDAO = new CatalogDAO();
+        boolean result = false;
+        try{
+            result = catalogDAO.addCatalogItem(idBook, quantity);
+        }catch(DAOException ex){
+            throw new LogicException(ex.getMessage());
+        }
+        return result;
+    }
+
+    public static boolean addNewCatalogItem(String title, String author, int year, Book.TypeOfBook bookType, int quantity) throws  LogicException{
+        CatalogDAO catalogDAO = new CatalogDAO();
+        boolean result = false;
+        try{
+            result = catalogDAO.addNewCatalogItem(title, author, year, bookType, quantity);
+        }catch(DAOException ex){
+            throw new LogicException(ex.getMessage());
+        }
+        return result;
+    }
+
+    public static boolean checkCatalogItemExist(int idBook) throws  LogicException{
+        CatalogDAO catalogDAO = new CatalogDAO();
+        boolean result = false;
+        try{
+            result = catalogDAO.checkCatalogItemExist(idBook);
+        }catch(DAOException ex){
+            throw new LogicException(ex.getMessage());
+        }
+        return result;
+    }
+
+    public static CatalogItem getCatalogItem(int idCatalogItem) throws  LogicException{
+        CatalogDAO catalogDAO = new CatalogDAO();
+        CatalogItem catalogItem;
+        try{
+            catalogItem = catalogDAO.getCatalogItem(idCatalogItem);
+        }catch(DAOException ex){
+            throw new LogicException(ex.getMessage());
+        }
+        return catalogItem;
     }
 
 }

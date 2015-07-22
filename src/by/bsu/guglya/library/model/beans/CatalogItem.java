@@ -1,4 +1,4 @@
-package by.bsu.guglya.library.beans;
+package by.bsu.guglya.library.model.beans;
 
 public class CatalogItem {
 

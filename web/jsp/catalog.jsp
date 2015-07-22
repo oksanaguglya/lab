@@ -30,9 +30,7 @@
         });
     </script>
     <%@include file="header.jsp" %>
-    <head>
-        <link href="/css/1.css" rel="stylesheet" type="text/css"/>
-    </head>
+    <head></head>
     <body>
         <%-- Search form --%>
     <form class="search" name="search" action="LibraryServlet" id="form" method="POST">
@@ -88,9 +86,8 @@
                         <td class="table-col-del_edit fs">
                             <div class="center">
                                 <form class="inline" name="EditBookFromCatalog" action="LibraryServlet" method="POST">
-                                    <input type="hidden" name="command" value="edit_book_from_catalog"/>
-                                    <input type="hidden" name="id" value="${item.getId()}">
-                                    <input type="hidden" name="page" value=${currentPage}>
+                                    <input type="hidden" name="command" value="go_to_edit_book_from_catalog_page"/>
+                                    <input type="hidden" name="idCatalogEdit" value="${item.getId()}">
                                     <button class="btn edit" type="submit" name="editBook"></button>
                                 </form>
                                 <form class="inline" name="DelBookFromCatalog" action="LibraryServlet" method="POST">

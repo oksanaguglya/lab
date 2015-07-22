@@ -1,10 +1,6 @@
 package by.bsu.guglya.library.commands.order;
 
-import by.bsu.guglya.library.beans.Order;
-import by.bsu.guglya.library.beans.User;
 import by.bsu.guglya.library.commands.Command;
-import by.bsu.guglya.library.commands.basket.BasketCommand;
-import by.bsu.guglya.library.logic.CatalogLogic;
 import by.bsu.guglya.library.logic.LogicException;
 import by.bsu.guglya.library.logic.OrderLogic;
 import by.bsu.guglya.library.managers.ConfigurationManager;
@@ -12,8 +8,6 @@ import by.bsu.guglya.library.managers.MessageManager;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class ProcessOrderCommand implements Command {
 
@@ -57,6 +51,7 @@ public class ProcessOrderCommand implements Command {
                         message = messageManager.getProperty(MessageManager.ORDER_PROCESS_DENIED_MESSAGE);
                         request.setAttribute(ORDER_PROCESS_DENIED_MESSAGE_ATTR, message);
                     }
+                    break;
                 default:
                     message = messageManager.getProperty(MessageManager.ORDER_PROCESS_NO_SUCCESS_MESSAGE);
                     request.setAttribute(ORDER_PROCESS_NO_SUCCESS_MESSAGE_ATTR, message);
