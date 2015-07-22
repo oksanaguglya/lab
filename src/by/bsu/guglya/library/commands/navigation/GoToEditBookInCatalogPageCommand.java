@@ -28,7 +28,7 @@ public class GoToEditBookInCatalogPageCommand implements Command {
         if(request.getParameter(CATALOG_ID_PARAM) != null){
             idCatalog = Integer.parseInt(request.getParameter(CATALOG_ID_PARAM));
         }else{
-            idCatalog = (int)session.getAttribute(CATALOG_ID_ATTR);
+            idCatalog = (int)session.getAttribute(CATALOG_ID_PARAM);
         }
         CatalogItem catalogItem;
         try{

@@ -3,11 +3,14 @@ package by.bsu.guglya.library.commands;
 import by.bsu.guglya.library.commands.authorization.LoginCommand;
 import by.bsu.guglya.library.commands.authorization.LogoutCommand;
 import by.bsu.guglya.library.commands.authorization.RegistrationCommand;
-import by.bsu.guglya.library.commands.catalog.*;
+import by.bsu.guglya.library.commands.catalog.AddBookToCatalogCommand;
 import by.bsu.guglya.library.commands.navigation.*;
+import by.bsu.guglya.library.commands.catalog.AddBooksToBasketCommand;
 import by.bsu.guglya.library.commands.basket.BasketCommand;
 import by.bsu.guglya.library.commands.basket.DelBookFromBasketCommand;
 import by.bsu.guglya.library.commands.basket.MakeOrderFromBasketCommand;
+import by.bsu.guglya.library.commands.catalog.CatalogCommand;
+import by.bsu.guglya.library.commands.catalog.DelBookFromCatalogCommand;
 import by.bsu.guglya.library.commands.order.*;
 import by.bsu.guglya.library.commands.util.ChangeLanguageCommand;
 
@@ -45,7 +48,7 @@ public class CommandFactory {
         commands.put("return_user_order", new ReturnUserOrderCommand());
         commands.put("add_book_to_catalog", new AddBookToCatalogCommand());
         commands.put("go_to_edit_book_from_catalog_page", new GoToEditBookInCatalogPageCommand());
-        commands.put("edit_book_in_catalog", new EditBookInCatalogCommand());
+       // commands.put("edit_book_in_catalog", new EditBookInCatalogPageCommand());
     }
 
     public Command getCommand(HttpServletRequest request) {
