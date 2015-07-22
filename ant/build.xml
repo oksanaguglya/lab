@@ -9,7 +9,7 @@
 	<property name="dir.war.content.webinf" value="${dir.war.content}/WEB-INF"/>
 	<property name="dir.war.content.webinf.classes" value="${dir.war.content.webinf}/classes"/>
 	<property name="dir.war.content.webinf.lib" value="${dir.war.content.webinf}/lib"/>
-	<property name="name.application" value="project"/>
+	<property name="name.application" value="library"/>
 	<property name="file.war" value="${dir.build}/${name.application}.war"/>
       
 	<path id="properties">
