@@ -778,3 +778,77 @@
  Session destroyed!
 22.07.2015 20:22:45 [ContainerBackgroundProcessor[StandardEngine[Catalina]]] INFO  by.bsu.guglya.library.controllers.listeners.LibrarySessionListener 
  Session destroyed!
+22.07.2015 21:48:46 [RMI TCP Connection(2)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+22.07.2015 21:48:50 [http-bio-8081-exec-1] INFO  by.bsu.guglya.library.controllers.listeners.LibrarySessionListener 
+ Session created!
+22.07.2015 21:48:52 [http-bio-8081-exec-5] INFO  by.bsu.guglya.library.controllers.listeners.LibrarySessionListener 
+ Session created!
+22.07.2015 21:51:15 [http-bio-8081-exec-5] INFO  by.bsu.guglya.library.controllers.listeners.LibrarySessionListener 
+ Session destroyed!
+22.07.2015 21:51:15 [http-bio-8081-exec-5] INFO  by.bsu.guglya.library.controllers.listeners.LibrarySessionListener 
+ Session created!
+22.07.2015 22:19:05 [ContainerBackgroundProcessor[StandardEngine[Catalina]]] INFO  by.bsu.guglya.library.controllers.listeners.LibrarySessionListener 
+ Session destroyed!
+22.07.2015 22:22:14 [ContainerBackgroundProcessor[StandardEngine[Catalina]]] INFO  by.bsu.guglya.library.controllers.listeners.LibrarySessionListener 
+ Session destroyed!
+22.07.2015 23:14:47 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+22.07.2015 23:14:50 [http-bio-8081-exec-1] INFO  by.bsu.guglya.library.controllers.listeners.LibrarySessionListener 
+ Session created!
+22.07.2015 23:14:53 [http-bio-8081-exec-5] INFO  by.bsu.guglya.library.controllers.listeners.LibrarySessionListener 
+ Session created!
+22.07.2015 23:45:12 [ContainerBackgroundProcessor[StandardEngine[Catalina]]] INFO  by.bsu.guglya.library.controllers.listeners.LibrarySessionListener 
+ Session destroyed!
+23.07.2015 00:00:57 [ContainerBackgroundProcessor[StandardEngine[Catalina]]] INFO  by.bsu.guglya.library.controllers.listeners.LibrarySessionListener 
+ Session destroyed!
+23.07.2015 00:11:42 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.07.2015 00:11:44 [http-bio-8081-exec-1] INFO  by.bsu.guglya.library.controllers.listeners.LibrarySessionListener 
+ Session created!
+23.07.2015 00:11:46 [http-bio-8081-exec-5] INFO  by.bsu.guglya.library.controllers.listeners.LibrarySessionListener 
+ Session created!
+23.07.2015 00:12:56 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.07.2015 00:12:58 [http-bio-8081-exec-1] INFO  by.bsu.guglya.library.controllers.listeners.LibrarySessionListener 
+ Session created!
+23.07.2015 00:13:00 [http-bio-8081-exec-5] INFO  by.bsu.guglya.library.controllers.listeners.LibrarySessionListener 
+ Session created!
+23.07.2015 00:14:27 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.07.2015 00:14:29 [http-bio-8081-exec-1] INFO  by.bsu.guglya.library.controllers.listeners.LibrarySessionListener 
+ Session created!
+23.07.2015 00:14:31 [http-bio-8081-exec-5] INFO  by.bsu.guglya.library.controllers.listeners.LibrarySessionListener 
+ Session created!
+23.07.2015 00:14:48 [http-bio-8081-exec-10] ERROR by.bsu.guglya.library.database.dao.CatalogDAO 
+ No value specified for parameter 5
+23.07.2015 00:15:28 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.07.2015 00:15:30 [http-bio-8081-exec-1] INFO  by.bsu.guglya.library.controllers.listeners.LibrarySessionListener 
+ Session created!
+23.07.2015 00:15:31 [http-bio-8081-exec-5] INFO  by.bsu.guglya.library.controllers.listeners.LibrarySessionListener 
+ Session created!
+23.07.2015 00:17:04 [http-bio-8081-exec-10] ERROR by.bsu.guglya.library.database.dao.CatalogDAO 
+ No value specified for parameter 5
+23.07.2015 00:17:26 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.07.2015 00:17:28 [http-bio-8081-exec-1] INFO  by.bsu.guglya.library.controllers.listeners.LibrarySessionListener 
+ Session created!
+23.07.2015 00:17:30 [http-bio-8081-exec-5] INFO  by.bsu.guglya.library.controllers.listeners.LibrarySessionListener 
+ Session created!
+23.07.2015 00:17:43 [http-bio-8081-exec-10] ERROR by.bsu.guglya.library.database.dao.CatalogDAO 
+ No value specified for parameter 2
+23.07.2015 00:18:17 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.07.2015 00:18:19 [http-bio-8081-exec-1] INFO  by.bsu.guglya.library.controllers.listeners.LibrarySessionListener 
+ Session created!
+23.07.2015 00:18:21 [http-bio-8081-exec-5] INFO  by.bsu.guglya.library.controllers.listeners.LibrarySessionListener 
+ Session created!
+23.07.2015 00:19:50 [http-bio-8081-exec-10] ERROR by.bsu.guglya.library.database.dao.CatalogDAO 
+ No value specified for parameter 2
+23.07.2015 00:20:12 [RMI TCP Connection(3)-127.0.0.1] INFO  by.bsu.guglya.library.controllers.listeners.LibraryContextListener 
+ Application started!
+23.07.2015 00:20:14 [http-bio-8081-exec-1] INFO  by.bsu.guglya.library.controllers.listeners.LibrarySessionListener 
+ Session created!
+23.07.2015 00:20:16 [http-bio-8081-exec-5] INFO  by.bsu.guglya.library.controllers.listeners.LibrarySessionListener 
+ Session created!

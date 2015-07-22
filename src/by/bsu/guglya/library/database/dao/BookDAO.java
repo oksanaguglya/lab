@@ -12,6 +12,7 @@ public class BookDAO extends AbstractDAO {
     public static final String GET_BOOK = "select idbook from library.book " +
             "join library.book_type on library.book.book_type = library.book_type.idbook_type " +
             "where title=? and author=? and year=? and book_type=?;";
+    public static final String UPDATE_BOOK = "update library.book set library.book.title=?, library.book.author=?, library.book.year=?, library.book.book_type=? where library.book.idbook=?;";
 
     public int checkBookExist(String title, String author, int year, Book.TypeOfBook bookType) throws DAOException {
         int result = -1;

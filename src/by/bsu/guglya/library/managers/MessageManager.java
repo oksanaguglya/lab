@@ -34,6 +34,8 @@ public class MessageManager {
     public static final String BOOK_EXIST_IN_CATALOG_MESSAGE = "BOOK_EXIST_IN_CATALOG_MESSAGE";
     public static final String ADD_NEW_BOOK_TO_CATALOG_SUCCESS_MESSAGE = "ADD_NEW_BOOK_TO_CATALOG_SUCCESS_MESSAGE";
     public static final String ADD_BOOK_TO_CATALOG_UNSUCCESS_MESSAGE = "ADD_BOOK_TO_CATALOG_UNSUCCESS_MESSAGE";
+    public static final String EDIT_BOOK_IN_CATALOG_SUCCESS_MESSAGE = "EDIT_BOOK_IN_CATALOG_SUCCESS_MESSAGE";
+    public static final String EDIT_BOOK_IN_CATALOG_UNSUCCESS_MESSAGE = "EDIT_BOOK_IN_CATALOG_UNSUCCESS_MESSAGE";
     public static final String DEFAULT_LANGUAGE = "ru";
     public static final String DEFAULT_COUNTRY = "RU";
 
