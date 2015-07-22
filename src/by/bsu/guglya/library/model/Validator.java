@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class Validator {
 
     private static final String PATTERN_LATIN_STRING_LENGTH20 = "\\w{4,20}$";
-    private static final String PATTERN_STRING_LENGTH45 = "^[\\u0410-\\u044Fa-zA-Z0-9]{1,45}$";
+    private static final String PATTERN_STRING_LENGTH45 = "^\\w{1,45}$";
     private static final String PATTERN_INT_LENGTH4 = "\\d{1,4}$";
 
     private static boolean checkWithRegex(String expression, String pattern) {
@@ -48,10 +48,10 @@ public class Validator {
         if (title.length() == 0 || author.length() == 0 || year.length() == 0 || quantity.length() == 0) {
             throw new InputException("Fill all fields!");
         }
-        /*if (!checkWithRegex(title, PATTERN_STRING_LENGTH45)) {
+        if (!checkWithRegex(title, PATTERN_STRING_LENGTH45)) {
             throw new InputException("Incorrect title format (input 1-45 symbols)!");
         }
-        if (!checkWithRegex(author, PATTERN_STRING_LENGTH45)) {
+        /*if (!checkWithRegex(author, PATTERN_STRING_LENGTH45)) {
             throw new InputException("Incorrect author format (input 1-45 symbols)!");
         }*/
         if (!checkWithRegex(year, PATTERN_INT_LENGTH4)) {
