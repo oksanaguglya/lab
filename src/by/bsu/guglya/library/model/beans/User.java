@@ -2,13 +2,28 @@ package by.bsu.guglya.library.model.beans;
 
 public class User {
 
+    /**
+     * User's types
+     */
     public enum TypeOfUser {
         ADMINISTRATOR, READER
     }
 
+    /**
+     * User's ID
+     */
     private int id;
+    /**
+     * User's login
+     */
     private String login;
+    /**
+     * User's password
+     */
     private String password;
+    /**
+     * User's type
+     */
     private TypeOfUser type;
 
     public User(int id, String login, String password, String type) {

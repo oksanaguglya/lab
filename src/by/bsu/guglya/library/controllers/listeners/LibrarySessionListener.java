@@ -7,6 +7,9 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
+/**
+ * This class handle notification events about HttpSession lifecycle changes
+ */
 public class LibrarySessionListener implements HttpSessionListener {
 
     private final static String USER_ATTR = "user";

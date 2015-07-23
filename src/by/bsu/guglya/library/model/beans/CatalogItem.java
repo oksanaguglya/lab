@@ -2,8 +2,17 @@ package by.bsu.guglya.library.model.beans;
 
 public class CatalogItem {
 
+    /**
+     * Catalog item's ID
+     */
     private int id;
+    /**
+     * Catalog item's book
+     */
     private Book book;
+    /**
+     * Book's quantity in library
+     */
     private int quantity;
 
     public CatalogItem(int id, Book book, int quantity) {

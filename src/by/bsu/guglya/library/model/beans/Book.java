@@ -2,14 +2,32 @@ package by.bsu.guglya.library.model.beans;
 
 public class Book {
 
+    /**
+     * Possible places for reading
+     */
     public enum TypeOfBook{
         LIBRARY_CARD, READING_ROOM
     }
 
+    /**
+     * Book's ID
+     */
     private int id;
+    /**
+     * Book's title
+     */
     private String title;
+    /**
+     * Book's author
+     */
     private String author;
+    /**
+     * Book's year of publishing
+     */
     private int year;
+    /**
+     * Book's possible places for reading
+     */
     private TypeOfBook type;
 
     public Book(int id, String title, String author, int year, TypeOfBook type) {

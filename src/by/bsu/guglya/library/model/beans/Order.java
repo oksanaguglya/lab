@@ -2,16 +2,40 @@ package by.bsu.guglya.library.model.beans;
 
 public class Order {
 
+    /**
+     * Order's types
+     */
     public enum TypeOfOrder{
         NEW, IN_PROCESSING, APPROVED, DENIED, RETURNED
     }
 
+    /**
+     * Order's ID
+     */
     private int id;
+    /**
+     * Order's user's ID
+     */
     private int idUser;
+    /**
+     * User's name
+     */
     private String userName;
+    /**
+     * Order's catalog item
+     */
     private CatalogItem catalogItem;
+    /**
+     * Orders quantity
+     */
     private int quantity;
+    /**
+     * Order's type
+     */
     private TypeOfOrder type;
+    /**
+     * Order's date
+     */
     private String dateOfOrder;
 
     public Order(int id, int idUser, CatalogItem catalogItem, int quantity, TypeOfOrder type) {
