@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <fmt:setLocale value="${locale}" scope="session"/>
-<fmt:bundle basename="by.bsu.guglya.library.resources.gui">
+<fmt:bundle basename="resources.gui">
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script>
         $(document).ready(function () {

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <fmt:setLocale value="${locale}" scope="session"/>
-<fmt:bundle basename="by.bsu.guglya.library.resources.gui">
+<fmt:bundle basename="resources.gui">
     <%@include file="header.jsp" %>
     <head></head>
     <body>

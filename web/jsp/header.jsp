@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <fmt:setLocale value="${locale}" scope="session"/>
-<fmt:bundle basename="by.bsu.guglya.library.resources.gui">
+<fmt:bundle basename="resources.gui">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="/library/css/style.css" rel="stylesheet" type="text/css"/>

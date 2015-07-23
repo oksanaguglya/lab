@@ -3,7 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <fmt:setLocale value="${locale}" scope="session"/>
-<fmt:bundle basename="by.bsu.guglya.library.resources.gui">
+<fmt:bundle basename="resources.gui">
     <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

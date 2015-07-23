@@ -75,7 +75,7 @@
 		<copy todir="${dir.war.content.webinf.classes}">
             		<fileset dir="${dir.classes}"/>
         	</copy>
-		<copy todir="${dir.war.content.webinf.classes}">
+		<copy todir="${dir.war.content.webinf}">
             		<path refid="properties"/>
         	</copy>
        		<copy todir="${dir.war.content.webinf.lib}">

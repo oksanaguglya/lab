@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <fmt:setLocale value="${locale}" scope="session"/>
-<fmt:bundle basename="by.bsu.guglya.library.resources.gui">
+<fmt:bundle basename="resources.gui">
     <head></head>
     <body>
     <script src="js/validation.js"></script>

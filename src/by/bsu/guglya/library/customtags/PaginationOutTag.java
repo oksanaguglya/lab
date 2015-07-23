@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
 
 public class PaginationOutTag extends TagSupport {
 
-    private static final String RESOURCE_PATH = "by.bsu.guglya.library.resources.gui";
+    private static final String RESOURCE_PATH = "resources.gui";
     private static final String FORM_NAME = "form.pagination.prev_next";
     private static final String FORM_NAME_ID = "form.pagination.id";
     private static final String ACTIVE_LINK = "active.link";

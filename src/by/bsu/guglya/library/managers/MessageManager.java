@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 public class MessageManager {
 
     private ResourceBundle resourceBundle;
-    private static final String BUNDLE_NAME = "by.bsu.guglya.library.resources.messages";
+    private static final String BUNDLE_NAME = "resources.messages";
     public static final String LOGIN_ERROR_MESSAGE = "LOGIN_ERROR_MESSAGE";
     public static final String WRONG_REPEATED_PASSWORD_MESSAGE = "WRONG_REPEATED_PASSWORD_MESSAGE";
     public static final String EXIST_LOGIN_MESSAGE = "EXIST_LOGIN_MESSAGE";

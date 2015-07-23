@@ -1,7 +1,6 @@
 package by.bsu.guglya.library.controllers.listeners;
 
 import by.bsu.guglya.library.model.beans.User;
-import com.sun.deploy.net.HttpRequest;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpSession;

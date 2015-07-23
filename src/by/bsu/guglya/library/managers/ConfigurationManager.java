@@ -8,7 +8,7 @@ public class ConfigurationManager {
     private static ConfigurationManager instance;
     private ResourceBundle resourceBundle;
     private static ReentrantLock lock = new ReentrantLock();
-    private final static String BUNDLE_NAME = "by.bsu.guglya.library.resources.config";
+    private final static String BUNDLE_NAME = "resources.config";
     public final static String LOGIN_PATH_JSP = "LOGIN_PATH_JSP";
     public final static String REGISTRATION_PATH_JSP = "REGISTRATION_PATH_JSP";
     public final static String HOME_PATH_JSP = "HOME_PATH_JSP";

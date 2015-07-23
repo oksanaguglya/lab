@@ -12,7 +12,7 @@ import org.apache.log4j.Logger;
  */
 public class LangMenuTag extends TagSupport {
 
-    private static final String RESOURCE_PATH = "by.bsu.guglya.library.resources.gui";
+    private static final String RESOURCE_PATH = "resources.gui";
     private static final String CHOICE_RU = "choice.ru";
     private static final String CHOICE_EN = "choice.en";
     private static final String ALIAS_PAGE = "1";
