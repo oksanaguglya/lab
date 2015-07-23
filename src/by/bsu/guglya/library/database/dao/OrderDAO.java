@@ -11,7 +11,6 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class OrderDAO extends AbstractDAO {
     private static final Logger logger = Logger.getLogger(OrderDAO.class);
-    private static ReentrantLock lock = new ReentrantLock();
 
     public static final String GET_IDORDER_TYPE = "select idorder_type from library.order_type where type=?;";
     public static final String GET_ORDER_BY_USER_AND_IDCATALOG_AND_STATE = "select * from library.order where library.order.catalog_item=? and library.order.user=? and library.order.state=?;";
@@ -71,6 +70,37 @@ public class OrderDAO extends AbstractDAO {
     public static final String UPDATE_CATALOG_ADD_QTY_BY_IDORDER = "update library.catalog " +
             "join library.order on library.catalog.idcatalog=library.order.catalog_item " +
             "set library.catalog.quantity=library.catalog.quantity+? where library.order.idorder=?;";
+    /**
+     * This is a lock
+     */
+    private static ReentrantLock lock = new ReentrantLock();
+    /**
+     * This is a OrderDAO instance
+     */
+    private static OrderDAO instance;
+
+    /**
+     * This is a constructor
+     */
+    private OrderDAO() {
+    }
+
+    /**
+     * This method returns a OrderDAO instance or call constructor to create it
+     *
+     * @return a OrderDAO
+     */
+    public static OrderDAO getInstance() {
+        try {
+            lock.lock();
+            if (instance == null) {
+                instance = new OrderDAO();
+            }
+        } finally {
+            lock.unlock();
+        }
+        return instance;
+    }
 
     private CatalogItem createCatalogItem(ResultSet resultSet) throws SQLException {
         int idBook = resultSet.getInt("idbook");
@@ -125,6 +155,7 @@ public class OrderDAO extends AbstractDAO {
         getConnection();
         int idOrderType = getIdOrderType(state);
         try {
+            lock.lock();
             ps = conn.prepareStatement(UPDATE_ORDER_WITH_QTY_BY_USER_AND_IDCATALOG_AND_STATE);
             ps.setInt(1, qty);
             ps.setString(2, idCatalog);
@@ -136,6 +167,7 @@ public class OrderDAO extends AbstractDAO {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
         } finally {
+            lock.unlock();
             closeConnection();
         }
         return result;
@@ -146,6 +178,7 @@ public class OrderDAO extends AbstractDAO {
         getConnection();
         int idOrderType = getIdOrderType(state);
         try {
+            lock.lock();
             ps = conn.prepareStatement(INSERT_ORDER);
             ps.setInt(1, idUser);
             ps.setString(2, idCatalog);
@@ -158,6 +191,7 @@ public class OrderDAO extends AbstractDAO {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
         } finally {
+            lock.unlock();
             closeConnection();
         }
         return result;
@@ -217,6 +251,7 @@ public class OrderDAO extends AbstractDAO {
         boolean result = false;
         getConnection();
         try {
+            lock.lock();
             ps = conn.prepareStatement(DELETE_ORDER_BY_ID);
             ps.setInt(1, idOrder);
             ps.executeUpdate();
@@ -225,6 +260,7 @@ public class OrderDAO extends AbstractDAO {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
         } finally {
+            lock.unlock();
             closeConnection();
         }
         return result;
@@ -236,6 +272,7 @@ public class OrderDAO extends AbstractDAO {
         int idOrderTypeNew = getIdOrderType(state);
         int idOrderTypeProc = getIdOrderType(newState);
         try {
+            lock.lock();
             ps = conn.prepareStatement(CHANGE_ORDER_STATE_AND_DATE_BY_USER_AND_STATE);
             ps.setInt(1, idOrderTypeProc);
             ps.setString(2, date);
@@ -247,6 +284,7 @@ public class OrderDAO extends AbstractDAO {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
         } finally {
+            lock.unlock();
             closeConnection();
         }
         return result;
@@ -257,6 +295,7 @@ public class OrderDAO extends AbstractDAO {
         getConnection();
         int idOrderType = getIdOrderType(state);
         try {
+            lock.unlock();
             ps = conn.prepareStatement(CHANGE_ORDER_STATE_BY_ID);
             ps.setInt(1, idOrderType);
             ps.setInt(2, idOrder);
@@ -266,6 +305,7 @@ public class OrderDAO extends AbstractDAO {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
         } finally {
+            lock.unlock();
             closeConnection();
         }
         return result;
@@ -443,57 +483,55 @@ public class OrderDAO extends AbstractDAO {
 
     public boolean approveOrderById(int idOrder) throws DAOException {
         boolean result = false;
+        getConnection();
+        int idOrderTypeAppr = getIdOrderType(Order.TypeOfOrder.APPROVED);
         try {
             lock.lock();
-            getConnection();
-            int idOrderTypeAppr = getIdOrderType(Order.TypeOfOrder.APPROVED);
-            try {
-                ps = conn.prepareStatement(GET_QUANTITY_AND_QTY_FOR_ORDERID);
-                ps.setInt(1, idOrder);
-                resultSet = ps.executeQuery();
-                resultSet.next();
-                int quantity = resultSet.getInt("order.quantity");
-                int qty = resultSet.getInt("catalog.quantity");
-                if (quantity <= qty) {
-                    try {
-                        conn.setAutoCommit(false);
-                        ps = conn.prepareStatement(UPDATE_CATALOG_SUB_QTY_BY_IDORDER);
-                        ps.setInt(1, quantity);
-                        ps.setInt(2, idOrder);
-                        ps.executeUpdate();
-                        ps = conn.prepareStatement(CHANGE_ORDER_STATE_BY_ID);
-                        ps.setInt(1, idOrderTypeAppr);
-                        ps.setInt(2, idOrder);
-                        ps.executeUpdate();
-                        conn.commit();
-                        result = true;
-                    } catch (SQLException ex) {
-                        conn.rollback();
-                        logger.error(ex.getMessage());
-                        throw new DAOException("Error while trying to access the database!");
-                    } finally {
-                        conn.setAutoCommit(true);
-                    }
-                } else {
-                    result = false;
+            ps = conn.prepareStatement(GET_QUANTITY_AND_QTY_FOR_ORDERID);
+            ps.setInt(1, idOrder);
+            resultSet = ps.executeQuery();
+            resultSet.next();
+            int quantity = resultSet.getInt("order.quantity");
+            int qty = resultSet.getInt("catalog.quantity");
+            if (quantity <= qty) {
+                try {
+                    conn.setAutoCommit(false);
+                    ps = conn.prepareStatement(UPDATE_CATALOG_SUB_QTY_BY_IDORDER);
+                    ps.setInt(1, quantity);
+                    ps.setInt(2, idOrder);
+                    ps.executeUpdate();
+                    ps = conn.prepareStatement(CHANGE_ORDER_STATE_BY_ID);
+                    ps.setInt(1, idOrderTypeAppr);
+                    ps.setInt(2, idOrder);
+                    ps.executeUpdate();
+                    conn.commit();
+                    result = true;
+                } catch (SQLException ex) {
+                    conn.rollback();
+                    logger.error(ex.getMessage());
+                    throw new DAOException("Error while trying to access the database!");
+                } finally {
+                    conn.setAutoCommit(true);
                 }
-            } catch (SQLException ex) {
-                logger.error(ex.getMessage());
-                throw new DAOException("Error while trying to access the database!");
-            } finally {
-                closeConnection();
+            } else {
+                result = false;
             }
+        } catch (SQLException ex) {
+            logger.error(ex.getMessage());
+            throw new DAOException("Error while trying to access the database!");
         } finally {
             lock.unlock();
+            closeConnection();
         }
         return result;
-    }
+}
 
     public boolean returnOrderById(int idOrder) throws DAOException {
         boolean result = false;
         getConnection();
         int idOrderTypeRet = getIdOrderType(Order.TypeOfOrder.RETURNED);
         try {
+            lock.lock();
             ps = conn.prepareStatement(GET_QUANTITY_AND_QTY_FOR_ORDERID);
             ps.setInt(1, idOrder);
             resultSet = ps.executeQuery();
@@ -518,10 +556,11 @@ public class OrderDAO extends AbstractDAO {
             } finally {
                 conn.setAutoCommit(true);
             }
-        } catch (SQLException ex){
+        } catch (SQLException ex) {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
-        } finally{
+        } finally {
+            lock.unlock();
             closeConnection();
         }
         return result;

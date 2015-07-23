@@ -12,7 +12,7 @@ public class OrderLogic {
     private static final int ITEMS_PER_ORDERS_PAGE = 5;
 
     public static boolean checkOrderExist(String idCatalog, int idUser, Order.TypeOfOrder state) throws LogicException{
-        OrderDAO orderDAO = new OrderDAO();
+        OrderDAO orderDAO = OrderDAO.getInstance();
         boolean result = false;
         try{
             result = orderDAO.checkOrderExistByUserAndIdCatalogAndState(idCatalog, idUser, state);
@@ -23,7 +23,7 @@ public class OrderLogic {
     }
 
     public static boolean addQtyToOrder(String idCatalog, int idUser, int qty,  Order.TypeOfOrder state) throws LogicException{
-        OrderDAO orderDAO = new OrderDAO();
+        OrderDAO orderDAO = OrderDAO.getInstance();
         boolean result = false;
         try{
             result = orderDAO.addQtyToOrderByUserAndIdCatalogAndState(idCatalog, idUser, qty, state);
@@ -34,7 +34,7 @@ public class OrderLogic {
     }
 
     public static boolean addOrder(String idCatalog, int idUser, int qty,  Order.TypeOfOrder state, String date) throws LogicException{
-        OrderDAO orderDAO = new OrderDAO();
+        OrderDAO orderDAO = OrderDAO.getInstance();
         boolean result = false;
         try{
             result = orderDAO.addOrder(idCatalog, idUser, qty, state, date);
@@ -45,7 +45,7 @@ public class OrderLogic {
     }
 
     public static boolean delOrder(int idOrder) throws  LogicException{
-        OrderDAO orderDAO = new OrderDAO();
+        OrderDAO orderDAO = OrderDAO.getInstance();
         boolean result = false;
         try{
             result = orderDAO.delOrderById(idOrder);
@@ -56,7 +56,7 @@ public class OrderLogic {
     }
 
     public static boolean makeOrder(int idUser, String date) throws  LogicException{
-        OrderDAO orderDAO = new OrderDAO();
+        OrderDAO orderDAO = OrderDAO.getInstance();
         boolean result = false;
         Order.TypeOfOrder state = Order.TypeOfOrder.NEW;
         Order.TypeOfOrder newState = Order.TypeOfOrder.IN_PROCESSING;
@@ -69,7 +69,7 @@ public class OrderLogic {
     }
 
     public static boolean changeOrderState(int idOrder, Order.TypeOfOrder state) throws  LogicException{
-        OrderDAO orderDAO = new OrderDAO();
+        OrderDAO orderDAO = OrderDAO.getInstance();
         boolean result = false;
         try{
             result = orderDAO.changeOrderStateByIdOrder(idOrder, state);
@@ -80,7 +80,7 @@ public class OrderLogic {
     }
 
     public static PageItems getUserBasketItems(int idUser, Order.TypeOfOrder state, int pageNo) throws LogicException{
-        OrderDAO orderDAO = new OrderDAO();
+        OrderDAO orderDAO = OrderDAO.getInstance();
         int noOfRecords = 0;
         List<Order> items = null;
         try {
@@ -94,7 +94,7 @@ public class OrderLogic {
     }
 
     public static PageItems getUserOrderItems(String searchText, int idUser, int pageNo) throws LogicException{
-        OrderDAO orderDAO = new OrderDAO();
+        OrderDAO orderDAO = OrderDAO.getInstance();
         int noOfRecords = 0;
         List<Order> items = null;
         Order.TypeOfOrder state = Order.TypeOfOrder.NEW;
@@ -109,7 +109,7 @@ public class OrderLogic {
     }
 
     public static PageItems getNewOrderItems(Order.TypeOfOrder state, int pageNo) throws  LogicException{
-        OrderDAO orderDAO = new OrderDAO();
+        OrderDAO orderDAO = OrderDAO.getInstance();
         int noOfRecords = 0;
         List<Order> items = null;
         try {
@@ -123,7 +123,7 @@ public class OrderLogic {
     }
 
     public static PageItems getAllOrderItems(String searchText, Order.TypeOfOrder state, int pageNo) throws LogicException{
-        OrderDAO orderDAO = new OrderDAO();
+        OrderDAO orderDAO = OrderDAO.getInstance();
         int noOfRecords = 0;
         List<Order> items = null;
         try {
@@ -137,7 +137,7 @@ public class OrderLogic {
     }
 
     public static boolean approveOrder(int idOrder) throws  LogicException{
-        OrderDAO orderDAO = new OrderDAO();
+        OrderDAO orderDAO = OrderDAO.getInstance();
         boolean result = false;
         try{
             if(orderDAO.approveOrderById(idOrder)){
@@ -152,7 +152,7 @@ public class OrderLogic {
     }
 
     public static boolean denyOrder(int idOrder) throws  LogicException{
-        OrderDAO orderDAO = new OrderDAO();
+        OrderDAO orderDAO = OrderDAO.getInstance();
         boolean result = false;
         Order.TypeOfOrder state = Order.TypeOfOrder.DENIED;
         try{
@@ -168,7 +168,7 @@ public class OrderLogic {
     }
 
     public static boolean returnOrder(int idOrder) throws  LogicException{
-        OrderDAO orderDAO = new OrderDAO();
+        OrderDAO orderDAO = OrderDAO.getInstance();
         boolean result = false;
         try{
             if(orderDAO.returnOrderById(idOrder)){

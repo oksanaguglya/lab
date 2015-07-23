@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class CatalogDAO extends AbstractDAO {
 
@@ -36,6 +37,34 @@ public class CatalogDAO extends AbstractDAO {
             "where idcatalog=?;";
     public static final String GET_IDBOOK_BY_IDCATALOG = "select book from library.catalog where library.catalog.idcatalog=?;";
     public static final String UPDATE_CATALOG_ITEM = "update library.catalog set library.catalog.quantity=? where library.catalog.idcatalog=?;";
+    /**
+     * This is a lock
+     */
+    private static ReentrantLock lock = new ReentrantLock();
+    /**
+     * This is a CatalogDAO instance
+     */
+    private static CatalogDAO instance;
+    /**
+     * This is a constructor
+     */
+    private CatalogDAO(){
+    }
+    /**
+     * This method returns a CatalogDAO instance or call constructor to create it
+     * @return a CatalogDAO
+     */
+    public static CatalogDAO getInstance(){
+        try {
+            lock.lock();
+            if (instance == null) {
+                instance = new CatalogDAO();
+            }
+        } finally {
+            lock.unlock();
+        }
+        return instance;
+    }
 
     public List<CatalogItem> getCatalogItemsBySearchText(String searchText, int offset, int limit) throws DAOException {
         List<CatalogItem> items = new ArrayList<>(limit);
@@ -94,6 +123,7 @@ public class CatalogDAO extends AbstractDAO {
         boolean result = false;
         getConnection();
         try {
+            lock.lock();
             ps = conn.prepareStatement(GET_ORDERS_BY_IDCATALOG);
             ps.setInt(1, idCatalog);
             resultSet = ps.executeQuery();
@@ -110,6 +140,7 @@ public class CatalogDAO extends AbstractDAO {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
         } finally {
+            lock.unlock();
             closeConnection();
         }
         return result;
@@ -119,6 +150,7 @@ public class CatalogDAO extends AbstractDAO {
         boolean result = false;
         getConnection();
         try {
+            lock.lock();
             ps = conn.prepareStatement(INSERT_CATALOG_ITEM);
             ps.setInt(1, idBook);
             ps.setInt(2, quantity);
@@ -128,6 +160,7 @@ public class CatalogDAO extends AbstractDAO {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
         } finally {
+            lock.unlock();
             closeConnection();
         }
         return result;
@@ -137,6 +170,7 @@ public class CatalogDAO extends AbstractDAO {
         boolean result = false;
         getConnection();
         try {
+            lock.lock();
             ps = conn.prepareStatement(BookDAO.GET_IDBOOK_TYPE);
             ps.setString(1, bookType.toString().toLowerCase());
             resultSet = ps.executeQuery();
@@ -169,6 +203,7 @@ public class CatalogDAO extends AbstractDAO {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
         } finally {
+            lock.unlock();
             closeConnection();
         }
         return result;
@@ -220,6 +255,7 @@ public class CatalogDAO extends AbstractDAO {
         boolean result = false;
         getConnection();
         try {
+            lock.lock();
             ps = conn.prepareStatement(BookDAO.GET_IDBOOK_TYPE);
             ps.setString(1, bookType.toString().toLowerCase());
             resultSet = ps.executeQuery();
@@ -255,6 +291,7 @@ public class CatalogDAO extends AbstractDAO {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
         } finally {
+            lock.unlock();
             closeConnection();
         }
         return result;

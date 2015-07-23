@@ -126,8 +126,8 @@ public class UserDAO extends AbstractDAO {
             logger.error(ex.getMessage());
             throw new DAOException("Error while trying to access the database!");
         } finally {
-            closeConnection();
             lock.unlock();
+            closeConnection();
         }
         return result;
     }

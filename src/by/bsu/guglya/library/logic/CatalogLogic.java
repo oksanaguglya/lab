@@ -11,7 +11,7 @@ public class CatalogLogic {
     private static final int ITEMS_PER_CATALOG_PAGE = 5;
 
     public static PageItems getCatalogItems(String searchText, int pageNo) throws LogicException{
-        CatalogDAO catalogDAO = new CatalogDAO();
+        CatalogDAO catalogDAO = CatalogDAO.getInstance();
         int noOfRecords = 0;
         List<CatalogItem> items = null;
         try {
@@ -25,7 +25,7 @@ public class CatalogLogic {
     }
 
     public static boolean delCatalogItem(int idCatalog) throws  LogicException{
-        CatalogDAO catalogDAO = new CatalogDAO();
+        CatalogDAO catalogDAO = CatalogDAO.getInstance();
         boolean result = false;
         try{
             result = catalogDAO.delCatalogItemById(idCatalog);
@@ -36,7 +36,7 @@ public class CatalogLogic {
     }
 
     public static boolean addCatalogItem(int idBook, int quantity) throws  LogicException{
-        CatalogDAO catalogDAO = new CatalogDAO();
+        CatalogDAO catalogDAO = CatalogDAO.getInstance();
         boolean result = false;
         try{
             result = catalogDAO.addCatalogItem(idBook, quantity);
@@ -47,7 +47,7 @@ public class CatalogLogic {
     }
 
     public static boolean addNewCatalogItem(String title, String author, int year, Book.TypeOfBook bookType, int quantity) throws  LogicException{
-        CatalogDAO catalogDAO = new CatalogDAO();
+        CatalogDAO catalogDAO = CatalogDAO.getInstance();
         boolean result = false;
         try{
             result = catalogDAO.addNewCatalogItem(title, author, year, bookType, quantity);
@@ -58,7 +58,7 @@ public class CatalogLogic {
     }
 
     public static boolean checkCatalogItemExist(int idBook) throws  LogicException{
-        CatalogDAO catalogDAO = new CatalogDAO();
+        CatalogDAO catalogDAO = CatalogDAO.getInstance();
         boolean result = false;
         try{
             result = catalogDAO.checkCatalogItemExist(idBook);
@@ -69,7 +69,7 @@ public class CatalogLogic {
     }
 
     public static CatalogItem getCatalogItem(int idCatalogItem) throws  LogicException{
-        CatalogDAO catalogDAO = new CatalogDAO();
+        CatalogDAO catalogDAO = CatalogDAO.getInstance();
         CatalogItem catalogItem;
         try{
             catalogItem = catalogDAO.getCatalogItem(idCatalogItem);
@@ -80,7 +80,7 @@ public class CatalogLogic {
     }
 
     public static boolean changeCatalogItem(int idCatalog, String title, String author, int year, Book.TypeOfBook bookType, int quantity) throws  LogicException{
-        CatalogDAO catalogDAO = new CatalogDAO();
+        CatalogDAO catalogDAO = CatalogDAO.getInstance();
         boolean result = false;
         try{
             result = catalogDAO.changeCatalogItem(idCatalog, title, author, year, bookType, quantity);
