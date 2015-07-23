@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 public class Validator {
 
     private static final String PATTERN_LATIN_STRING_LENGTH20 = "^([a-zA-Z0-9_-]{8,20})$";
-    private static final String PATTERN_STRING_LENGTH45 = "^([a-zA-Z\\u0430-\\u044F\\u0410-\\u042F0-9_-]{1,45})$";
+    private static final String PATTERN_STRING_LENGTH45 = "^([a-zA-Z\\u0430-\\u044F\\u0410-\\u042F0\\s-9_-]{1,45})$";
     private static final String PATTERN_YEAR = "^[1-2][0-9]{3}$";
     private static final String PATTERN_DIGIT = "^[0-9]+$";
 
