@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@include file="header.jsp" %>
+<%@include file="../header.jsp" %>
 <!DOCTYPE html>
 <html>
 <fmt:setLocale value="${locale}" scope="session"/>
@@ -33,5 +33,5 @@
     </div>
     </body>
 </fmt:bundle>
-<%@include file="footer.jsp" %>
+<%@include file="../footer.jsp" %>
 </html>
