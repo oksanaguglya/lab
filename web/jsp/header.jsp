@@ -20,11 +20,8 @@
         </span>
         <span class="header-title-wrap">
             <div class="header-title-wrap2">
-                <form name="home" action="LibraryServlet" method="POST">
-                    <input type="hidden" name="command" value="home"/>
-                    <button type="submit" class="btn-header-home" name=home><h2 class="header"><fmt:message
-                            key="header.library"/></h2></button>
-                </form>
+                <button class="btn-header-home"><a class="a-no-dec" href="/library/LibraryServlet?command=home"><h2 class="header"><fmt:message
+                        key="header.library"/></h2></a></button>
             </div>
         </span>
 

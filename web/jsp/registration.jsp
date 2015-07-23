@@ -11,10 +11,7 @@
     <script src="js/validation.js"></script>
     <div class="enter">
         <div class="enter-list">
-            <form name="login" method="POST" action="LibraryServlet">
-                <input type="hidden" name="command" value="go_to_login_page">
-                <A HREF="javascript:document.login.submit()"><fmt:message key="login.link"/></A>
-            </form>
+            <a href="/library/LibraryServlet?command=go_to_login_page" class="pad-enter-list pad-left15"><fmt:message key="login.link"/></a>
         </div>
     </div>
     <div>

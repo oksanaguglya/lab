@@ -11,20 +11,11 @@
         <div class="enter-list">
             <c:choose>
                 <c:when test="${sessionScope.user.getType() == 'READER' || sessionScope.user.getType() == 'ADMINISTRATOR'}">
-                    <form class="pad-enter-list pad-left15" name="logOut" method="POST" action="LibraryServlet">
-                        <input type="hidden" name="command" value="log_out">
-                        <A HREF="javascript:document.logOut.submit()"><fmt:message key="login.out"/></A>
-                    </form>
+                    <a href="/library/LibraryServlet?command=log_out" class="pad-enter-list pad-left15"><fmt:message key="login.out"/></a>
                 </c:when>
                 <c:otherwise>
-                    <form class="pad-enter-list pad-left15" name="login" method="POST" action="LibraryServlet">
-                        <input type="hidden" name="command" value="go_to_login_page">
-                        <A HREF="javascript:document.login.submit()"><fmt:message key="login.link"/></A>
-                    </form>
-                    <form class="pad-enter-list pad-left15" name="registration" method="POST" action="LibraryServlet">
-                        <input type="hidden" name="command" value="go_to_registration_page">
-                        <A HREF="javascript:document.registration.submit()"><fmt:message key="register.link"/></A>
-                    </form>
+                    <a href="/library/LibraryServlet?command=go_to_login_page" class="pad-enter-list pad-left15"><fmt:message key="login.link"/></a>
+                    <a href="/library/LibraryServlet?command=go_to_registration_page" class="pad-enter-list pad-left15"><fmt:message key="register.link"/></a>
                 </c:otherwise>
             </c:choose>
         </div>

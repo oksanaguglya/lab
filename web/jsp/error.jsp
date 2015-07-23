@@ -7,7 +7,7 @@
     <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="css/1.css" rel="stylesheet" type="text/css"/>
+        <link href="/library/css/style.css" rel="stylesheet" type="text/css"/>
         <title><fmt:message key="errorpage.title"/></title>
     </head>
     <body>
@@ -21,10 +21,7 @@
         </c:if>
 
         <div class="center">
-            <form name="home" action="LibraryServlet" method="POST">
-                <input type="hidden" name="command" value="home"/>
-                <button type="submit" class="btn" name=home><fmt:message key="errorpage.redirect"/></button>
-            </form>
+            <button class="btn"><a class="a-no-dec" style="color: white" href="/library/LibraryServlet?command=home"><fmt:message key="errorpage.redirect"/></a></button>
         </div>
     </div>
     </body>

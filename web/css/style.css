@@ -12,6 +12,14 @@ A{
     color:#0000FF;
 }
 
+.a-no-dec{
+    text-decoration: none;
+}
+
+.white-color{
+    color:#ffffff;
+}
+
 .header {
     color: cornflowerblue;
     font-size: 40px;
