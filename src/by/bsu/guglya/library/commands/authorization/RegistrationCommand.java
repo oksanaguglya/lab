@@ -12,7 +12,11 @@ import by.bsu.guglya.library.utils.MD5Encryptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.security.NoSuchAlgorithmException;
-
+/**
+ * This class implements a pattern command
+ * This class register users in system
+ * @author Oksana
+ */
 public class RegistrationCommand implements Command {
 
     private static final String LOGIN_PARAM = "login";
@@ -21,7 +25,12 @@ public class RegistrationCommand implements Command {
     private static final String LOCALE_PARAM = "locale";
     private final static String RESULT_MESSAGE_ATTR = "resultRegMessage";
     private static final String DATABASE_ERROR_MESSAGE_ATTR = "errorDatabaseMessage";
-
+    /**
+     * This method creates a new user
+     * This method gets the data about the user from the request, checks their correctness,
+     * and if they are correct, then creates a new user
+     * @param request a httpServletRequest
+     */
     @Override
     public String execute(HttpServletRequest request) {
         String page;

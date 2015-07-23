@@ -23,12 +23,12 @@ public class AccessFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
             throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
-        if (req.getSession().getAttribute(USER_ATTR) != null) {
-            filterChain.doFilter(request, response);
-        } else {
+        if (req.getSession().getAttribute(USER_ATTR) == null) {
             req.getServletContext().getRequestDispatcher(INDEX_PATH).forward(request, response);
-            filterChain.doFilter(request, response);
+            return;
         }
+        filterChain.doFilter(request, response);
+
     }
 
     @Override

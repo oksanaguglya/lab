@@ -48,7 +48,6 @@ public class EditBookInCatalogCommand implements Command {
                 } else {
                     message = messageManager.getProperty(MessageManager.EDIT_BOOK_IN_CATALOG_UNSUCCESS_MESSAGE);
                 }
-
                 request.setAttribute(RESULT_MESSAGE_ATTR, message);
             }
         } catch (InputException ex) {

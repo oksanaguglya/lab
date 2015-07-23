@@ -8,14 +8,14 @@
     <%@include file="../../header.jsp" %>
     <head></head>
     <body>
-    <%--Search form--%>
+        <%--Search form--%>
     <form class="search" name="search" action="LibraryServlet" id="form" method="POST">
         <input type="hidden" name="command" value="go_to_all_user_orders_page">
         <input class="search-text" type="text" name="searchLoginOrder" value="${sessionScope.searchLoginOrder}"
                placeholder=<fmt:message key="order.search.login.placeholder"/>/>
         <button type="submit" class="btn btn-info"><fmt:message key="catalog.search.button.text"/></button>
     </form>
-    <%--Table of orders --%>
+        <%--Table of orders --%>
     <c:if test="${noOfPages != 0}">
         <table border="2" id="table" cellpadding="5" cellspacing="1">
             <tr>
@@ -60,12 +60,14 @@
                     </c:choose>
                 </tr>
             </c:forEach>
-        </table><br>
+        </table>
+        <br>
     </c:if>
         <%--Pagination--%>
     <tag:pagination currentPage="${currentPage}" command="go_to_all_user_orders_page"
                     numberOfPages="${noOfPages}"></tag:pagination>
         <%--Messages--%>
+
 
     <div class="text-message"><h2>${emptySearchLoginOrderMessage}</h2></div>
 

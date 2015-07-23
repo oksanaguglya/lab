@@ -7,10 +7,10 @@ import by.bsu.guglya.library.model.beans.*;
 public class BookLogic {
 
     public static int checkBookExist(String title, String author, int year, Book.TypeOfBook bookType) throws LogicException {
-        BookDAO BookDAO = new BookDAO();
+        BookDAO BookDao = BookDAO.getInstance();
         int result = -1;
         try {
-            result = BookDAO.checkBookExist(title, author, year, bookType);
+            result = BookDao.checkBookExist(title, author, year, bookType);
         } catch (DAOException ex) {
             throw new LogicException(ex.getMessage());
         }

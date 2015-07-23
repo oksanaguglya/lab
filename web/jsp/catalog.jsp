@@ -144,7 +144,7 @@
     </c:if>
     <c:if test="${sessionScope.user.getType() == 'ADMINISTRATOR'}">
         <div class="center">
-            <div class="text-message"><h2>${successDelBookFromCatalog}${unsuccessfulDelBookFromCatalog}</h2></div>
+            <div class="text-message"><h2>${successDelBookFromCatalog}${unsuccessfulDelBookFromCatalog}${resultMessage}</h2></div>
         </div>
     </c:if>
 

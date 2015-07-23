@@ -13,7 +13,11 @@ import by.bsu.guglya.library.model.beans.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.security.NoSuchAlgorithmException;
-
+/**
+ * This class implements a pattern command
+ * This class authorizes users in system
+ * @author Oksana
+ */
 public class LoginCommand implements Command {
 
     private final static String LOGIN_PARAM = "login";
@@ -23,6 +27,11 @@ public class LoginCommand implements Command {
     private final static String RESULT_MESSAGE_ATTR = "resultLoginMessage";
     private static final String DATABASE_ERROR_MESSAGE_ATTR = "errorDatabaseMessage";
 
+    /**
+     * This gets the login and password from request, check their correctness and find user in database
+     * If such user exist this user will add to session and user will enter in system
+     * @param request a httpServletRequest
+     */
     @Override
     public String execute(HttpServletRequest request) {
         String page;

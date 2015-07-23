@@ -7,7 +7,7 @@ import by.bsu.guglya.library.model.beans.*;
 public class AuthenticationLogic {
 
     public static boolean checkUserExist(String login, String password) throws LogicException {
-        UserDAO userDAO = new UserDAO();
+        UserDAO userDAO = UserDAO.getInstance();
         boolean result = false;
         try {
             result = userDAO.checkUserExist(login, password);
@@ -18,7 +18,7 @@ public class AuthenticationLogic {
     }
 
     public static User returnUser(String login, String password) throws LogicException{
-        UserDAO userDAO = new UserDAO();
+        UserDAO userDAO = UserDAO.getInstance();
         User user = null;
         try {
             user = userDAO.returnUser(login, password);

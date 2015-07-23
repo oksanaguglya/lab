@@ -6,7 +6,7 @@ import by.bsu.guglya.library.database.dao.UserDAO;
 public class RegistrationLogic {
 
     public static boolean registrateClient(String login, String password) throws LogicException {
-        UserDAO userDao = new UserDAO();
+        UserDAO userDao = UserDAO.getInstance();
         boolean result = false;
         try{
             result = userDao.registrateUser(login, password);
@@ -17,7 +17,7 @@ public class RegistrationLogic {
     }
 
     public static boolean checkLoginExist(String login)throws LogicException {
-        UserDAO userDao = new UserDAO();
+        UserDAO userDao = UserDAO.getInstance();
         boolean result = false;
         try{
             result = userDao.checkLoginExist(login);

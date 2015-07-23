@@ -4,6 +4,7 @@ import by.bsu.guglya.library.model.beans.*;
 import org.apache.log4j.Logger;
 
 import java.sql.SQLException;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class BookDAO extends AbstractDAO {
 
@@ -13,6 +14,34 @@ public class BookDAO extends AbstractDAO {
             "join library.book_type on library.book.book_type = library.book_type.idbook_type " +
             "where title=? and author=? and year=? and book_type=?;";
     public static final String UPDATE_BOOK = "update library.book set library.book.title=?, library.book.author=?, library.book.year=?, library.book.book_type=? where library.book.idbook=?;";
+    /**
+     * This is a lock
+     */
+    private static ReentrantLock lock = new ReentrantLock();
+    /**
+     * This is a BookDAO instance
+     */
+    private static BookDAO instance;
+    /**
+     * This is a constructor
+     */
+    private BookDAO(){
+    }
+    /**
+     * This method returns a BookDAO instance or call constructor to create it
+     * @return a BookDAO
+     */
+    public static BookDAO getInstance(){
+        try {
+            lock.lock();
+            if (instance == null) {
+                instance = new BookDAO();
+            }
+        } finally {
+            lock.unlock();
+        }
+        return instance;
+    }
 
     public int checkBookExist(String title, String author, int year, Book.TypeOfBook bookType) throws DAOException {
         int result = -1;
