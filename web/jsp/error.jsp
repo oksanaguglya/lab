@@ -16,14 +16,14 @@
         <div class="text-message"><h2><fmt:message key="errorpage.message"/></h2></div>
             <%--database error--%>
         <c:if test="${errorDatabaseMessage != null}">
-            <div class="text-message"><h2>Database error!</h2></div>
+            <div class="text-message"><h2><fmt:message key="errorpage.database"/></h2></div>
             <div class="text-message"><h2>(${errorDatabaseMessage})</h2></div>
         </c:if>
 
         <div class="center">
             <form name="home" action="LibraryServlet" method="POST">
                 <input type="hidden" name="command" value="home"/>
-                <button type="submit" class="btn" name=home>Redirect to main page</button>
+                <button type="submit" class="btn" name=home><fmt:message key="errorpage.redirect"/></button>
             </form>
         </div>
     </div>

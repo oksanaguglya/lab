@@ -3,7 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
-<fmt:setLocale value="${not empty locale ? locale : 'ru_RU'}" scope="session"/>
+<fmt:setLocale value="${locale}" scope="session"/>
 <fmt:bundle basename="by.bsu.guglya.library.resources.gui">
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script>
