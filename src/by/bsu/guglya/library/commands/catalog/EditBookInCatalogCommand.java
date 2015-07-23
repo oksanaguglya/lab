@@ -52,7 +52,7 @@ public class EditBookInCatalogCommand implements Command {
                 request.setAttribute(RESULT_MESSAGE_ATTR, message);
             }
         } catch (InputException ex) {
-            request.setAttribute(RESULT_MESSAGE_ATTR, ex.getMessage());
+            request.setAttribute(RESULT_MESSAGE_ATTR, messageManager.getProperty(ex.getMessage()));
             page = ConfigurationManager.getInstance().getProperty(ConfigurationManager.BOOK_EDITOR_CATALOG_PATH_JSP);
             return page;
         } catch (LogicException ex) {
