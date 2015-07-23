@@ -47,7 +47,7 @@ function validateBookForm() {
     var author = document.forms["editorBook"]["author"].value;
     var year = document.forms["editorBook"]["year"].value;
     var quantity = document.forms["editorBook"]["quantity"].value;
-    var lengthRegex = /^([\sa-zA-Z\u0430-\u044F\u0410-\u042F0-9_-]{1,45})$/;
+    var lengthRegex = /^([\sa-zA-Z\u0430-\u044F\u0410-\u042F\u002E0-9_-]{1,45})$/;
     var yearRegex = /^[1-2][0-9]{3}$/;
     var digitRegex = /^[0-9]+$/;
     if (title == null || title == "") {
